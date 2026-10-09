@@ -1,0 +1,49 @@
+{
+  "schema_version": "research-handoff.v1",
+  "project_id": "StepTrace",
+  "task_id": "steptrace-handoff-20261009",
+  "source_repo": "https://github.com/mightyoung/StepTrace",
+  "source_commit": "a732fa515c29494a7065c916ecdbf3a2db54fe19",
+  "owner": "repository-maintainer",
+  "status": "prepared",
+  "next_action": "Review the public handoff text; publication alone does not authorize execution.",
+  "artifacts": [
+    {
+      "artifact_id": "steptrace-human-reviewed-five-frames-20261009",
+      "sha256": "2fe60fa9fce512cb10a27a0aff800164deb8c9fa1227ede926d12b2c3b39bcee",
+      "bytes": 314639,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Private final human-reviewed export; media and private links omitted.",
+        "license": "Redistribution not approved by this handoff.",
+        "split": "development diagnostic; candidate-exposed",
+        "derivation": "Final versions 7/10/1/3/3; not independent blind ground truth; original export unchanged."
+      }
+    }
+  ],
+  "review": {
+    "classification": "AI-assisted human-reviewed diagnostic reference",
+    "seen_candidates": true,
+    "independent_blind_gt": false
+  },
+  "claims": [
+    "Five frames from three scenes, with two near-duplicate pairs; versions 7/10/1/3/3.",
+    "Normalized visible polygons use [0,1]; pixel-edge boxes use image width/height.",
+    "Existing-output diagnostics only: object comparisons cover three exact frames and hand comparisons cover ten ROI streams.",
+    "No new inference, training, independent blind evaluation, PCK or aggregate model accuracy is claimed."
+  ],
+  "execution": {
+    "claimed_status": "NO_NEW_EXPERIMENT",
+    "executed_status": "NO_NEW_EXPERIMENT",
+    "command": null,
+    "exit_code": null,
+    "output_sha256": null,
+    "authorization": "This PR publishes text only; no new execution is authorized."
+  },
+  "blockers": [],
+  "public_boundary": [
+    "No raw images, videos, original ZIP, private asset URLs or private conversation identifiers.",
+    "Private artifact entries are identifiers only; no external retrieval is implied."
+  ]
+}

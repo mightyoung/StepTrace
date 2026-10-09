@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research handoff v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_id",
+    "task_id",
+    "source_repo",
+    "source_commit",
+    "owner",
+    "status",
+    "next_action",
+    "artifacts",
+    "review",
+    "claims",
+    "execution",
+    "blockers",
+    "public_boundary"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "research-handoff.v1"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "source_repo": {
+      "type": "string",
+      "pattern": "^https://github.com/mightyoung/"
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "prepared",
+        "blocked",
+        "running",
+        "completed"
+      ]
+    },
+    "next_action": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifact_id",
+          "sha256",
+          "bytes",
+          "visibility",
+          "availability",
+          "provenance"
+        ],
+        "properties": {
+          "artifact_id": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "private",
+              "restricted"
+            ]
+          },
+          "availability": {
+            "enum": [
+              "metadata_only",
+              "in_repository",
+              "external_authorized",
+              "unverified"
+            ]
+          },
+          "provenance": {
+            "type": "object",
+            "required": [
+              "source",
+              "license",
+              "split",
+              "derivation"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "license": {
+                "type": "string"
+              },
+              "split": {
+                "type": "string"
+              },
+              "derivation": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "classification",
+        "seen_candidates",
+        "independent_blind_gt"
+      ],
+      "properties": {
+        "classification": {
+          "type": "string"
+        },
+        "seen_candidates": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "independent_blind_gt": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claimed_status",
+        "executed_status",
+        "command",
+        "exit_code",
+        "output_sha256",
+        "authorization"
+      ],
+      "properties": {
+        "claimed_status": {
+          "type": "string"
+        },
+        "executed_status": {
+          "type": "string"
+        },
+        "command": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "exit_code": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "output_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "authorization": {
+          "type": "string"
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "category",
+          "detail"
+        ],
+        "properties": {
+          "category": {
+            "enum": [
+              "missing_sync",
+              "access_denied",
+              "environment_capability",
+              "missing_evidence",
+              "authorization",
+              "unknown"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "public_boundary": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
