@@ -1,0 +1,99 @@
+schema_version: 1
+task_id: meccano
+allowed_classes:
+  - hand
+  - metal bar
+  - partial assembly
+  - screw
+  - bolt
+  - red fastener
+  - screwdriver
+detector_prompts:
+  - hand
+  - metal bar
+  - partial assembly
+  - screw
+  - bolt
+  - red fastener
+  - screwdriver
+class_aliases:
+  component: [metal bar, partial assembly]
+
+steps:
+  - id: pick_components
+    prompts: [hand, metal bar, partial assembly]
+    evidence:
+      all:
+        - predicate: near
+          left: hand
+          right: component
+          max_gap: 0.08
+          reason: hand_component_contact
+  - id: align_components
+    prompts: [hand, metal bar, partial assembly]
+    depends_on: [pick_components]
+    evidence:
+      all:
+        - predicate: count
+          label: hand
+          min: 2
+          min_confidence: 0.35
+        - predicate: count
+          label: component
+          min: 2
+          min_confidence: 0.22
+        - predicate: near
+          left: component
+          right: component
+          max_gap: 0.05
+        - predicate: near
+          left: hand
+          right: component
+          max_gap: 0.08
+  - id: insert_screw
+    prompts: [hand, metal bar, partial assembly, screw]
+    depends_on: [align_components]
+    evidence:
+      all:
+        - predicate: count
+          label: screw
+          min: 1
+          min_confidence: 0.30
+          max_area_ratio: 0.025
+          reason: small_fastener_missing
+        - predicate: near
+          left: screw
+          right: hand
+          max_gap: 0.08
+        - predicate: near
+          left: screw
+          right: component
+          max_gap: 0.08
+  - id: tighten_screw
+    prompts: [hand, metal bar, partial assembly, screwdriver]
+    depends_on: [insert_screw]
+    evidence:
+      all:
+        - predicate: count
+          label: screwdriver
+          min: 1
+          min_confidence: 0.24
+          max_area_ratio: 0.04
+          min_aspect_ratio: 1.8
+        - predicate: near
+          left: screwdriver
+          right: hand
+          max_gap: 0.08
+        - predicate: near
+          left: screwdriver
+          right: component
+          max_gap: 0.08
+  - id: verify_assembly
+    prompts: [metal bar, partial assembly]
+    depends_on: [tighten_screw]
+    evidence:
+      all:
+        - predicate: count
+          label: component
+          min: 1
+          min_confidence: 0.22

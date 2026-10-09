@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Qwen joint state and risk inference",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "task_id", "window_id", "estimated_stage", "completion_state", "deviations", "risk_assessments", "evidence_refs", "conflicting_evidence_refs", "brief_rationale", "authority"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "task_id": {"type": "string", "minLength": 1},
+    "window_id": {"type": "string", "minLength": 1},
+    "estimated_stage": {"type": ["string", "null"], "minLength": 1},
+    "completion_state": {"enum": ["not_started", "in_progress", "completed", "unknown"]},
+    "deviations": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["type_id", "evidence_refs"], "properties": {"type_id": {"type": "string", "minLength": 1}, "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}}}},
+    "risk_assessments": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["rule_id", "status", "evidence_refs", "missing_evidence"], "properties": {"rule_id": {"type": "string", "minLength": 1}, "status": {"enum": ["triggered", "not_triggered", "unknown", "not_applicable"]}, "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}, "missing_evidence": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}}}},
+    "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "conflicting_evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "brief_rationale": {"type": "string", "minLength": 1},
+    "authority": {"const": "state_estimation_only"}
+  }
+}

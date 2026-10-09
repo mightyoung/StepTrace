@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Qwen SOP audit review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "clip_frame",
+    "observed_action",
+    "verdict",
+    "confidence",
+    "visible_evidence",
+    "missing_evidence",
+    "negative_evidence",
+    "rationale",
+    "authority",
+    "state_write_allowed",
+    "annotation_used"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "task_id": {"type": "string"},
+    "clip_frame": {"type": "integer", "minimum": 0},
+    "observed_action": {"type": ["string", "null"]},
+    "verdict": {
+      "enum": ["consistent", "conflict", "uncertain", "human_review"]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "visible_evidence": {"type": "array", "items": {"type": "string"}},
+    "missing_evidence": {"type": "array", "items": {"type": "string"}},
+    "negative_evidence": {"type": "array", "items": {"type": "string"}},
+    "rationale": {"type": "string"},
+    "authority": {"const": "audit_only"},
+    "state_write_allowed": {"const": false},
+    "annotation_used": {"const": false}
+  }
+}

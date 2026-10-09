@@ -1,0 +1,30 @@
+# DEVELOPMENT_ONLY validation-stage spec — 协议默认骨干（Qwen3.5-9B-Q4_K_M）。
+# 闸门 V4 第 1 栈：全 8 臂。
+#
+# 输出目录必须与 27B 栈互不相同（协议 §7.2 纪律 1）：
+#   /share/data4/yhh/sop-compliance-demo/validation/<run-id>-9b/panel
+# 同一 run_dir 内出现两个骨干的产物即视为证据链污染，该 run 作废。
+#
+# 模型身份：GGUF sha256 03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8
+# （5 680 522 464 B）/ mmproj-BF16.gguf sha256 853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383
+# 每个 job 的 model_hash 都必须填上面这个 GGUF 哈希；mmproj 另行登记在报告里。
+profile: development
+formal_admission: false
+model_name: Qwen3.5-9B-Q4_K_M
+methods:
+  - B0-fixed-streak-v1
+  - B1-raw-imagery-v1
+  - B2-simple-concat-v1
+  - P-structured-temporal-v1
+  - P-ablation-no-perception-v1
+  - P-ablation-no-history-v1
+  - P-ablation-no-process-constraints-v1
+  - P-ablation-no-fact-split-v1
+budget:
+  sample_every: 12
+  window_frames: 3
+  call_timeout_seconds: 60
+  max_attempts: 1
+  max_backlog_seconds: 60
+  job_timeout_seconds: 3600
+jobs: []

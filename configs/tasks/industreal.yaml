@@ -1,0 +1,62 @@
+schema_version: 1
+task_id: industreal
+allowed_classes:
+  - hand
+  - part
+  - fixture
+  - tool
+class_aliases:
+  hand: [hand]
+  part: [part]
+  fixture: [fixture]
+  tool: [tool]
+detector_prompts:
+  - hand
+  - part
+  - fixture
+  - tool
+
+steps:
+  - id: retrieve_part
+    prompts: [hand, part]
+    evidence:
+      all:
+        - predicate: near
+          left: hand
+          right: part
+          max_gap: 0.08
+  - id: fixture_part
+    prompts: [hand, fixture]
+    depends_on: [retrieve_part]
+    evidence:
+      all:
+        - predicate: count
+          label: hand
+          min: 1
+          min_confidence: 0.35
+        - predicate: near
+          left: hand
+          right: fixture
+          max_gap: 0.08
+  - id: perform_operation
+    prompts: [hand, tool, part]
+    depends_on: [fixture_part]
+    evidence:
+      all:
+        - predicate: count
+          label: tool
+          min: 1
+          min_confidence: 0.24
+        - predicate: near
+          left: tool
+          right: part
+          max_gap: 0.08
+  - id: inspect_result
+    prompts: [part]
+    depends_on: [perform_operation]
+    evidence:
+      all:
+        - predicate: count
+          label: part
+          min: 1
+          min_confidence: 0.22

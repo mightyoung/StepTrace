@@ -1,0 +1,142 @@
+schema_version: 1
+pack_id: industreal-official-paper-v1
+task_id: industreal_component_state_audit
+language: zh-CN
+status: DRAFT_REFERENCE_ONLY
+authority: audit_only
+
+documents:
+  - id: industreal-paper
+    title: IndustReal - WACV 2024 paper and supplementary pages
+    local_path: sources/industreal_official_paper_2310.17323_20260812.pdf
+    sha256: 80048ee7ec3b47dbe641903329c1d5a725481372c280a7000353272da3402378
+    usage: Procedural structure and component-state definitions only
+
+global_rules:
+  - 工序识别关注正确完成状态，而不只是动作正在发生。
+  - 装配允许在子目标约束内采用不同执行顺序，不得仅凭固定序号判定错误。
+  - 关键部件被手或工具遮挡时，不确认完成。
+  - 错误零件、缺失零件或错误安装均属于冲突证据。
+  - 当前知识包来自论文而非完整作业指导书，因此细粒度几何关系不清楚时必须弃权。
+
+steps:
+  - id: base_present
+    title: 基座就位
+    instruction: 确认基座作为后续装配的承载部件已经就位。
+    prerequisites: []
+    allowed_next: [front_chassis_installed, rear_chassis_installed]
+    required_objects: [base]
+    completion_cues: [基座主体清晰可见并位于装配区域]
+    negative_cues: [基座缺失, 将其他部件误认为基座]
+    ambiguity_rules: [无法看清基座轮廓时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-2, industreal-paper#pdf-page-6]
+
+  - id: front_chassis_installed
+    title: 前车架安装完成
+    instruction: 确认前车架已连接到基座，而不是仅被拿取或对齐。
+    prerequisites: [base_present]
+    allowed_next: [front_chassis_pin_installed]
+    required_objects: [base, front chassis]
+    completion_cues: [前车架与基座形成稳定连接, 部件不再处于手持游离状态]
+    negative_cues: [前车架只是在附近, 前车架明显错位]
+    ambiguity_rules: [连接处被遮挡时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-6]
+
+  - id: front_chassis_pin_installed
+    title: 前车架销安装完成
+    instruction: 确认用于固定前车架的销已安装到正确连接位置。
+    prerequisites: [front_chassis_installed]
+    allowed_next: [rear_chassis_installed]
+    required_objects: [front chassis, chassis pin]
+    completion_cues: [固定销位于前车架连接点, 前车架保持固定]
+    negative_cues: [销缺失, 销位于错误孔位]
+    ambiguity_rules: [小销或孔位不可辨认时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-6]
+
+  - id: rear_chassis_installed
+    title: 后车架安装完成
+    instruction: 确认后车架已连接到基座或既有车架结构。
+    prerequisites: [base_present]
+    allowed_next: [rear_chassis_brace_installed, front_rear_chassis_pin_installed]
+    required_objects: [base, rear chassis]
+    completion_cues: [后车架与主体形成稳定连接]
+    negative_cues: [后车架未连接, 后车架方向明显错误]
+    ambiguity_rules: [连接边界不可见时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-6]
+
+  - id: rear_chassis_brace_installed
+    title: 后车架支撑件安装完成
+    instruction: 确认长或短后车架支撑件已按当前任务版本安装。
+    prerequisites: [rear_chassis_installed]
+    allowed_next: [front_rear_chassis_pin_installed, rear_rear_chassis_pin_installed]
+    required_objects: [rear chassis, brace]
+    completion_cues: [支撑件连接到后车架并保持固定]
+    negative_cues: [维护任务中支撑件型号错误, 支撑件缺失]
+    ambiguity_rules: [无法区分长短支撑件时输出 human_review]
+    source_refs: [industreal-paper#pdf-page-2, industreal-paper#pdf-page-6]
+
+  - id: front_rear_chassis_pin_installed
+    title: 前后车架连接销安装完成
+    instruction: 确认前后车架之间的连接销已正确安装。
+    prerequisites: [front_chassis_installed, rear_chassis_installed]
+    allowed_next: [rear_rear_chassis_pin_installed]
+    required_objects: [front chassis, rear chassis, chassis pin]
+    completion_cues: [连接销位于前后车架连接位置]
+    negative_cues: [销缺失, 销安装在错误连接点]
+    ambiguity_rules: [连接销被遮挡时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-6]
+
+  - id: rear_rear_chassis_pin_installed
+    title: 后车架连接销安装完成
+    instruction: 确认后车架相关连接点已由正确的销固定。
+    prerequisites: [rear_chassis_installed]
+    allowed_next: [rear_wheel_assembly_installed]
+    required_objects: [rear chassis, chassis pin]
+    completion_cues: [连接销位于后车架预期连接点]
+    negative_cues: [销缺失, 销明显错位]
+    ambiguity_rules: [销的存在或孔位不可确认时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-6]
+
+  - id: front_bracket_installed
+    title: 前支架安装完成
+    instruction: 确认前支架已经连接到主体结构。
+    prerequisites: [front_chassis_installed]
+    allowed_next: [front_bracket_screw_installed]
+    required_objects: [front chassis, front bracket]
+    completion_cues: [前支架与主体结构稳定连接]
+    negative_cues: [前支架缺失, 前支架方向明显错误]
+    ambiguity_rules: [安装面被遮挡时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-6]
+
+  - id: front_bracket_screw_installed
+    title: 前支架螺钉安装完成
+    instruction: 确认前支架螺钉已安装并固定支架。
+    prerequisites: [front_bracket_installed]
+    allowed_next: [front_wheel_assembly_installed]
+    required_objects: [front bracket, front bracket screw]
+    completion_cues: [螺钉位于前支架固定位置]
+    negative_cues: [螺钉缺失, 螺钉未进入固定位置]
+    ambiguity_rules: [螺钉头不可见时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-6]
+
+  - id: front_wheel_assembly_installed
+    title: 前轮组件安装完成
+    instruction: 确认前轮组件及其必要连接件已正确安装。
+    prerequisites: [front_chassis_installed]
+    allowed_next: []
+    required_objects: [front wheel assembly, washer, nut, pin]
+    completion_cues: [前轮组件连接到前车架, 必要连接件可见且位置合理]
+    negative_cues: [缺少垫片, 缺少螺母, 使用错误销, 前轮明显偏斜]
+    ambiguity_rules: [垫片或螺母不可见时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-2, industreal-paper#pdf-page-6, industreal-paper#pdf-page-12]
+
+  - id: rear_wheel_assembly_installed
+    title: 后轮组件安装完成
+    instruction: 确认后轮组件及其必要连接件已正确安装。
+    prerequisites: [rear_chassis_installed]
+    allowed_next: []
+    required_objects: [rear wheel assembly, pulley, washer, nut, pin]
+    completion_cues: [后轮组件连接到后车架, 必要连接件可见且位置合理]
+    negative_cues: [缺少后滑轮, 缺少垫片, 缺少螺母, 使用错误销]
+    ambiguity_rules: [小连接件不可辨认时输出 uncertain]
+    source_refs: [industreal-paper#pdf-page-2, industreal-paper#pdf-page-6, industreal-paper#pdf-page-12]

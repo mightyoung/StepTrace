@@ -1,0 +1,56 @@
+# DEVELOPMENT_ONLY provenance sidecar note: derived from configs/tasks/meccano.yaml
+# and configs/vlm/sop_knowledge/meccano_task_config_v1.yaml. Comments are not
+# part of the runtime knowledge payload; runtime source identifiers stay opaque.
+schema_version: "1.0"
+task_id: assembly-task-a
+status: DEVELOPMENT_ONLY
+source_refs:
+  - task-config-a#steps
+  - development-boundary-a#limitations
+steps:
+  - id: pick_components
+    title: Pick components
+    prerequisites: []
+    completion_cues: [the component is visibly retained in a controlled position after pickup]
+    negative_cues: [near-hand contact alone does not establish completed pickup]
+    required_observations: [hand_component_relation, verified_pick_outcome]
+    source_refs: [task-config-a#steps]
+  - id: align_components
+    title: Align components
+    prerequisites: [pick_components]
+    completion_cues: [two configured components are visibly brought into alignment]
+    negative_cues: [components remain visibly separated]
+    required_observations: [component_alignment]
+    source_refs: [task-config-a#steps]
+  - id: insert_screw
+    title: Insert screw
+    prerequisites: [align_components]
+    completion_cues: [a visible screw is at the component connection position]
+    negative_cues: [the screw or connection position cannot be verified]
+    required_observations: [screw_connection_relation]
+    source_refs: [task-config-a#steps]
+  - id: tighten_screw
+    title: Tighten screw
+    prerequisites: [insert_screw]
+    completion_cues: [a post-operation observation verifies the configured tightened outcome]
+    negative_cues: [tool contact alone does not establish tightening completion]
+    required_observations: [tool_connection_relation, verified_tightening_outcome]
+    source_refs: [task-config-a#steps]
+  - id: verify_assembly
+    title: Verify assembly
+    prerequisites: [tighten_screw]
+    completion_cues: [the connected assembly is fully visible and stable]
+    negative_cues: [the connection is occluded or components are visibly separated]
+    required_observations: [assembly_connection_state]
+    source_refs: [task-config-a#steps]
+risk_rules:
+  - id: prerequisite_not_observed
+    category: procedure
+    applicable_stages: [align_components, insert_screw, tighten_screw, verify_assembly]
+    trigger_conditions: [the cited observations conflict with a configured prerequisite]
+    exceptions: []
+    required_observations: [prerequisite_evidence]
+    severity: unspecified-development-category
+    severity_source: development-boundary-a#limitations
+    source_refs: [development-boundary-a#limitations]
+deviation_types: [prerequisite_violation, visible_misalignment]

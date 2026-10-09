@@ -1,0 +1,12 @@
+path: data/yolo/meccano-small-objects
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: hand
+  1: metal bar
+  2: partial assembly
+  3: screw
+  4: bolt
+  5: screwdriver

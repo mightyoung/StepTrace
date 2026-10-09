@@ -1,0 +1,65 @@
+# G-V0-6 已知图片语义测试专用知识包（DEVELOPMENT_ONLY）
+#
+# 出处与用途：本包是 20260820 参考运行（服务器
+# /srv/project/sop-compliance-demo/vlm-sop-runs/20260820-qwen-supervision-v1/，
+# 旧协议 audit_only）所发 prompt 中知识部分的**契约化移植**，仅用于闸门 G-V0-6。
+# 该参考运行在 4 张 IndustReal 关键帧上全部判定 uncertain，构成独立的已知答案基线；
+# G-V0-6 要用同一批帧、同一批步骤卡，在新协议契约下重跑，因此需要一个与那批帧
+# **语义匹配**的步骤词汇表。项目随包的 configs/vlm/state_risk/meccano-development.yaml
+# 用的是 MECCANO 派生的 5 步（pick_components…verify_assembly），与本批帧描述的
+# 车架装配不对应，故不能用于本测试。
+#
+# 移植时的两处必要改写（不得省略，否则本包不可用）：
+#   1. 参考运行的步骤卡没有 required_observations 字段，而契约要求非空，故为三步
+#      各自补了一个观察名。这些观察名也用于构造窗口的 observability.missing。
+#   2. 参考运行的 decision_rules 使用旧词表（consistent / conflict / uncertain /
+#      human_review），新契约用的是 completion_state 与 risk status 词表，故规则
+#      文本按语义等价改写（见 builder 中的 DECISION_RULES_NEW_VOCAB）。
+#
+# 与随包配置的一处刻意差异：本包的规则 applicable_stages 用 ["*"]，而随包配置只列
+# [align_components, insert_screw, tighten_screw, verify_assembly]。原因：随包配置把
+# 首道工序排除在 applicable_stages 之外，模型只要报该工序即可合法填 not_applicable，
+# 使规则永不触发（该逃生通道已由 tests/test_vlm_state_risk_failclosed_channel.py 的
+# test_stage_outside_applicable_stages_can_downgrade_rule 固定）。G-V0-6 要测的是
+# 「词汇对齐时 fail-closed 是否生效」，故必须先把这条与本测试无关的通道关掉。
+#
+# 状态：DEVELOPMENT_ONLY。不得用于正式 test，不得进入论文正式结果。
+schema_version: "1.0"
+task_id: assembly-task-a
+status: DEVELOPMENT_ONLY
+source_refs:
+  - reference-pack-a#steps
+  - reference-pack-a#rules
+steps:
+  - id: base_present
+    title: 基座就位
+    prerequisites: []
+    completion_cues: [基座主体清晰可见并位于装配区域]
+    negative_cues: [基座缺失, 将其他部件误认为基座]
+    required_observations: [base_visibility]
+    source_refs: [reference-pack-a#steps]
+  - id: front_chassis_installed
+    title: 前车架安装完成
+    prerequisites: [base_present]
+    completion_cues: [前车架与基座形成稳定连接, 部件不再处于手持游离状态]
+    negative_cues: [前车架只是在附近, 前车架明显错位]
+    required_observations: [base_front_chassis_connection]
+    source_refs: [reference-pack-a#steps]
+  - id: rear_chassis_installed
+    title: 后车架安装完成
+    prerequisites: [base_present]
+    completion_cues: [后车架与主体形成稳定连接]
+    negative_cues: [后车架未连接, 后车架方向明显错误]
+    required_observations: [base_rear_chassis_connection]
+    source_refs: [reference-pack-a#steps]
+risk_rules:
+  - id: prerequisite_not_observed
+    category: procedure
+    applicable_stages: ["*"]
+    trigger_conditions: [引用的观察与已配置前置条件冲突]
+    exceptions: []
+    required_observations: [prerequisite_evidence]
+    severity: unspecified-development-category
+    severity_source: reference-pack-a#rules
+    source_refs: [reference-pack-a#rules]
+deviation_types: [prerequisite_violation, visible_misalignment]

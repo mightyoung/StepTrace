@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "task_id": "meccano",
+  "states": [
+    "pick_components",
+    "align_components",
+    "insert_screw",
+    "tighten_screw",
+    "verify_assembly"
+  ],
+  "action_to_state": {
+    "take_bolt": "pick_components",
+    "take_screw": "pick_components",
+    "take_partial_model": "pick_components",
+    "take_gray_perforated_bar": "pick_components",
+    "align_objects": "align_components",
+    "plug_screw": "insert_screw",
+    "screw_screw_with_hands": "tighten_screw",
+    "screw_screw_with_screwdriver": "tighten_screw",
+    "put_partial_model": "verify_assembly"
+  },
+  "proxy_labels": {
+    "verify_assembly": {
+      "official_action": "put_partial_model",
+      "interpretation": "completion proxy only; not an official quality-verification label",
+      "claim_limit": "must not be reported as verified assembly quality"
+    }
+  }
+}

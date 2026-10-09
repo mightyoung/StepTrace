@@ -1,0 +1,76 @@
+schema_version: 1
+pack_id: meccano-task-config-v1
+task_id: meccano
+language: zh-CN
+status: DEVELOPMENT_ONLY_CONFIG_DERIVED
+authority: audit_only
+
+documents:
+  - id: meccano-task-config
+    title: MECCANO deterministic SOP task configuration
+    local_path: configs/tasks/meccano.yaml
+    sha256: 1404cd8f4b5582f0cf855d54d7ff7c361c01089f396927f2837db9710739dbb1
+    usage: Runtime step order, required objects, and geometric completion predicates only
+
+global_rules:
+  - 本知识包由项目任务配置生成，不是原厂装配说明书，只能用于开发性复核。
+  - 必须区分物体出现、动作正在发生和工序已经完成；三者不可互相替代。
+  - 小螺钉、孔位或工具接触点不可辨认时，必须输出 uncertain。
+  - Qwen 只能审计确定性状态机的当前步骤与下一预期步骤，不得写入状态。
+  - 不得根据帧号、视频进度或 MECCANO 数据集动作标签猜测工序。
+
+steps:
+  - id: pick_components
+    title: 拿取装配件
+    instruction: 复核手是否已经接触并拿取金属条或局部装配体。
+    prerequisites: []
+    allowed_next: [align_components]
+    required_objects: [hand, metal bar or partial assembly]
+    completion_cues: [手与至少一个装配件接触或紧邻, 装配件处于被操作者控制的位置]
+    negative_cues: [只有散落零件但手未接近, 装配件类别无法辨认]
+    ambiguity_rules: [手与零件的空间关系不清楚时输出 uncertain]
+    source_refs: [meccano-task-config#steps.pick_components]
+
+  - id: align_components
+    title: 对齐装配件
+    instruction: 复核双手是否将至少两个装配件带到相互接近的对齐位置。
+    prerequisites: [pick_components]
+    allowed_next: [insert_screw]
+    required_objects: [two hands, two components]
+    completion_cues: [两只手均参与定位, 至少两个装配件彼此接近且由手控制]
+    negative_cues: [只有一个装配件, 两件仍明显分离, 只有单手且无法确认对齐]
+    ambiguity_rules: [连接边缘被手遮挡时输出 uncertain]
+    source_refs: [meccano-task-config#steps.align_components]
+
+  - id: insert_screw
+    title: 插入螺钉
+    instruction: 复核小螺钉是否位于手和装配体附近，并有进入连接位置的可见证据。
+    prerequisites: [align_components]
+    allowed_next: [tighten_screw]
+    required_objects: [screw, hand, component]
+    completion_cues: [可辨认的小螺钉接近手和装配连接处, 螺钉位于合理孔位]
+    negative_cues: [螺钉不可见, 紧固件明显不在连接区域, 将螺栓误当螺钉]
+    ambiguity_rules: [小目标或孔位不可辨认时输出 uncertain]
+    source_refs: [meccano-task-config#steps.insert_screw]
+
+  - id: tighten_screw
+    title: 拧紧螺钉
+    instruction: 复核螺丝刀是否由手控制并接近装配体的紧固位置。
+    prerequisites: [insert_screw]
+    allowed_next: [verify_assembly]
+    required_objects: [screwdriver, hand, component]
+    completion_cues: [细长螺丝刀由手持握, 工具端部接近装配连接处]
+    negative_cues: [工具未接触装配区域, 螺丝刀不可见, 仅凭手部旋转猜测拧紧]
+    ambiguity_rules: [工具端部或接触位置被遮挡时输出 uncertain]
+    source_refs: [meccano-task-config#steps.tighten_screw]
+
+  - id: verify_assembly
+    title: 检查装配结果
+    instruction: 复核局部装配体是否清晰可见；不得仅凭视频结束推断检查完成。
+    prerequisites: [tighten_screw]
+    allowed_next: []
+    required_objects: [partial assembly or metal bar]
+    completion_cues: [装配体清晰可见并保持稳定, 可观察到已连接的部件结构]
+    negative_cues: [装配体被完全遮挡, 结构明显散开, 只看到独立零件]
+    ambiguity_rules: [连接状态无法从当前帧确认时输出 uncertain]
+    source_refs: [meccano-task-config#steps.verify_assembly]

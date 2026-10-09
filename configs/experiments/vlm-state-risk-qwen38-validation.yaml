@@ -1,0 +1,34 @@
+# DEVELOPMENT_ONLY validation-stage spec — 高能力对照骨干（Qwen3.8-27B-Q4M）。
+# 闸门 V4 第 2 栈：H8 定向复制，只跑主对比子集（协议 §7.2 纪律 3 / V-R8）。
+# 子集 = B0 / B1 / P / A4(P-ablation-no-fact-split-v1)，因为 H8 只问
+# 「H1 与 H6 的效应方向是否在两个骨干上一致」——H1 的主要对照件是 A4，H6 是 B1/B0。
+#
+# 为什么必须单独成文件（协议 §4：「当前面板配置的缺口」第 3/4 条）：
+#   run_vlm_state_risk_panel.py:88 的 model_name 默认值是 Qwen3.5-9B-Q4_K_M。
+#   若 27B 复用默认 spec，27B 的产物会带着 9B 的模型名进入台账（receipt 的
+#   required_effective 会按 spec 里的 model_name 校验），这是最容易被忽略、
+#   也最污染证据链的一类错误。故此处显式覆盖 model_name。
+#
+# 输出目录必须与 9B 栈互不相同：
+#   /share/data4/yhh/sop-compliance-demo/validation/<run-id>-27b/panel
+# 同一 run_dir 内出现两个骨干的产物即视为证据链污染，该 run 作废。
+#
+# 模型身份：GGUF sha256 6a96cc760fc65cc6b9ea7f1922e3ff8b2a48c09f209456f23bbae9ef7032c867
+# （16 810 714 400 B）/ mmproj-F16.gguf sha256 28891162bb6e6ad6ec94edb048cfc8612ea78e76bcd5fb0d5a4208d5f90e0b5a
+# 每个 job 的 model_hash 都必须填上面这个 GGUF 哈希 —— 绝不能沿用 9B 的哈希。
+profile: development
+formal_admission: false
+model_name: Qwen3.8-27B-Q4M
+methods:
+  - B0-fixed-streak-v1
+  - B1-raw-imagery-v1
+  - P-structured-temporal-v1
+  - P-ablation-no-fact-split-v1
+budget:
+  sample_every: 12
+  window_frames: 3
+  call_timeout_seconds: 60
+  max_attempts: 1
+  max_backlog_seconds: 60
+  job_timeout_seconds: 3600
+jobs: []

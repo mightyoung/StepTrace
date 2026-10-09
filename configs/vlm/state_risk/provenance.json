@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "status": "DEVELOPMENT_ONLY",
+  "knowledge_pack": "meccano-development.yaml",
+  "sources": [
+    {
+      "path": "configs/tasks/meccano.yaml",
+      "sha256": "1404cd8f4b5582f0cf855d54d7ff7c361c01089f396927f2837db9710739dbb1",
+      "usage": "step identifiers, prerequisite order, and observable predicate names only"
+    },
+    {
+      "path": "configs/vlm/sop_knowledge/meccano_task_config_v1.yaml",
+      "sha256": "8cf3453ece39fcd81a4664f59aaba0dc9484cb29624a2bd83d3f49e603a3bdb3",
+      "usage": "development limitations and audit cues only"
+    }
+  ],
+  "limitations": [
+    "These sources provide no formal completion truth or label eligibility.",
+    "Tool contact and hand proximity do not establish completed operations.",
+    "The knowledge pack is not formal evaluation or production authorization."
+  ]
+}

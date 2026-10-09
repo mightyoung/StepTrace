@@ -1,0 +1,30 @@
+schema_version: "1.0"
+task_id: software-fixture
+status: SYNTHETIC_SOFTWARE_TEST_ONLY
+source_refs: [tests/test_vlm_state_risk_contract.py#software-fixture]
+steps:
+  - id: pick
+    title: Pick fixture component
+    prerequisites: []
+    completion_cues: [fixture component is visibly held]
+    negative_cues: [fixture component remains on the bench]
+    required_observations: [hand_component_relation]
+    source_refs: [tests/test_vlm_state_risk_contract.py#software-fixture]
+  - id: install
+    title: Install fixture component
+    prerequisites: [pick]
+    completion_cues: [fixture component is visibly seated]
+    negative_cues: [fixture component is visibly misaligned]
+    required_observations: [component_alignment]
+    source_refs: [tests/test_vlm_state_risk_contract.py#software-fixture]
+risk_rules:
+  - id: fixture_misalignment
+    category: quality
+    applicable_stages: [install]
+    trigger_conditions: [fixture component is visibly misaligned]
+    exceptions: []
+    required_observations: [component_alignment]
+    severity: synthetic-moderate
+    severity_source: tests/test_vlm_state_risk_contract.py#software-fixture
+    source_refs: [tests/test_vlm_state_risk_contract.py#software-fixture]
+deviation_types: [prerequisite_violation]

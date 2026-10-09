@@ -1,0 +1,1 @@
+{"artifact_hash":"aa2596a0c5af88570ea35d4543082ccc8958dd73be0ac2228a12da2a48a5f5a2","bins":10,"calibration_partition_hash":"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","calibration_version":"frozen-v1","fitted":true,"frozen":true,"offset":0.0,"risk_threshold":0.5,"schema":"display_project.risk_calibrator","schema_version":1,"split_role":"CALIBRATION"}

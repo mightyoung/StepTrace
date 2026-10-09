@@ -1,0 +1,84 @@
+schema_version: 1
+profile: SOFTWARE_FIXTURE
+task_config: ../tasks/meccano.yaml
+fixed_streak:
+  confirm_frames: 4
+  cooldown_frames: 12
+schedule:
+  - fixed_streak
+  - hmm_or_crf
+  - vlm_only
+  - yolo
+  - grounding_dino
+  - no_calibration_certificate
+  - proposed
+methods:
+  - name: fixed_streak
+    factory: render_sop
+    model_hash: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    seed: 20260812
+    config:
+      policy: fixed_streak
+      detector_kind: grounding_dino
+      device: cpu
+      processor_name: display_project.experiments.adapters:software_fixture_processor
+  - name: hmm_or_crf
+    factory: render_sop
+    model_hash: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    seed: 20260812
+    config:
+      policy: fixed_streak
+      detector_kind: grounding_dino
+      device: cpu
+      processor_name: display_project.experiments.adapters:software_fixture_processor
+  - name: vlm_only
+    factory: render_sop
+    model_hash: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    seed: 20260812
+    config:
+      policy: fixed_streak
+      detector_kind: grounding_dino
+      device: cpu
+      processor_name: display_project.experiments.adapters:software_fixture_processor
+  - name: yolo
+    factory: render_sop
+    model_hash: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    seed: 20260812
+    config:
+      policy: fixed_streak
+      detector_kind: yolo
+      yolo_image_size: 1280
+      yolo_iou_threshold: 0.5
+      device: cpu
+      processor_name: display_project.experiments.adapters:software_fixture_processor
+  - name: grounding_dino
+    factory: render_sop
+    model_hash: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    seed: 20260812
+    config:
+      policy: fixed_streak
+      detector_kind: grounding_dino
+      device: cpu
+      processor_name: display_project.experiments.adapters:software_fixture_processor
+  - name: no_calibration_certificate
+    factory: render_sop
+    model_hash: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    seed: 20260812
+    config:
+      policy: uncalibrated_certificate
+      detector_kind: grounding_dino
+      raw_risk_threshold: 0.5
+      device: cpu
+      processor_name: display_project.experiments.adapters:software_fixture_processor
+  - name: proposed
+    factory: render_sop
+    model_hash: "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    seed: 20260812
+    config:
+      policy: proposed
+      detector_kind: grounding_dino
+      device: cpu
+      processor_name: display_project.experiments.adapters:software_fixture_processor
+      calibration_artifact: incomplete-data-fixture-calibrator.json
+      calibration_artifact_hash: aa2596a0c5af88570ea35d4543082ccc8958dd73be0ac2228a12da2a48a5f5a2
+      calibration_partition_hash: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc

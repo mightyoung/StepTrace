@@ -1,0 +1,8 @@
+# Paths are resolved relative to this file.
+video:
+  input: ../data/meccano/subset/video.mp4
+  output: ../outputs/baseline-demo.mp4
+  start_seconds: 0
+  duration_seconds: null
+events:
+  input: ../data/meccano/subset/events.json

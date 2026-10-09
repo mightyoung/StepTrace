@@ -1,0 +1,52 @@
+# Local secrets and authentication state
+.env
+.env.*
+*.pem
+*.key
+credentials*
+*token-cache*
+.auth/
+.aws/
+.kaggle/
+# Python/runtime caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+renv/
+runtime/
+vendor/
+build/
+dist/
+# Local sessions and agent state
+.DS_Store
+.omx/
+.codex/
+.claude/
+session.json
+agent-handoff/
+# External assets, generated evidence and raw media
+/data/
+/datasets/
+/models/
+/outputs/
+/artifacts/
+/tmp/
+/sources/
+/qwen/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.pt
+*.pth
+*.safetensors
+*.gguf
+*.onnx
+*.zip
+*.tar*
+*.pdf
+*.docx

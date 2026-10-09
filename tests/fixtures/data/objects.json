@@ -1,0 +1,11 @@
+{
+  "images": [
+    {"id": 10, "width": 100, "height": 80, "file_name": "01_00010.jpg"}
+  ],
+  "categories": [
+    {"id": 18, "name": "bolt"}
+  ],
+  "annotations": [
+    {"id": 1, "image_id": 10, "category_id": 18, "bbox": [-5, 70, 120, 20], "area": 2400}
+  ]
+}

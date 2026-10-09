@@ -1,0 +1,97 @@
+schema_version: 1
+profile: DEVELOPMENT_ONLY
+task_config: ../tasks/meccano.yaml
+fixed_streak:
+  confirm_frames: 4
+  cooldown_frames: 12
+schedule:
+  - fixed_streak
+  - hmm_or_crf
+  - vlm_only
+  - yolo
+  - grounding_dino
+  - no_calibration_certificate
+  - proposed
+anchors:
+  code_hash: "47046246497bdde027090af0cff33b039f67c463bde80635068a001b94849ab9"
+  environment_hash: "8a663278a18e859a96c51e506170b2d660c868bdd5b5dafb745b7eb5a6084fd2"
+  annotation_hash: "0f3b1e4bc0c02c073cf57faf29c5a8babeb0c95864649832de48e0bf3f01a0e8"
+  partition_hash: "99032c9802511ac5295d105d13052a95b48009dd3cd27a4ccf8be2a383916d03"
+methods:
+  - name: fixed_streak
+    factory: render_sop
+    model_hash: "5548f844c928c4b6f411fa8cbcc2bfa8dbbba437cb1d513975519f93c2a9ed21"
+    config:
+      policy: fixed_streak
+      detector_kind: grounding_dino
+      model_path: ../../models/dino-model
+      segmenter_path: ../../models/SAM2.1
+      font_path: ../../models/fonts/NotoSansSC-VF.ttf
+      task_config_path: ../tasks/meccano.yaml
+      output_root: ../../outputs/paired-development/fixed_streak
+      device: auto
+  - name: hmm_or_crf
+    factory: hmm_sequence
+    model_hash: "f383518c05fa4eb88000144a597468c6ec7a8f33d50e121c5c1b58e4d347a322"
+    config:
+      fit_artifact: ../../models/hmm-or-crf/fitted.json
+      expected_fit_artifact_hash: "f383518c05fa4eb88000144a597468c6ec7a8f33d50e121c5c1b58e4d347a322"
+      expected_fit_partition_hash: "addd0fd8acce225946a39f53d64ff4601acee59da3099118dc4ad50d13d7e290"
+  - name: vlm_only
+    factory: vlm_audit_only
+    model_hash: "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8"
+    config: {}
+  - name: yolo
+    factory: render_sop
+    model_hash: "dab581a91b969d9c4fd89d18a274565c18b4bf6bba6d1cdd619f7d4dddbb419c"
+    config:
+      policy: fixed_streak
+      detector_kind: yolo
+      yolo_image_size: 1280
+      yolo_iou_threshold: 0.50
+      model_path: ../../models/yolo-small-objects/best.pt
+      segmenter_path: ../../models/SAM2.1
+      font_path: ../../models/fonts/NotoSansSC-VF.ttf
+      task_config_path: ../tasks/meccano.yaml
+      output_root: ../../outputs/paired-development/yolo
+      device: auto
+  - name: grounding_dino
+    factory: render_sop
+    model_hash: "5548f844c928c4b6f411fa8cbcc2bfa8dbbba437cb1d513975519f93c2a9ed21"
+    config:
+      policy: fixed_streak
+      detector_kind: grounding_dino
+      model_path: ../../models/dino-model
+      segmenter_path: ../../models/SAM2.1
+      font_path: ../../models/fonts/NotoSansSC-VF.ttf
+      task_config_path: ../tasks/meccano.yaml
+      output_root: ../../outputs/paired-development/grounding_dino
+      device: auto
+  - name: no_calibration_certificate
+    factory: render_sop
+    model_hash: "5548f844c928c4b6f411fa8cbcc2bfa8dbbba437cb1d513975519f93c2a9ed21"
+    config:
+      policy: uncalibrated_certificate
+      detector_kind: grounding_dino
+      raw_risk_threshold: 0.50
+      model_path: ../../models/dino-model
+      segmenter_path: ../../models/SAM2.1
+      font_path: ../../models/fonts/NotoSansSC-VF.ttf
+      task_config_path: ../tasks/meccano.yaml
+      output_root: ../../outputs/paired-development/no_calibration_certificate
+      device: auto
+  - name: proposed
+    factory: render_sop
+    model_hash: "5548f844c928c4b6f411fa8cbcc2bfa8dbbba437cb1d513975519f93c2a9ed21"
+    config:
+      policy: proposed
+      detector_kind: grounding_dino
+      model_path: ../../models/dino-model
+      segmenter_path: ../../models/SAM2.1
+      font_path: ../../models/fonts/NotoSansSC-VF.ttf
+      task_config_path: ../tasks/meccano.yaml
+      output_root: ../../outputs/paired-development/proposed
+      device: auto
+      calibration_artifact: ../../models/calibration/frozen-calibrator.json
+      calibration_artifact_hash: "e6326a63dcc4697f5eed756615ecd7ad10f14c483a659fd4e59ffa2366efc6d5"
+      calibration_partition_hash: "d32db76df21b2d7466296921aa7ce9c65d4542eae14d7564484fa4954460a0d5"

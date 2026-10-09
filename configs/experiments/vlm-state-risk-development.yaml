@@ -1,0 +1,33 @@
+# DEVELOPMENT_ONLY panel spec. Not formal test evidence; formal_admission must stay false.
+#
+# 八臂全列：机制归因（H1–H5）依赖 4 个单机制消融臂，缺任一臂则 H2/H3/H4 的
+# 正交贡献无法估计。B0 是确定性非 VLM 基线，面板校验对它在 METHOD_IDS 之外做了
+# 特例放行（scripts/run_vlm_state_risk_panel.py:32）。
+#
+# 骨干纪律（协议 §7.2/§8）：本 spec 用协议默认骨干 Qwen3.5-9B-Q4_K_M。27B 必须用
+# 独立的 spec 文件并显式覆盖 model_name（见 vlm-state-risk-qwen38-validation.yaml），
+# 否则 27B 的产物会带着 9B 的模型名与哈希进入台账 —— 这是最污染证据链的一类错误。
+# 同一 run_dir 内出现两个骨干的产物即视为证据链污染，该 run 作废。
+#
+# jobs 留空：待 G-V0-7（IndustReal 联合真值四表可评分）闭合后，把实际作业逐条填入；
+# 每条 job 需 job_id / video / knowledge / model_hash（可选 perception_cache）。
+profile: development
+formal_admission: false
+model_name: Qwen3.5-9B-Q4_K_M
+methods:
+  - B0-fixed-streak-v1
+  - B1-raw-imagery-v1
+  - B2-simple-concat-v1
+  - P-structured-temporal-v1
+  - P-ablation-no-perception-v1
+  - P-ablation-no-history-v1
+  - P-ablation-no-process-constraints-v1
+  - P-ablation-no-fact-split-v1
+budget:
+  sample_every: 12
+  window_frames: 3
+  call_timeout_seconds: 60
+  max_attempts: 1
+  max_backlog_seconds: 60
+  job_timeout_seconds: 3600
+jobs: []
