@@ -1,0 +1,80 @@
+{
+  "contract_version": "steptrace-connection-probe/0.2",
+  "packet_id": "q31",
+  "timeline": {
+    "kind": "source_recording",
+    "time_base": "1/25",
+    "cutoff_pts": 1743,
+    "last_observed_pts": 1743
+  },
+  "target_ref": {
+    "host_instance_id": "table_a",
+    "part_instance_id": "leg_b",
+    "interface_id": "corner_query_1"
+  },
+  "identity_mapping": {
+    "status": "supported_within_visible_sequence",
+    "reason": "本包仅一帧。棕色台板远侧靠画面右的白顶黑腿及其下端接口可按位置、长条形状与前侧另一腿区分；只支持该帧的局部对象对应。"
+  },
+  "last_observation": {
+    "frame_id": "f1743",
+    "relation_state": "external_connection_supported",
+    "observation": "目标白顶黑腿从棕色台板远侧右角竖起，下端与台板角位呈连续相接的外部关系，接口周围没有手部遮挡，双手离开目标腿。可支持外部连接结果，无法观察内部紧固。"
+  },
+  "historical_connections": [
+    {
+      "connection_id": "q31_c1",
+      "host_instance_id": "table_a",
+      "part_instance_id": "leg_b",
+      "interface_id": "corner_query_1",
+      "confirmation_frame_ids": [
+        "f1743"
+      ],
+      "confirmed_at_pts": 1743,
+      "connection_level": "external_relation_only",
+      "process_capture": "missedprocess"
+    }
+  ],
+  "state_changes": [],
+  "current_estimate": {
+    "basis": "direct_current",
+    "relation_state": "external_connection_supported",
+    "active_connection_ids": [
+      "q31_c1"
+    ],
+    "revoked_connection_ids": [],
+    "suspended_connection_ids": [],
+    "assumptions": []
+  },
+  "evidence": [
+    {
+      "evidence_id": "q31_e1",
+      "frame_ids": [
+        "f1743"
+      ],
+      "relevance": "identity",
+      "observation": "目标是台板远侧右角的白顶黑腿，区别于近侧右角竖腿和左侧工作台上横放的黑条；只观察这一帧。"
+    },
+    {
+      "evidence_id": "q31_e2",
+      "frame_ids": [
+        "f1743"
+      ],
+      "relevance": "latest_state",
+      "observation": "目标腿下端在台板远侧右角形成可见的连续相接关系，未被手持；该结果画面支持目标外部连接，不提供安装过程、内部结构或紧固程度。"
+    }
+  ],
+  "unobserved_intervals": [],
+  "mechanical_firmness": "unknown",
+  "safety": "not_evaluated",
+  "narrative_summary": "唯一提供的f1743就是截止帧。指定远侧白顶黑腿的下端与棕色台板角位呈可见相接关系，支持该帧外部连接结果，建立一条当前有效的确认。输入没有安装过程，标为missedprocess；确认时间仅为本次证据时间，不是实际安装时刻。没有早期帧可推断连接变化，也不能评估内部紧固、牢固或安全。",
+  "conflicts": [],
+  "frame_observations": [
+    {
+      "frame_id": "f1743",
+      "relation_state": "external_connection_supported",
+      "identity_status": "supported_within_visible_sequence",
+      "observation": "远侧靠右的白顶黑腿下端与棕色台板角位可见连续相接，双手已离开该处，支持外部连接结果；安装过程与内部紧固不可见。"
+    }
+  ]
+}

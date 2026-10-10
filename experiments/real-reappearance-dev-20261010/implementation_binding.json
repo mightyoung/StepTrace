@@ -1,0 +1,6 @@
+{
+  "executed_reducer": "replay_identity_r1.py",
+  "executed_reducer_sha256": "6273f8c1c666b247670d85ee82430a3aba2500d919f17b26ea3d7fc4c74f2a4d",
+  "legacy_adapter_receipt_hash": "f835194c8f6e6b8142c84ac990bb50402628e55234bfce53dd304bcb90a0bf0e",
+  "note": "Private adapt_case receipt verifies legacy replay_frozen.py for its adapter; actual comparison executed r1.1 reducer bound above. This public direct replay uses only the bound r1.1 file."
+}

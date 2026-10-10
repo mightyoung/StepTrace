@@ -11,13 +11,22 @@ This directory exchanges reviewed text and artifact identities across research e
 - No project or third-party license is created or changed here. Unknown redistribution rights remain unknown.
 - This initial batch contains status snapshots and metadata only, except the explicitly identified synthetic-smoke text inputs in PCG. Publication approval is not execution approval.
 
-## Current stage - 2026-10-10 05:43 UTC
+## Current stage - 2026-10-10 15:05 UTC
+
+- [Current progress, actual results and remaining evidence gaps](progress/20261010T1505Z-current-stage.md)
+- [Current task snapshot](tasks/status-20261010T1505Z.json)
+- [Real interface occlusion/reappearance development bundle](../../experiments/real-reappearance-dev-20261010/README_zh.md): three original model JSON outputs, source/frame hashes, independent AI review summary, same-input reversible-FSM replay, code and tests
+- Current claim: scoped evidence handling works on this case; both state representations remain equivalent. Hidden-period physical truth and real cross-gap identity recovery remain unverified. Native backend/parameters unknown; no algorithmic gain, accuracy or safety claim
+- This increment publishes explicitly authorized model-generated text/data and deterministic software, not images/video, raw tool logs or human GT. Earlier metadata-only restrictions described their earlier batches
+
+## Historical snapshots - retained unchanged
+
+### 2026-10-10 05:43 UTC (superseded current-stage pointer)
 
 - [Current progress and next empirical step](progress/20261010T0543Z-current-stage.md): 24 core first answers plus six separate real/synthetic probes; C03 count and C04 connection/identity references remain the priority
 - [Descriptive findings](../experiments/steptrace/development-findings-2026-10-10.md) and [protocol clarification proposal](../experiments/steptrace/protocol-clarifications-proposed.md)
 - [Current task snapshot](tasks/status-20261010T0543Z.json): local full-contract revision passed limited software review, but execution_gate remains false; no new model round or human-GT claim
 
-## Historical snapshots - retained unchanged
 
 - [2026-10-10 verified progress summary](progress/20261010-progress.md): 12 saved development first answers; two time-semantics defects; unresolved C03 count disagreement; draft contract fixtures only; cross-domain removal screening with no independent human GT; site batch remains 3/56 present.
 - [2026-10-10 task state](tasks/status-20261010.json) and [de-identified evidence index](progress/evidence-20261010.json).

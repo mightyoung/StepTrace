@@ -1,0 +1,123 @@
+{
+  "development_only": true,
+  "unique_source_executions": 1,
+  "answer_count": 3,
+  "first_answers_saved": 3,
+  "retries": 0,
+  "subject_calls_remaining": 0,
+  "conditions": [
+    {
+      "packet_id": "q31",
+      "raw_answer_sha256": "8b6a48870b2e5a563a46f48f67c5e2997289fdc2c7447f42ad86d8d896489df3",
+      "raw_answer_bytes": 3159,
+      "last_observation": "external_connection_supported",
+      "current_estimate": {
+        "basis": "direct_current",
+        "relation_state": "external_connection_supported",
+        "active_connection_ids": [
+          "q31_c1"
+        ],
+        "revoked_connection_ids": [],
+        "suspended_connection_ids": [],
+        "assumptions": []
+      },
+      "history_count": 1,
+      "static_pass": true,
+      "read_started_utc": "unknown",
+      "saved_utc": "2026-10-10T14:58:27.362564+00:00",
+      "elapsed_seconds_self_report": null,
+      "soft_limit_status": "unknown_start_not_recorded",
+      "exec_count_self_report": 3,
+      "images_expected": 1
+    },
+    {
+      "packet_id": "q68",
+      "raw_answer_sha256": "e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1",
+      "raw_answer_bytes": 4200,
+      "last_observation": "occluded_or_unknown",
+      "current_estimate": {
+        "basis": "conditional_history",
+        "relation_state": "external_connection_supported",
+        "active_connection_ids": [
+          "q68_c1"
+        ],
+        "revoked_connection_ids": [],
+        "suspended_connection_ids": [],
+        "assumptions": [
+          "两帧之间仍是同一台板及目标黑腿，未发生未被提供帧显示的分离或替换。",
+          "末帧接口的投影遮挡不构成拆卸证据；在上述条件下沿用先前外部连接确认。"
+        ]
+      },
+      "history_count": 1,
+      "static_pass": true,
+      "read_started_utc": "2026-10-10T14:57:58Z",
+      "saved_utc": "2026-10-10T14:58:53.507412Z",
+      "elapsed_seconds_self_report": 55.507412,
+      "soft_limit_status": "within_self_report",
+      "exec_count_self_report": 3,
+      "images_expected": 2
+    },
+    {
+      "packet_id": "q92",
+      "raw_answer_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+      "raw_answer_bytes": 4885,
+      "last_observation": "external_connection_supported",
+      "current_estimate": {
+        "basis": "direct_current",
+        "relation_state": "external_connection_supported",
+        "active_connection_ids": [
+          "c1"
+        ],
+        "revoked_connection_ids": [],
+        "suspended_connection_ids": [],
+        "assumptions": []
+      },
+      "history_count": 1,
+      "static_pass": true,
+      "read_started_utc": "unknown",
+      "saved_utc": "2026-10-10T14:59:49.512583Z",
+      "elapsed_seconds_self_report": null,
+      "soft_limit_status": "unknown_start_not_recorded",
+      "exec_count_self_report": 3,
+      "images_expected": 3
+    }
+  ],
+  "reviews": [
+    {
+      "packet_id": "q31",
+      "review_sha256": "b4a2eb3c01962230118d93ffc4a97352e4dd6c05934a8fc505d5039dc3794620",
+      "review": "condition-bounded independent AI visual review passed; not human GT"
+    },
+    {
+      "packet_id": "q68",
+      "review_sha256": "89f7aaf480f55b5af177b6d9d4ca8417e00989b039291eb8a59f1bd2c311f2d9",
+      "review": "condition-bounded independent AI visual review passed; not human GT"
+    },
+    {
+      "packet_id": "q92",
+      "review_sha256": "f48346391c39b51646ecbd8a3ee8bbd4e7989537d8f92add507b26b0520a97ff",
+      "review": "condition-bounded independent AI visual review passed; not human GT"
+    }
+  ],
+  "source_grade": "B_visible_endpoints; hidden_relation_unknown",
+  "physical_false_revocation_rate": null,
+  "physical_held_negative_count": 0,
+  "unsupported_retraction_claims_in_reviewed_answers": 0,
+  "current_occluded_frame_marked_unknown": true,
+  "reappearance_supported_within_visible_sequence": true,
+  "coverage_note": "All three produce scoped endpoint/history decisions; middle direct observation abstained. Not an accuracy estimate.",
+  "representation_comparison": {
+    "cases": 3,
+    "full_outputs_equal_between_fsm_and_evidence": 3,
+    "mechanism_gain": null,
+    "raw_vlm_equals_all_reducer_fields": false,
+    "q68_status_convention": "raw VLM active under assumptions; both reducers suspended direct proof with conditional_history connected"
+  },
+  "identity_revalidation_covered_by_new_visual_case": false,
+  "actual_backend_model": "unknown",
+  "actual_parameters": "unknown",
+  "tokens": "unknown",
+  "cost": "unknown",
+  "image_presentation_evidence": "self_report",
+  "unobserved_intervals_changes_excluded": false
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "research-handoff.v1",
+  "project_id": "StepTrace",
+  "task_id": "steptrace-reappearance-development-20261010T1505Z",
+  "source_repo": "https://github.com/mightyoung/StepTrace",
+  "source_commit": "52a617579b6173f16403d63397cbeb43ebb2deac",
+  "owner": "repository-maintainer",
+  "status": "completed",
+  "next_action": "Use existing cached true-separation and observation-change labels for a descriptive audit with identical FSM inputs; keep hidden state unknown. Obtain independent held/identity/missed-step truth before any new statistical or training claim. Subject-call budget exhausted for this round.",
+  "artifacts": [
+    {
+      "artifact_id": "three-prefix-model-results",
+      "sha256": "9256b84ca6366fca8c915562fdfd3371769edcdbfaba8aac8089022219350fb9",
+      "bytes": 4617,
+      "visibility": "public",
+      "availability": "in_repository",
+      "provenance": {
+        "source": "experiments/real-reappearance-dev-20261010/results_summary.json",
+        "license": "Project-generated research text/data; no third-party media redistributed",
+        "split": "development; one source execution; three related prefixes",
+        "derivation": "Original first-answer JSON hashes, condition-bounded AI review and limited execution metadata; not human GT"
+      }
+    },
+    {
+      "artifact_id": "r1-1-reversible-fsm-and-evidence-replay",
+      "sha256": "6273f8c1c666b247670d85ee82430a3aba2500d919f17b26ea3d7fc4c74f2a4d",
+      "bytes": 14462,
+      "visibility": "public",
+      "availability": "in_repository",
+      "provenance": {
+        "source": "experiments/real-reappearance-dev-20261010/replay_identity_r1.py",
+        "license": "Existing project code; this handoff does not introduce a new license",
+        "split": "deterministic cached/synthetic rules, not new visual inference",
+        "derivation": "Identical perception, history and persistent identity revalidation gate for both representations"
+      }
+    }
+  ],
+  "review": {
+    "classification": "Three condition-bounded independent AI semantic reviews and deterministic same-input replay",
+    "seen_candidates": true,
+    "independent_blind_gt": false
+  },
+  "claims": [
+    "All three first answers saved without retries; current occluded frame unknown, history retained conditionally, visible reappearance directly supported.",
+    "B-level visible endpoints only; hidden physical maintenance unknown and no physical false-revocation rate.",
+    "Same-input FSM and evidence representations have equal full outputs for all three prefixes; no mechanism advantage.",
+    "q68 raw answer active under assumptions versus reducers suspended direct proof is an explicit representation convention difference.",
+    "Source screening failures and secondary-event selection exposure retained; all materials remain development.",
+    "r1.1 identity lock has logical tests; this new interface-only occlusion example does not test whole-object exit and recovery.",
+    "Formal controlled execution remains unestablished; finite native descriptive runs have unknown actual backend and self-reported presentation."
+  ],
+  "execution": {
+    "claimed_status": "THREE_FIRST_ANSWERS_AND_REPLAY_COMPLETE",
+    "executed_status": "INDEPENDENT_AI_SEMANTIC_REVIEW_AND_SAME_INPUT_REPLAY_PASS",
+    "command": [
+      "python",
+      "replay_identity_r1.py",
+      "--events",
+      "frozen_events.v1.json",
+      "--output",
+      "replay_results.json"
+    ],
+    "exit_code": 0,
+    "output_sha256": "58c8015764ce0cc96f708daa39daa407eeb17d458f7f0c4822edba1f8ee0dc50",
+    "authorization": "Current explicit research-progress and public experiment-data publication approval; existing research branch only, no merge/deployment or additional model calls."
+  },
+  "blockers": [
+    {
+      "category": "missing_evidence",
+      "detail": "Hidden physical maintenance and real whole-object identity recovery have no qualified truth in this new sample."
+    },
+    {
+      "category": "environment_capability",
+      "detail": "Actual native deployment/parameters and strict platform image telemetry unknown; two exact read-start times missing."
+    },
+    {
+      "category": "missing_evidence",
+      "detail": "No same-information advantage over reversible FSM has been shown; training hypothesis remains untested."
+    }
+  ],
+  "public_boundary": [
+    "Original model JSON outputs and derived recognition/replay data are explicitly model-generated, not human GT.",
+    "No private account/conversation IDs, host paths, credentials, raw tool logs, images or video.",
+    "Earlier snapshots preserved; no main update, force push, merge or deployment."
+  ]
+}

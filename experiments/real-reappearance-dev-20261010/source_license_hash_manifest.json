@@ -1,0 +1,84 @@
+{
+  "sources": [
+    {
+      "source_id": "S01",
+      "dataset": "IKEA ASM",
+      "bytes": 199003804,
+      "sha256": "c9d62cb8eef5e0b45ebfc08928602ffda3bcbcbc8f8d8168ffed3e0550bdecbb",
+      "source_url": "https://huggingface.co/datasets/NeqCene/ikea_asm",
+      "source_url_kind": "recorded_mirror_repository_url",
+      "source_archive": "ikea_asm_RGB_Lack_Side_Table_dev3.tar",
+      "source_archive_commit": "7dc0fc30a0a0a01f48c1bbf7c63c2c2aa5aa91fe",
+      "source_archive_member": "Lack_Side_Table/0001_black_table_07_03_2019_08_21_18_06/dev3/images/scan_video.avi",
+      "official_page": "https://ikeaasm.github.io/",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "camera": "dev3",
+      "fps": 25,
+      "time_base": "1/25",
+      "duration_seconds": 97.6,
+      "frame_count": 2440,
+      "width": 1920,
+      "height": 1080,
+      "recording_group": "Lack_Side_Table/0001_black_table_07_03_2019_08_21_18_06",
+      "official_avi_byte_equivalence_verified": false,
+      "provenance_limit": "public third-party mirror; official AVI byte equivalence unverified",
+      "license_verification_scope": "Recorded earlier source metadata, not a new legal determination; no media redistributed",
+      "public_availability": "metadata_only",
+      "split": "development_entire_source"
+    },
+    {
+      "source_id": "S03",
+      "dataset": "IKEA ASM",
+      "bytes": 161352948,
+      "sha256": "b6d3edc4490517882b08d5d98f9fed5c9d841739ff244157b1eded8a7aa72e37",
+      "source_url": "https://huggingface.co/datasets/NeqCene/ikea_asm",
+      "source_url_kind": "recorded_mirror_repository_url",
+      "source_archive": "ikea_asm_RGB_Lack_Side_Table_dev3.tar",
+      "source_archive_commit": "7dc0fc30a0a0a01f48c1bbf7c63c2c2aa5aa91fe",
+      "source_archive_member": "Lack_Side_Table/0004_white_floor_08_04_2019_08_28_10_53/dev3/images/scan_video.avi",
+      "official_page": "https://ikeaasm.github.io/",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "camera": "dev3",
+      "fps": 25,
+      "time_base": "1/25",
+      "duration_seconds": 74.64,
+      "frame_count": 1866,
+      "width": 1920,
+      "height": 1080,
+      "recording_group": "Lack_Side_Table/0004_white_floor_08_04_2019_08_28_10_53",
+      "official_avi_byte_equivalence_verified": false,
+      "provenance_limit": "public third-party mirror; official AVI byte equivalence unverified",
+      "license_verification_scope": "Recorded earlier source metadata, not a new legal determination; no media redistributed",
+      "public_availability": "metadata_only",
+      "split": "development_entire_source"
+    }
+  ],
+  "frame_hashes": [
+    {
+      "pts": 1743,
+      "time_base": "1/25",
+      "sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "pts": 1746,
+      "time_base": "1/25",
+      "sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "pts": 1752,
+      "time_base": "1/25",
+      "sha256": "9e6f3fc5c79dd96f30ab76e52e65017088472dd1d2c27a9aaf37d511c66a4f9d",
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "source_audit_frames_not_solver_inputs": true,
+  "raw_media_redistributed": false,
+  "people_images_redistributed": false
+}

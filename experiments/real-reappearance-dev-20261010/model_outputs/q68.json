@@ -1,0 +1,116 @@
+{
+  "contract_version": "steptrace-connection-probe/0.2",
+  "packet_id": "q68",
+  "timeline": {
+    "kind": "source_recording",
+    "time_base": "1/25",
+    "cutoff_pts": 1746,
+    "last_observed_pts": 1746
+  },
+  "target_ref": {
+    "host_instance_id": "table_a",
+    "part_instance_id": "leg_b",
+    "interface_id": "corner_query_1"
+  },
+  "identity_mapping": {
+    "status": "supported_within_visible_sequence",
+    "reason": "两帧中棕色台板、远侧白顶黑长腿及近侧竖腿的相对布局和外形支持目标的局部对应；未见区间不保证绝无交换。"
+  },
+  "last_observation": {
+    "frame_id": "f1746",
+    "relation_state": "occluded_or_unknown",
+    "observation": "远侧白顶黑腿仍可辨认，但其下端接口与近侧竖腿在画面中重叠，不能直接看清本帧接口是否仍相接。"
+  },
+  "historical_connections": [
+    {
+      "connection_id": "q68_c1",
+      "host_instance_id": "table_a",
+      "part_instance_id": "leg_b",
+      "interface_id": "corner_query_1",
+      "confirmation_frame_ids": [
+        "f1743"
+      ],
+      "confirmed_at_pts": 1743,
+      "connection_level": "external_relation_only",
+      "process_capture": "missedprocess"
+    }
+  ],
+  "state_changes": [
+    {
+      "change_id": "q68_s1",
+      "kind": "occlusion",
+      "frame_ids": [
+        "f1746"
+      ],
+      "confirmed_at_pts": 1746,
+      "affected_connection_ids": [
+        "q68_c1"
+      ]
+    }
+  ],
+  "current_estimate": {
+    "basis": "conditional_history",
+    "relation_state": "external_connection_supported",
+    "active_connection_ids": [
+      "q68_c1"
+    ],
+    "revoked_connection_ids": [],
+    "suspended_connection_ids": [],
+    "assumptions": [
+      "两帧之间仍是同一台板及目标黑腿，未发生未被提供帧显示的分离或替换。",
+      "末帧接口的投影遮挡不构成拆卸证据；在上述条件下沿用先前外部连接确认。"
+    ]
+  },
+  "evidence": [
+    {
+      "evidence_id": "q68_e1",
+      "frame_ids": [
+        "f1743"
+      ],
+      "relevance": "prior_connection",
+      "observation": "远侧目标白顶黑长腿的下端可见地与棕色台板远侧角部相接，外轮廓在该处衔接；手未握住此腿，结果画面支持局部外部连接。未提供安装过程。"
+    },
+    {
+      "evidence_id": "q68_e2",
+      "frame_ids": [
+        "f1746"
+      ],
+      "relevance": "latest_state",
+      "observation": "台板及竖腿投影位置变化，目标仍在远侧，但目标下端与近侧竖腿重叠；看不清接口，不是重新直接确认连接。没有显示明确分离或接口空位。"
+    },
+    {
+      "evidence_id": "q68_e3",
+      "frame_ids": [
+        "f1743",
+        "f1746"
+      ],
+      "relevance": "identity",
+      "observation": "两帧内目标白顶、长黑腿形状以及与台板、近侧黑腿的相对位置支持局部身份对应。"
+    }
+  ],
+  "unobserved_intervals": [
+    {
+      "after_pts": 1743,
+      "before_pts": 1746,
+      "changes_excluded": false
+    }
+  ],
+  "mechanical_firmness": "unknown",
+  "safety": "not_evaluated",
+  "narrative_summary": "1743帧支持远侧目标黑腿与棕色台板指定角部的外部连接，但安装过程未提供。1746帧目标仍可辨认，其下端接口被近侧竖腿的投影遮挡，最后直接观察记为未知。未见明确分离或替换，保留1743的历史确认；仅在身份未变且间隙未发生分离的条件下，将连接延续至截止。两帧间未连续观察，不能排除变化，也不能判断牢固或安全。",
+  "conflicts": [],
+  "frame_observations": [
+    {
+      "frame_id": "f1743",
+      "relation_state": "external_connection_supported",
+      "identity_status": "supported_within_visible_sequence",
+      "observation": "指定远侧白顶黑腿下端与棕色台板角部外形衔接可见，支持外部连接结果；未看到安装过程。"
+    },
+    {
+      "frame_id": "f1746",
+      "relation_state": "occluded_or_unknown",
+      "identity_status": "supported_within_visible_sequence",
+      "observation": "远侧白顶黑腿可辨，目标下端与近侧竖腿投影重叠，接口直接可见性不足。"
+    }
+  ]
+}

@@ -1,0 +1,1179 @@
+{
+  "scope": "deterministic shared-perception rule replay only",
+  "events_sha256": "45f60ed5cff58685f1ebbffc58a483ad176a5a0440d104e6cb72bb9c0312bd5d",
+  "shared_logic": "input gate, conditional-estimate rule and formatting; not independent algorithms",
+  "human_gt": null,
+  "visual_accuracy": null,
+  "steptrace_gain": null,
+  "case_count": 3,
+  "AI_reference_case_count": 0,
+  "synthetic_case_count": 0,
+  "event_instances_per_representation": 6,
+  "equivalent_case_count": 3,
+  "cases": [
+    {
+      "case_id": "q31",
+      "source_kind": "cached_model_labels",
+      "scope_note": "Original first-answer labels; model-generated, not human GT. Private paths and redundant private input metadata removed; perception/state values unchanged.",
+      "equivalent": true,
+      "ordinary_reversible_fsm": {
+        "current": {
+          "internal_state": "connected",
+          "current_direct": "connected",
+          "current_estimate": "connected",
+          "estimate_basis": "direct_observation",
+          "current_episode_id": "c1",
+          "last_confirmed_at": {
+            "pts": 1743,
+            "time_base": "1/25",
+            "frame_index": 1743
+          },
+          "last_observation_at": {
+            "pts": 1743,
+            "time_base": "1/25",
+            "frame_index": 1743
+          },
+          "episode_statuses": {
+            "c1": "active"
+          },
+          "identity_revalidation_required": false,
+          "identity_revalidation": {
+            "required": false,
+            "anchor_event_id": "q31:f1743",
+            "gap_event_id": null,
+            "gap_at": null,
+            "gap_scope": null,
+            "last_success": null
+          }
+        },
+        "snapshots": [
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q31:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "observations": [
+          {
+            "event": {
+              "event_id": "q31:f1743",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1743,
+                "time_base": "1/25",
+                "frame_index": 1743
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1743",
+                "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+                "raw_answer_sha256": "8b6a48870b2e5a563a46f48f67c5e2997289fdc2c7447f42ad86d8d896489df3",
+                "source_pts": 1743,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "远侧靠右的白顶黑腿下端与棕色台板角位可见连续相接，双手已离开该处，支持外部连接结果；安装过程与内部紧固不可见。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q31:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "confirmations": [
+          {
+            "episode_id": "c1",
+            "target": {
+              "host_instance_id": "table_a",
+              "part_instance_id": "leg_b",
+              "interface_id": "corner_query_1"
+            },
+            "confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "source_event_id": "q31:f1743",
+            "scope": "external_relation_only"
+          }
+        ],
+        "process_evidence": "not_assessed_from_state_events"
+      },
+      "evidence_applicability_record": {
+        "current": {
+          "internal_state": "connected",
+          "current_direct": "connected",
+          "current_estimate": "connected",
+          "estimate_basis": "direct_observation",
+          "current_episode_id": "c1",
+          "last_confirmed_at": {
+            "pts": 1743,
+            "time_base": "1/25",
+            "frame_index": 1743
+          },
+          "last_observation_at": {
+            "pts": 1743,
+            "time_base": "1/25",
+            "frame_index": 1743
+          },
+          "episode_statuses": {
+            "c1": "active"
+          },
+          "identity_revalidation_required": false,
+          "identity_revalidation": {
+            "required": false,
+            "anchor_event_id": "q31:f1743",
+            "gap_event_id": null,
+            "gap_at": null,
+            "gap_scope": null,
+            "last_success": null
+          }
+        },
+        "snapshots": [
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q31:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "observations": [
+          {
+            "event": {
+              "event_id": "q31:f1743",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1743,
+                "time_base": "1/25",
+                "frame_index": 1743
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1743",
+                "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+                "raw_answer_sha256": "8b6a48870b2e5a563a46f48f67c5e2997289fdc2c7447f42ad86d8d896489df3",
+                "source_pts": 1743,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "远侧靠右的白顶黑腿下端与棕色台板角位可见连续相接，双手已离开该处，支持外部连接结果；安装过程与内部紧固不可见。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q31:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "confirmations": [
+          {
+            "episode_id": "c1",
+            "target": {
+              "host_instance_id": "table_a",
+              "part_instance_id": "leg_b",
+              "interface_id": "corner_query_1"
+            },
+            "confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "source_event_id": "q31:f1743",
+            "scope": "external_relation_only"
+          }
+        ],
+        "process_evidence": "not_assessed_from_state_events"
+      }
+    },
+    {
+      "case_id": "q68",
+      "source_kind": "cached_model_labels",
+      "scope_note": "Original first-answer labels; model-generated, not human GT. Private paths and redundant private input metadata removed; perception/state values unchanged.",
+      "equivalent": true,
+      "ordinary_reversible_fsm": {
+        "current": {
+          "internal_state": "connected",
+          "current_direct": "unknown",
+          "current_estimate": "connected",
+          "estimate_basis": "conditional_history",
+          "current_episode_id": "c1",
+          "last_confirmed_at": {
+            "pts": 1743,
+            "time_base": "1/25",
+            "frame_index": 1743
+          },
+          "last_observation_at": {
+            "pts": 1746,
+            "time_base": "1/25",
+            "frame_index": 1746
+          },
+          "episode_statuses": {
+            "c1": "suspended"
+          },
+          "identity_revalidation_required": false,
+          "identity_revalidation": {
+            "required": false,
+            "anchor_event_id": "q68:f1746",
+            "gap_event_id": null,
+            "gap_at": null,
+            "gap_scope": null,
+            "last_success": null
+          }
+        },
+        "snapshots": [
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "internal_state": "connected",
+            "current_direct": "unknown",
+            "current_estimate": "connected",
+            "estimate_basis": "conditional_history",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1746,
+              "time_base": "1/25",
+              "frame_index": 1746
+            },
+            "episode_statuses": {
+              "c1": "suspended"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "observations": [
+          {
+            "event": {
+              "event_id": "q68:f1743",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1743,
+                "time_base": "1/25",
+                "frame_index": 1743
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1743",
+                "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+                "raw_answer_sha256": "e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1",
+                "source_pts": 1743,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "指定远侧白顶黑腿下端与棕色台板角部外形衔接可见，支持外部连接结果；未看到安装过程。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "event": {
+              "event_id": "q68:f1746",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1746,
+                "time_base": "1/25",
+                "frame_index": 1746
+              },
+              "observation": "unknown",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1746",
+                "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+                "raw_answer_sha256": "e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1",
+                "source_pts": 1746,
+                "source_time_base": "1/25",
+                "reported_relation_state": "occluded_or_unknown",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "远侧白顶黑腿可辨，目标下端与近侧竖腿投影重叠，接口直接可见性不足。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "unknown",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "confirmations": [
+          {
+            "episode_id": "c1",
+            "target": {
+              "host_instance_id": "table_a",
+              "part_instance_id": "leg_b",
+              "interface_id": "corner_query_1"
+            },
+            "confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "source_event_id": "q68:f1743",
+            "scope": "external_relation_only"
+          }
+        ],
+        "process_evidence": "not_assessed_from_state_events"
+      },
+      "evidence_applicability_record": {
+        "current": {
+          "internal_state": "connected",
+          "current_direct": "unknown",
+          "current_estimate": "connected",
+          "estimate_basis": "conditional_history",
+          "current_episode_id": "c1",
+          "last_confirmed_at": {
+            "pts": 1743,
+            "time_base": "1/25",
+            "frame_index": 1743
+          },
+          "last_observation_at": {
+            "pts": 1746,
+            "time_base": "1/25",
+            "frame_index": 1746
+          },
+          "episode_statuses": {
+            "c1": "suspended"
+          },
+          "identity_revalidation_required": false,
+          "identity_revalidation": {
+            "required": false,
+            "anchor_event_id": "q68:f1746",
+            "gap_event_id": null,
+            "gap_at": null,
+            "gap_scope": null,
+            "last_success": null
+          }
+        },
+        "snapshots": [
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "internal_state": "connected",
+            "current_direct": "unknown",
+            "current_estimate": "connected",
+            "estimate_basis": "conditional_history",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1746,
+              "time_base": "1/25",
+              "frame_index": 1746
+            },
+            "episode_statuses": {
+              "c1": "suspended"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "observations": [
+          {
+            "event": {
+              "event_id": "q68:f1743",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1743,
+                "time_base": "1/25",
+                "frame_index": 1743
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1743",
+                "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+                "raw_answer_sha256": "e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1",
+                "source_pts": 1743,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "指定远侧白顶黑腿下端与棕色台板角部外形衔接可见，支持外部连接结果；未看到安装过程。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "event": {
+              "event_id": "q68:f1746",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1746,
+                "time_base": "1/25",
+                "frame_index": 1746
+              },
+              "observation": "unknown",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1746",
+                "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+                "raw_answer_sha256": "e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1",
+                "source_pts": 1746,
+                "source_time_base": "1/25",
+                "reported_relation_state": "occluded_or_unknown",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "远侧白顶黑腿可辨，目标下端与近侧竖腿投影重叠，接口直接可见性不足。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "unknown",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q68:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "confirmations": [
+          {
+            "episode_id": "c1",
+            "target": {
+              "host_instance_id": "table_a",
+              "part_instance_id": "leg_b",
+              "interface_id": "corner_query_1"
+            },
+            "confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "source_event_id": "q68:f1743",
+            "scope": "external_relation_only"
+          }
+        ],
+        "process_evidence": "not_assessed_from_state_events"
+      }
+    },
+    {
+      "case_id": "q92",
+      "source_kind": "cached_model_labels",
+      "scope_note": "Original first-answer labels; model-generated, not human GT. Private paths and redundant private input metadata removed; perception/state values unchanged.",
+      "equivalent": true,
+      "ordinary_reversible_fsm": {
+        "current": {
+          "internal_state": "connected",
+          "current_direct": "connected",
+          "current_estimate": "connected",
+          "estimate_basis": "direct_observation",
+          "current_episode_id": "c1",
+          "last_confirmed_at": {
+            "pts": 1752,
+            "time_base": "1/25",
+            "frame_index": 1752
+          },
+          "last_observation_at": {
+            "pts": 1752,
+            "time_base": "1/25",
+            "frame_index": 1752
+          },
+          "episode_statuses": {
+            "c1": "active"
+          },
+          "identity_revalidation_required": false,
+          "identity_revalidation": {
+            "required": false,
+            "anchor_event_id": "q92:f1752",
+            "gap_event_id": null,
+            "gap_at": null,
+            "gap_scope": null,
+            "last_success": null
+          }
+        },
+        "snapshots": [
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "internal_state": "connected",
+            "current_direct": "unknown",
+            "current_estimate": "connected",
+            "estimate_basis": "conditional_history",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1746,
+              "time_base": "1/25",
+              "frame_index": 1746
+            },
+            "episode_statuses": {
+              "c1": "suspended"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1752,
+              "time_base": "1/25",
+              "frame_index": 1752
+            },
+            "last_observation_at": {
+              "pts": 1752,
+              "time_base": "1/25",
+              "frame_index": 1752
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1752",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "observations": [
+          {
+            "event": {
+              "event_id": "q92:f1743",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1743,
+                "time_base": "1/25",
+                "frame_index": 1743
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1743",
+                "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+                "raw_answer_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+                "source_pts": 1743,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "首帧指定的远侧白顶黑腿下端与台板角位连续相接，接口附近无手部遮挡，支持外部连接结果。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "event": {
+              "event_id": "q92:f1746",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1746,
+                "time_base": "1/25",
+                "frame_index": 1746
+              },
+              "observation": "unknown",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1746",
+                "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+                "raw_answer_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+                "source_pts": 1746,
+                "source_time_base": "1/25",
+                "reported_relation_state": "occluded_or_unknown",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "目标仍在台板远侧，外形和相对位置可对应；其下端与前方竖腿的投影部分重叠，接口关系不够清楚，未见明确分离。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "unknown",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "event": {
+              "event_id": "q92:f1752",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1752,
+                "time_base": "1/25",
+                "frame_index": 1752
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1752",
+                "frame_sha256": "9e6f3fc5c79dd96f30ab76e52e65017088472dd1d2c27a9aaf37d511c66a4f9d",
+                "raw_answer_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+                "source_pts": 1752,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "目标位于画面最右的较远角，下端在台板角位形成可见交接；近侧另一根腿与之分开，支持目标外部连接。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1752",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "confirmations": [
+          {
+            "episode_id": "c1",
+            "target": {
+              "host_instance_id": "table_a",
+              "part_instance_id": "leg_b",
+              "interface_id": "corner_query_1"
+            },
+            "confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "source_event_id": "q92:f1743",
+            "scope": "external_relation_only"
+          }
+        ],
+        "process_evidence": "not_assessed_from_state_events"
+      },
+      "evidence_applicability_record": {
+        "current": {
+          "internal_state": "connected",
+          "current_direct": "connected",
+          "current_estimate": "connected",
+          "estimate_basis": "direct_observation",
+          "current_episode_id": "c1",
+          "last_confirmed_at": {
+            "pts": 1752,
+            "time_base": "1/25",
+            "frame_index": 1752
+          },
+          "last_observation_at": {
+            "pts": 1752,
+            "time_base": "1/25",
+            "frame_index": 1752
+          },
+          "episode_statuses": {
+            "c1": "active"
+          },
+          "identity_revalidation_required": false,
+          "identity_revalidation": {
+            "required": false,
+            "anchor_event_id": "q92:f1752",
+            "gap_event_id": null,
+            "gap_at": null,
+            "gap_scope": null,
+            "last_success": null
+          }
+        },
+        "snapshots": [
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "internal_state": "connected",
+            "current_direct": "unknown",
+            "current_estimate": "connected",
+            "estimate_basis": "conditional_history",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "last_observation_at": {
+              "pts": 1746,
+              "time_base": "1/25",
+              "frame_index": 1746
+            },
+            "episode_statuses": {
+              "c1": "suspended"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "internal_state": "connected",
+            "current_direct": "connected",
+            "current_estimate": "connected",
+            "estimate_basis": "direct_observation",
+            "current_episode_id": "c1",
+            "last_confirmed_at": {
+              "pts": 1752,
+              "time_base": "1/25",
+              "frame_index": 1752
+            },
+            "last_observation_at": {
+              "pts": 1752,
+              "time_base": "1/25",
+              "frame_index": 1752
+            },
+            "episode_statuses": {
+              "c1": "active"
+            },
+            "identity_revalidation_required": false,
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1752",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "observations": [
+          {
+            "event": {
+              "event_id": "q92:f1743",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1743,
+                "time_base": "1/25",
+                "frame_index": 1743
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1743",
+                "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+                "raw_answer_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+                "source_pts": 1743,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "首帧指定的远侧白顶黑腿下端与台板角位连续相接，接口附近无手部遮挡，支持外部连接结果。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1743",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "event": {
+              "event_id": "q92:f1746",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1746,
+                "time_base": "1/25",
+                "frame_index": 1746
+              },
+              "observation": "unknown",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1746",
+                "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+                "raw_answer_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+                "source_pts": 1746,
+                "source_time_base": "1/25",
+                "reported_relation_state": "occluded_or_unknown",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "目标仍在台板远侧，外形和相对位置可对应；其下端与前方竖腿的投影部分重叠，接口关系不够清楚，未见明确分离。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "unknown",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1746",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          },
+          {
+            "event": {
+              "event_id": "q92:f1752",
+              "target": {
+                "host_instance_id": "table_a",
+                "part_instance_id": "leg_b",
+                "interface_id": "corner_query_1"
+              },
+              "time": {
+                "pts": 1752,
+                "time_base": "1/25",
+                "frame_index": 1752
+              },
+              "observation": "connected",
+              "identity": "supported",
+              "scope": "external_relation_only",
+              "source": {
+                "kind": "current_probe_frame_observation",
+                "human_gt": null,
+                "frame_id": "f1752",
+                "frame_sha256": "9e6f3fc5c79dd96f30ab76e52e65017088472dd1d2c27a9aaf37d511c66a4f9d",
+                "raw_answer_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+                "source_pts": 1752,
+                "source_time_base": "1/25",
+                "reported_relation_state": "external_connection_supported",
+                "reported_identity_status": "supported_within_visible_sequence",
+                "observation_text": "目标位于画面最右的较远角，下端在台板角位形成可见交接；近侧另一根腿与之分开，支持目标外部连接。"
+              }
+            },
+            "target_identity_gate": true,
+            "effective_observation": "connected",
+            "identity_revalidation": {
+              "required": false,
+              "anchor_event_id": "q92:f1752",
+              "gap_event_id": null,
+              "gap_at": null,
+              "gap_scope": null,
+              "last_success": null
+            }
+          }
+        ],
+        "confirmations": [
+          {
+            "episode_id": "c1",
+            "target": {
+              "host_instance_id": "table_a",
+              "part_instance_id": "leg_b",
+              "interface_id": "corner_query_1"
+            },
+            "confirmed_at": {
+              "pts": 1743,
+              "time_base": "1/25",
+              "frame_index": 1743
+            },
+            "source_event_id": "q92:f1743",
+            "scope": "external_relation_only"
+          }
+        ],
+        "process_evidence": "not_assessed_from_state_events"
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "created_utc": "2026-10-10T15:12:19.132186+00:00",
+  "origin": "StepTrace local authorized development package",
+  "base_commit": "52a617579b6173f16403d63397cbeb43ebb2deac",
+  "files": [
+    {
+      "path": "docs/research-handoff/README.md",
+      "bytes": 3796,
+      "sha256": "1cf3d3f97d50d7903a03a830fd8886c9305525dd5b7ae05df4ffc45713c7d329",
+      "git_blob_sha": "f668a17f5f5e9134642dfdaed6719fc8c6090306"
+    },
+    {
+      "path": "docs/research-handoff/progress/20261010T1505Z-current-stage.md",
+      "bytes": 2436,
+      "sha256": "37b7603a7f9ca09a913955ec42b6e17ae7a0b6000d04e8ee095f5137237f9a4b",
+      "git_blob_sha": "078a95f97989a47964c89ab113f264210ba3540a"
+    },
+    {
+      "path": "docs/research-handoff/tasks/status-20261010T1505Z.json",
+      "bytes": 4651,
+      "sha256": "bb849b414164f66ac6488d46dfa7d550f0af4f9d0ac9714c0aad82c5034e83c9",
+      "git_blob_sha": "71f4523776926813e162e7fb846b2972f9a7c732"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/PROTOCOL_zh.md",
+      "bytes": 4904,
+      "sha256": "66ca83a2304a3eab1e1aea8ce84ef1faab3ed3fda42c4087c947d2e4b25a850e",
+      "git_blob_sha": "5f5b19dc5e86e1151d3618254b47140b08e865b3"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/README_zh.md",
+      "bytes": 5725,
+      "sha256": "a64ed1514178fe4ccd251b4c193223310af4a08e35c9a21ba4d41cc2dafb37ac",
+      "git_blob_sha": "d6b61671011aa7dc3eee552222f2c418a354a68d"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/RESEARCH_DIRECTION_zh.md",
+      "bytes": 4200,
+      "sha256": "c6ee7eb26027faf566e660a705fb7c75a164abb9405f062403cd7cb54ad25609",
+      "git_blob_sha": "bf21b60547bdeae74de63d66374b86f4f6e14b9b"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/frozen_events.v1.json",
+      "bytes": 8818,
+      "sha256": "45f60ed5cff58685f1ebbffc58a483ad176a5a0440d104e6cb72bb9c0312bd5d",
+      "git_blob_sha": "c16012fdd1683f6905f2af04e539640a91e7fb16"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/implementation_binding.json",
+      "bytes": 448,
+      "sha256": "e8ec7b2526efc74d53c45f8575e84a421055f7519c14866d9a3e30abb54b5220",
+      "git_blob_sha": "cd2bc569f24382098e2b22aafdeffc42f344568c"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/input_manifests.json",
+      "bytes": 7155,
+      "sha256": "063c4649a711f95d1c5517baf569aab588ee25f5e14ced9a74a147d7aabd0580",
+      "git_blob_sha": "e07e8a67e272fccda141880c14ed5a52f0c6e4c3"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/model_outputs/q31.json",
+      "bytes": 3159,
+      "sha256": "8b6a48870b2e5a563a46f48f67c5e2997289fdc2c7447f42ad86d8d896489df3",
+      "git_blob_sha": "1ddb793b9193cc0f3b81b9bcd5a1b68ea8a1a040"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/model_outputs/q68.json",
+      "bytes": 4200,
+      "sha256": "e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1",
+      "git_blob_sha": "7df5d1b128ecab5754ff10153fb1f18750414bbb"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/model_outputs/q92.json",
+      "bytes": 4885,
+      "sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694",
+      "git_blob_sha": "9e8837148f31206c9efc6986b86a4b06fa198151"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/protocol/connection_probe.schema.json",
+      "bytes": 9056,
+      "sha256": "fd65051efcf6ed762fea3ffefbd3e6d322c6ff177a7ffe9b0a92fc9b36772a36",
+      "git_blob_sha": "a117a34c39130f0283726c89e78273997da1de20"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/protocol/prompt_zh.txt",
+      "bytes": 7204,
+      "sha256": "1686e4d4ed9a5891d0bce0a18031614d91899ab08a30e2a12a9628f8c5eb118a",
+      "git_blob_sha": "761f8143c98cbd791b4b104a23bcf18a843f5784"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/recognition_outputs.json",
+      "bytes": 2348,
+      "sha256": "3c1237b551b115b9bdca994f70a7bf341839e9bf4c4ac965f2b59b07c7943d52",
+      "git_blob_sha": "d5adc9bc571394decf6d1a42221c5b2b7346cec7"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/replay_identity_r1.py",
+      "bytes": 14462,
+      "sha256": "6273f8c1c666b247670d85ee82430a3aba2500d919f17b26ea3d7fc4c74f2a4d",
+      "git_blob_sha": "d72a71d3c911d1de2e456d271e30d8dbd892ffac"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/replay_results.json",
+      "bytes": 42445,
+      "sha256": "58c8015764ce0cc96f708daa39daa407eeb17d458f7f0c4822edba1f8ee0dc50",
+      "git_blob_sha": "ef6c4b9d6792f1977d216478490ef6662ad536e7"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/results_summary.json",
+      "bytes": 4617,
+      "sha256": "9256b84ca6366fca8c915562fdfd3371769edcdbfaba8aac8089022219350fb9",
+      "git_blob_sha": "1299a32a30392277c9dc1978ef856dbaf68416db"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/screening_failures_and_exposure.json",
+      "bytes": 1342,
+      "sha256": "f2b49df009e461c29eed93fbe7eb91043dc4875b22e3cfff71d5cc6b76d54435",
+      "git_blob_sha": "8e77fb3c4a3513247a5d9f4440df6fa621e0d785"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/source_license_hash_manifest.json",
+      "bytes": 3419,
+      "sha256": "af07264c07e725de2b665f08cb8371e23d3b98530e97a0f93a20c38f1305079f",
+      "git_blob_sha": "9b4020c5026131e9232553114afed2853214218e"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/test_cached_outputs.py",
+      "bytes": 1971,
+      "sha256": "de99da9ed9053326ee302aedf98ba9e57e356398ea7c9f7194bd741cfd420fff",
+      "git_blob_sha": "9ed9a031e369cd910f2eb07bfbf7dcd53e299e92"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/test_replay.py",
+      "bytes": 1317,
+      "sha256": "cfc55d35561d63f48efead8cbfaf1d32c81bd763cf7051f56404e14f9d028aac",
+      "git_blob_sha": "96ffbdfdd9960bcd28aec5964ec271a92afa5697"
+    },
+    {
+      "path": "experiments/real-reappearance-dev-20261010/verification.json",
+      "bytes": 859,
+      "sha256": "26a216fdbfc9c878afe3bd0edb77d3b1d8b13ceb2f0de16464f85a936422995a",
+      "git_blob_sha": "834966fe09949814af2c676bd486e91066e1a3a5"
+    }
+  ],
+  "contains_media": false,
+  "contains_raw_tool_logs": false,
+  "model_outputs_not_human_gt": true
+}

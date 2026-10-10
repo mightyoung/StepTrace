@@ -1,0 +1,179 @@
+[
+  {
+    "packet_id": "q31",
+    "source_group_id": "S01_whole_sequence_development",
+    "source_sha256": "c9d62cb8eef5e0b45ebfc08928602ffda3bcbcbc8f8d8168ffed3e0550bdecbb",
+    "evidence_timeline": {
+      "kind": "source_recording",
+      "time_base": "1/25",
+      "cutoff_pts": 1743
+    },
+    "target": {
+      "host_instance_id": "table_a",
+      "part_instance_id": "leg_b",
+      "interface_id": "corner_query_1",
+      "host_description_zh": "画面右侧白色工作台上的棕色台板",
+      "part_description_zh": "首帧画面中棕色台板远侧、靠画面右的黑色白顶长腿，不是更靠近镜头的另一根竖腿，也不是左侧白工作台上横放的黑长条；后续对应请按可见线索自行判断，不清楚可记uncertain",
+      "interface_description_zh": "首帧该远侧黑腿的下端与台板局部关系，原图约x1234,y500；坐标仅定位该对象与接口，不提供连接真值或后续身份对应"
+    },
+    "frames": [
+      {
+        "frame_id": "f1743",
+        "image_path": "frame_1743.png",
+        "timeline_pts": 1743,
+        "source_frame_index": 1743,
+        "source_pts": 1743,
+        "source_time_base": "1/25",
+        "source_seconds": 69.72,
+        "sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "new_frame_ids": [
+      "f1743"
+    ],
+    "continuity_mode": "single_answer_sparse_frames",
+    "common_budget": {
+      "soft_seconds": 120,
+      "max_exec": 4,
+      "narrative_summary_max_cjk": 600
+    },
+    "original_private_input_sha256": "f20d5f2993566b17052ae9c093a91d112577021fc6ea2f372d2612c634ccfc30",
+    "original_prompt_sha256": "1686e4d4ed9a5891d0bce0a18031614d91899ab08a30e2a12a9628f8c5eb118a",
+    "original_schema_sha256": "fd65051efcf6ed762fea3ffefbd3e6d322c6ff177a7ffe9b0a92fc9b36772a36",
+    "public_manifest_is_derived": true,
+    "media_availability": "metadata_only; not distributed"
+  },
+  {
+    "packet_id": "q68",
+    "source_group_id": "S01_whole_sequence_development",
+    "source_sha256": "c9d62cb8eef5e0b45ebfc08928602ffda3bcbcbc8f8d8168ffed3e0550bdecbb",
+    "evidence_timeline": {
+      "kind": "source_recording",
+      "time_base": "1/25",
+      "cutoff_pts": 1746
+    },
+    "target": {
+      "host_instance_id": "table_a",
+      "part_instance_id": "leg_b",
+      "interface_id": "corner_query_1",
+      "host_description_zh": "画面右侧白色工作台上的棕色台板",
+      "part_description_zh": "首帧画面中棕色台板远侧、靠画面右的黑色白顶长腿，不是更靠近镜头的另一根竖腿，也不是左侧白工作台上横放的黑长条；后续对应请按可见线索自行判断，不清楚可记uncertain",
+      "interface_description_zh": "首帧该远侧黑腿的下端与台板局部关系，原图约x1234,y500；坐标仅定位该对象与接口，不提供连接真值或后续身份对应"
+    },
+    "frames": [
+      {
+        "frame_id": "f1743",
+        "image_path": "frame_1743.png",
+        "timeline_pts": 1743,
+        "source_frame_index": 1743,
+        "source_pts": 1743,
+        "source_time_base": "1/25",
+        "source_seconds": 69.72,
+        "sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "frame_id": "f1746",
+        "image_path": "frame_1746.png",
+        "timeline_pts": 1746,
+        "source_frame_index": 1746,
+        "source_pts": 1746,
+        "source_time_base": "1/25",
+        "source_seconds": 69.84,
+        "sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "new_frame_ids": [
+      "f1743",
+      "f1746"
+    ],
+    "continuity_mode": "single_answer_sparse_frames",
+    "common_budget": {
+      "soft_seconds": 120,
+      "max_exec": 4,
+      "narrative_summary_max_cjk": 600
+    },
+    "original_private_input_sha256": "0cd9440519bd98d8d555b80a37de908b3f0f2c17488394501a44edf8ae0566d2",
+    "original_prompt_sha256": "1686e4d4ed9a5891d0bce0a18031614d91899ab08a30e2a12a9628f8c5eb118a",
+    "original_schema_sha256": "fd65051efcf6ed762fea3ffefbd3e6d322c6ff177a7ffe9b0a92fc9b36772a36",
+    "public_manifest_is_derived": true,
+    "media_availability": "metadata_only; not distributed"
+  },
+  {
+    "packet_id": "q92",
+    "source_group_id": "S01_whole_sequence_development",
+    "source_sha256": "c9d62cb8eef5e0b45ebfc08928602ffda3bcbcbc8f8d8168ffed3e0550bdecbb",
+    "evidence_timeline": {
+      "kind": "source_recording",
+      "time_base": "1/25",
+      "cutoff_pts": 1752
+    },
+    "target": {
+      "host_instance_id": "table_a",
+      "part_instance_id": "leg_b",
+      "interface_id": "corner_query_1",
+      "host_description_zh": "画面右侧白色工作台上的棕色台板",
+      "part_description_zh": "首帧画面中棕色台板远侧、靠画面右的黑色白顶长腿，不是更靠近镜头的另一根竖腿，也不是左侧白工作台上横放的黑长条；后续对应请按可见线索自行判断，不清楚可记uncertain",
+      "interface_description_zh": "首帧该远侧黑腿的下端与台板局部关系，原图约x1234,y500；坐标仅定位该对象与接口，不提供连接真值或后续身份对应"
+    },
+    "frames": [
+      {
+        "frame_id": "f1743",
+        "image_path": "frame_1743.png",
+        "timeline_pts": 1743,
+        "source_frame_index": 1743,
+        "source_pts": 1743,
+        "source_time_base": "1/25",
+        "source_seconds": 69.72,
+        "sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "frame_id": "f1746",
+        "image_path": "frame_1746.png",
+        "timeline_pts": 1746,
+        "source_frame_index": 1746,
+        "source_pts": 1746,
+        "source_time_base": "1/25",
+        "source_seconds": 69.84,
+        "sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "frame_id": "f1752",
+        "image_path": "frame_1752.png",
+        "timeline_pts": 1752,
+        "source_frame_index": 1752,
+        "source_pts": 1752,
+        "source_time_base": "1/25",
+        "source_seconds": 70.08,
+        "sha256": "9e6f3fc5c79dd96f30ab76e52e65017088472dd1d2c27a9aaf37d511c66a4f9d",
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "new_frame_ids": [
+      "f1743",
+      "f1746",
+      "f1752"
+    ],
+    "continuity_mode": "single_answer_sparse_frames",
+    "common_budget": {
+      "soft_seconds": 120,
+      "max_exec": 4,
+      "narrative_summary_max_cjk": 600
+    },
+    "original_private_input_sha256": "92b58fa9ada9ae56785aac10a151848c8143de2130dd709696471be17565e18c",
+    "original_prompt_sha256": "1686e4d4ed9a5891d0bce0a18031614d91899ab08a30e2a12a9628f8c5eb118a",
+    "original_schema_sha256": "fd65051efcf6ed762fea3ffefbd3e6d322c6ff177a7ffe9b0a92fc9b36772a36",
+    "public_manifest_is_derived": true,
+    "media_availability": "metadata_only; not distributed"
+  }
+]

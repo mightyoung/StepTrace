@@ -1,0 +1,56 @@
+{
+  "label_origin": "native first-answer model outputs; not human GT",
+  "rows": [
+    {
+      "packet_id": "q31",
+      "frame_observations": [
+        {
+          "frame_id": "f1743",
+          "relation_state": "external_connection_supported",
+          "identity_status": "supported_within_visible_sequence",
+          "observation": "远侧靠右的白顶黑腿下端与棕色台板角位可见连续相接，双手已离开该处，支持外部连接结果；安装过程与内部紧固不可见。"
+        }
+      ]
+    },
+    {
+      "packet_id": "q68",
+      "frame_observations": [
+        {
+          "frame_id": "f1743",
+          "relation_state": "external_connection_supported",
+          "identity_status": "supported_within_visible_sequence",
+          "observation": "指定远侧白顶黑腿下端与棕色台板角部外形衔接可见，支持外部连接结果；未看到安装过程。"
+        },
+        {
+          "frame_id": "f1746",
+          "relation_state": "occluded_or_unknown",
+          "identity_status": "supported_within_visible_sequence",
+          "observation": "远侧白顶黑腿可辨，目标下端与近侧竖腿投影重叠，接口直接可见性不足。"
+        }
+      ]
+    },
+    {
+      "packet_id": "q92",
+      "frame_observations": [
+        {
+          "frame_id": "f1743",
+          "relation_state": "external_connection_supported",
+          "identity_status": "supported_within_visible_sequence",
+          "observation": "首帧指定的远侧白顶黑腿下端与台板角位连续相接，接口附近无手部遮挡，支持外部连接结果。"
+        },
+        {
+          "frame_id": "f1746",
+          "relation_state": "occluded_or_unknown",
+          "identity_status": "supported_within_visible_sequence",
+          "observation": "目标仍在台板远侧，外形和相对位置可对应；其下端与前方竖腿的投影部分重叠，接口关系不够清楚，未见明确分离。"
+        },
+        {
+          "frame_id": "f1752",
+          "relation_state": "external_connection_supported",
+          "identity_status": "supported_within_visible_sequence",
+          "observation": "目标位于画面最右的较远角，下端在台板角位形成可见交接；近侧另一根腿与之分开，支持目标外部连接。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-10-10T15:10:44.442484+00:00",
+  "scope": "public text cache and deterministic code, not visual accuracy",
+  "python_version": "3.12.14",
+  "tests_command": [
+    "python",
+    "-B",
+    "-m",
+    "unittest",
+    "test_replay.py",
+    "test_cached_outputs.py"
+  ],
+  "tests_count": 5,
+  "tests_exit_code": 0,
+  "replay_command": [
+    "python",
+    "-B",
+    "replay_identity_r1.py",
+    "--events",
+    "frozen_events.v1.json",
+    "--output",
+    "TEMP_REPLAY.json"
+  ],
+  "replay_exit_code": 0,
+  "replay_output_byte_equal_to_committed_file": true,
+  "replay_results_sha256": "58c8015764ce0cc96f708daa39daa407eeb17d458f7f0c4822edba1f8ee0dc50",
+  "test_classes": "2 synthetic-rule tests plus3 cached-output checks; 0 new model calls",
+  "executed_reducer_sha256": "6273f8c1c666b247670d85ee82430a3aba2500d919f17b26ea3d7fc4c74f2a4d"
+}

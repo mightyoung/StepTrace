@@ -1,0 +1,397 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:steptrace:connection-probe:0.2",
+  "title": "Single-connection temporal evidence development probe",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": {
+      "const": "steptrace-connection-probe/0.2"
+    },
+    "packet_id": {
+      "type": "string"
+    },
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "source_recording",
+            "synthetic_reverse"
+          ]
+        },
+        "time_base": {
+          "type": "string"
+        },
+        "cutoff_pts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "last_observed_pts": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "kind",
+        "time_base",
+        "cutoff_pts",
+        "last_observed_pts"
+      ]
+    },
+    "target_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "host_instance_id": {
+          "type": "string"
+        },
+        "part_instance_id": {
+          "type": "string"
+        },
+        "interface_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "host_instance_id",
+        "part_instance_id",
+        "interface_id"
+      ]
+    },
+    "identity_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "supported_within_visible_sequence",
+            "uncertain"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "reason"
+      ]
+    },
+    "last_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "frame_id": {
+          "type": "string"
+        },
+        "relation_state": {
+          "type": "string",
+          "enum": [
+            "external_connection_supported",
+            "separation_supported",
+            "contact_or_occupancy_only",
+            "occluded_or_unknown"
+          ]
+        },
+        "observation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "frame_id",
+        "relation_state",
+        "observation"
+      ]
+    },
+    "historical_connections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "connection_id": {
+            "type": "string"
+          },
+          "host_instance_id": {
+            "type": "string"
+          },
+          "part_instance_id": {
+            "type": "string"
+          },
+          "interface_id": {
+            "type": "string"
+          },
+          "confirmation_frame_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confirmed_at_pts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "connection_level": {
+            "const": "external_relation_only"
+          },
+          "process_capture": {
+            "type": "string",
+            "enum": [
+              "installation_observed",
+              "missedprocess",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "connection_id",
+          "host_instance_id",
+          "part_instance_id",
+          "interface_id",
+          "confirmation_frame_ids",
+          "confirmed_at_pts",
+          "connection_level",
+          "process_capture"
+        ]
+      }
+    },
+    "state_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "change_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "separation",
+              "uncertain_interface_manipulation",
+              "occlusion",
+              "reconnection",
+              "identity_change"
+            ]
+          },
+          "frame_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confirmed_at_pts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "affected_connection_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "change_id",
+          "kind",
+          "frame_ids",
+          "confirmed_at_pts",
+          "affected_connection_ids"
+        ]
+      }
+    },
+    "current_estimate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "type": "string",
+          "enum": [
+            "direct_current",
+            "conditional_history",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "relation_state": {
+          "type": "string",
+          "enum": [
+            "external_connection_supported",
+            "separation_supported",
+            "contact_or_occupancy_only",
+            "occluded_or_unknown"
+          ]
+        },
+        "active_connection_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "revoked_connection_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "suspended_connection_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "basis",
+        "relation_state",
+        "active_connection_ids",
+        "revoked_connection_ids",
+        "suspended_connection_ids",
+        "assumptions"
+      ]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "evidence_id": {
+            "type": "string"
+          },
+          "frame_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "relevance": {
+            "type": "string",
+            "enum": [
+              "prior_connection",
+              "separation",
+              "latest_state",
+              "interface_uncertainty",
+              "identity",
+              "other"
+            ]
+          },
+          "observation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "frame_ids",
+          "relevance",
+          "observation"
+        ]
+      }
+    },
+    "unobserved_intervals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "after_pts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "before_pts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "changes_excluded": {
+            "const": false
+          }
+        },
+        "required": [
+          "after_pts",
+          "before_pts",
+          "changes_excluded"
+        ]
+      }
+    },
+    "mechanical_firmness": {
+      "const": "unknown"
+    },
+    "safety": {
+      "const": "not_evaluated"
+    },
+    "narrative_summary": {
+      "type": "string"
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frame_observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "frame_id": {
+            "type": "string"
+          },
+          "relation_state": {
+            "type": "string",
+            "enum": [
+              "external_connection_supported",
+              "separation_supported",
+              "contact_or_occupancy_only",
+              "occluded_or_unknown"
+            ]
+          },
+          "identity_status": {
+            "type": "string",
+            "enum": [
+              "supported_within_visible_sequence",
+              "uncertain"
+            ]
+          },
+          "observation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "frame_id",
+          "relation_state",
+          "identity_status",
+          "observation"
+        ]
+      }
+    }
+  },
+  "required": [
+    "contract_version",
+    "packet_id",
+    "timeline",
+    "target_ref",
+    "identity_mapping",
+    "last_observation",
+    "historical_connections",
+    "state_changes",
+    "current_estimate",
+    "evidence",
+    "unobserved_intervals",
+    "mechanical_firmness",
+    "safety",
+    "narrative_summary",
+    "conflicts",
+    "frame_observations"
+  ]
+}
