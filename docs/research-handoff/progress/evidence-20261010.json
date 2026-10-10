@@ -1,0 +1,374 @@
+{
+  "index_version": "steptrace-progress-evidence/1",
+  "as_of_date_utc": "2026-10-10",
+  "source_repo": "https://github.com/mightyoung/StepTrace",
+  "source_commit": "6f5e40f67ae2732b3194881b9ea962cb9d197823",
+  "publication_scope": "Original public progress summary and de-identified artifact identities only; no raw evidence is distributed.",
+  "availability_note": "Metadata-only records prove neither public availability nor third-party access. Official source links refer to original publishers, not uploaded copies.",
+  "artifacts": [
+    {
+      "artifact_id": "counterexample-run-summary-20261010",
+      "sha256": "1daad0366e3b5dda43d2205bbc7e79835add3b9d1182d228d0424f28766977b9",
+      "bytes": 21174,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Saved execution summary; 12 first answers completed, no semantic success claim.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "counterexample-run-bundle-20261010",
+      "sha256": "3691002b6be6a5453273c00963f5eed140953a2f4c196f2507cf373dbb3b2dbb",
+      "bytes": 38611,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Frozen first-answer execution archive; contains unpublished receipts and original outputs.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "counterexample-audit-report-20261010",
+      "sha256": "9962d608e69d01fa48a05ae8f44579d1f762b9eb84d7c8c3cd8976cec515df3f",
+      "bytes": 15808,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Independent AI descriptive audit; not independent human ground truth.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "counterexample-audit-grouped-20261010",
+      "sha256": "92738ce4ff5057e039d850c2e7e896ac3268f36a64ef0fa6958b27acb1df2440",
+      "bytes": 26454,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Grouped findings, scope limitations and unresolved disagreements.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "counterexample-audit-integrity-20261010",
+      "sha256": "4331a46d83046dbf596566f8f7b1074b38251d8f815b93e6de3c4749daf578d1",
+      "bytes": 67299,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Prior integrity and source-frame decoding checks; not model performance.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "counterexample-audit-final-snapshot-20261010",
+      "sha256": "1fb86e2276dc48730ed8dedc29b45a69d11625190448da6a0c17e38df8891626",
+      "bytes": 13091,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Frozen completion and first-answer hash snapshot.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "counterexample-audit-bundle-20261010",
+      "sha256": "ba788e4e599ee59b2e943c5d28448f0795056aea4c48d774e6b2b772b3d7c180",
+      "bytes": 12437292,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Audit archive including unpublished review images; metadata only.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "state-contract-draft-report-20261010",
+      "sha256": "12b178fc5507fbe0a8d876d03ff4bcaaf18fc4f0bf1744ca9b30936d972dc816",
+      "bytes": 5346,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "State contract 0.4-draft.1 design report; no new answer-model run.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "state-contract-draft-protocol-20261010",
+      "sha256": "51b7e4a66780bb1ecf045df75852f170b01312d43e1b88c0405b46ebd241b93e",
+      "bytes": 6622,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Proposed time, identity and evidence-validity rules; not adopted production code.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "state-contract-draft-schema-20261010",
+      "sha256": "25dd5d1cad1bc48bf08668f9cf825cc9b91f5f14bb96c727bcc9cccc4bca7420",
+      "bytes": 14062,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Draft JSON schema; not implemented into repository runtime.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "state-contract-fixture-results-20261010",
+      "sha256": "3cf13cb399875cf0e87b351d70f47ff8ab0fcd0672ee7a0c9da5344e7da86757",
+      "bytes": 4876,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Recorded 16/16 expected logical fixture outcomes; not empirical accuracy.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "state-contract-draft-bundle-20261010",
+      "sha256": "ac98a46f7a06de4cb67f1026dac39df04f9922986c9e03619b7397934a803ce8",
+      "bytes": 34430,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Design and logical fixtures only.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "removal-screening-report-20261010",
+      "sha256": "70be67b1d4e3bb5b913173cf8d7393a58b1edf12dad9393da7a8af626d6fc41c",
+      "bytes": 6228,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Two-source, three-window, four-event AI screening; human GT zero.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "removal-candidate-manifest-20261010",
+      "sha256": "e85e0a46a5188fb2e6d2562e87b907627f51b1f933b45b9506ad41c8270083db",
+      "bytes": 20553,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Candidate identity, downloaded-file PTS, provenance, limitations and access outcomes.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "removal-file-validation-20261010",
+      "sha256": "42f27c3815d85c33b46b4cc2f34bdaa32e2c49e601b714e99ba19afdbf1bc65e",
+      "bytes": 1017,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Recorded file/hash/extraction checks; not human semantic validation.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "removal-review-bundle-20261010",
+      "sha256": "0dde021af6ceccc897d504c9ec24bddfef26d46376091b43ecfeb6236dcbec85",
+      "bytes": 7672287,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Unpublished review media and metadata; no redistribution with this update.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "site-batch-reconciliation-20261010",
+      "sha256": "acf18c58ff22854a9afd2d4e9972f21944abf2efbc529adfff3f024c1f24296c",
+      "bytes": 4725,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Saved cross-project site receipt; this update publishes only the StepTrace aggregate: 3 present, 53 missing of 56.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    }
+  ],
+  "first_answer_identities": [
+    {
+      "packet_id": "x17",
+      "bytes": 1618,
+      "sha256": "01b2277a72453a055c9da2be923aabcfce509effcc2854714a0716f623942974",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x46",
+      "bytes": 2077,
+      "sha256": "9d4a29833469d0603fc4f6da27db0b0ae2e7c125218b0dee706acf6102202145",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x83",
+      "bytes": 2314,
+      "sha256": "65600a2dcf62b63ef3194231ca6eb46830031eca1c5ecbd625e93c650426f6ea",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x29",
+      "bytes": 1632,
+      "sha256": "3c0d16d439ff2d9047411cf44bc47e30a1bf2b6386c920a7f0f6939101bc305b",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x64",
+      "bytes": 2383,
+      "sha256": "f312cf1f7f2c1343db5ac07ee5169cfd35d993c959dfd86f0adc257e04bc2fc1",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x91",
+      "bytes": 2065,
+      "sha256": "fe9b1d7a56ea4db270fed8685e36f6c1664d17f6101c56be8b6886d3380ba030",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x38",
+      "bytes": 1626,
+      "sha256": "8ddcf1f64ffe9d16dbac03cf1de6e7b024abeda4bb7ce981f55dbb502ff7da9a",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x72",
+      "bytes": 2436,
+      "sha256": "2d0a26a77a40f74b1617e023c50130e55bc01a84eb525e52948d8baf3c69e487",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x15",
+      "bytes": 2361,
+      "sha256": "68d21761d702d44d4ea059c2b81ee43b5796485eb95dec25d358c3dd07bd7c81",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x54",
+      "bytes": 1611,
+      "sha256": "f9d57ac183f8402bc2eb685fd8aa563599bf40da0de5a996e668b704b9870a36",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x87",
+      "bytes": 2350,
+      "sha256": "4d394744daedd299bcfa1f897d729668ab24503da92366d46c35c6569298f7c8",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    },
+    {
+      "packet_id": "x23",
+      "bytes": 2532,
+      "sha256": "5a7ed46fd1bd606ffa9107c585468b84ec48add83fdb9ed04daf12ea2ca73f60",
+      "availability": "metadata_only",
+      "saved_terminal_status": "completed"
+    }
+  ],
+  "official_removal_source_metadata": [
+    {
+      "source_id": "A101_WEB_PREVIEW",
+      "dataset": "Assembly101",
+      "official_clip_id": "assets/12_view_assembly.mp4",
+      "official_page": "https://assembly-101.github.io/",
+      "source_url": "https://assembly-101.github.io/assets/12_view_assembly.mp4",
+      "license": "CC BY-NC 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "sha256": "f5a7c24fdb4f7b081d7088c1f305fbd6865cbf00e9046d1f75bf5469fd54dc7d",
+      "bytes": 11412366,
+      "fps": "60/1",
+      "time_base": "1/15360"
+    },
+    {
+      "source_id": "INDEGO_232cf338",
+      "dataset": "IndEgo",
+      "official_clip_id": "1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+      "official_page": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo",
+      "source_url": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/resolve/main/1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "3552fbc900518a3499191be00e9897957dee562d9bdc59a23ec0c8b1d499c490",
+      "bytes": 13326100,
+      "fps": "10/1",
+      "time_base": "1/10240"
+    }
+  ],
+  "fresh_docs_sync_checks": {
+    "first_answers": true,
+    "first_answer_count": 12,
+    "audit_checksum_items": 18,
+    "audit_checksums_match": true,
+    "contract_checksum_items": 12,
+    "contract_checksums_match": true,
+    "removal_source_checksums_match": true
+  },
+  "not_repeated_in_this_sync": [
+    "model inference",
+    "training",
+    "original visual adjudication",
+    "full repository tests",
+    "logical fixture execution"
+  ],
+  "site_snapshot": {
+    "scope": "counterexample-v1 upload batch only, saved reconciliation",
+    "expected_assets": 56,
+    "confirmed_present": 3,
+    "missing_or_blocked": 53,
+    "fully_synchronized": false,
+    "live_site_rechecked_in_this_docs_sync": false
+  },
+  "public_boundary": [
+    "No private host paths, conversation identifiers, private asset URLs, credentials or secrets.",
+    "No original model answers, telemetry, raw logs, images, video, weights or datasets uploaded.",
+    "No execution, merge, deployment, new data access or media redistribution authorized by publication."
+  ]
+}
