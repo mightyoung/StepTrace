@@ -10,3 +10,9 @@ This directory exchanges reviewed text and artifact identities across research e
 - Do not use repository transfers to evade denied network access. LFS and Release availability must be verified separately; neither is required by this protocol.
 - No project or third-party license is created or changed here. Unknown redistribution rights remain unknown.
 - This initial batch contains status snapshots and metadata only, except the explicitly identified synthetic-smoke text inputs in PCG. Publication approval is not execution approval.
+
+## Progress snapshots
+
+- [2026-10-10 verified progress summary](progress/20261010-progress.md): 12 saved development first answers; two time-semantics defects; unresolved C03 count disagreement; draft contract fixtures only; cross-domain removal screening with no independent human GT; site batch remains 3/56 present.
+- [2026-10-10 task state](tasks/status-20261010.json) and [de-identified evidence index](progress/evidence-20261010.json).
+- [2026-10-09 historical handoff state](tasks/status-20261009.json) remains unchanged.
