@@ -1,0 +1,122 @@
+{
+  "schema_version": "research-handoff.v1",
+  "project_id": "StepTrace",
+  "task_id": "steptrace-progress-20261010",
+  "source_repo": "https://github.com/mightyoung/StepTrace",
+  "source_commit": "6f5e40f67ae2732b3194881b9ea962cb9d197823",
+  "owner": "repository-maintainer",
+  "status": "blocked",
+  "next_action": "Review the time/evidence contract, independently adjudicate C03, acquire and review same-domain removal/swap counterexamples, then freeze a new experiment. Resolve the remaining 53/56 site assets separately.",
+  "artifacts": [
+    {
+      "artifact_id": "counterexample-run-summary-20261010",
+      "sha256": "1daad0366e3b5dda43d2205bbc7e79835add3b9d1182d228d0424f28766977b9",
+      "bytes": 21174,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Saved execution summary; 12 first answers completed, no semantic success claim.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "counterexample-audit-report-20261010",
+      "sha256": "9962d608e69d01fa48a05ae8f44579d1f762b9eb84d7c8c3cd8976cec515df3f",
+      "bytes": 15808,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Independent AI descriptive audit; not independent human ground truth.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "state-contract-fixture-results-20261010",
+      "sha256": "3cf13cb399875cf0e87b351d70f47ff8ab0fcd0672ee7a0c9da5344e7da86757",
+      "bytes": 4876,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Recorded 16/16 expected logical fixture outcomes; not empirical accuracy.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "removal-candidate-manifest-20261010",
+      "sha256": "e85e0a46a5188fb2e6d2562e87b907627f51b1f933b45b9506ad41c8270083db",
+      "bytes": 20553,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Candidate identity, downloaded-file PTS, provenance, limitations and access outcomes.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    },
+    {
+      "artifact_id": "site-batch-reconciliation-20261010",
+      "sha256": "acf18c58ff22854a9afd2d4e9972f21944abf2efbc529adfff3f024c1f24296c",
+      "bytes": 4725,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Saved cross-project site receipt; this update publishes only the StepTrace aggregate: 3 present, 53 missing of 56.",
+        "license": "Original evidence not redistributed or relicensed by this progress update.",
+        "split": "development / diagnostic; not formal test",
+        "derivation": "Existing bytes preserved; identity independently rehashed for this docs-only snapshot."
+      }
+    }
+  ],
+  "review": {
+    "classification": "Development first-answer audit plus draft logic fixtures and cross-domain AI source screening",
+    "seen_candidates": true,
+    "independent_blind_gt": false
+  },
+  "claims": [
+    "Existing 4-case F/H/HF run has 12 saved first answers, 12 completed and 0 terminal execution failures. This is generation/archive completion, not semantic success.",
+    "Audit identifies two structured time-semantics inconsistencies: C01-H x46 and C02-H x64. C03 same-image count disagreement remains unadjudicated.",
+    "State contract 0.4-draft.1 has 16 recorded expected logical fixture outcomes, with zero new answer-model runs.",
+    "Removal source screening has 2 official video source groups, 3 windows, 4 AI-screened events, 0 independent human GT cases and 0 verified swaps.",
+    "Cross-domain removal candidates do not close the same-domain four-table-leg counterexample gap.",
+    "Saved site reconciliation confirms 3 of 56 StepTrace assets present; 53 remain missing/blocked. GitHub docs publication is a separate status.",
+    "No aggregate accuracy, uplift, formal test completion, secure mechanical connection, firmness, torque or safety claim."
+  ],
+  "execution": {
+    "claimed_status": "DOCS_ONLY_SYNC_OF_EXISTING_RESEARCH",
+    "executed_status": "NO_NEW_RESEARCH_EXECUTION_IN_THIS_SYNC",
+    "command": null,
+    "exit_code": null,
+    "output_sha256": null,
+    "authorization": "Publish current de-identified research progress and evidence identities only; this status record does not authorize new experiments, data redistribution, merge or deployment."
+  },
+  "blockers": [
+    {
+      "category": "missing_evidence",
+      "detail": "C03 count disagreement lacks independent human adjudication; current references and removal prelabels are AI-generated."
+    },
+    {
+      "category": "missing_evidence",
+      "detail": "No verified same-domain table-leg removal/swap counterexample; generic cross-domain connection protocol not frozen."
+    },
+    {
+      "category": "missing_evidence",
+      "detail": "Actual deployment, tokens, costs and platform-level tool/display traces remain unknown; exposure was not fully uniform."
+    },
+    {
+      "category": "missing_sync",
+      "detail": "Saved counterexample-v1 site batch has 53 missing/blocked assets out of 56; docs push cannot resolve this."
+    }
+  ],
+  "public_boundary": [
+    "No private host paths, conversation identifiers, private asset URLs, credentials or secrets.",
+    "No original model answers, telemetry, raw logs, images, video, weights or datasets uploaded.",
+    "No execution, merge, deployment, new data access or media redistribution authorized by publication."
+  ]
+}
