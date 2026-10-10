@@ -11,7 +11,13 @@ This directory exchanges reviewed text and artifact identities across research e
 - No project or third-party license is created or changed here. Unknown redistribution rights remain unknown.
 - This initial batch contains status snapshots and metadata only, except the explicitly identified synthetic-smoke text inputs in PCG. Publication approval is not execution approval.
 
-## Progress snapshots
+## Current stage - 2026-10-10 05:43 UTC
+
+- [Current progress and next empirical step](progress/20261010T0543Z-current-stage.md): 24 core first answers plus six separate real/synthetic probes; C03 count and C04 connection/identity references remain the priority
+- [Descriptive findings](../experiments/steptrace/development-findings-2026-10-10.md) and [protocol clarification proposal](../experiments/steptrace/protocol-clarifications-proposed.md)
+- [Current task snapshot](tasks/status-20261010T0543Z.json): local full-contract revision passed limited software review, but execution_gate remains false; no new model round or human-GT claim
+
+## Historical snapshots - retained unchanged
 
 - [2026-10-10 verified progress summary](progress/20261010-progress.md): 12 saved development first answers; two time-semantics defects; unresolved C03 count disagreement; draft contract fixtures only; cross-domain removal screening with no independent human GT; site batch remains 3/56 present.
 - [2026-10-10 task state](tasks/status-20261010.json) and [de-identified evidence index](progress/evidence-20261010.json).

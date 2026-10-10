@@ -1,0 +1,96 @@
+{
+  "schema_version": "research-handoff.v1",
+  "project_id": "StepTrace",
+  "task_id": "steptrace-current-stage-20261010T0543Z",
+  "source_repo": "https://github.com/mightyoung/StepTrace",
+  "source_commit": "396c964fa3057c45d8c2167611d709b94c949bc5",
+  "owner": "repository-maintainer",
+  "status": "blocked",
+  "next_action": "Adjudicate C03 visible counts and C04 external-connection/identity evidence separately within F/H/HF; then freeze a genuine two-stage state-update pilot with trusted host bindings. Do not accumulate more answer batches before these references and execution gates are ready.",
+  "artifacts": [
+    {
+      "artifact_id": "core-development-24-first-answers-compact",
+      "sha256": "2c514185762b89ec4c9c87556a93728b522592979123f19d8c0254191eba419a",
+      "bytes": 14543126,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Frozen C01-C04 x F/H/HF x two repeats, 24 first answers",
+        "license": "No original answers or media redistributed.",
+        "split": "development",
+        "derivation": "Losslessly deduplicated private archive; image byte identities and first answers retained."
+      }
+    },
+    {
+      "artifact_id": "separate-real-and-synthetic-revocation-probes",
+      "sha256": "511451e486e79b6d5b96862f6333f0ffb302bafa9bccf1bc9fdfa0d0af54e468",
+      "bytes": 13697113,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "One real removal and one synthetic reverse example, F/H/HF once each, six first answers",
+        "license": "No raw media, logs or original answers redistributed.",
+        "split": "development, same-source derivatives grouped",
+        "derivation": "Frozen inputs, source provenance, PTS/reverse mapping, first answers and descriptive review retained separately from core."
+      }
+    },
+    {
+      "artifact_id": "full-state-contract-integration-r1-review-candidate",
+      "sha256": "f8031cc3daf6d7bf4c7c1b31b41675763968dc94d7db96c1cb13938643791a85",
+      "bytes": 138468,
+      "visibility": "private",
+      "availability": "metadata_only",
+      "provenance": {
+        "source": "Complete-state contract integration revision, limited independent software review passed",
+        "license": "Private local draft; no software or fixture upload in this sync.",
+        "split": "logical fixtures only, not model or visual results",
+        "derivation": "One transition-inheritance lineage repair; 53 test methods include 16 legacy logical cases and 63 kind/count combinations; 12 exported fixtures verified."
+      }
+    }
+  ],
+  "review": {
+    "classification": "Development/descriptive first-answer observations and limited independent software review; condition-specific human references pending",
+    "seen_candidates": true,
+    "independent_blind_gt": false
+  },
+  "claims": [
+    "Current archived experiment state is 24 core first answers plus six separately reported real/synthetic probe first answers. The earlier 12-answer batch remains a historical diagnostic, not a pooled baseline.",
+    "Both probe HF answers retained historical connection and revoked current applicability. Each stratum contains one example; these are single-answer within-context reconstructions, not a demonstrated multi-turn memory effect.",
+    "Core repeats still vary: C03 same-F count is two versus three; C04 historical confirmation and current-ID records differ. Schema success is not semantic success.",
+    "The four-rule integration draft has passed a limited independent software review after one recorded transition-inheritance blocker was fixed in a separate revision. The original failed revision is preserved.",
+    "Execution gate remains false; actual model/deployment/parameters and platform telemetry are unknown, and no accuracy, uplift, firmness or safety claim is made.",
+    "Primary next work is condition-bounded C03/C04 reference adjudication and a genuinely staged state update, not another unrestricted answer expansion.",
+    "Historical progress/task files are retained unchanged; this timestamped record and the current index supersede them only as a current-stage pointer."
+  ],
+  "execution": {
+    "claimed_status": "DOCS_ONLY_CURRENT_INDEX_REFRESH",
+    "executed_status": "NO_NEW_SUBJECT_MODEL_RUNS_IN_THIS_SYNC",
+    "command": null,
+    "exit_code": null,
+    "output_sha256": null,
+    "authorization": "Publish de-identified current research status and artifact identities to the existing research branch only; no raw answers/media, merge, deployment or new model round."
+  },
+  "blockers": [
+    {
+      "category": "missing_evidence",
+      "detail": "C03 visible-count and C04 connection/identity judgments lack condition-specific human adjudication; AI drafts are not human GT."
+    },
+    {
+      "category": "environment_capability",
+      "detail": "Actual continuity mode, trusted presentation receipt collection, immutable host bindings and final per-stage budget remain to be frozen for a future pilot."
+    },
+    {
+      "category": "missing_evidence",
+      "detail": "Real bracket topology and synthetic table-leg reversal stay separate; the four-corner state contract cannot silently serve as the single-connection bracket contract."
+    },
+    {
+      "category": "authorization",
+      "detail": "No new model execution is admitted by the local software review or this publication."
+    }
+  ],
+  "public_boundary": [
+    "Only de-identified text and artifact identities are added.",
+    "No private host paths, account/conversation IDs, raw answers/logs, images or video.",
+    "Historical snapshots preserved; no main update, force push, merge or deployment."
+  ]
+}
