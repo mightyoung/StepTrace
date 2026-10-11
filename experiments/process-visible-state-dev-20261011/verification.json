@@ -56,8 +56,13 @@
   "artifacts": [
     {
       "path": "README_zh.md",
-      "bytes": 3120,
-      "sha256": "607a8180ab02c8a3580fa7812cff327acb9f20f261b44118838b65a3a97945f3"
+      "bytes": 3197,
+      "sha256": "46c2cbcb1f88c7c54e4a1390242d1e0a65c7ebd68023f9d020818594bebea66d"
+    },
+    {
+      "path": "review-example-zh.md",
+      "bytes": 3232,
+      "sha256": "e4b550f2fd028d7defb835073ff651214ae774951c20341095fd0d5f1fb2547a"
     },
     {
       "path": "process_visible_state.py",
