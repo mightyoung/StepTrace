@@ -1,0 +1,1440 @@
+{
+  "source_commit": "0a6aa25529ec169156b9ad979d03a13754e0a874",
+  "scope": "src/scripts/configs/tests textual py/json/yaml files",
+  "scanned_file_count": 306,
+  "scanned_files": [
+    {
+      "path": "src/display_project/__init__.py",
+      "sha256": "6aa99de16b3da53c82b9b343218c9912b7c72929055015f038b4b69a4b2f0fee"
+    },
+    {
+      "path": "src/display_project/cli.py",
+      "sha256": "ce441a868f0eb6b64a58183bdd37fa8fac46a58c4836d839781fc2986fe5a29b"
+    },
+    {
+      "path": "src/display_project/config.py",
+      "sha256": "45344fe660c036b8d59c9b2c24817ab4246c209a944838fc28e9a6cd6d6ce828"
+    },
+    {
+      "path": "src/display_project/current_gate_snapshot.py",
+      "sha256": "c0af78fd82b357ec016dec4d05cec4da6748a2dcc5af1cc0cc2474cdf7db0856"
+    },
+    {
+      "path": "src/display_project/data/__init__.py",
+      "sha256": "3f7f0429cac02c89ba52433a2602b951802cbb2fab68a2176ac6671796e44311"
+    },
+    {
+      "path": "src/display_project/data/curated_yolo_training_views.py",
+      "sha256": "cc092d984e9a56deda51061d007b9953d32a91976b6d2cd376f903ba1bc3727a"
+    },
+    {
+      "path": "src/display_project/data/cvat.py",
+      "sha256": "0e7a1aed6a2fdae8bbde2e51189648348176288cb1f4d77dd1df2a1fa7f045ab"
+    },
+    {
+      "path": "src/display_project/data/experiment_identity.py",
+      "sha256": "27948c9dcbc0e08afefa634ad884b751699c8548b3633d5139d36ab027e6cb2b"
+    },
+    {
+      "path": "src/display_project/data/industreal.py",
+      "sha256": "331d19c23082274056070e66b28520d747de7c5d25e3a5351760eeb91f98f501"
+    },
+    {
+      "path": "src/display_project/data/industreal_capability.py",
+      "sha256": "459dbee372966568bbbb3a72a08f98365ec49ff3bffd152e35d3b52c7d631a75"
+    },
+    {
+      "path": "src/display_project/data/industreal_complete_job_partition.py",
+      "sha256": "c6d0f079eab2cd5dbc6c68209b3ec74ea1a8a54ab2c2650fd139c4ac969355e3"
+    },
+    {
+      "path": "src/display_project/data/industreal_errors.py",
+      "sha256": "448c82466e6edf2af6d29b5b278580b334768a13dc96635d56796f7b55e4936a"
+    },
+    {
+      "path": "src/display_project/data/industreal_ledger.py",
+      "sha256": "20055bca891032221ea7d3e3ce806bbf8b8c7ae4a83e06363c2dff584ee6c5e3"
+    },
+    {
+      "path": "src/display_project/data/industreal_partition_revision.py",
+      "sha256": "a38a88880c75ddbe1e814c99e272425a191a27a6c07f603a423485fb34048cd1"
+    },
+    {
+      "path": "src/display_project/data/industreal_videos.py",
+      "sha256": "7fbf9e9ffe4688748bcdc9a41bb25cc39e31e7edb5a31caac94a695950c8d231"
+    },
+    {
+      "path": "src/display_project/data/meccano.py",
+      "sha256": "76b3e6656ff1e49b14d857b54a1791b7534edb7ec6c948db8efd1067190a3280"
+    },
+    {
+      "path": "src/display_project/data/meccano_registry.py",
+      "sha256": "90aba85de9636f93615155829811bd2b4a0bf85f492d8e46ed642007ad108121"
+    },
+    {
+      "path": "src/display_project/data/meccano_yolo_audit.py",
+      "sha256": "5f257066609278e3fdb5561de671893f87f1e044d05d36efedf2552889be3886"
+    },
+    {
+      "path": "src/display_project/data/protocol_amendment.py",
+      "sha256": "34eda687c74d365f477b47559394f890ed0029839bf099733ca511013faad391"
+    },
+    {
+      "path": "src/display_project/data/split_manifest.py",
+      "sha256": "b805dfdf6dcc09c52a9ae2fd5198ea7e03e237f18d562e2f744292cd4c541168"
+    },
+    {
+      "path": "src/display_project/data/timeline.py",
+      "sha256": "e5033cd51de471832fcfa8533ae34ac3fa0f2ed1e0ce3bb9e5f7af7633611834"
+    },
+    {
+      "path": "src/display_project/data/yolo_dataset.py",
+      "sha256": "78847239c39cfcb160241c0d7fe17b5cb267e57a09a017e9326e53cf3a02532d"
+    },
+    {
+      "path": "src/display_project/data/yolo_training_views.py",
+      "sha256": "5dcede3747a17cf0e594e84fcc01ce49e9b95d79348c5b5ee53e1c5df8c48752"
+    },
+    {
+      "path": "src/display_project/detection/__init__.py",
+      "sha256": "4d086b234dbe0d83af895ab8984198b05acc28a8d21d971e70a826a3d9526f64"
+    },
+    {
+      "path": "src/display_project/detection/grounding.py",
+      "sha256": "e6aca7d4c96405183a89d18c117588ae9bdcac2c335863a01cdc07aff73d9818"
+    },
+    {
+      "path": "src/display_project/detection/yolo.py",
+      "sha256": "6aa4affa28175ef8accb43b030985d9debe93eb4dd2ca991d188a07c65892b17"
+    },
+    {
+      "path": "src/display_project/evidence/__init__.py",
+      "sha256": "fe2fe384a8befe900e77cd33c12e70e76ccd13e243c9882826b8b66eb62be880"
+    },
+    {
+      "path": "src/display_project/evidence/certificate.py",
+      "sha256": "1e22ee1355764583312b27f7802b0880a560637ae35736286730fd2bc7ae80e3"
+    },
+    {
+      "path": "src/display_project/evidence/graph.py",
+      "sha256": "328b0c8a68b4cd5bc15e7147197f06e913e3217ea18c28077bec5342a9b86a26"
+    },
+    {
+      "path": "src/display_project/evidence/negative.py",
+      "sha256": "76843e8d9c73102917660ca4c62e5aad7e656e803b601bc1c05f9aa67e59d3b8"
+    },
+    {
+      "path": "src/display_project/experiments/__init__.py",
+      "sha256": "750dca3cc13895ac95bca28f974f950f2bc1813cfffe4e6815e4427d3a5d46aa"
+    },
+    {
+      "path": "src/display_project/experiments/_paired_runner_core.py",
+      "sha256": "d18b53d7a55dba0b5e5b6b67a4fb70763c1d9d9e00e1cab79c74880d8ab3b30b"
+    },
+    {
+      "path": "src/display_project/experiments/adapter_manifest.py",
+      "sha256": "f61d6de4846000d29217ae0bd2b1a90050919a7440ecf60b49ce69f898fd06a7"
+    },
+    {
+      "path": "src/display_project/experiments/adapters.py",
+      "sha256": "c35596329de22119127f2a7c78d57060211b388904eaf913489e3835b2046761"
+    },
+    {
+      "path": "src/display_project/experiments/g1_derivation.py",
+      "sha256": "2818e2ef0df28e93407e8c51cb675ac55ed7f73168c0302c8da3e58b15d595ff"
+    },
+    {
+      "path": "src/display_project/experiments/hmm_fit.py",
+      "sha256": "3d1ea760be24426337d7e22e7af40c779eef89fca4cbb073af9bb1bb65ddeab3"
+    },
+    {
+      "path": "src/display_project/experiments/hmm_sequence.py",
+      "sha256": "f3f314e79b9b115a7e4a1ddbb3794bfed8d68546a1341e2db0beb130a1883954"
+    },
+    {
+      "path": "src/display_project/experiments/paired_runner.py",
+      "sha256": "0c44cc8a9ff86ef6b8437e0a4bebcc83114b5e1dce7d7ba1773f3c188d0cb709"
+    },
+    {
+      "path": "src/display_project/fusion/__init__.py",
+      "sha256": "f7444a439206df0ec3a86bac1d6ebb9c088e06febe1a2de1a2ca62ac56ed5e11"
+    },
+    {
+      "path": "src/display_project/fusion/event_schema.py",
+      "sha256": "dec0cc7112ac801c85865c9ff7f4b4f3bab86d778a0221251987b665d1faff48"
+    },
+    {
+      "path": "src/display_project/g3_admission_bundle.py",
+      "sha256": "80525e07a5b23db0669126edd9633371f65f80326b195d1b46e21ccd734c65e6"
+    },
+    {
+      "path": "src/display_project/g3_capability.py",
+      "sha256": "8a5965f6d4be8def25b8cffbf70df6bd22e3273775f53ae905da7cbe97635ada"
+    },
+    {
+      "path": "src/display_project/g3_contract.py",
+      "sha256": "101f3dc4341d2d2eb815e942ea60ccfbae00f1457de3f30111ba20deb25956bd"
+    },
+    {
+      "path": "src/display_project/g3_file_binding.py",
+      "sha256": "7e13e21478f1d6cb18ad36878e421ea319d061f1a898826470f9b704b1fb2a16"
+    },
+    {
+      "path": "src/display_project/g3_precheck.py",
+      "sha256": "f81b6f0b8d679fcdd122d2e9ddf981e0bd5d62683cafc4baad41867018449c5c"
+    },
+    {
+      "path": "src/display_project/g3_run_admission.py",
+      "sha256": "5059b78f09ff33f49d559728e59da68fcadcfe7a9f3aa5a0d6408d92a3b0fded"
+    },
+    {
+      "path": "src/display_project/g3_statistical_input.py",
+      "sha256": "b8c4c7f5b68a38b36bf08ff7350c332a6248490a0dec6b22899a7138a41f4c84"
+    },
+    {
+      "path": "src/display_project/g3_statistics.py",
+      "sha256": "27741766b7612e5e49cb31e4389b8368cf3e0c64ec0eb5420d215e7c17088644"
+    },
+    {
+      "path": "src/display_project/gate_audit.py",
+      "sha256": "651e5428aa912c6fc2557446e98ed428dcbe9e0dd9e98de43d39b50a7c8693a4"
+    },
+    {
+      "path": "src/display_project/localization/__init__.py",
+      "sha256": "18ca24d665da5521d3383b75b9ee0ef906d91243a4ef623cc07c2eae0bf49db6"
+    },
+    {
+      "path": "src/display_project/localization/zh_cn.py",
+      "sha256": "c01307319dec3e7b9f581bb7929e4d990752f66ea9d0d708e35f44cefeb24f41"
+    },
+    {
+      "path": "src/display_project/metrics/__init__.py",
+      "sha256": "2713bc20e137e56044e349337180d3aba5dfea92383d3146b6e6f74bcce2f180"
+    },
+    {
+      "path": "src/display_project/metrics/_paired_freeze_core.py",
+      "sha256": "fc677126be58844876bdcef1015d9085db7d462e08605a39b513fa5bf1507fc1"
+    },
+    {
+      "path": "src/display_project/metrics/paired.py",
+      "sha256": "497e91ed9da709f45ef1cf3fb7f6ad00cc163e223e612c960493e5a8acc839d0"
+    },
+    {
+      "path": "src/display_project/metrics/paired_freeze.py",
+      "sha256": "3a950582beea804969dcf87db41fcd84bca200ecd1182ad8bbb59d97ddc77f75"
+    },
+    {
+      "path": "src/display_project/metrics/state_risk.py",
+      "sha256": "4f2fcb1f1b335bf773f1a7a4fa8ec8774e4ee76727b18eead560fda1b275f6ba"
+    },
+    {
+      "path": "src/display_project/pre_g3_authority.py",
+      "sha256": "7f45eadb7f78d4fb939a3cae58b28f35d2ae1d6d2315f9c859af805b4366e14f"
+    },
+    {
+      "path": "src/display_project/provenance.py",
+      "sha256": "45c7966b88f21330d5a6d7041d39f1f46fbc36d075b45d2c5694ce2bca1e042b"
+    },
+    {
+      "path": "src/display_project/render/__init__.py",
+      "sha256": "bd897725c05715d82ac195003101d21b9e5635610780133ead9cca663d025919"
+    },
+    {
+      "path": "src/display_project/render/baseline.py",
+      "sha256": "628ac82b1935eba50688eb49f7104ae49018ddf690e46d9c0d0464321aae3e87"
+    },
+    {
+      "path": "src/display_project/render/events.py",
+      "sha256": "79a554bd1813fb07d81250d2d9b83262f7f78ecd474baab4a3988b4e0fc51fdf"
+    },
+    {
+      "path": "src/display_project/research_contract.py",
+      "sha256": "9bc9429c741e918a4b43de6b00d7ccbaec2584ee2f49f002ab8d2794829d27d8"
+    },
+    {
+      "path": "src/display_project/risk/__init__.py",
+      "sha256": "7459fd1fe6409d01297ff26aea3bc7080013b46352ff0e4d87fbcddacb3177ff"
+    },
+    {
+      "path": "src/display_project/risk/calibrator.py",
+      "sha256": "c28deab4cb5171050134b2af90c157033caaac27d822ba57b1a5c2110d4b95a7"
+    },
+    {
+      "path": "src/display_project/segmentation/__init__.py",
+      "sha256": "e74499856c2e6f654c8ff4d0e2bbab30a9de97a38aed545a29166e44ae2d6362"
+    },
+    {
+      "path": "src/display_project/segmentation/sam2.py",
+      "sha256": "ca0f4b05920f9ae556789bfd07566003139a8b6dae6aaa83e40ee701651dfec2"
+    },
+    {
+      "path": "src/display_project/sop/__init__.py",
+      "sha256": "14ed2bc9fa31de8ae1fe173186818d5c92157eac4914365e4d127639b6b792f2"
+    },
+    {
+      "path": "src/display_project/sop/authority.py",
+      "sha256": "8c4b02ed18850e6b47dd94e4dd804431c1d047ee996ed5feca07e41894d18d04"
+    },
+    {
+      "path": "src/display_project/sop/demo_mapping.py",
+      "sha256": "8095481d0e052ebf2269478f4fdf867ee00f4f04ac4d6cc37895905e729a05fa"
+    },
+    {
+      "path": "src/display_project/sop/state_machine.py",
+      "sha256": "585592e231bd7faa652dc625a202f263b35b89a2c62cc9f6e5e3e690afe9e63a"
+    },
+    {
+      "path": "src/display_project/sop/task_config.py",
+      "sha256": "0f969c436b3901657178865bcb75b36b7448983eaa8e7720bc219a7480c41000"
+    },
+    {
+      "path": "src/display_project/sop/visual_evidence.py",
+      "sha256": "b3b272aaeb7daa3a3ae2a24e0ff19be0b1882fd8ca9a63305ca0b2adfbac94fd"
+    },
+    {
+      "path": "src/display_project/tracking/__init__.py",
+      "sha256": "bada3ac9d5f7f24f18fcc234a37e36cf4dda713523d6e6cb9b4f62a09f805c10"
+    },
+    {
+      "path": "src/display_project/tracking/real_sop_zh.py",
+      "sha256": "b1276951dbd4023c3e6e22c510b7bc58c2b0fbb262e529fea0ab217ced0766a1"
+    },
+    {
+      "path": "src/display_project/tracking/supervision_sam2_zh.py",
+      "sha256": "e20aea261f616dd5539b3f7d84640ab76833b0c8ee30acac0b36215b3ecff3c6"
+    },
+    {
+      "path": "src/display_project/tracking/supervision_v2.py",
+      "sha256": "30304fcd8eac876d671027e9c35212bf7d474a895701c92be9ea14a41fce4da7"
+    },
+    {
+      "path": "src/display_project/tracking/supervision_video.py",
+      "sha256": "b1791f63d892208f94c4fbdb04de6412b320ddf3cea27cd9092165017970cd55"
+    },
+    {
+      "path": "src/display_project/tracking/supervision_zh.py",
+      "sha256": "de20cdc3db626a256910fa80b9903f0ccb9ad45863574c7c6ebecfb0e850f120"
+    },
+    {
+      "path": "src/display_project/video/__init__.py",
+      "sha256": "73065e7d1d4769dfaf643ead788044dad52ccab66d375a9a8a5e3a92478ea33e"
+    },
+    {
+      "path": "src/display_project/video/io.py",
+      "sha256": "677dccc1d0eaf96407b5e75ca8dad9c5bd363c7948b2b6a6c169929770ade389"
+    },
+    {
+      "path": "src/display_project/vlm_sop/__init__.py",
+      "sha256": "d6987a03d5fb4feca4254271ac93024b69087afd527fc6ebff6222e73b74b883"
+    },
+    {
+      "path": "src/display_project/vlm_sop/evidence_window.py",
+      "sha256": "f81291b3842624e637aec3bfe10c71ae2bba542a9096318664dd35a5263de767"
+    },
+    {
+      "path": "src/display_project/vlm_sop/knowledge.py",
+      "sha256": "bedb61ecdb16e392afdfcf195aed1fc7aeb299e96726555f63d31024fc746a46"
+    },
+    {
+      "path": "src/display_project/vlm_sop/prompt.py",
+      "sha256": "abf3c11dda92018605634e4e9aa505c445e5c445a8a15e962df7e54d56817da9"
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_memory.py",
+      "sha256": "0e920741cb6848ac3090fa7f032959a60b8e986c24b9ebae5ec65fdf2f815187"
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_risk_baseline.py",
+      "sha256": "4eba4cfff8dcabedd968764db9a92b3cbf53d284457383a9689facaa4fd77531"
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_risk_contract.py",
+      "sha256": "d5dca355a3438d8120373ad0f867b6d979ed207da50e28cfec1825e0ccd27879"
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_risk_engine.py",
+      "sha256": "037660327fab7915048cb0217f595e7c0a6ad4bd3eb138bca8198e5b649a04cc"
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_risk_knowledge.py",
+      "sha256": "5dc827778ab9b73afd04c88cd5d7a028de3c0563a6eb62abd9acf5daedc74e04"
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_risk_prompt.py",
+      "sha256": "e22f30b13087cc18735c4fbe1d66f6a607025ec24990fdd91c81ec6c056bc614"
+    },
+    {
+      "path": "scripts/assemble_meccano_official.py",
+      "sha256": "da20c0a5323ee0953ea98101ba6b07d3dd70d998fe346323e5f450d7542d93b6"
+    },
+    {
+      "path": "scripts/audit_armament_style_revision.py",
+      "sha256": "6ffbdd461ead511effd4aa7a7a0991ee42bff2da152a2638b8cc7eb726111115"
+    },
+    {
+      "path": "scripts/audit_g1_g2_gate.py",
+      "sha256": "9fc4ef93658afb260ca2e33fb549ae4a26198bf3b10176f7db9dd670699590c6"
+    },
+    {
+      "path": "scripts/audit_g1_local_inputs.py",
+      "sha256": "cfe4b0d3c684c13c040555c91ac152e6923af9986ed612c2e9996ebbfe850d25"
+    },
+    {
+      "path": "scripts/audit_g3_capability.py",
+      "sha256": "65ff752e9aa407ef47dc4b2e004fd8824f6508543f51b2faf3778a77db7f178f"
+    },
+    {
+      "path": "scripts/audit_g3_run_admission.py",
+      "sha256": "16aae55dea93b271e9b3442fcbcfe2fbad9eb147c73aac097e161cd17fa51994"
+    },
+    {
+      "path": "scripts/audit_industreal_capability.py",
+      "sha256": "d649102043b985f107f33b97ff954c74b79a7319f248f78020f4bc810b36bd57"
+    },
+    {
+      "path": "scripts/audit_industreal_videos.py",
+      "sha256": "293f33c7314e217d16e542650729efa8ae3724b8b7025de8f417d01359a1cb2f"
+    },
+    {
+      "path": "scripts/audit_meccano_yolo_dataset.py",
+      "sha256": "8cac34150e25eeddecdf0baa4e7978a2978e2083362d15ae0dd663f7bd9d8a00"
+    },
+    {
+      "path": "scripts/build_current_gate_snapshot.py",
+      "sha256": "5831a1b0b0ad5936fab1aab50d53f3a8a7dae05495b966635b6cb0dade6fddb7"
+    },
+    {
+      "path": "scripts/build_cvat_meccano_seed.py",
+      "sha256": "877017af6d2725b7ca2873a3769d813749d8510b87d54aafc756f9c803b24bdd"
+    },
+    {
+      "path": "scripts/build_g1_meccano_manifest.py",
+      "sha256": "0f7167f17a30a0e707036c79b06b4fddac84d37e24070f48860d7516388457ba"
+    },
+    {
+      "path": "scripts/build_g3_admission_bundle.py",
+      "sha256": "7ad10b1a4d6e183b95c988e57ab073e9d9e3cb3ac9a860beba2c38f015cdd89a"
+    },
+    {
+      "path": "scripts/build_g3_full_producer_fixture.py",
+      "sha256": "c7f6657de5806668e6a12893aa3246d2ad041b5a10c7d036cc87ffe0b11b726c"
+    },
+    {
+      "path": "scripts/build_g3_task_specific_fixture.py",
+      "sha256": "51bf4d8b69127249256b718724b59b254b225c80861ddb705f619906e3d12b6c"
+    },
+    {
+      "path": "scripts/build_industreal_complete_job_partition.py",
+      "sha256": "6f9702630c9620c76aa96ec7557254a421f801c8db9b8c5d681197c459ebc0c1"
+    },
+    {
+      "path": "scripts/build_industreal_identity_amendment_draft.py",
+      "sha256": "0856e587e2e49fa269c1a643ced8c68b9cf376fdd468304c20b2d478c90c416c"
+    },
+    {
+      "path": "scripts/build_industreal_partition_revision_candidate.py",
+      "sha256": "c79b0684179b2acd924d5ea9dab7f3bbc8a8cf66a71b6711d9b879efd19bd035"
+    },
+    {
+      "path": "scripts/build_qwen_sop_prompt.py",
+      "sha256": "98cb705a1509fc9b95f1064e98029950d0c6cd2bcb516d86ca70a285a023e16c"
+    },
+    {
+      "path": "scripts/build_ratified_g3_admission_spec.py",
+      "sha256": "74b5d42abb53ecf8af05d5052607ded65cf1bb82e11dfe428d0d2af1300c7954"
+    },
+    {
+      "path": "scripts/build_ratified_g3_preflight_audit.py",
+      "sha256": "7484480302446e0c14fb1502932a32a9f2acad20debbf46124a5122ca2a53d23"
+    },
+    {
+      "path": "scripts/build_risk_calibration_artifact.py",
+      "sha256": "675573f66b886864a84ccb412933e83a7008d5c832c10e43725f687edd6e6f71"
+    },
+    {
+      "path": "scripts/build_split_manifest.py",
+      "sha256": "620b4f4f121982ab5e6a1e825e06744a14fc5522ca0c2dde0ec42010fb96e831"
+    },
+    {
+      "path": "scripts/create_demo_assets.py",
+      "sha256": "83594adfbd4db27f3e48f262f7068f242e9e0fe3485dc5b6c90b10ecd718cffc"
+    },
+    {
+      "path": "scripts/derive_g1_inputs.py",
+      "sha256": "965800b970e1bd80cdd77bad57d7f4216c13bf9caf4af887b3397e39a0c4d027"
+    },
+    {
+      "path": "scripts/download_meccano_annotated_subset.py",
+      "sha256": "1a50e7a7b55e1faf01d2a6fc624e94a54079928ca3e9492380831a8c9d24e5e6"
+    },
+    {
+      "path": "scripts/download_meccano_frame_subset.py",
+      "sha256": "f7bd4aedd92262df7e44facdae1b73b2d4643ec98060dad478b107115e65864d"
+    },
+    {
+      "path": "scripts/download_meccano_selected_frames.py",
+      "sha256": "d8a4c16494ad07896a84b33bf6b5b3b22d70a49aa46269613fe12c3e99ef67ab"
+    },
+    {
+      "path": "scripts/download_meccano_selected_frames_resumable.py",
+      "sha256": "136e07d3a983547aed0894d1a3acefefe542fc176bf269b21a5afb1a4f37e9eb"
+    },
+    {
+      "path": "scripts/download_meccano_selected_frames_v2.py",
+      "sha256": "ccfdba277383c8349ebbf9cd5db19e6902779b129e503a69138a5117e1e83b69"
+    },
+    {
+      "path": "scripts/download_meccano_subset.py",
+      "sha256": "0d2c457093e99fc1c739bdb5f48e420c65754b13a5e569441f1a05735904da8a"
+    },
+    {
+      "path": "scripts/export_audit_cvat.py",
+      "sha256": "fa65e54297e75fd9a8cddeaa8e62198d17605139106b57526b9a6222e7c0a65f"
+    },
+    {
+      "path": "scripts/extract_g1_runtime_trace.py",
+      "sha256": "944f3dd465d538add1fc9b931b4edd9fecf99e9f289c0eadc9021cc20d2934a2"
+    },
+    {
+      "path": "scripts/fetch_industreal_psr_labels.py",
+      "sha256": "8f779281eb6bb00edea2d86ee38d25d2b39bdec929d61efcf1cbe4a3703a9fb0"
+    },
+    {
+      "path": "scripts/fetch_verify_meccano.py",
+      "sha256": "79566b891355f848e06fe20d51f9dd575eb6f3552b2260c15aebdb31eabbb781"
+    },
+    {
+      "path": "scripts/fit_hmm_sequence.py",
+      "sha256": "7c79f3604902a786b8b24294f3c59192f40811182f28e078b7b56874b75eba2e"
+    },
+    {
+      "path": "scripts/freeze_paired_metrics.py",
+      "sha256": "6498008ce0f61d7e2652ead1afc9c4b1d13a2aebe5eacc10e6ad3a3814d9b53a"
+    },
+    {
+      "path": "scripts/freeze_preflight_anchors.py",
+      "sha256": "370d6865931347e0f76dc77c502e1d626b4f01619f8f164dfcb76c10b068a746"
+    },
+    {
+      "path": "scripts/generate_ledger_anchor.py",
+      "sha256": "fcac7ac538b59f19dc3da24cab29b910474305a796b3a88e064be4e4162e6320"
+    },
+    {
+      "path": "scripts/install_meccano_stormpsr_psr_labels.py",
+      "sha256": "afc5fa818ccaa5b010e2bb4246dc818d97ed85a5b35c9ac5fc86c1f27a5fed74"
+    },
+    {
+      "path": "scripts/ledger_anchor.py",
+      "sha256": "c08ab78c6b70604f3ed7280b99ae1385b8e8bb99c1d80ba2ff51be6aef94dc57"
+    },
+    {
+      "path": "scripts/prepare_curated_fastener_views.py",
+      "sha256": "e9beddc292b9e6d0697a9bbbe437e1626e08cfbfb049e3ee970e601fce6a8d5b"
+    },
+    {
+      "path": "scripts/prepare_meccano_clip.py",
+      "sha256": "a73afeaec5914b724512f2af87933781790b167c3d2f49a65f93ab49d202ad15"
+    },
+    {
+      "path": "scripts/prepare_meccano_yolo_dataset.py",
+      "sha256": "2959831e5944707a9fce8a45b59f11a0dae67abd6c89c20c766d5f4ab9a84dc0"
+    },
+    {
+      "path": "scripts/prepare_yolo_training_views.py",
+      "sha256": "89232c63a7c9846135b9c783ae101d29eb7dc48349f87be62498ba6aeffa9d11"
+    },
+    {
+      "path": "scripts/ratify_industreal_identity_amendment.py",
+      "sha256": "e8d6916756cd4d485e5682c3564d701215c1e874105eda646430354e3f0ecf50"
+    },
+    {
+      "path": "scripts/refresh_industreal_complete_job_identity.py",
+      "sha256": "fa73e17d0b9f7bd1d408cc4dd2e5db0e2513ceddf9ae5553a34c1972641085f4"
+    },
+    {
+      "path": "scripts/register_industreal.py",
+      "sha256": "9fc5a2001e25a324363ad7cd83f4bc5ffbbdbe7896c291d734d9124021d3899a"
+    },
+    {
+      "path": "scripts/register_industreal_videos_ledger.py",
+      "sha256": "071db78d5db6b7020d2094df41ce63b9ffec3f681cf039c0687f59ea1d77f173"
+    },
+    {
+      "path": "scripts/register_meccano_official.py",
+      "sha256": "49ee03b98367fdb5cdfe1de16891b302d930f92f2e039dbc7ffe29a74a839cdc"
+    },
+    {
+      "path": "scripts/render_sop_review.py",
+      "sha256": "35f0b5202327c62d147753f86d2c48d3c8f101aa6344bb61ad2ab34ff5629e1c"
+    },
+    {
+      "path": "scripts/render_sop_review_zh.py",
+      "sha256": "edfc46597e6beedd2c839f06cda2407b87f15188f7e698588ae80e4174ae7ff8"
+    },
+    {
+      "path": "scripts/render_vlm_state_risk_zh.py",
+      "sha256": "29d54b4c131495dc77c0c165d223238e1a302762f24190e48df8ca67657e4915"
+    },
+    {
+      "path": "scripts/require_downstream_capability.py",
+      "sha256": "d302765592ba41a4c6396474124ba4e4965ea785fd0d802893d369c4e32af671"
+    },
+    {
+      "path": "scripts/run_full_checks.py",
+      "sha256": "67bbffd5655450da996ec9ecc466f8da9d62bba117aaad38e6eed692bc0e6bfc"
+    },
+    {
+      "path": "scripts/run_grounding_sam2_tracking_zh.py",
+      "sha256": "48c25b2cbac70bacaa6ee352ff580d87ed4596eefd81c9cedee0168618b7576c"
+    },
+    {
+      "path": "scripts/run_grounding_tracking.py",
+      "sha256": "da1fe1fdfa4752df3f2b154e3ca6639f61334dc555db89a3ce2c79e27275fd16"
+    },
+    {
+      "path": "scripts/run_grounding_tracking_v2.py",
+      "sha256": "a66d3086a1287db8e3662e1160fb11a7cfdf519a7342a64330062eebc7e3b04f"
+    },
+    {
+      "path": "scripts/run_grounding_tracking_zh.py",
+      "sha256": "491a711025c0d53f6426b682efcf91e040723559cf8e95f3b99b31fb38494610"
+    },
+    {
+      "path": "scripts/run_paired_experiment.py",
+      "sha256": "9cfbdb92507278ee033644696d20365dfb760da40bc9363397e10b1be99c352c"
+    },
+    {
+      "path": "scripts/run_real_sop_detection_zh.py",
+      "sha256": "5b8530ce1862467a6797384c7a49b5e67e76bb9f9a3e6e1547a0e021f960f834"
+    },
+    {
+      "path": "scripts/run_vlm_state_risk.py",
+      "sha256": "b9dbeb96d028f9c2b698aee4f573e5dafb3c86c30b911ecdf9a7acdca116a1c7"
+    },
+    {
+      "path": "scripts/run_vlm_state_risk_panel.py",
+      "sha256": "2c14fddf397b38d9ef0fae1a5e7aa6242aa821ae5eacffda8785e1931686a3b3"
+    },
+    {
+      "path": "scripts/run_yolo_real_sop_detection_zh.py",
+      "sha256": "1a7803521437821eb2d88166adaca102e38dffee0ae5cbed94c2b086e073bf60"
+    },
+    {
+      "path": "scripts/score_vlm_state_risk.py",
+      "sha256": "48c76f6186c1f37b628ef5778cb960d2a392dca1e0cbda451aeb9f75a1731152"
+    },
+    {
+      "path": "scripts/train_yolo_small_objects.py",
+      "sha256": "d8526eca04a2a465337d5eb6e376eafc27c833057dde7d0726c3695417fb5eb8"
+    },
+    {
+      "path": "scripts/validate_development_real_data_batch.py",
+      "sha256": "0c8d19359c86f36f4512d5f046d290a9653a62fc36f3075f083d7698788e3b13"
+    },
+    {
+      "path": "scripts/validate_experiment_ledger.py",
+      "sha256": "072a5382c3cee68924cd1fe620f2314a7003ab5c3c4bc64bc138e837aca725d6"
+    },
+    {
+      "path": "scripts/validate_g3_statistical_input.py",
+      "sha256": "d846b7423f9f2146a08ba3c78fcb930e4d65309a4d69091fd5ad314d8c9ec995"
+    },
+    {
+      "path": "scripts/validate_next_execution_plan.py",
+      "sha256": "479350e89a12ca91c75a97c6bf29b5d3538ccea371630e11999d639251d387ca"
+    },
+    {
+      "path": "scripts/validate_research_contract.py",
+      "sha256": "4a2d78caa142a1ce7ab275bd3ad30da7c214bcfdc367682c2e99790ca1378a35"
+    },
+    {
+      "path": "scripts/validate_vlm_state_risk_protocol.py",
+      "sha256": "fa44fb21e38926c57e460b9e09002aafe9c337b17f587f81173f995eac0d14fc"
+    },
+    {
+      "path": "configs/demo.yaml",
+      "sha256": "23ef14fe7e2aa43cae33a52e32dbc38b1cb51cfcb1044268c249d3c45575d9ae"
+    },
+    {
+      "path": "configs/experiments/incomplete-data-fixture-calibrator.json",
+      "sha256": "8e7f81cfde8d595cf68602c7b880a6fe20e0179ccf4516d7ca2f993e984b2eaa"
+    },
+    {
+      "path": "configs/experiments/incomplete-data-software-fixture.yaml",
+      "sha256": "8d6677738300c7aac2b236f3f4f803a8bfe266e9af70b6d116cc16705bc1ebd9"
+    },
+    {
+      "path": "configs/experiments/paired-development-example.yaml",
+      "sha256": "c5554af4bd33a024a72fa700ac5c508c5cebbbffde53ffa086c99e6fec0d724c"
+    },
+    {
+      "path": "configs/experiments/vlm-state-risk-development.yaml",
+      "sha256": "75231123a570ea22719cc0913e28290825bafd3bb652fd549701b3bfad39dd34"
+    },
+    {
+      "path": "configs/experiments/vlm-state-risk-qwen35-9b-validation.yaml",
+      "sha256": "ddf2ac800c1f849f8c699fcd8d58962a67dd441ee0f34dafe790f62bbf908fcf"
+    },
+    {
+      "path": "configs/experiments/vlm-state-risk-qwen38-validation.yaml",
+      "sha256": "be27cf09b08f0639ae98f9238ddf405472d39a0c24cb663a8abcf6c9aa1b25b0"
+    },
+    {
+      "path": "configs/g1/meccano-action-state-map.json",
+      "sha256": "b5c1cd98b5c890abf4622979768777e4c3a55b2de950cfcd6c89186c81af87e6"
+    },
+    {
+      "path": "configs/tasks/industreal.yaml",
+      "sha256": "ea7ff561193c9202a41c35b70f0b249e87c6e5bda2c66c5c7ee5f793cceb1777"
+    },
+    {
+      "path": "configs/tasks/meccano.yaml",
+      "sha256": "35481d672a9ab26b563b68257a12a44292bcccc35c4a61ce9897c68de0867381"
+    },
+    {
+      "path": "configs/vlm/qwen_sop_review.schema.json",
+      "sha256": "851a8f044588c7469c854c84d44a35050723f11ecc62349947df64016e0f660e"
+    },
+    {
+      "path": "configs/vlm/qwen_state_risk.schema.json",
+      "sha256": "799fe32c2250c9304723a58f6ca2f8a76eae27d18f04b7e014288a1d535fb044"
+    },
+    {
+      "path": "configs/vlm/sop_knowledge/industreal_official_paper_v1.yaml",
+      "sha256": "31fc8b027fe5762529c8ae8bfb4b221dfbeb10357b745dfc40dc063b9173cd7c"
+    },
+    {
+      "path": "configs/vlm/sop_knowledge/meccano_task_config_v1.yaml",
+      "sha256": "8cf3453ece39fcd81a4664f59aaba0dc9484cb29624a2bd83d3f49e603a3bdb3"
+    },
+    {
+      "path": "configs/vlm/state_risk/gv06-reference-port.yaml",
+      "sha256": "770a573c0e7d56425e49752ef9e6cf24b3275bc8f79a63b3e91a88e46ffe02d8"
+    },
+    {
+      "path": "configs/vlm/state_risk/meccano-development.yaml",
+      "sha256": "be9f9312949ca8b9fdca2bb96d434e325f95ba78ddb51d898f1cfd44777e297d"
+    },
+    {
+      "path": "configs/vlm/state_risk/provenance.json",
+      "sha256": "8b4ebcf783ea82a6cf3499ef3857ef50e956c0d527049de45266490889fb0584"
+    },
+    {
+      "path": "configs/vlm/state_risk/software-fixture.yaml",
+      "sha256": "2feb882f3f17ee9940eb4888323f7d9872099fd438e6e426348ae40027a5352c"
+    },
+    {
+      "path": "configs/yolo_meccano_small_objects.yaml",
+      "sha256": "b72d77b43a9f14bffa0dce0671ea8725b8c8fde5487eb818e526b338aef9ae5e"
+    },
+    {
+      "path": "tests/__init__.py",
+      "sha256": "ba71798338b0c96bfc18832d056589e5f9f274a5755a297dcc2b9d5a087c1bbf"
+    },
+    {
+      "path": "tests/_evidence_helpers.py",
+      "sha256": "f8976259d01f0594e6df20df0e266635efa7fc1a9170c02333745bc2a72176d9"
+    },
+    {
+      "path": "tests/fixtures/data/objects.json",
+      "sha256": "47720365fb75e54ed56158fccb722b9ff9b38e60e8139d0f0fccf3c6b9ad99e7"
+    },
+    {
+      "path": "tests/test_adapter_manifest.py",
+      "sha256": "d872aa0a82c81bffd0d028e2993749165cea37d2d6f360fd815c1b7f37b64c6d"
+    },
+    {
+      "path": "tests/test_annotation_source_portability.py",
+      "sha256": "1b01a7195e365159058380248bfa5fcd96502238f2f51c777c364d393af3848e"
+    },
+    {
+      "path": "tests/test_audit_g3_capability_cli.py",
+      "sha256": "e1b81ba38b851efbd3e66c094b74bc7a3614d7fe90f872ab91194e75688b5003"
+    },
+    {
+      "path": "tests/test_audit_g3_run_admission_cli.py",
+      "sha256": "b8d5a6b82bf12798fb3b0876e7ef67194d92ca91a14f4029cbf1403c2c1aabaa"
+    },
+    {
+      "path": "tests/test_build_current_gate_snapshot_cli.py",
+      "sha256": "9c67824c14c12a93fb2d710f2617f0efe137f783307c1d924da90ec99e10edd6"
+    },
+    {
+      "path": "tests/test_common_support.py",
+      "sha256": "bc2ea29fc2afca219e8c5c97c209e48d18af908b7fc11567f185687f8a6c9a76"
+    },
+    {
+      "path": "tests/test_curated_yolo_training_views.py",
+      "sha256": "9894ae6d98b8043088c8e5812df87b09e33b1ef6e0674c5fe372d73b3b6614f1"
+    },
+    {
+      "path": "tests/test_current_gate_snapshot.py",
+      "sha256": "db859b5eba4460d75828b518b2ebb502f30a193e4b0a8a9fc110bdcd39fadc6d"
+    },
+    {
+      "path": "tests/test_cvat_export_audit.py",
+      "sha256": "a92edc90aace27bf40bcdcc2f2d4f29cc72e4ddbefdf3369d370da072492e456"
+    },
+    {
+      "path": "tests/test_cvat_seed_builder.py",
+      "sha256": "2832f9378724fa8b03e660f3ba9a99c71235552c2ec10d1218d33a11086a14a6"
+    },
+    {
+      "path": "tests/test_demo_mapping.py",
+      "sha256": "09a04abf49fa4e06808c71bdc063946b92dcd8a5fe473c02058ee524109ccb68"
+    },
+    {
+      "path": "tests/test_detection.py",
+      "sha256": "16737938bdb57b9e7c52b25236d4791966669c55680b49fcf2ae02ff2b866015"
+    },
+    {
+      "path": "tests/test_development_real_data_four_video_design.py",
+      "sha256": "bd86eb2f405ba3fabe14f2f753e4a43746db6c80ec7314a892514dfff6aa92e6"
+    },
+    {
+      "path": "tests/test_event_schema.py",
+      "sha256": "3e976af20564b91b42f21a3ca230b0e50671cf2697a83aefa46c8c677580b0ca"
+    },
+    {
+      "path": "tests/test_evidence_certificate.py",
+      "sha256": "c18dbbc33d28161d59413816c1b729c600cfd6498abab14e87566209505f0a4e"
+    },
+    {
+      "path": "tests/test_executable_method_adapters.py",
+      "sha256": "71af0573bf6ad22b9d6d2876861b9646a1f368b857da22c4863d7c75c6308aff"
+    },
+    {
+      "path": "tests/test_experiment_identity.py",
+      "sha256": "40bdb103d373f31809e9400a49dd8d3d9f7fd3fcd119f606d61bcca4b88cf803"
+    },
+    {
+      "path": "tests/test_experiment_ledger.py",
+      "sha256": "b21ed4ba8ee977e36f23acbb0d747a1b9d7f90a2bf7a32031a523d5748c403dd"
+    },
+    {
+      "path": "tests/test_experiment_ledger_hostile.py",
+      "sha256": "ed27f06e21750556f5dc56868ee2cdb33ec97e07cd8f268acbf6bf82e065c435"
+    },
+    {
+      "path": "tests/test_fixed_streak_golden_trace.py",
+      "sha256": "a3a87c6969e8b8678e993985a256248641125d6763e30d7149caac52ce28182d"
+    },
+    {
+      "path": "tests/test_font_provenance.py",
+      "sha256": "391abcd54fc7401847f0cb31aa59cf7cf2fdeb3bae9fad6885b2a8ae59a30f4c"
+    },
+    {
+      "path": "tests/test_freeze_preflight_anchors.py",
+      "sha256": "2908b6624128af1ccc7a325045fc56511f5a8cf9b731b968b3472b858acd8c00"
+    },
+    {
+      "path": "tests/test_fsar_coverage_delay.py",
+      "sha256": "3ca4ef8dccade09ab2f74fba3299e176f6a23c2bb181daeec952827654089e86"
+    },
+    {
+      "path": "tests/test_g1_chain_integration.py",
+      "sha256": "e2d8cd21f20762cd3bd1937949145a38a4429870868a93022c9af3bcfae7ced4"
+    },
+    {
+      "path": "tests/test_g1_derivation.py",
+      "sha256": "e7df6201a29d4d5fc2a2a295ee5bbeaa236bccc5305e9fd2f5cbef0328b08f56"
+    },
+    {
+      "path": "tests/test_g1_episode_readiness.py",
+      "sha256": "ed56c44c44c9818c9edf626b08e40f04e5405d6ee0d3fee580d0ddc698a9df13"
+    },
+    {
+      "path": "tests/test_g1_g2_gate_audit.py",
+      "sha256": "bec1f9708d9d2325866362d70421aba2858a3a54c94629433cd44807fce4c3a2"
+    },
+    {
+      "path": "tests/test_g1_local_input_readiness.py",
+      "sha256": "efd83a3e1f0d1d590da6f9010de564395919cc05e60f2ee9de2fffa575cd6e72"
+    },
+    {
+      "path": "tests/test_g1_meccano_manifest.py",
+      "sha256": "fa305651b273a25572c0043557ee7ab02cf29724d276d5bfb76b5ca0c55ded94"
+    },
+    {
+      "path": "tests/test_g3_admission_bundle.py",
+      "sha256": "818480bbbd17d6830ac6234db2871d3177abfd810029e1ab40fee545ef56f69d"
+    },
+    {
+      "path": "tests/test_g3_aft_remote_audit.py",
+      "sha256": "c2466f310d4c4470d0288b0e83be032964e0bc76cb3fb7b20db5b67c6c1826fe"
+    },
+    {
+      "path": "tests/test_g3_capability.py",
+      "sha256": "f2782003a5b7c662c3fb080ed47c36664f13784c3593eb685f6edd6d45e61fba"
+    },
+    {
+      "path": "tests/test_g3_contract.py",
+      "sha256": "447b21a67f17322cc7710922ceeef6ab1ebb33f3801dca26b6c6db0763ae9b89"
+    },
+    {
+      "path": "tests/test_g3_full_producer_fixture.py",
+      "sha256": "16834539d22da104ace4ee7ef2d2a05d317f39d70669146431b5672d728f2c4d"
+    },
+    {
+      "path": "tests/test_g3_full_producer_remote_audit.py",
+      "sha256": "f912979d611480bbf92b3e250b03de45926d65684d4f5cef8c1656b3b4249b3e"
+    },
+    {
+      "path": "tests/test_g3_r_producer_assets.py",
+      "sha256": "1de49e7338cf87d8ff087cec149f196f1c1a6fc184eeadd4d7394b8741a9c5d5"
+    },
+    {
+      "path": "tests/test_g3_r_producer_runtime.py",
+      "sha256": "08cc07549cc819ebac2601075fa3f44c87fde106ff242857e0cdc42a00c553cb"
+    },
+    {
+      "path": "tests/test_g3_run_admission.py",
+      "sha256": "576b52947c163b3e4fd2cf3558f87bcb0bc3425bca75754fe9c23acb241b13fe"
+    },
+    {
+      "path": "tests/test_g3_statistical_input.py",
+      "sha256": "f9a26b58e3a88a6e1ac1e15ee25fd9bb7c4e830884bd6091d9cfdda72e51cf2d"
+    },
+    {
+      "path": "tests/test_g3_statistics.py",
+      "sha256": "42de4185e07b775bb3d488277058df4262654d04ac3b00d5a79aa0d0c6a706a3"
+    },
+    {
+      "path": "tests/test_g3_task_specific_remote_audit.py",
+      "sha256": "bec4ad660e7fd65eac9832f5e25676dc2a13ba75d44336dadb1ee85ff41e971d"
+    },
+    {
+      "path": "tests/test_grounding_result_labels.py",
+      "sha256": "fa5449ca6aee10064afc772aaf02130df78ffbe645082f3fb7c34a047eb08e82"
+    },
+    {
+      "path": "tests/test_hmm_fit.py",
+      "sha256": "5ced13621342e28cc7f3833a9b506083bc71b301681d59f414c06adf447808dd"
+    },
+    {
+      "path": "tests/test_hmm_sequence_adapter.py",
+      "sha256": "e14586847bd6f01f30914b87e9dae2eca70187f41ab8fae6eb8aff0a714b6a44"
+    },
+    {
+      "path": "tests/test_industreal_capability.py",
+      "sha256": "6e4cee20068241d8b39b306df360b6321e41c0643f3e9fa2af994de7dfe00f82"
+    },
+    {
+      "path": "tests/test_industreal_capability_verifier.py",
+      "sha256": "a7fcc720eec3d2e24f43c1635428265d6a2bf4edbe56edc12e3828c61a8a5ffc"
+    },
+    {
+      "path": "tests/test_industreal_complete_job_partition.py",
+      "sha256": "e65c22dfccb433398a8b67dc6de8308879d8614a8e6bb60946d1b8867c3e46f9"
+    },
+    {
+      "path": "tests/test_industreal_error_extension.py",
+      "sha256": "56696b5dd83a678d8e8c6f9bb51e73f080f3dcafc4291fd45cdc1850c9ac4682"
+    },
+    {
+      "path": "tests/test_industreal_ledger.py",
+      "sha256": "f3c7f1ff085808ce31f1842b2f2c110bedaee3cc41489ab470eba0cbe2880f85"
+    },
+    {
+      "path": "tests/test_industreal_partition_revision.py",
+      "sha256": "97b21ca7216d94a105f517b42d8f4565a6056b994135916b6fd10b44ac09d60e"
+    },
+    {
+      "path": "tests/test_industreal_registry.py",
+      "sha256": "0389908505298766ea851ff909146e7148b40c8f648f0f8ffa2415c4e4a972fa"
+    },
+    {
+      "path": "tests/test_industreal_video_durability.py",
+      "sha256": "5bda8b7c79308f1463c2a4468dff1941ab52b35a9e049965f9a913589d0aa876"
+    },
+    {
+      "path": "tests/test_industreal_videos.py",
+      "sha256": "641353a6f6d7cddfcb330d709f1a2f16883938f6cab049ddd78a69923525fd15"
+    },
+    {
+      "path": "tests/test_joint_gate_consumers.py",
+      "sha256": "844badd8b221364384d07f03d53335d380e17a3dc529c093aab42403faac948c"
+    },
+    {
+      "path": "tests/test_ledger_anchor.py",
+      "sha256": "ac49f8feef9feead086f8e8dbaf8c6310794ec382c48475266073663b332cbe3"
+    },
+    {
+      "path": "tests/test_meccano.py",
+      "sha256": "28683627320c26140fdd10df5d2d0effa80e0f1e7c29fca9e71cde6dfb161edb"
+    },
+    {
+      "path": "tests/test_meccano_official_registration.py",
+      "sha256": "8018de8c31be87a8ea925f82707290fe0ed9ae1a0122bfeeabfa06b7c6725850"
+    },
+    {
+      "path": "tests/test_meccano_output_canonicalization.py",
+      "sha256": "6c7aa1feea2507e3a1f7cac55a32722da43fc46834ad7100a636733f95be7163"
+    },
+    {
+      "path": "tests/test_meccano_registry.py",
+      "sha256": "ba48b422dd11b1359388992db104adc8389238d2e6aa11f6edaa15bd1dc71e1e"
+    },
+    {
+      "path": "tests/test_meccano_subset_download.py",
+      "sha256": "fbd4b3de4287ce5f255bffccfa4a740c0f046d9d4b6b7896230d8f8b679f1e17"
+    },
+    {
+      "path": "tests/test_meccano_yolo_audit.py",
+      "sha256": "ff41793d5be5bcc59c5898f8c618703873d8bf4e40721088d3acd3f3e44cd16d"
+    },
+    {
+      "path": "tests/test_negative_evidence.py",
+      "sha256": "f4084127fb49cb64cd9eef4f828651a62c835f381c82ef1efc1a882c54208272"
+    },
+    {
+      "path": "tests/test_operating_point_freeze.py",
+      "sha256": "fda53389d031297bc9c65658d92bc36d1d1bab76b02be82d51b6835413ec3d45"
+    },
+    {
+      "path": "tests/test_p1_hostile_runtime.py",
+      "sha256": "831dd692b1fe80589cc20e0f8adf675aba1cd2c58c0efc0792a5e4826a111f7c"
+    },
+    {
+      "path": "tests/test_paired_freeze_profile_boundary.py",
+      "sha256": "5ca88898d89a642950b1448c0c623b06b82cb943bf709a6392fefc6c7aa37b80"
+    },
+    {
+      "path": "tests/test_paired_metrics_freeze.py",
+      "sha256": "4e2572ba05d0315328878c5322d67e4b5a39f8cca208663869e93d0480d764c6"
+    },
+    {
+      "path": "tests/test_paired_runner.py",
+      "sha256": "a7341ee14d4e18a1684ff9a3bd1cb2429094ada6ec8db32dcdd0270c32f6c6da"
+    },
+    {
+      "path": "tests/test_paired_runner_contract_hardening.py",
+      "sha256": "b02a6585e88efee8fcad5f764c380fe2edcfb94b63a1cadf383d96056ec0c018"
+    },
+    {
+      "path": "tests/test_paired_runner_failures.py",
+      "sha256": "7789a83f8153377b0e61bd524d5b5aa4c741a3edd9a54d800d041a27a2bd4e16"
+    },
+    {
+      "path": "tests/test_paired_runner_g3_admission.py",
+      "sha256": "546cc6b2268bdb1e93cde91920ee2684e381222c8462db6ea4ab458a75b23976"
+    },
+    {
+      "path": "tests/test_paired_runner_integration.py",
+      "sha256": "7a628a5a7329781d6474791dfd5bd5f71a58da083a0fa1ed1b896e05ca46f2fa"
+    },
+    {
+      "path": "tests/test_paired_runner_public_boundary.py",
+      "sha256": "4b81c9e374c2f09f50d1ed9c07fc6e64854502b0456de5556b37c3cd35ee05f5"
+    },
+    {
+      "path": "tests/test_paired_runner_recovery_profile.py",
+      "sha256": "dbd60025322432a55641e9f8ff2542a19b90c3c111c21016bbb2a714db1386c0"
+    },
+    {
+      "path": "tests/test_pre_g3_authority.py",
+      "sha256": "f7a82cab90777c4ee8669627e4798a8f2329d2fbbb06c31b2c8e1b4f5c1333cd"
+    },
+    {
+      "path": "tests/test_process_evidence_graph.py",
+      "sha256": "8f4260fb81f2f6663c370e5ac172c69810673f5d59cdbeeef1076f2fd76b8108"
+    },
+    {
+      "path": "tests/test_protocol_amendment.py",
+      "sha256": "0334da39edd8bb56bc05a302872d607fcdd4b687e20c3965be86bfc828002318"
+    },
+    {
+      "path": "tests/test_provenance_sidecar.py",
+      "sha256": "92d26451d64a788695695ad07bb1ce285937dccffcd0d5a8399054498138ec2f"
+    },
+    {
+      "path": "tests/test_ratified_fallback_preflight_audit.py",
+      "sha256": "943e53b95a12945d3dbcbdc3731beaa13fd7f1bc9181d5013077a516611efdec"
+    },
+    {
+      "path": "tests/test_real_meccano_candidate_binding.py",
+      "sha256": "d47636c30ccee488b70518e9cb6d2c46009c6ddcd70bffc19900a0fb2f10edb9"
+    },
+    {
+      "path": "tests/test_real_sop_runtime_gates.py",
+      "sha256": "69ef40948dd363e3386e173641794f3756699b5d4096f21b628e979f9950b9d1"
+    },
+    {
+      "path": "tests/test_research_contract.py",
+      "sha256": "fdb75175c7333d044382dd3f270bc8c7c2afae025098d86a24e1046c782649c0"
+    },
+    {
+      "path": "tests/test_research_contract_checklist_freeze.py",
+      "sha256": "f79e65dd59a84a4f353e88a9012487e793243c984e9707454bdc7153d45422c3"
+    },
+    {
+      "path": "tests/test_research_contract_crossplatform.py",
+      "sha256": "fb9676f4f075dd3c743c0a39076c42f950e7daf655828e6d3c8f77961eb2a300"
+    },
+    {
+      "path": "tests/test_research_contract_duplicate_boundaries.py",
+      "sha256": "cb3613314ccdc2fe4058e22c9f0ff75b0eba491271296b5b9766e285784a045d"
+    },
+    {
+      "path": "tests/test_research_contract_failure_boundaries.py",
+      "sha256": "91bdf22f161feeac25005ed5141f5356690117a6107ee207d98588abc0dc4ef2"
+    },
+    {
+      "path": "tests/test_research_contract_initial_ledger_freeze.py",
+      "sha256": "6dda28d22b040ddc669ab3bf2d10d72b0b3d4c31a87c3926325e18740e1fac56"
+    },
+    {
+      "path": "tests/test_research_contract_ledger_schema.py",
+      "sha256": "32e37899b57725518f5d8a636486502084637de6b2265e7bf0e381e4842447a5"
+    },
+    {
+      "path": "tests/test_risk_calibration_artifact.py",
+      "sha256": "2f5d8c67b7df49856b41b4189d244d2dc102e2c95b56963dcf2d8e69adcf6910"
+    },
+    {
+      "path": "tests/test_risk_calibration_cli.py",
+      "sha256": "4d7c62f2b3560a6a4b1a3d3c80158b1abd2351daee4ecd7f05ebe694d2169e8d"
+    },
+    {
+      "path": "tests/test_risk_calibrator.py",
+      "sha256": "53a52e8d8c8c09c07604c455dd52d7d5b21af376755e700ead3f6c1698249752"
+    },
+    {
+      "path": "tests/test_run_paired_experiment_cli.py",
+      "sha256": "311e12993068a2a7f26c6188cb1cd845bf3e6b5d6a5042e5d3670c27f135eacd"
+    },
+    {
+      "path": "tests/test_sam2_segmentation.py",
+      "sha256": "c481f598334a9f6d8927291fb6be784051246e39c0a547277482f7f01fc88a19"
+    },
+    {
+      "path": "tests/test_split_manifest.py",
+      "sha256": "6847a0177af7b36cff4785c81443240ee1b2ab76680f145a53a63bf0211a0148"
+    },
+    {
+      "path": "tests/test_state_machine.py",
+      "sha256": "9a3064dcd48169c7f3d57946f3bd594a228edae5720b763580d2f4a93a6ad390"
+    },
+    {
+      "path": "tests/test_state_risk_metrics.py",
+      "sha256": "4b3dd0f053529da8c0f65e8b774ed8628748df5bfb07f22e1520ca724c7a7f75"
+    },
+    {
+      "path": "tests/test_supervision_tracking.py",
+      "sha256": "d29f7bea58ca4b05211c81b6bcf72275d17b434c40c648c830709148762b88b5"
+    },
+    {
+      "path": "tests/test_tamper_evident_experiment_ledger.py",
+      "sha256": "58f1b61067bbbde48407ebb22be7aa42677af287de79b74ed13ac7a56edd4d49"
+    },
+    {
+      "path": "tests/test_task_config_compiler.py",
+      "sha256": "cba470938aa7a3fc1b1932c4408595ea179370e597cc57e587536944794b19fb"
+    },
+    {
+      "path": "tests/test_task_config_industreal.py",
+      "sha256": "9c6adde4ea7c07306016abc33f9f0ee6414c223e665aeb16b83723c4b5159ec2"
+    },
+    {
+      "path": "tests/test_task_config_meccano.py",
+      "sha256": "0f3907ed6a189e83147408cfb65001b7ead975aefe053f6136561ba662e97fa1"
+    },
+    {
+      "path": "tests/test_task_config_visual_evidence.py",
+      "sha256": "b3473a6155e604bd2a3823a1aebad465183b401c56e8e9da2ff1dab72d94f624"
+    },
+    {
+      "path": "tests/test_timeline.py",
+      "sha256": "0ec063058fef8a93e0bcc900504decfae4728334d1f3047d01b94d0d3e2bf112"
+    },
+    {
+      "path": "tests/test_train_yolo_small_objects.py",
+      "sha256": "654cc8b6b4b3b77d43f497f9ee3ebf3c1ead5f098de75243e532e735356e4ab5"
+    },
+    {
+      "path": "tests/test_video_render.py",
+      "sha256": "2f00c26ab154e62a5e06de3b1089a613371449de4f7e3d82ac01cfa8e2008575"
+    },
+    {
+      "path": "tests/test_visual_evidence.py",
+      "sha256": "8415442c01ec90f5b607fd0054012035ca798b0487a2e2987f896d27e3a3bc7c"
+    },
+    {
+      "path": "tests/test_visual_evidence_confidence.py",
+      "sha256": "fe34fb221a008492b3c5a6ee1c37bd8f81a397c86433e1b378bf9c3fd0b82797"
+    },
+    {
+      "path": "tests/test_vlm_authority_boundary.py",
+      "sha256": "67971d5b8df3d073e02dbcb0970378bd604371b00df6b3140ceb1098364e3385"
+    },
+    {
+      "path": "tests/test_vlm_evidence_window.py",
+      "sha256": "2a7289d0627c1a0c81437632eae044e56485cec68d0339cc3e3c1f3b3991eccc"
+    },
+    {
+      "path": "tests/test_vlm_sop_knowledge.py",
+      "sha256": "643dd3995f7406e3c87726e633ca430ed6a078b246d1db812fefb13869f8793e"
+    },
+    {
+      "path": "tests/test_vlm_state_memory.py",
+      "sha256": "5944d2cddafd55847369173e0e288df8882809e1b2ff879a204cfcffbd78e3b4"
+    },
+    {
+      "path": "tests/test_vlm_state_risk_baseline.py",
+      "sha256": "6b8821c62f13b55fcad1031ccce640ffbd0bc147789ec67736519147125a058d"
+    },
+    {
+      "path": "tests/test_vlm_state_risk_cli.py",
+      "sha256": "dba2ccec9ae4d26a89702b3c59926640f32842e973e79b1f998974f454f0d638"
+    },
+    {
+      "path": "tests/test_vlm_state_risk_contract.py",
+      "sha256": "7eb9f9e9ab0471958437c9000aa27ba11b4f06102cf786651bb329eb0c868564"
+    },
+    {
+      "path": "tests/test_vlm_state_risk_failclosed_channel.py",
+      "sha256": "7de0d398a2b417a6eef3146b55631526a4c1a3149a411fc7fb1b663b2996abb9"
+    },
+    {
+      "path": "tests/test_vlm_state_risk_integration.py",
+      "sha256": "27a309565213b176b10045a214a6b67d0bdd521424a4d55f89ea80aa772d72cb"
+    },
+    {
+      "path": "tests/test_vlm_state_risk_panel_specs.py",
+      "sha256": "52705dc44fa836178103fef6352600a8252229b66dcd355d91bdcc8cd280101c"
+    },
+    {
+      "path": "tests/test_vlm_state_risk_protocol.py",
+      "sha256": "af54a82aba56535aaff1c3773995397ecdf004161cc7cc3f6505116deab7f47f"
+    },
+    {
+      "path": "tests/test_yolo_base_provenance.py",
+      "sha256": "5eb679247cf777e56d124f8fa38c73973eb46e937e442850057bfbddb1bf0e36"
+    },
+    {
+      "path": "tests/test_yolo_dataset.py",
+      "sha256": "daa42903b9d72a79377f78d3ca7e8a91419b201b9edad14a0d83f8d3c20209a1"
+    },
+    {
+      "path": "tests/test_yolo_detection.py",
+      "sha256": "0afa45f707341eac65b36a4124df1cfeb55beac3c7b8655303ab2b325864528d"
+    },
+    {
+      "path": "tests/test_yolo_training_views.py",
+      "sha256": "96d723817dc9f2dcdb60a7888ac679e0efc3745b8d77add3f9f1829f2f6cfbd5"
+    },
+    {
+      "path": "tests/test_zh_localization.py",
+      "sha256": "dafe709f95aa273b62930ea9200d2ccd8861a3e9f14134933ef6ae6052c4313b"
+    }
+  ],
+  "token_hits": {
+    "connection_probe": [],
+    "steptrace-connection-probe": [],
+    "active_connection_ids": [],
+    "historical_connections": [],
+    "conditional_history": [],
+    "current_estimate": [
+      {
+        "path": "src/display_project/vlm_sop/state_memory.py",
+        "line": 56,
+        "text": "def current_estimate(self) -> Mapping[str, object] | None:"
+      },
+      {
+        "path": "tests/test_vlm_state_memory.py",
+        "line": 31,
+        "text": "assert memory.current_estimate[\"inference\"][\"estimated_stage\"] == \"correct\""
+      },
+      {
+        "path": "tests/test_vlm_state_memory.py",
+        "line": 40,
+        "text": "assert memory.current_estimate is None"
+      },
+      {
+        "path": "tests/test_vlm_state_memory.py",
+        "line": 53,
+        "text": "assert memory.current_estimate[\"inference\"][\"estimated_stage\"] == \"newer\""
+      },
+      {
+        "path": "tests/test_vlm_state_memory.py",
+        "line": 65,
+        "text": "assert memory.current_estimate is None"
+      },
+      {
+        "path": "tests/test_vlm_state_memory.py",
+        "line": 80,
+        "text": "assert memory.current_estimate is None"
+      },
+      {
+        "path": "tests/test_vlm_state_risk_integration.py",
+        "line": 86,
+        "text": "assert memory.current_estimate[\"model_sha256\"] == \"b\" * 64"
+      },
+      {
+        "path": "tests/test_vlm_state_risk_integration.py",
+        "line": 87,
+        "text": "assert memory.current_estimate[\"inference\"][\"decision_time\"] == 2.0"
+      },
+      {
+        "path": "tests/test_vlm_state_risk_integration.py",
+        "line": 88,
+        "text": "assert \"execution_state\" not in memory.current_estimate[\"inference\"]"
+      },
+      {
+        "path": "tests/test_vlm_state_risk_integration.py",
+        "line": 130,
+        "text": "def test_failed_new_window_does_not_leave_stale_current_estimate(tmp_path: Path):"
+      },
+      {
+        "path": "tests/test_vlm_state_risk_integration.py",
+        "line": 145,
+        "text": "assert memory.current_estimate is None"
+      }
+    ]
+  },
+  "manually_read_consumers": [
+    {
+      "path": "src/display_project/vlm_sop/state_risk_engine.py",
+      "sha256": "037660327fab7915048cb0217f595e7c0a6ad4bd3eb138bca8198e5b649a04cc",
+      "snippets": [
+        {
+          "first_line": 212,
+          "last_line": 252,
+          "text": "            record_window = getattr(state_memory, \"record_window\", None)\n            if not callable(record_window):\n                raise TypeError(\"state_memory must implement record_window\")\n            record_window(normalized_window)\n        prompt_request = build_state_risk_request(\n            self.knowledge, normalized_window, method_id=method_id,\n            state_memory=state_memory, image_urls=checked_image_urls,\n        )\n        try:\n            call = self.adapter.infer(prompt_request, ledger_dir=self.ledger_dir, request_id=actual_request_id)\n            parsed = call.parsed if isinstance(call, QwenCallResult) else call\n            inference = validate_inference(parsed, knowledge=self.knowledge, window=normalized_window)\n            if state_memory is not None:\n                memory_inference = dict(inference)\n                memory_inference[\"decision_time\"] = normalized_window[\"decision_time\"]\n                state_memory.append_estimate(\n                    memory_inference,\n                    model_sha256=actual_model_sha256,\n                    request_id=actual_request_id,\n                )\n        except Exception as exc:\n            _append_jsonl(self.ledger_dir / \"terminal.jsonl\", {\n                \"request_id\": actual_request_id, \"window_id\": normalized_window[\"window_id\"],\n                \"method_id\": method_id, \"status\": \"failed\", \"recorded_at\": _utc_now(),\n                \"error_type\": type(exc).__name__, \"error\": str(exc),\n            })\n            if state_memory is not None:\n                record_failure = getattr(state_memory, \"record_failure\", None)\n                if callable(record_failure):\n                    record_failure(normalized_window[\"window_id\"], decision_time=normalized_window[\"decision_time\"], reason=str(exc))\n            raise\n        _append_jsonl(self.ledger_dir / \"terminal.jsonl\", {\n            \"request_id\": actual_request_id, \"window_id\": normalized_window[\"window_id\"],\n            \"method_id\": method_id, \"status\": \"success\", \"recorded_at\": _utc_now(),\n            \"authority\": \"state_estimation_only\",\n        })\n        return inference"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_memory.py",
+      "sha256": "0e920741cb6848ac3090fa7f032959a60b8e986c24b9ebae5ec65fdf2f815187",
+      "snippets": [
+        {
+          "first_line": 56,
+          "last_line": 62,
+          "text": "    def current_estimate(self) -> Mapping[str, object] | None:\n        return MappingProxyType(deepcopy(self._current)) if self._current is not None else None\n\n    def record_window(self, window: Mapping[str, object]) -> bool:\n        checked = validate_window(window)\n        if self.task_id is None:\n            self.task_id = checked[\"task_id\"]"
+        },
+        {
+          "first_line": 82,
+          "last_line": 125,
+          "text": "        return True\n\n    def append_estimate(self, inference: Mapping[str, object], *, model_sha256: str, request_id: str | None = None) -> Mapping[str, object]:\n        if not isinstance(inference, Mapping):\n            raise ValueError(\"inference must be a mapping\")\n        copied = json.loads(_canonical(inference))\n        self._reject_forbidden_inference_fields(copied)\n        candidate_task = copied.get(\"task_id\")\n        window_id = copied.get(\"window_id\")\n        if self.task_id is None and isinstance(candidate_task, str) and _OPAQUE_ID.fullmatch(candidate_task):\n            self.task_id = candidate_task\n        if copied.get(\"task_id\") != self.task_id or not isinstance(window_id, str) or _OPAQUE_ID.fullmatch(window_id) is None:\n            raise ValueError(\"inference task_id and window_id are required and must match\")\n        if copied.get(\"authority\") != \"state_estimation_only\":\n            raise ValueError(\"inference authority must be state_estimation_only\")\n        if not isinstance(model_sha256, str) or _HASH.fullmatch(model_sha256) is None:\n            raise ValueError(\"model_sha256 must be lowercase SHA-256 hex\")\n        if request_id is not None and (not isinstance(request_id, str) or _OPAQUE_ID.fullmatch(request_id) is None):\n            raise ValueError(\"request_id must be an opaque anonymous identifier when supplied\")\n        decision_time = self._decision_time(copied.get(\"decision_time\"), field=\"inference.decision_time\")\n        recorded_time = self._window_times.get(window_id)\n        if recorded_time is None:\n            raise ValueError(\"inference window_id must reference a recorded evidence window\")\n        if decision_time != recorded_time:\n            raise ValueError(\"inference.decision_time must match its recorded evidence window\")\n        fingerprint = _digest({\"inference\": copied, \"model_sha256\": model_sha256})\n        if request_id is not None:\n            existing = self._request_fingerprints.get(request_id)\n            if existing is not None:\n                if existing != fingerprint:\n                    raise ValueError(\"request_id cannot be replayed with different estimate facts\")\n                return next(MappingProxyType(deepcopy(row)) for row in self._estimates if row.get(\"request_id\") == request_id)\n            self._request_fingerprints[request_id] = fingerprint\n        self._estimate_version += 1\n        record = {\"version\": self._estimate_version, \"kind\": \"estimate\", \"inference\": copied, \"decision_time\": decision_time, \"model_sha256\": model_sha256, \"request_id\": request_id}\n        self._estimates.append(record)\n        if (self._failure_watermark is None or decision_time >= self._failure_watermark) and (\n            self._current is None or decision_time >= self._current[\"decision_time\"]\n        ):\n            self._current = record\n        return MappingProxyType(deepcopy(record))\n\n    def record_failure(self, window_id: str, *, decision_time: float, reason: str) -> Mapping[str, object]:\n        if not isinstance(window_id, str) or _OPAQUE_ID.fullmatch(window_id) is None or not isinstance(reason, str) or not reason.strip():"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/vlm_sop/state_risk_contract.py",
+      "sha256": "d5dca355a3438d8120373ad0f867b6d979ed207da50e28cfec1825e0ccd27879",
+      "snippets": [
+        {
+          "first_line": 88,
+          "last_line": 126,
+          "text": "def validate_inference(raw: Mapping[str, object], *, knowledge: Mapping[str, object], window: Mapping[str, object]) -> dict[str, object]:\n    if not isinstance(raw, Mapping):\n        _error(\"inference must be a mapping\")\n    _reject_authority_escalation(raw)\n    _exact(raw, _FIELDS, \"inference\")\n    normalized_knowledge = validate_knowledge(knowledge)\n    try:\n        normalized_window = validate_window(window)\n    except EvidenceWindowError as exc:\n        _error(f\"invalid evidence window: {exc}\")\n    if raw[\"schema_version\"] != \"1.0\":\n        _error(\"unsupported inference schema_version\")\n    task_id = _text(raw[\"task_id\"], \"task_id\")\n    window_task = _text(normalized_window.get(\"task_id\"), \"window.task_id\")\n    if task_id != normalized_knowledge[\"task_id\"] or task_id != window_task:\n        _error(\"task_id must match knowledge and evidence window\")\n    window_id = _text(raw[\"window_id\"], \"window_id\")\n    if window_id != _text(normalized_window.get(\"window_id\"), \"window.window_id\"):\n        _error(\"window_id must match evidence window\")\n    authority = _text(raw[\"authority\"], \"authority\")\n    if authority != \"state_estimation_only\":\n        _error(\"authority must be state_estimation_only\")\n\n    step_ids = {step[\"id\"] for step in normalized_knowledge[\"steps\"]}  # type: ignore[index,union-attr]\n    stage = _text(raw[\"estimated_stage\"], \"estimated_stage\", allow_null=True)\n    if stage is not None and stage not in step_ids:\n        _error(f\"unknown estimated_stage: {stage}\")\n    completion = _text(raw[\"completion_state\"], \"completion_state\")\n    if completion not in _COMPLETION:\n        _error(f\"unsupported completion_state: {completion}\")\n    if stage is not None and completion == \"completed\":\n        stage_spec = next(step for step in normalized_knowledge[\"steps\"] if step[\"id\"] == stage)  # type: ignore[union-attr]\n        missing_for_completion = _missing_observations(stage_spec, normalized_window)\n        if missing_for_completion:\n            _error(\n                \"completed state requires all stage observations; \"\n                f\"missing={sorted(missing_for_completion)}\"\n            )\n    valid_refs = _window_reference_ids(normalized_window)"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_vlm_state_risk.py",
+      "sha256": "b9dbeb96d028f9c2b698aee4f573e5dafb3c86c30b911ecdf9a7acdca116a1c7",
+      "snippets": [
+        {
+          "first_line": 185,
+          "last_line": 221,
+          "text": "                relation_events=[ref for item in perception_history for ref in item.get(\"relation_events\", [])],\n                observability=perception.get(\"observability\", {\n                    \"view\": \"partial\", \"missing\": [\"detector_summary_unavailable\"],\n                    \"absence_confirmed\": []}), hashes=hashes)\n            append_record(output / \"evidence-windows.jsonl\", window)\n            decode_s = time.perf_counter() - decode_started\n            inference_started = time.perf_counter()\n            row = {\"window_id\": window[\"window_id\"], \"decision_time\": decision_time,\n                   \"status\": \"failed\", \"inference\": None, \"source_sha256\": source_hash}\n            queue_seconds = max(0.0, previous_available_time - decision_time)\n            try:\n                if queue_seconds > args.max_backlog_seconds:\n                    raise TimeoutError(\"inference backlog exceeds development budget\")\n                if args.method_id == \"B0-fixed-streak-v1\":\n                    inference = engine.infer(window)\n                else:\n                    urls = [\"data:image/jpeg;base64,\" + base64.b64encode(\n                        path.read_bytes()).decode(\"ascii\") for _, path in history]\n                    inference = engine.infer(window, method_id=args.method_id,\n                                             state_memory=memory, image_urls=urls)\n                row.update(status=\"ok\", inference=inference)\n            except Exception as error:\n                row.update(error_type=type(error).__name__, error=str(error))\n                terminal[\"failures\"] += 1\n            elapsed = time.perf_counter() - inference_started\n            latencies.append(elapsed)\n            row.update(inference_seconds=elapsed, decode_seconds=decode_s,\n                       queue_seconds=queue_seconds,\n                       available_time=decision_time + queue_seconds + decode_s + elapsed)\n            previous_available_time = row[\"available_time\"]\n            append_record(output / \"estimates.jsonl\", row)\n            written_windows.add(window[\"window_id\"])\n            if memory is not None:\n                (output / \"state-history.json\").write_text(json.dumps({\n                    \"observations\": [dict(item) for item in memory.observation_history],\n                    \"revisions\": [dict(item) for item in memory.estimate_history],\n                }, ensure_ascii=False, indent=2) + \"\\n\", encoding=\"utf-8\")"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/metrics/state_risk.py",
+      "sha256": "4f2fcb1f1b335bf773f1a7a4fa8ec8774e4ee76727b18eead560fda1b275f6ba",
+      "snippets": [
+        {
+          "first_line": 396,
+          "last_line": 430,
+          "text": "    index = _validate_truth(truth)\n    selected_job_id = _string(job_id, \"job_id\")\n    selected_method_id = _string(method_id, \"method_id\")\n    if selected_job_id not in index[\"jobs\"]:\n        _error(\"job_id must identify a truth job\")\n    directory = Path(run_dir)\n    manifest_path = directory / \"manifest.json\"\n    estimates_path = directory / \"estimates.jsonl\"\n    if not manifest_path.is_file():\n        _error(\"run export is missing manifest.json\")\n    try:\n        manifest = json.loads(manifest_path.read_text(encoding=\"utf-8\"))\n    except json.JSONDecodeError as error:\n        _error(f\"manifest.json is invalid JSON: {error.msg}\")\n    if not isinstance(manifest, Mapping) or not isinstance(manifest.get(\"terminal\"), Mapping):\n        _error(\"manifest.json must contain terminal\")\n    terminal = manifest[\"terminal\"]\n    if _string(terminal.get(\"method_id\"), \"manifest.terminal.method_id\") != selected_method_id:\n        _error(\"manifest method_id must equal --method-id\")\n    source_hash = _sha256(terminal.get(\"source_sha256\"), \"manifest.terminal.source_sha256\")\n    expected_source_hash = index[\"jobs\"][selected_job_id].get(\"video_sha256\")\n    source_binding: dict[str, Any]\n    if expected_source_hash is None:\n        source_binding = {\"status\": \"NOT_DECLARED_IN_TRUTH\"}\n    else:\n        expected_source_hash = _sha256(expected_source_hash, f\"jobs[{selected_job_id}].video_sha256\")\n        if source_hash != expected_source_hash:\n            _error(\"manifest source_sha256 does not match truth job video_sha256\")\n        source_binding = {\"status\": \"MATCHED\", \"video_sha256\": source_hash}\n\n    opportunity_by_time: dict[float, Mapping[str, Any]] = {}\n    for opportunity in index[\"opportunities\"].values():\n        if opportunity[\"job_id\"] == selected_job_id:\n            timestamp = float(opportunity[\"timestamp_s\"])\n            if timestamp in opportunity_by_time:"
+        },
+        {
+          "first_line": 448,
+          "last_line": 466,
+          "text": "        if status == \"ok\" and not isinstance(inference, Mapping):\n            _error(\"ok estimate must contain inference object\")\n        opportunity = opportunity_by_time.get(decision_time)\n        if opportunity is None:\n            unmatched_estimates += 1\n        else:\n            opportunity_id = str(opportunity[\"opportunity_id\"])\n            if opportunity_id in matched_opportunities:\n                _error(\"multiple estimates map to one fixed truth opportunity\")\n            matched_opportunities.add(opportunity_id)\n            adapted = {\"opportunity_id\": opportunity_id, \"job_id\": selected_job_id,\n                       \"timestamp_s\": decision_time, \"status\": \"failed\"}\n            if status == \"ok\":\n                estimated_stage = inference.get(\"estimated_stage\")\n                completion_state = inference.get(\"completion_state\")\n                if isinstance(estimated_stage, str) and estimated_stage.strip() and isinstance(completion_state, str) and completion_state.strip() and completion_state != \"unknown\":\n                    adapted.update(status=\"ok\", estimated_stage=estimated_stage,\n                                   completion_state=completion_state)\n                else:"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/experiments/g1_derivation.py",
+      "sha256": "2818e2ef0df28e93407e8c51cb675ac55ed7f73168c0302c8da3e58b15d595ff",
+      "snippets": [
+        {
+          "first_line": 166,
+          "last_line": 190,
+          "text": "def derive_inputs(\n    manifest_path: str | Path,\n    action_csv: str | Path,\n    trace_path: str | Path,\n    *,\n    action_state_map: str | Path,\n    code_hash: str,\n    model_hash: str,\n    config_hash: str,\n    scorer_rule: Mapping[str, Any] | None = None,\n) -> dict[str, Any]:\n    manifest = _manifest_rows(manifest_path)\n    actions = parse_action_csv(action_csv)\n    action_map: dict[str, list[dict[str, Any]]] = {}\n    mapping_payload = load_action_state_map(action_state_map)\n    states = list(mapping_payload[\"states\"])\n    state_index = {state: index for index, state in enumerate(states)}\n    action_to_state = dict(mapping_payload[\"action_to_state\"])\n    for action in actions:\n        if action[\"video_id\"] not in manifest:\n            raise ValueError(f\"action references unassigned video {action['video_id']}\")\n        if action[\"action_name\"] in action_to_state:\n            action_map.setdefault(action[\"video_id\"], []).append(\n                action | {\"state\": action_to_state[action[\"action_name\"]]}\n            )"
+        },
+        {
+          "first_line": 228,
+          "last_line": 236,
+          "text": "        if not line.strip():\n            continue\n        raw = json.loads(line)\n        if set(raw) != TRACE_FIELDS:\n            raise ValueError(f\"trace line {line_no} schema mismatch\")\n        vid = canonical_video_id(raw[\"video_id\"])\n        if vid not in manifest:\n            raise ValueError(f\"trace video not in frozen manifest: {vid}\")\n        oid, group = str(raw[\"observation_id\"]), str(raw[\"group_hash\"])"
+        },
+        {
+          "first_line": 275,
+          "last_line": 326,
+          "text": "        )\n    if not records:\n        raise ValueError(\"empty runtime inference trace\")\n    # A positive label means a candidate advancement opportunity was false.\n    # Runtime inference never reads the action annotations or the mapping.\n    rule = dict(\n        scorer_rule\n        or {\n            \"name\": \"false_advancement_against_mapped_official_state_v1\",\n            \"positive\": \"candidate_step_differs_from_mapped_official_state\",\n            \"no_candidate\": \"excluded_from_calibration_opportunities\",\n            \"overlap_resolution\": \"lowest_frozen_state_index\",\n        }\n    )\n    rule_hash = _hash_obj(rule)\n    probs, labels = [], []\n    hmm = []\n    previous_state: dict[str, int] = {}\n    development_state_coverage: set[str] = set()\n    for raw, partition, group, idx, frame, prob, features in records:\n        covering = [\n            action\n            for action in action_map.get(raw[\"video_id\"], ())\n            if action[\"start_frame\"] <= frame <= action[\"end_frame\"]\n        ]\n        truth_state = (\n            min(covering, key=lambda action: state_index[action[\"state\"]])[\"state\"]\n            if covering\n            else None\n        )\n        candidate = raw[\"candidate_step\"]\n        if partition == \"CALIBRATION\" and candidate is not None:\n            probs.append(prob)\n            labels.append(int(candidate != truth_state))\n        # HMM fitting is development-only; calibration observations must never\n        # leak into sequence-model training.\n        if partition == \"DEVELOPMENT\" and truth_state is not None:\n            current = state_index[truth_state]\n            prior = previous_state.get(group)\n            if prior is not None and current not in (prior, prior + 1):\n                raise ValueError(\n                    \"mapped DEVELOPMENT state sequence is not monotonic self/next\"\n                )\n            previous_state[group] = current\n            development_state_coverage.add(truth_state)\n            hmm.append(\n                {\n                    \"group_hash\": group,\n                    \"partition\": partition,\n                    \"state\": truth_state,\n                    \"features\": features,\n                }"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/data/yolo_training_views.py",
+      "sha256": "5dcede3747a17cf0e594e84fcc01ce49e9b95d79348c5b5ee53e1c5df8c48752",
+      "snippets": [
+        {
+          "first_line": 140,
+          "last_line": 168,
+          "text": "        label_root = source / \"labels\" / split\n        image_paths = sorted(\n            path\n            for path in image_root.rglob(\"*\")\n            if path.is_file() and path.suffix.casefold() in IMAGE_SUFFIXES\n        )\n        if not image_paths:\n            raise ValueError(f\"source view has no images in split: {split}\")\n        for image_path in image_paths:\n            relative_image = image_path.relative_to(image_root)\n            label_path = label_root / relative_image.with_suffix(\".txt\")\n            if not label_path.is_file():\n                raise ValueError(f\"missing source label for {image_path}\")\n            if split == \"test\" and image_path.stem.startswith(\"09_\"):\n                held_out_assets.append(image_path.relative_to(source).as_posix())\n            label_payload, label_counts = _remap_label(label_path, mapping)\n            key = relative_image.with_suffix(\"\").as_posix()\n            transformed[(split, key)] = label_payload\n            images[split] += 1\n            if not label_counts:\n                negatives[split] += 1\n            for target_class, count in label_counts.items():\n                boxes[split][names[target_class]] += count\n            rows.append(\n                {\n                    \"split\": split,\n                    \"key\": key,\n                    \"source_image\": image_path.relative_to(source).as_posix(),\n                    \"target_label_sha256\": _sha256_bytes(label_payload),"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/sop/state_machine.py",
+      "sha256": "585592e231bd7faa652dc625a202f263b35b89a2c62cc9f6e5e3e690afe9e63a",
+      "snippets": [
+        {
+          "first_line": 82,
+          "last_line": 109,
+          "text": "class Evidence:\n    \"\"\"Step evidence supplied by deterministic detectors and optional VLM review.\n\n    ``deterministic_step`` must be typed runtime evidence. A raw string is only\n    accepted when paired with an explicit, runtime-authorized source. A VLM\n    prediction is retained for audit, but it is not sufficient to advance the\n    SOP and never overrides deterministic evidence.\n    \"\"\"\n\n    deterministic_step: DeterministicEvidence | None = None\n    vlm_step: str | None = None\n    deterministic_source: DeterministicEvidenceSource | None = None\n\n    def __post_init__(self) -> None:\n        if isinstance(self.deterministic_step, DeterministicEvidence):\n            if (\n                self.deterministic_source is not None\n                and self.deterministic_source != self.deterministic_step.source\n            ):\n                raise ValueError(\"deterministic evidence source mismatch\")\n            object.__setattr__(\n                self, \"deterministic_source\", self.deterministic_step.source\n            )\n        elif self.deterministic_step is not None:\n            raise TypeError(\"deterministic_step must be privately issued DeterministicEvidence\")\n        elif self.deterministic_source is not None:\n            raise ValueError(\"deterministic source requires deterministic evidence\")\n"
+        },
+        {
+          "first_line": 152,
+          "last_line": 181,
+          "text": "    @property\n    def expected_step(self) -> str | None:\n        next_index = self._current_index + 1\n        if next_index >= len(self._steps):\n            return None\n        return self._steps[next_index]\n\n    @property\n    def is_complete(self) -> bool:\n        return self._current_index == len(self._steps) - 1\n\n    def observe(self, evidence: Evidence) -> Transition:\n        previous = self.current_step\n        expected = self.expected_step\n\n        if evidence.deterministic_step is None:\n            return Transition(\n                decision=\"unknown\",\n                expected_step=expected,\n                observed_step=None,\n                previous_step=previous,\n                current_step=previous,\n                reason=\"insufficient_deterministic_evidence\",\n                evidence_source=\"vlm\" if evidence.vlm_step is not None else \"none\",\n            )\n\n        if not isinstance(evidence.deterministic_step, DeterministicEvidence):\n            raise TypeError(\"deterministic evidence was not normalized\")\n        observed = evidence.deterministic_step.step\n        if observed not in self._steps:"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/experiments/adapters.py",
+      "sha256": "c35596329de22119127f2a7c78d57060211b388904eaf913489e3835b2046761",
+      "snippets": [
+        {
+          "first_line": 250,
+          "last_line": 295,
+          "text": "                reviews = payload if isinstance(payload, dict) else {\"reviews\": payload}\n            except (OSError, ValueError) as exc:\n                return _result(\n                    self.name,\n                    \"unavailable\",\n                    error_code=\"REVIEW_JSON_INVALID\",\n                    error=str(exc),\n                )\n        cap = cv2.VideoCapture(str(path))\n        events: list[dict[str, Any]] = []\n        frame = 0\n        try:\n            while True:\n                ok, image = cap.read()\n                if not ok:\n                    break\n                events.append(\n                    {\n                        \"frame\": frame,\n                        \"decision\": \"unknown\",\n                        \"observed_step\": None,\n                        \"authorization\": False,\n                        \"evidence_source\": \"vlm_audit\",\n                        \"source_frame_sha256\": _frame_sha256(image),\n                    }\n                )\n                frame += 1\n        finally:\n            cap.release()\n        if not events:\n            return _result(\n                self.name, \"unreadable\", error_code=\"VIDEO_UNREADABLE\", reviews=reviews\n            )\n        return _normalize(\n            self.name,\n            {\n                \"status\": \"success\",\n                \"frames_processed\": len(events),\n                \"frame_trace\": events,\n                \"events\": events,\n                \"reviews\": reviews,\n                \"authorizations\": [],\n                \"certificates\": [],\n                \"state_writes\": 0,\n                \"annotation_used\": False,\n                \"coverage\": {"
+        }
+      ]
+    },
+    {
+      "path": "src/display_project/metrics/_paired_freeze_core.py",
+      "sha256": "fc677126be58844876bdcef1015d9085db7d462e08605a39b513fa5bf1507fc1",
+      "snippets": [
+        {
+          "first_line": 278,
+          "last_line": 310,
+          "text": "def _validate_scoring(\n    row: Mapping[str, Any], *, require_total: bool = False\n) -> tuple[str, str, int | None]:\n    scoring = row.get(\"scoring\")\n    if not isinstance(scoring, Mapping):\n        raise ValueError(\"scorer-enriched scoring metadata is required\")\n    schema = scoring.get(\"schema_version\")\n    if not isinstance(schema, str) or not schema.strip():\n        raise ValueError(\"scoring schema_version is required\")\n    if scoring.get(\"scorer_enriched\") is not True:\n        raise ValueError(\"scoring metadata must declare scorer_enriched=true\")\n    truth_hash = scoring.get(\"ground_truth_hash\")\n    if not _is_hash(truth_hash):\n        raise ValueError(\"ground_truth_hash must be lowercase SHA-256\")\n    if scoring.get(\"runtime_annotation_used\") is not False:\n        raise ValueError(\"runtime_annotation_used must be false\")\n    if row.get(\"annotation_used\", False) is not False:\n        raise ValueError(\"runtime annotation use is forbidden\")\n    totals = []\n    for key in (\"scorable_opportunities\", \"total_scorable_opportunities\"):\n        if key in scoring:\n            value = scoring[key]\n            if isinstance(value, bool) or not isinstance(value, int) or value < 0:\n                raise ValueError(\n                    \"scorable opportunities must be a non-negative integer\"\n                )\n            totals.append(value)\n    if len(totals) > 1 and len(set(totals)) != 1:\n        raise ValueError(\"conflicting frozen scorable opportunities\")\n    total = totals[0] if totals else None\n    if require_total and total is None:\n        raise ValueError(\"frozen scorable opportunities are required\")\n    return schema.strip(), str(truth_hash), total"
+        }
+      ]
+    }
+  ],
+  "finding": "no connection-probe conversion found in published source; current_estimate name in StateMemory is a separate stage-inference container",
+  "unverified": [
+    "private or untracked glue",
+    "external pipelines",
+    "runtime visual truth",
+    "end-to-end video execution",
+    "training execution"
+  ]
+}

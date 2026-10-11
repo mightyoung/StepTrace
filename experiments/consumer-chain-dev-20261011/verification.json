@@ -1,0 +1,58 @@
+{
+  "parent_commit": "0a6aa25529ec169156b9ad979d03a13754e0a874",
+  "source_commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
+  "python_version": "3.12.10",
+  "new_unittest_count": 7,
+  "new_unittest_exit_code": 0,
+  "existing_pytest_passed": 61,
+  "existing_pytest_failed": 1,
+  "existing_pytest_exit_code": 1,
+  "existing_pytest_command": "python3 -B -m pytest -q tests/test_vlm_state_risk_contract.py tests/test_vlm_state_memory.py tests/test_state_machine.py tests/test_state_risk_metrics.py tests/test_g1_derivation.py",
+  "retained_failure": {
+    "test": "test_shipped_knowledge_packs_are_explicitly_non_formal_and_valid",
+    "reason": "assertion expected two shipped YAML packs; unchanged fixed source includes gv06-reference-port.yaml",
+    "production_files_modified": false
+  },
+  "retained_initial_harness_failure": {
+    "reason": "truth.enabled_risk_ids must be a non-empty list",
+    "resolution": "synthetic routing fixture changed from empty list to synthetic-risk; actual consumer branches then exercised"
+  },
+  "results_reproduced_byte_equal": true,
+  "scan_reproduced_byte_equal": true,
+  "new_model_calls": 0,
+  "training_executed": false,
+  "scoring_executed": false,
+  "physical_truth_established": false,
+  "artifacts": [
+    {
+      "path": "README_zh.md",
+      "sha256": "0a2d187cdc524349f16eabbb9fa41319449077f1f5d1a6329cbe33d1d216f06f",
+      "bytes": 5958
+    },
+    {
+      "path": "consumer_boundary.py",
+      "sha256": "07ffe3787d43ae17ca0a5132457ce22a67a70e38c5fbdf1eae586798ea827bbe",
+      "bytes": 8897
+    },
+    {
+      "path": "results.json",
+      "sha256": "e33f5e193219cc0086ee33c0a0d0c67cb43f61ac392fe3efee17f0bb33dca0fe",
+      "bytes": 12686
+    },
+    {
+      "path": "scan_consumers.py",
+      "sha256": "6d025f0dee86dc17f4230faf83ddfd13d20890918db0f7a9ac29d2b8dc5f6d32",
+      "bytes": 3167
+    },
+    {
+      "path": "source_scan.json",
+      "sha256": "b5b62e861020408095c1e6ed49f87562f53de8784426ce33f707be8737068e5c",
+      "bytes": 77662
+    },
+    {
+      "path": "test_consumer_boundary.py",
+      "sha256": "2c64b7895a07155ea54277d140f75ff33dfa2f28bcae4ef17c4d84551d99a377",
+      "bytes": 3971
+    }
+  ]
+}

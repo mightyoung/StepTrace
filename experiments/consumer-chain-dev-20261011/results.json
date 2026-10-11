@@ -1,0 +1,366 @@
+{
+  "source_commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
+  "implementation_parent": "0a6aa25529ec169156b9ad979d03a13754e0a874",
+  "actual_consumers": [
+    {
+      "packet_id": "q31",
+      "input_origin": "cached_AI_first_answer",
+      "routing_fixture": "synthetic_software_only_no_visual_truth",
+      "production_stage_contract": "rejected_incompatible_schema",
+      "production_state_memory": "rejected_incompatible_schema",
+      "production_run_export_adapter": "unknown_no_stage_or_completion_exported",
+      "production_G1_training_derivation": "rejected_trace_schema_no_training_labels"
+    },
+    {
+      "packet_id": "q68",
+      "input_origin": "cached_AI_first_answer",
+      "routing_fixture": "synthetic_software_only_no_visual_truth",
+      "production_stage_contract": "rejected_incompatible_schema",
+      "production_state_memory": "rejected_incompatible_schema",
+      "production_run_export_adapter": "unknown_no_stage_or_completion_exported",
+      "production_G1_training_derivation": "rejected_trace_schema_no_training_labels"
+    },
+    {
+      "packet_id": "q92",
+      "input_origin": "cached_AI_first_answer",
+      "routing_fixture": "synthetic_software_only_no_visual_truth",
+      "production_stage_contract": "rejected_incompatible_schema",
+      "production_state_memory": "rejected_incompatible_schema",
+      "production_run_export_adapter": "unknown_no_stage_or_completion_exported",
+      "production_G1_training_derivation": "rejected_trace_schema_no_training_labels"
+    }
+  ],
+  "isolated_envelopes": [
+    {
+      "schema_version": "isolated-record-envelope/1",
+      "record": {
+        "packet_id": "q31",
+        "label": "direct-supported-by-record",
+        "current_visible_confirmation_eligible": true,
+        "direct_relation_by_record": "external_connection_supported",
+        "basis": "direct_current",
+        "assumptions": [],
+        "historical_connections": [
+          {
+            "connection_id": "q31_c1",
+            "host_instance_id": "table_a",
+            "part_instance_id": "leg_b",
+            "interface_id": "corner_query_1",
+            "confirmation_frame_ids": [
+              "f1743"
+            ],
+            "confirmed_at_pts": 1743,
+            "connection_level": "external_relation_only",
+            "process_capture": "missedprocess"
+          }
+        ],
+        "active_connection_ids": [
+          "q31_c1"
+        ],
+        "unobserved_intervals": [],
+        "frame_labels": [
+          {
+            "frame_id": "f1743",
+            "pts": 1743,
+            "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+            "recorded_relation": "external_connection_supported",
+            "origin": "AI_model_label",
+            "human_gt": false
+          }
+        ],
+        "origin": "AI_record_derived",
+        "human_gt": false,
+        "mechanical_firmness": "unknown",
+        "safety": "not_evaluated"
+      },
+      "current_observation": {
+        "frame_id": "f1743",
+        "relation_state": "external_connection_supported",
+        "observation": "目标白顶黑腿从棕色台板远侧右角竖起，下端与台板角位呈连续相接的外部关系，接口周围没有手部遮挡，双手离开目标腿。可支持外部连接结果，无法观察内部紧固。"
+      },
+      "conditional_estimate": {
+        "basis": "direct_current",
+        "relation_state": "external_connection_supported",
+        "active_connection_ids": [
+          "q31_c1"
+        ],
+        "revoked_connection_ids": [],
+        "suspended_connection_ids": [],
+        "assumptions": []
+      },
+      "stage_mapping": null,
+      "completion_truth": null,
+      "training_ground_truth": null,
+      "scope": "external_relation_only; AI_record_consistency",
+      "production_wired": false
+    },
+    {
+      "schema_version": "isolated-record-envelope/1",
+      "record": {
+        "packet_id": "q68",
+        "label": "conditional-history",
+        "current_visible_confirmation_eligible": false,
+        "direct_relation_by_record": "occluded_or_unknown",
+        "basis": "conditional_history",
+        "assumptions": [
+          "两帧之间仍是同一台板及目标黑腿，未发生未被提供帧显示的分离或替换。",
+          "末帧接口的投影遮挡不构成拆卸证据；在上述条件下沿用先前外部连接确认。"
+        ],
+        "historical_connections": [
+          {
+            "connection_id": "q68_c1",
+            "host_instance_id": "table_a",
+            "part_instance_id": "leg_b",
+            "interface_id": "corner_query_1",
+            "confirmation_frame_ids": [
+              "f1743"
+            ],
+            "confirmed_at_pts": 1743,
+            "connection_level": "external_relation_only",
+            "process_capture": "missedprocess"
+          }
+        ],
+        "active_connection_ids": [
+          "q68_c1"
+        ],
+        "unobserved_intervals": [
+          {
+            "after_pts": 1743,
+            "before_pts": 1746,
+            "changes_excluded": false
+          }
+        ],
+        "frame_labels": [
+          {
+            "frame_id": "f1743",
+            "pts": 1743,
+            "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+            "recorded_relation": "external_connection_supported",
+            "origin": "AI_model_label",
+            "human_gt": false
+          },
+          {
+            "frame_id": "f1746",
+            "pts": 1746,
+            "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+            "recorded_relation": "occluded_or_unknown",
+            "origin": "AI_model_label",
+            "human_gt": false
+          }
+        ],
+        "origin": "AI_record_derived",
+        "human_gt": false,
+        "mechanical_firmness": "unknown",
+        "safety": "not_evaluated"
+      },
+      "current_observation": {
+        "frame_id": "f1746",
+        "relation_state": "occluded_or_unknown",
+        "observation": "远侧白顶黑腿仍可辨认，但其下端接口与近侧竖腿在画面中重叠，不能直接看清本帧接口是否仍相接。"
+      },
+      "conditional_estimate": {
+        "basis": "conditional_history",
+        "relation_state": "external_connection_supported",
+        "active_connection_ids": [
+          "q68_c1"
+        ],
+        "revoked_connection_ids": [],
+        "suspended_connection_ids": [],
+        "assumptions": [
+          "两帧之间仍是同一台板及目标黑腿，未发生未被提供帧显示的分离或替换。",
+          "末帧接口的投影遮挡不构成拆卸证据；在上述条件下沿用先前外部连接确认。"
+        ]
+      },
+      "stage_mapping": null,
+      "completion_truth": null,
+      "training_ground_truth": null,
+      "scope": "external_relation_only; AI_record_consistency",
+      "production_wired": false
+    },
+    {
+      "schema_version": "isolated-record-envelope/1",
+      "record": {
+        "packet_id": "q92",
+        "label": "direct-supported-by-record",
+        "current_visible_confirmation_eligible": true,
+        "direct_relation_by_record": "external_connection_supported",
+        "basis": "direct_current",
+        "assumptions": [],
+        "historical_connections": [
+          {
+            "connection_id": "c1",
+            "host_instance_id": "table_a",
+            "part_instance_id": "leg_b",
+            "interface_id": "corner_query_1",
+            "confirmation_frame_ids": [
+              "f1743"
+            ],
+            "confirmed_at_pts": 1743,
+            "connection_level": "external_relation_only",
+            "process_capture": "missedprocess"
+          }
+        ],
+        "active_connection_ids": [
+          "c1"
+        ],
+        "unobserved_intervals": [
+          {
+            "after_pts": 1743,
+            "before_pts": 1746,
+            "changes_excluded": false
+          },
+          {
+            "after_pts": 1746,
+            "before_pts": 1752,
+            "changes_excluded": false
+          }
+        ],
+        "frame_labels": [
+          {
+            "frame_id": "f1743",
+            "pts": 1743,
+            "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+            "recorded_relation": "external_connection_supported",
+            "origin": "AI_model_label",
+            "human_gt": false
+          },
+          {
+            "frame_id": "f1746",
+            "pts": 1746,
+            "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+            "recorded_relation": "occluded_or_unknown",
+            "origin": "AI_model_label",
+            "human_gt": false
+          },
+          {
+            "frame_id": "f1752",
+            "pts": 1752,
+            "frame_sha256": "9e6f3fc5c79dd96f30ab76e52e65017088472dd1d2c27a9aaf37d511c66a4f9d",
+            "recorded_relation": "external_connection_supported",
+            "origin": "AI_model_label",
+            "human_gt": false
+          }
+        ],
+        "origin": "AI_record_derived",
+        "human_gt": false,
+        "mechanical_firmness": "unknown",
+        "safety": "not_evaluated"
+      },
+      "current_observation": {
+        "frame_id": "f1752",
+        "relation_state": "external_connection_supported",
+        "observation": "目标为画面右侧较远的白顶黑腿，其下端与棕色台板远侧右角相接，连接处未被手遮挡，支持外部连接；人员手持的是另一侧构件。"
+      },
+      "conditional_estimate": {
+        "basis": "direct_current",
+        "relation_state": "external_connection_supported",
+        "active_connection_ids": [
+          "c1"
+        ],
+        "revoked_connection_ids": [],
+        "suspended_connection_ids": [],
+        "assumptions": []
+      },
+      "stage_mapping": null,
+      "completion_truth": null,
+      "training_ground_truth": null,
+      "scope": "external_relation_only; AI_record_consistency",
+      "production_wired": false
+    }
+  ],
+  "use_decisions": [
+    {
+      "packet_id": "q31",
+      "use": "cache_record_audit",
+      "outcome": "allowed_AI_record_scope_only"
+    },
+    {
+      "packet_id": "q31",
+      "use": "current_visible_record_support",
+      "outcome": "allowed_AI_record_scope_only"
+    },
+    {
+      "packet_id": "q31",
+      "use": "stage_scorer",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q31",
+      "use": "completion_decision",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q31",
+      "use": "training_ground_truth",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q68",
+      "use": "cache_record_audit",
+      "outcome": "allowed_AI_record_scope_only"
+    },
+    {
+      "packet_id": "q68",
+      "use": "current_visible_record_support",
+      "outcome": "rejected:current_visible_support_unavailable"
+    },
+    {
+      "packet_id": "q68",
+      "use": "stage_scorer",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q68",
+      "use": "completion_decision",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q68",
+      "use": "training_ground_truth",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q92",
+      "use": "cache_record_audit",
+      "outcome": "allowed_AI_record_scope_only"
+    },
+    {
+      "packet_id": "q92",
+      "use": "current_visible_record_support",
+      "outcome": "allowed_AI_record_scope_only"
+    },
+    {
+      "packet_id": "q92",
+      "use": "stage_scorer",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q92",
+      "use": "completion_decision",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    },
+    {
+      "packet_id": "q92",
+      "use": "training_ground_truth",
+      "outcome": "rejected:no_authorized_stage_mapping_or_independent_truth"
+    }
+  ],
+  "lossy_negative_control": {
+    "q31": {
+      "relation_state": "external_connection_supported",
+      "active": true
+    },
+    "q68": {
+      "relation_state": "external_connection_supported",
+      "active": true
+    },
+    "status": "RED_expected_collision"
+  },
+  "physical_truth": "unknown",
+  "physical_false_revocation_rate": null,
+  "new_model_calls": 0,
+  "new_training_runs": 0,
+  "new_visual_samples": 0,
+  "algorithm_gain": null,
+  "stage_accuracy_measured": false
+}
