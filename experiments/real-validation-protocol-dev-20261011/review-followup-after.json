@@ -78,5 +78,6 @@
     "media_downloads": 0,
     "dependencies_installed": 0
   },
-  "evidence_note": "These reproductions use temporary synthetic contract fixtures. They are not videos, model results, real samples, or experiment outcomes. No real-evaluation result is inferred."
+  "evidence_note": "These reproductions use temporary synthetic contract fixtures. They are not videos, model results, real samples, or experiment outcomes. No real-evaluation result is inferred.",
+  "implementation_commit": "7815091afff73330ce67ba820ee8a25aa1f9a41c"
 }
