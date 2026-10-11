@@ -11,6 +11,12 @@ This directory exchanges reviewed text and artifact identities across research e
 - No project or third-party license is created or changed here. Unknown redistribution rights remain unknown.
 - This initial batch contains status snapshots and metadata only, except the explicitly identified synthetic-smoke text inputs in PCG. Publication approval is not execution approval.
 
+## Latest evidence addendum — 2026-10-11
+
+- [IndEgo candidate review and disposition](progress/20261011-indego-candidate-review.md) records Parent-reported source-byte verification, Mac-reported frame/PTS/hash checks, and the user's suitability decision.
+- Status: `EXCLUDED_FROM_PRIMARY_VALIDATION` because the relevant component/interface identity cannot be reliably confirmed. This is not an algorithm failure or ground truth; the frozen H/F/HF experiment remains `NOT_RUN`.
+- [Append-only receipt](receipts/indego-candidate-disposition-20261011.json). Raw media, frames, private identifiers, and absolute paths are not included.
+
 ## Current stage - 2026-10-10 15:05 UTC
 
 - [Current progress, actual results and remaining evidence gaps](progress/20261010T1505Z-current-stage.md)

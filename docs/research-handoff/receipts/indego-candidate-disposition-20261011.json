@@ -1,0 +1,64 @@
+{
+  "attempt_id": "indego-candidate-disposition-20261011",
+  "task_owner": "Codex",
+  "recorded_utc": "2026-10-11T13:55:22Z",
+  "purpose": "Append the provenance and disposition of the recovered IndEgo source candidate without publishing media or private identifiers.",
+  "source_identity": {
+    "dataset": "IndEgo",
+    "source_id": "INDEGO_232cf338",
+    "public_relative_path": "1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+    "official_index_page": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/tree/main/1_Disassembly/mp4_480",
+    "pinned_commit_page": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/commit/058ec4a00bc71a1f4ceec8333a175f69d269e28a",
+    "pinned_source_url": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/resolve/058ec4a00bc71a1f4ceec8333a175f69d269e28a/1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+    "expected_bytes": 13326100,
+    "sha256": "3552fbc900518a3499191be00e9897957dee562d9bdc59a23ec0c8b1d499c490",
+    "license": "CC BY 4.0"
+  },
+  "provenance": [
+    {
+      "source": "Parent direct file check, as reported in the task handoff",
+      "result": "The uploaded source file matched the expected 13,326,100-byte length and SHA-256.",
+      "verification_scope": "File identity only; this Codex environment did not read the uploaded media bytes."
+    },
+    {
+      "source": "Mac task report, as reported in the task handoff",
+      "result": "The media was independently reported as H.264, 480x480, 10 fps, 231.602 seconds. PTS and hashes were reported as passing for the extracted window.",
+      "frame_selection": {
+        "window_rule": "119.0 <= t < 128.0 seconds, plus the explicit 128.0-second boundary frame",
+        "frames_in_half_open_window": 90,
+        "additional_boundary_frames": 1,
+        "total_frames": 91
+      },
+      "storage": "Reported retained in a separate Mac research-data directory; path omitted."
+    },
+    {
+      "source": "User visual review",
+      "review_time_utc": "2026-10-11T13:46:32Z",
+      "sequence": "The user first reviewed frames at 121, 125, and 128 seconds, then reviewed the continuous 119-128 second clip.",
+      "reported_judgment": "无法判断，而且我觉得这组视频素材不适合作为我们论证验证的素材",
+      "interpretation": "The identity of the relevant components/interface could not be reliably established from this candidate."
+    }
+  ],
+  "disposition": {
+    "status": "EXCLUDED_FROM_PRIMARY_VALIDATION",
+    "reason": "Relevant component/interface identity is not reliable enough for the intended validation claim.",
+    "counts_as_primary_validation_sample": false,
+    "counts_as_algorithm_failure": false,
+    "ground_truth_created": false,
+    "accuracy_or_success_rate_scored": false,
+    "model_calls": 0
+  },
+  "retention_and_privacy": {
+    "source_media_frames_drafts_and_prior_failure_history": "Retained in their existing research locations, as reported by the task handoff.",
+    "raw_media_in_public_repository": false,
+    "absolute_paths_in_record": false,
+    "private_library_or_conversation_ids_in_record": false,
+    "this_environment_directly_inspected_mac_media": false
+  },
+  "remaining_gaps": {
+    "original_h_f_hf_first_answers_recovered": false,
+    "original_experiment_reconstructed": false,
+    "frozen_indego_experiment_status": "NOT_RUN",
+    "separate_roboassem_candidate": "Pending user judgment; not substituted for this excluded candidate or for the frozen experiment."
+  }
+}
