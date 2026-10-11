@@ -1,0 +1,40 @@
+{
+  "attempt_id": "roboassem-task6-library-access-20261011",
+  "task_owner": "Codex",
+  "recorded_utc": "2026-10-11T13:58:16Z",
+  "asset": {
+    "filename": "task6_m_1.mp4",
+    "official_source_url": "https://roboassem.github.io/static/videos/task6_m_1.mp4",
+    "expected_bytes_user_supplied": 3708210,
+    "expected_sha256_user_supplied": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06",
+    "library_metadata_reported_size_bytes": 3708210
+  },
+  "access_attempt": {
+    "route": "ChatGPT Library materialize",
+    "result": "failed",
+    "result_message": "library file transfer failed: download failed",
+    "exact_attempt_time_utc": null,
+    "time_note": "The exact materialize-call timestamp was not recorded; this receipt timestamp records when the outcome was documented.",
+    "expected_output_file_present_after_failure": false,
+    "retry": false,
+    "transfer_method": "Bundled Library transfer helper using the complete materialize response",
+    "manual_signed_url_fetch": false,
+    "official_website_download": false,
+    "alternate_host_or_mirror": false
+  },
+  "resulting_work": {
+    "bytes_or_sha_verified": false,
+    "media_properties_or_pts_verified": false,
+    "frames_viewed": false,
+    "frame_inputs_created": false,
+    "model_calls": 0,
+    "experiment_run": false,
+    "status": "protocol_preparation_only; media unavailable after the single authorized Library materialize attempt"
+  },
+  "privacy": {
+    "library_ids_in_public_receipt": false,
+    "signed_urls_in_public_receipt": false,
+    "absolute_paths_in_public_receipt": false,
+    "media_or_frames_in_public_repository": false
+  }
+}

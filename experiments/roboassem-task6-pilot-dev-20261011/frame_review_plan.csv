@@ -1,0 +1,7 @@
+frame_role,expected_event,source_frame_index,pts,time_base,pts_seconds,media_review_status,notes
+last_clear_pre_separation,visible_separation,TBD,TBD,TBD,TBD,waiting_for_media,"Last prefix frame that visibly supports the prior relation; no timestamp inferred."
+first_separation_candidate,visible_separation,TBD,TBD,TBD,TBD,waiting_for_media,"Candidate first visible separation; identity must remain white_u_part."
+first_insertion_appearance,insertion_appearance,TBD,TBD,TBD,TBD,waiting_for_media,"Appearance only; not seating, lock, or secure evidence."
+release_frame,apparent_hold_after_release,TBD,TBD,TBD,TBD,waiting_for_media,"Visible gripper release if present."
+first_post_release_hold,apparent_hold_after_release,TBD,TBD,TBD,TBD,waiting_for_media,"First frame after release where the part appears to remain in place; interval must be recorded."
+final_observed_state,current_visible_state,TBD,TBD,TBD,TBD,waiting_for_media,"Describe only what is visible at the final selected prefix; do not infer unseen initial left-seat insertion."

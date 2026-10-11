@@ -1,0 +1,73 @@
+{
+  "schema_version": "steptrace.roboassem-pilot-protocol.v1",
+  "experiment_id": "roboassem-task6-dev-20261011-v0.1",
+  "candidate_status": "user_approved_for_development_pilot",
+  "execution_status": "not_run_media_materialization_failed",
+  "candidate_scope": {
+    "source": "One RoboAssem task 6 website demonstration clip",
+    "is_event_ground_truth": false,
+    "is_full_sop_validation": false,
+    "first_left_seat_insertion_shown": false,
+    "additional_candidate_screening": "Parent-owned parallel task; excluded from this work"
+  },
+  "persistent_identity": {
+    "white_u_part": "white_u_part",
+    "blue_left_seat": "blue_seat_left",
+    "blue_right_seat": "blue_seat_right",
+    "rules": [
+      "Keep each object identity fixed across the whole clip.",
+      "Do not swap left/right blue-seat IDs.",
+      "Do not create a new white-part identity after an occlusion or pose change.",
+      "When identity continuity or current relation is visually ambiguous, preserve the ID but output unknown for that assertion."
+    ]
+  },
+  "candidate_process_events": [
+    {
+      "event": "visible_separation",
+      "supported_claim": "The white U part appears visually separate from a named blue seat at this frame/prefix.",
+      "not_supported": ["internal contact state", "force", "mechanical lock"]
+    },
+    {
+      "event": "insertion_appearance",
+      "supported_claim": "The visible geometry appears to enter or align with a named blue seat.",
+      "not_supported": ["fully seated", "locked", "secure", "SOP complete"]
+    },
+    {
+      "event": "apparent_hold_after_release",
+      "supported_claim": "After visible gripper release, the part remains in an apparent position over the observed interval.",
+      "not_supported": ["mechanical retention", "load capacity", "torque", "secure connection"]
+    }
+  ],
+  "primary_comparison": {
+    "same_prefix_cutoff": true,
+    "same_current_frame_in_F_and_HF": true,
+    "F": "Single current frame at frozen cutoff PTS.",
+    "HF": "Same current frame plus at most 3 real earlier frames, ordered by source PTS.",
+    "H": "Last-known-only diagnostic; excluded from the primary comparison.",
+    "freeze_required": ["cutoff PTS", "source frame indices", "historical frame PTS", "resolution", "prompt text"],
+    "current_and_historical_assertions_separate": true
+  },
+  "frame_preparation": {
+    "requires_verified_source_bytes": true,
+    "requires_source_pts_map": true,
+    "preserve_original_frames": true,
+    "separate_model_input_derivatives": true,
+    "overlay_handling": "If present, cover text with an opaque mask in a separate derivative only; record rectangle and derivative hash. Never treat a Prediction label as ground truth.",
+    "no_inpainting_or_generated_pixels": true
+  },
+  "model_call_gate": {
+    "calls_in_this_task": 0,
+    "new_paid_api_calls": 0,
+    "existing_model_config_and_cost_authorization_checked": false,
+    "future_execution_requires_existing_authorization": true,
+    "future_primary_calls": "At most one F and one HF first answer, only after model/config/cost authorization is confirmed.",
+    "H_diagnostic": "Only if separately covered by existing authorization."
+  },
+  "metrics": {
+    "accuracy": null,
+    "success_rate": null,
+    "sop_completion_rate": null,
+    "mechanism_gain": null,
+    "reason": "Single development candidate; source bytes and event labels are not verified in this environment."
+  }
+}

@@ -17,6 +17,12 @@ This directory exchanges reviewed text and artifact identities across research e
 - Status: `EXCLUDED_FROM_PRIMARY_VALIDATION` because the relevant component/interface identity cannot be reliably confirmed. This is not an algorithm failure or ground truth; the frozen H/F/HF experiment remains `NOT_RUN`.
 - [Append-only receipt](receipts/indego-candidate-disposition-20261011.json). Raw media, frames, private identifiers, and absolute paths are not included.
 
+## Separate RoboAssem development candidate — 2026-10-11
+
+- User-approved task 6 is prepared as a separate development candidate in [its protocol bundle](../../experiments/roboassem-task6-pilot-dev-20261011/README_zh.md); it does not replace the excluded IndEgo candidate or the frozen experiment.
+- Library materialization failed before local verification. No source bytes, PTS, frames, visual annotations, or model results are claimed. See the [access receipt](receipts/roboassem-task6-library-access-20261011.json).
+- Only non-sensitive protocol/source metadata is in the repository; media and frames are not included.
+
 ## Current stage - 2026-10-10 15:05 UTC
 
 - [Current progress, actual results and remaining evidence gaps](progress/20261010T1505Z-current-stage.md)
