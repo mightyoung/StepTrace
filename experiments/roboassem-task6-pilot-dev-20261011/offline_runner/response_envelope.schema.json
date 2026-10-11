@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:steptrace:schemas:roboassem-task6-response-envelope:v1",
+  "title": "RoboAssem task 6 normalized response integrity envelope",
+  "description": "Transport and truncation metadata only. This schema does not define or validate model answer content.",
+  "type": "object",
+  "required": [
+    "request_id",
+    "attempt",
+    "finish_reason",
+    "context_truncated",
+    "raw_response_path",
+    "raw_response_bytes",
+    "raw_response_sha256"
+  ],
+  "properties": {
+    "request_id": {
+      "enum": ["F", "HF"]
+    },
+    "attempt": {
+      "const": 1
+    },
+    "finish_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "context_truncated": {
+      "const": false
+    },
+    "raw_response_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "raw_response_path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Relative path below a private root containing the exact received response bytes."
+    },
+    "raw_response_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "provider_metadata": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

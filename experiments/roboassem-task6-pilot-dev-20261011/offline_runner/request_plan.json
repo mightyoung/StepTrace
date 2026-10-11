@@ -1,0 +1,140 @@
+{
+  "schema_version": "steptrace.roboassem-task6-request-plan.v1",
+  "experiment_id": "roboassem-task6-dev-20261011-v0.1",
+  "status": "offline_draft_unfrozen",
+  "execution_ready": false,
+  "run_policy": {
+    "max_requests": 2,
+    "max_retries": 0,
+    "parallelism": 1,
+    "bind_host": "127.0.0.1",
+    "calls_made": 0,
+    "external_network_used": false
+  },
+  "model_candidate": {
+    "repo_id": "unsloth/Qwen3.5-9B-GGUF",
+    "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+    "revision_source": "Official Hugging Face repository main revision shown on 2026-10-11; candidate pin only.",
+    "repository_url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5",
+    "artifacts": [
+      {
+        "filename": "Qwen3.5-9B-Q4_K_M.gguf",
+        "display_size": "5.68 GB",
+        "size_bytes": null,
+        "sha256": "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8",
+        "xet_hash": "a8adfeb2dd607e6cc691d367f2c42a54209705ff24bf18f4dd1d4fc98966dcca",
+        "metadata_url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/blob/3885219b6810b007914f3a7950a8d1b469d598a5/Qwen3.5-9B-Q4_K_M.gguf",
+        "downloaded": false
+      },
+      {
+        "filename": "mmproj-BF16.gguf",
+        "display_size": "922 MB",
+        "size_bytes": null,
+        "sha256": "853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383",
+        "xet_hash": "8668eaa873b30779e3d3d083da9d325fb3b7bcba272bb80cd77fcbb1494bc399",
+        "metadata_url": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/blob/3885219b6810b007914f3a7950a8d1b469d598a5/mmproj-BF16.gguf",
+        "downloaded": false
+      }
+    ],
+    "bf16_projector_t4_compatibility": "unknown_unverified",
+    "precision_substitution_allowed": false,
+    "historical_reproduction_claim": false
+  },
+  "source_media_provenance": {
+    "source_id": "ROBOASSEM_TASK6_M1",
+    "media_sha256_reported_by_mac": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06",
+    "media_bytes_reported_by_mac": 3708210,
+    "frame_mapping_source": "Mac executor report relayed in task handoff; cloud did not inspect pixels or bytes.",
+    "frame_files_or_private_paths_included": false
+  },
+  "task6_prompt": {
+    "status": "missing_task6_specific_record",
+    "text": null,
+    "sha256": null,
+    "note": "Do not infer a task 6 prompt from another experiment. Import the actual fixed Mac prompt and hash it before any later run."
+  },
+  "runtime": {
+    "backend": null,
+    "backend_version": null,
+    "parameters": null,
+    "historical_qwen_service_status": "unverified_currently",
+    "existing_model_and_cost_authorization": false
+  },
+  "authorization": {
+    "existing_model_and_cost_authorization": false,
+    "compute_authorized": false,
+    "kaggle_upload_authorized": false,
+    "model_download_authorized": false,
+    "inference_calls_authorized": false
+  },
+  "response_contract": {
+    "envelope_schema": "response_envelope.schema.json",
+    "task6_content_schema_status": "missing_task6_specific_record",
+    "content_schema_validated": false,
+    "note": "Only generic envelope integrity can be checked. Do not invent response content or a task-specific semantic schema."
+  },
+  "requests": [
+    {
+      "request_id": "F",
+      "purpose": "single current-frame arm",
+      "frames": [
+        {
+          "frame_id": "pts_510",
+          "video_time_seconds_reported": 17,
+          "pts": 510,
+          "time_base": "1/30",
+          "path": "private_inputs/pts_510.png",
+          "size_bytes": null,
+          "sha256": null,
+          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+        }
+      ]
+    },
+    {
+      "request_id": "HF",
+      "purpose": "same current frame plus three reported history frames",
+      "frames": [
+        {
+          "frame_id": "pts_0",
+          "video_time_seconds_reported": 0,
+          "pts": 0,
+          "time_base": "1/30",
+          "path": "private_inputs/pts_0.png",
+          "size_bytes": null,
+          "sha256": null,
+          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+        },
+        {
+          "frame_id": "pts_300",
+          "video_time_seconds_reported": 10,
+          "pts": 300,
+          "time_base": "1/30",
+          "path": "private_inputs/pts_300.png",
+          "size_bytes": null,
+          "sha256": null,
+          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+        },
+        {
+          "frame_id": "pts_450",
+          "video_time_seconds_reported": 15,
+          "pts": 450,
+          "time_base": "1/30",
+          "path": "private_inputs/pts_450.png",
+          "size_bytes": null,
+          "sha256": null,
+          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+        },
+        {
+          "frame_id": "pts_510",
+          "video_time_seconds_reported": 17,
+          "pts": 510,
+          "time_base": "1/30",
+          "path": "private_inputs/pts_510.png",
+          "size_bytes": null,
+          "sha256": null,
+          "verification_source": "Same current-frame descriptor as F, per Mac report"
+        }
+      ]
+    }
+  ]
+}
