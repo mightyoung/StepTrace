@@ -12,67 +12,8 @@ from offline_preflight import validate_plan, validate_plan_shape, validate_respo
 
 
 def plan_fixture():
-    return {
-        "schema_version": "steptrace.roboassem-task6-request-plan.v1",
-        "run_policy": {
-            "max_requests": 2,
-            "max_retries": 0,
-            "parallelism": 1,
-            "bind_host": "127.0.0.1",
-        },
-        "requests": [
-            {
-                "request_id": "F",
-                "frames": [
-                    {
-                        "frame_id": "pts_510",
-                        "pts": 510,
-                        "time_base": "1/30",
-                        "path": "private_inputs/pts_510.png",
-                        "size_bytes": None,
-                        "sha256": None,
-                    }
-                ],
-            },
-            {
-                "request_id": "HF",
-                "frames": [
-                    {
-                        "frame_id": "pts_0",
-                        "pts": 0,
-                        "time_base": "1/30",
-                        "path": "private_inputs/pts_0.png",
-                        "size_bytes": None,
-                        "sha256": None,
-                    },
-                    {
-                        "frame_id": "pts_300",
-                        "pts": 300,
-                        "time_base": "1/30",
-                        "path": "private_inputs/pts_300.png",
-                        "size_bytes": None,
-                        "sha256": None,
-                    },
-                    {
-                        "frame_id": "pts_450",
-                        "pts": 450,
-                        "time_base": "1/30",
-                        "path": "private_inputs/pts_450.png",
-                        "size_bytes": None,
-                        "sha256": None,
-                    },
-                    {
-                        "frame_id": "pts_510",
-                        "pts": 510,
-                        "time_base": "1/30",
-                        "path": "private_inputs/pts_510.png",
-                        "size_bytes": None,
-                        "sha256": None,
-                    },
-                ],
-            },
-        ],
-    }
+    with (RUNNER_DIR / "request_plan.json").open("r", encoding="utf-8") as stream:
+        return json.load(stream)
 
 
 class PlanShapeTests(unittest.TestCase):
@@ -92,7 +33,7 @@ class PlanShapeTests(unittest.TestCase):
 
     def test_rejects_different_or_nonshared_current_frame(self):
         plan = plan_fixture()
-        plan["requests"][1]["frames"][-1]["path"] = "private_inputs/other.png"
+        plan["requests"][1]["frames"][-1]["path"] = "other.png"
         report = validate_plan_shape(plan)
         self.assertIn("F and HF must reference the same current-frame bytes", report["errors"])
 
@@ -172,10 +113,14 @@ class PackageArtifactTests(unittest.TestCase):
         self.assertEqual(report["model_calls_made"], 0)
         self.assertFalse(report["network_used"])
         blockers = "\n".join(report["readiness_blockers"])
-        self.assertIn("task6-specific fixed prompt record is missing", blockers)
+        self.assertIn("top_p is unresolved", blockers)
+        self.assertIn("top_k is unresolved", blockers)
+        self.assertIn("backend strict JSON Schema support is not confirmed", blockers)
         self.assertIn("existing model/configuration/cost authorization is not confirmed", blockers)
         self.assertIn("compute authorization is not confirmed", blockers)
-        self.assertIn("task6 response content schema is missing", blockers)
+        self.assertIn("Kaggle upload authorization is not confirmed", blockers)
+        self.assertIn("model download authorization is not confirmed", blockers)
+        self.assertIn("inference authorization is not confirmed", blockers)
 
     def test_model_candidate_revision_and_file_hashes_are_pinned_without_downloads(self):
         with (RUNNER_DIR / "request_plan.json").open("r", encoding="utf-8") as stream:
@@ -187,11 +132,16 @@ class PackageArtifactTests(unittest.TestCase):
             self.assertEqual(len(artifact["sha256"]), 64)
             self.assertFalse(artifact["downloaded"])
 
-    def test_no_frame_digest_is_fabricated_from_the_mac_summary(self):
+    def test_reported_frame_digests_are_preserved_and_attributed_to_mac(self):
         with (RUNNER_DIR / "request_plan.json").open("r", encoding="utf-8") as stream:
             plan = json.load(stream)
         frame_descriptors = [frame for request in plan["requests"] for frame in request["frames"]]
-        self.assertTrue(all(frame["sha256"] is None for frame in frame_descriptors))
+        self.assertTrue(all(len(frame["sha256"]) == 64 for frame in frame_descriptors))
+        self.assertTrue(all("Mac" in frame["verification_source"] for frame in frame_descriptors))
+        self.assertEqual(
+            plan["requests"][0]["frames"][0]["sha256"],
+            plan["requests"][1]["frames"][-1]["sha256"],
+        )
 
     def test_notebook_is_valid_json_and_code_cells_parse_without_network_clients(self):
         notebook_path = RUNNER_DIR / "kaggle_private_draft.ipynb"

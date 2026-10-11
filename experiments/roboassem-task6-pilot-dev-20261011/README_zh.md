@@ -38,4 +38,4 @@ Mac 报告媒体为 H.264、640×480、30 fps、547 帧、time base `1/30`；报
 
 ## 离线请求预检草稿
 
-[离线预检包](offline_runner/README_zh.md) 固定 F/HF 请求描述、响应完整性字段和公开 Qwen GGUF 候选文件元数据。task6 专属固定提示、响应内容 schema、运行参数及既有模型/计算授权记录尚缺，因此脚本当前会报告阻断项并保持不可执行。配套 Kaggle Notebook 只做本地文件结构检查，未上传；没有模型下载或推理调用。
+[离线预检包](offline_runner/README_zh.md) 已录入 Mac 提供的提示、部分参数、F/HF 分臂 schema 及遮罩 PNG 文件元数据。云端没有 PNG 字节，后端版本与 schema 能力、`top_p/top_k`、三项独立操作授权和费用/计算授权仍未核实；脚本会继续阻断。配套 Kaggle Notebook 只做离线检查，未上传；没有模型下载或推理调用。

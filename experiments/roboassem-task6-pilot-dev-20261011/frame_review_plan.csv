@@ -1,8 +1,8 @@
 frame_role,expected_event,source_frame_index,pts,time_base,pts_seconds,media_review_status,notes
-F_current_shared_with_HF,current_visible_state,unknown,510,1/30,17,mac_reported_not_cloud_inspected,"Reported selected current frame; same current frame is used in F and HF. Source frame index not provided."
-HF_history_0s,process_history,unknown,0,1/30,0,mac_reported_not_cloud_inspected,"Reported HF history frame at 0 seconds; source frame index not provided."
-HF_history_10s,process_history,unknown,300,1/30,10,mac_reported_not_cloud_inspected,"Reported HF history frame at 10 seconds; source frame index not provided."
-HF_history_15s,process_history,unknown,450,1/30,15,mac_reported_not_cloud_inspected,"Reported HF history frame at 15 seconds; source frame index not provided."
+F_current_shared_with_HF,current_visible_state,510,510,1/30,17,mac_reported_not_cloud_inspected,"Mac contract maps the masked model input to k04.png; same 223238-byte PNG is used in F and HF. Cloud has not read or rehashed the PNG bytes."
+HF_history_0s,process_history,0,0,1/30,0,mac_reported_not_cloud_inspected,"Mac contract maps the masked model input to k01.png; cloud has not read or rehashed the PNG bytes."
+HF_history_10s,process_history,300,300,1/30,10,mac_reported_not_cloud_inspected,"Mac contract maps the masked model input to k02.png; cloud has not read or rehashed the PNG bytes."
+HF_history_15s,process_history,450,450,1/30,15,mac_reported_not_cloud_inspected,"Mac contract maps the masked model input to k03.png; cloud has not read or rehashed the PNG bytes."
 last_clear_pre_separation,visible_separation,TBD,TBD,TBD,TBD,not_pixel_checked_here,"Mac reports media access, but no visual anchor timestamp or frame index is available in this cloud status update."
 first_separation_candidate,visible_separation,TBD,TBD,TBD,TBD,not_pixel_checked_here,"Candidate first visible separation; identity must remain white_u_part."
 first_insertion_appearance,insertion_appearance,TBD,TBD,TBD,TBD,not_pixel_checked_here,"Appearance only; not seating, lock, or secure evidence."

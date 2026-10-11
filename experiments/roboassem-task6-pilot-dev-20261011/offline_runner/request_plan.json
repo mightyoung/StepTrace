@@ -1,7 +1,7 @@
 {
   "schema_version": "steptrace.roboassem-task6-request-plan.v1",
   "experiment_id": "roboassem-task6-dev-20261011-v0.1",
-  "status": "offline_draft_unfrozen",
+  "status": "mac_contract_imported_offline_unfrozen",
   "execution_ready": false,
   "run_policy": {
     "max_requests": 2,
@@ -48,93 +48,357 @@
     "frame_files_or_private_paths_included": false
   },
   "task6_prompt": {
-    "status": "missing_task6_specific_record",
-    "text": null,
-    "sha256": null,
-    "note": "Do not infer a task 6 prompt from another experiment. Import the actual fixed Mac prompt and hash it before any later run."
+    "status": "mac_reported_text_imported",
+    "system_text": "仅做视觉开发审查。固定使用white_u_part、blue_seat_left和blue_seat_right名称；左右蓝座ID不得交换，白件换座或姿态变化不创建新物理身份。身份连续性和关系不清楚时输出unknown。只用本条件给定图像，不利用文件名、真实时间、数据集先验或字幕猜答案。当前外观与历史事件/当前适用性分别表达。可见分离、插入外观、夹爪离开后的在位外观都不证明锁紧、受力、牢固或完整SOP完成。F只有当前图，不补历史或判断未提供的变化。HF只引用实际给定过去图，不因过去在左座就无条件延续到当前，也不将左右座变化说成白件物理身份变化。SOP_completion、mechanical_lock、force_state固定unknown；不推进状态。只返回符合本条件JSON Schema的一个对象。",
+    "system_text_sha256": "4f08f7f8529e2badafa35cc80a66bf781b8f6bff376102556f1e762f0e273a57",
+    "system_sha256_expected_from_mac": "4f08f7f8529e2badafa35cc80a66bf781b8f6bff376102556f1e762f0e273a57",
+    "shared_user_question_text": "描述当前白U件分别相对于左、右蓝座的可见关系与未知项。如提供过去图，另描述可见过程候选、身份连续性及过去关系当前是否适用。区分当前图直接观察与历史条件推断，不把换连接对象解释为换物体。",
+    "shared_user_question_sha256": "160e6d72526c226aa4f124abf7bf675840b2b74be467ddfb483a6ca8495f48d6",
+    "shared_user_question_sha256_expected_from_mac": "160e6d72526c226aa4f124abf7bf675840b2b74be467ddfb483a6ca8495f48d6",
+    "hash_byte_rule": "UTF-8 exact text bytes; the supplied Mac hashes match these text strings without a trailing newline.",
+    "input_id_role_order": {
+      "F": [
+        "k04"
+      ],
+      "HF": [
+        "k01",
+        "k02",
+        "k03",
+        "k04"
+      ]
+    },
+    "image_block_order": "For each input, append the supplied text block then that masked PNG image block.",
+    "payload_sha256": null,
+    "payload_sha256_note": "Full API payload identity is unresolved because actual backend serialization and image bytes are not present in this workspace."
   },
   "runtime": {
     "backend": null,
     "backend_version": null,
-    "parameters": null,
-    "historical_qwen_service_status": "unverified_currently",
-    "existing_model_and_cost_authorization": false
+    "parameters": {
+      "model": "Qwen3.5-9B-Q4_K_M",
+      "temperature": 0,
+      "seed": 1,
+      "max_tokens": 2048,
+      "stream": false,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "top_p": null,
+      "top_k": null
+    },
+    "historical_qwen_service_status": "confirmed_unavailable_by_mac_report",
+    "existing_model_and_cost_authorization": false,
+    "backend_json_schema_support": {
+      "status": "unverified",
+      "dialect": "https://json-schema.org/draft/2020-12/schema",
+      "contains_min_max_support": "unverified"
+    }
   },
   "authorization": {
     "existing_model_and_cost_authorization": false,
     "compute_authorized": false,
-    "kaggle_upload_authorized": false,
-    "model_download_authorized": false,
-    "inference_calls_authorized": false
+    "kaggle_upload": {
+      "status": "not_authorized",
+      "evidence": null
+    },
+    "model_download": {
+      "status": "not_authorized",
+      "evidence": null
+    },
+    "inference": {
+      "status": "not_authorized",
+      "evidence": null
+    }
   },
   "response_contract": {
-    "envelope_schema": "response_envelope.schema.json",
-    "task6_content_schema_status": "missing_task6_specific_record",
+    "format": "json_schema",
+    "name": "roboassem_task6_visual_state",
+    "strict": true,
+    "expected_output_schema_version": "1",
+    "offline_validation_profile_version": "2",
+    "schema_file_bytes_available_from_mac": false,
+    "backend_schema_support": "unverified",
+    "source_contract_report_sha256_reported_by_mac": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+    "schemas": {
+      "F": {
+        "path": "schemas/F_visual_state.validation-v2.schema.json",
+        "local_file_sha256": "ef8061d673c948360e35e3c71a121b7388e0fd4ec7c25337c410eb2d54b99b2a",
+        "mac_original_schema_file_sha256": "77240e2c680ae3d5b4ec6f28083c32bdb54eb8e757b47e0678b63ac40c751b4d",
+        "source_schema_version": "1",
+        "offline_validation_profile_version": "2",
+        "byte_identity_with_mac_source_claimed": false,
+        "v2_addition": "Require exactly one blue_seat_left and exactly one blue_seat_right in current_relations; source v1 only counted the left seat."
+      },
+      "HF": {
+        "path": "schemas/HF_visual_state.validation-v2.schema.json",
+        "local_file_sha256": "e631494398afff5c3599189173d8d0de9c1b7ba73bdd889408d655b6a79d4809",
+        "mac_original_schema_file_sha256": "45075bdcf0eb9144ddca918c74600901f4660f4b4a2d06b0601277b5b2193753",
+        "source_schema_version": "1",
+        "offline_validation_profile_version": "2",
+        "byte_identity_with_mac_source_claimed": false,
+        "v2_addition": "Require exactly one blue_seat_left and exactly one blue_seat_right in current_relations; source v1 only counted the left seat."
+      }
+    },
+    "response_envelope_schema": "response_envelope.schema.json",
     "content_schema_validated": false,
-    "note": "Only generic envelope integrity can be checked. Do not invent response content or a task-specific semantic schema."
+    "note": "Local v2 schemas are derived offline validators, not byte copies of the Mac source. Backend support remains unverified and blocks execution.",
+    "request_schema_selection_status": "pending_mac_backend_confirmation",
+    "request_schema_selection_note": "The local offline v2 validation profile is derived from the supplied v1 schemas; no inference request may select it until backend support and schema/profile choice are confirmed.",
+    "source_contract_hash_status": "reported_not_recomputed_source_bytes_unavailable"
   },
   "requests": [
     {
       "request_id": "F",
-      "purpose": "single current-frame arm",
+      "purpose": "current frame only",
+      "condition_role_text": "F:\n本条件图像角色：[{\"input_id\":\"k04\",\"role\":\"current\"}]",
+      "condition_role_text_sha256": "a4a21adddece15794b7757af27b0bf7a58627cfb99bcfbc859cd917fcda4cc74",
+      "assembled_user_text_sha256": "d9a23f4a7085cc140e31b46c73602d01e8916675612b954ed19244d850f51e5c",
+      "full_multimodal_request_bytes_sha256": null,
+      "full_multimodal_request_hash_status": "unknown_backend_serialization_and_no_cloud_png_bytes",
+      "image_blocks_in_order": [
+        {
+          "input_id": "k04",
+          "role": "current",
+          "text_block": "图像ID=k04；角色=current",
+          "image_path": "k04.png",
+          "block_order": "text_then_image"
+        }
+      ],
       "frames": [
         {
-          "frame_id": "pts_510",
+          "frame_id": "k04",
+          "role": "current",
           "video_time_seconds_reported": 17,
+          "source_frame_index_reported": 510,
           "pts": 510,
           "time_base": "1/30",
-          "path": "private_inputs/pts_510.png",
-          "size_bytes": null,
-          "sha256": null,
-          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+          "path": "k04.png",
+          "size_bytes": 223238,
+          "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8",
+          "width": 640,
+          "height": 480,
+          "format": "PNG",
+          "masked_derivative": true,
+          "mask": {
+            "type": "opaque_black_rectangle",
+            "x": 0,
+            "y": 400,
+            "width": 112,
+            "height": 80,
+            "opacity": 1,
+            "outside_rectangle_rgb_unchanged": true,
+            "provenance": "Mac executor report: protocol overlay rule and observed 1x label position; source pixels are not in this cloud workspace"
+          },
+          "source_frame": {
+            "filename": "frame-04.png",
+            "size_bytes": 229759,
+            "sha256": "cc2f0bed03c5df2245392b58fd6da5a02b53a0e0e9a6acd6cb3b75750aec80a2",
+            "is_model_input": false
+          },
+          "verification_source": "Mac report, supplied in task handoff; cloud has not independently rehashed the absent PNG",
+          "image_prompt_text_block": "图像ID=k04；角色=current"
         }
       ]
     },
     {
       "request_id": "HF",
-      "purpose": "same current frame plus three reported history frames",
+      "purpose": "same current frame with supplied actual past frames",
+      "condition_role_text": "HF:\n本条件图像角色：[{\"input_id\":\"k01\",\"role\":\"past\"},{\"input_id\":\"k02\",\"role\":\"past\"},{\"input_id\":\"k03\",\"role\":\"past\"},{\"input_id\":\"k04\",\"role\":\"current\"}]",
+      "condition_role_text_sha256": "1b4405192c094559fd1d0d12c32ba0eb182c32a0008f46e160b15ad851b0be8a",
+      "assembled_user_text_sha256": "a6bb4cd47d15dc3eaf5a55ea0d0d21401dc08952b4d3cfb2f2753bc5d3cf1df6",
+      "full_multimodal_request_bytes_sha256": null,
+      "full_multimodal_request_hash_status": "unknown_backend_serialization_and_no_cloud_png_bytes",
+      "image_blocks_in_order": [
+        {
+          "input_id": "k01",
+          "role": "past",
+          "text_block": "图像ID=k01；角色=past",
+          "image_path": "k01.png",
+          "block_order": "text_then_image"
+        },
+        {
+          "input_id": "k02",
+          "role": "past",
+          "text_block": "图像ID=k02；角色=past",
+          "image_path": "k02.png",
+          "block_order": "text_then_image"
+        },
+        {
+          "input_id": "k03",
+          "role": "past",
+          "text_block": "图像ID=k03；角色=past",
+          "image_path": "k03.png",
+          "block_order": "text_then_image"
+        },
+        {
+          "input_id": "k04",
+          "role": "current",
+          "text_block": "图像ID=k04；角色=current",
+          "image_path": "k04.png",
+          "block_order": "text_then_image"
+        }
+      ],
       "frames": [
         {
-          "frame_id": "pts_0",
+          "frame_id": "k01",
+          "role": "past",
           "video_time_seconds_reported": 0,
+          "source_frame_index_reported": 0,
           "pts": 0,
           "time_base": "1/30",
-          "path": "private_inputs/pts_0.png",
-          "size_bytes": null,
-          "sha256": null,
-          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+          "path": "k01.png",
+          "size_bytes": 182917,
+          "sha256": "d460c282a5fb02b5c98b36ad0b90f0840a037edfd9114fad4e2609a35a95fcc9",
+          "width": 640,
+          "height": 480,
+          "format": "PNG",
+          "masked_derivative": true,
+          "mask": {
+            "type": "opaque_black_rectangle",
+            "x": 0,
+            "y": 400,
+            "width": 112,
+            "height": 80,
+            "opacity": 1,
+            "outside_rectangle_rgb_unchanged": true,
+            "provenance": "Mac executor report: protocol overlay rule and observed 1x label position; source pixels are not in this cloud workspace"
+          },
+          "source_frame": {
+            "filename": "frame-01.png",
+            "size_bytes": 188844,
+            "sha256": "6133cfd6a5c7e43bf8c15969fd24736786b727e8d508fcc8f27ac4fa536773ec",
+            "is_model_input": false
+          },
+          "verification_source": "Mac report, supplied in task handoff; cloud has not independently rehashed the absent PNG",
+          "image_prompt_text_block": "图像ID=k01；角色=past"
         },
         {
-          "frame_id": "pts_300",
+          "frame_id": "k02",
+          "role": "past",
           "video_time_seconds_reported": 10,
+          "source_frame_index_reported": 300,
           "pts": 300,
           "time_base": "1/30",
-          "path": "private_inputs/pts_300.png",
-          "size_bytes": null,
-          "sha256": null,
-          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+          "path": "k02.png",
+          "size_bytes": 194260,
+          "sha256": "6f73af6b1dc20d8adc5ba01a5bc55246c5f3f1c8373c0e9ad55b3d3db0915091",
+          "width": 640,
+          "height": 480,
+          "format": "PNG",
+          "masked_derivative": true,
+          "mask": {
+            "type": "opaque_black_rectangle",
+            "x": 0,
+            "y": 400,
+            "width": 112,
+            "height": 80,
+            "opacity": 1,
+            "outside_rectangle_rgb_unchanged": true,
+            "provenance": "Mac executor report: protocol overlay rule and observed 1x label position; source pixels are not in this cloud workspace"
+          },
+          "source_frame": {
+            "filename": "frame-02.png",
+            "size_bytes": 200574,
+            "sha256": "e4c2c8aaedf45460a1414ada5dc3f5b3abca81dea5b785d2e405b4c0dd69b2c3",
+            "is_model_input": false
+          },
+          "verification_source": "Mac report, supplied in task handoff; cloud has not independently rehashed the absent PNG",
+          "image_prompt_text_block": "图像ID=k02；角色=past"
         },
         {
-          "frame_id": "pts_450",
+          "frame_id": "k03",
+          "role": "past",
           "video_time_seconds_reported": 15,
+          "source_frame_index_reported": 450,
           "pts": 450,
           "time_base": "1/30",
-          "path": "private_inputs/pts_450.png",
-          "size_bytes": null,
-          "sha256": null,
-          "verification_source": "Mac report; per-frame size and digest not supplied to this cloud environment"
+          "path": "k03.png",
+          "size_bytes": 195651,
+          "sha256": "601c93866a4263af370480dcf0d79f672342b110d7cf4ab67b918ec5e2bf262d",
+          "width": 640,
+          "height": 480,
+          "format": "PNG",
+          "masked_derivative": true,
+          "mask": {
+            "type": "opaque_black_rectangle",
+            "x": 0,
+            "y": 400,
+            "width": 112,
+            "height": 80,
+            "opacity": 1,
+            "outside_rectangle_rgb_unchanged": true,
+            "provenance": "Mac executor report: protocol overlay rule and observed 1x label position; source pixels are not in this cloud workspace"
+          },
+          "source_frame": {
+            "filename": "frame-03.png",
+            "size_bytes": 202480,
+            "sha256": "f553ab609b40c421076e7fb3735a14cdc3d7818a068616344feba7f223bcb8db",
+            "is_model_input": false
+          },
+          "verification_source": "Mac report, supplied in task handoff; cloud has not independently rehashed the absent PNG",
+          "image_prompt_text_block": "图像ID=k03；角色=past"
         },
         {
-          "frame_id": "pts_510",
+          "frame_id": "k04",
+          "role": "current",
           "video_time_seconds_reported": 17,
+          "source_frame_index_reported": 510,
           "pts": 510,
           "time_base": "1/30",
-          "path": "private_inputs/pts_510.png",
-          "size_bytes": null,
-          "sha256": null,
-          "verification_source": "Same current-frame descriptor as F, per Mac report"
+          "path": "k04.png",
+          "size_bytes": 223238,
+          "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8",
+          "width": 640,
+          "height": 480,
+          "format": "PNG",
+          "masked_derivative": true,
+          "mask": {
+            "type": "opaque_black_rectangle",
+            "x": 0,
+            "y": 400,
+            "width": 112,
+            "height": 80,
+            "opacity": 1,
+            "outside_rectangle_rgb_unchanged": true,
+            "provenance": "Mac executor report: protocol overlay rule and observed 1x label position; source pixels are not in this cloud workspace"
+          },
+          "source_frame": {
+            "filename": "frame-04.png",
+            "size_bytes": 229759,
+            "sha256": "cc2f0bed03c5df2245392b58fd6da5a02b53a0e0e9a6acd6cb3b75750aec80a2",
+            "is_model_input": false
+          },
+          "verification_source": "Mac report, supplied in task handoff; cloud has not independently rehashed the absent PNG",
+          "image_prompt_text_block": "图像ID=k04；角色=current"
         }
       ]
     }
-  ]
+  ],
+  "generation_parameters": {
+    "source": "Mac-reported parameter text; imported verbatim as typed values; no backend call was made.",
+    "parameters": {
+      "model": "Qwen3.5-9B-Q4_K_M",
+      "temperature": 0,
+      "seed": 1,
+      "max_tokens": 2048,
+      "stream": false,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "top_p": null,
+      "top_k": null
+    },
+    "top_p_status": "unresolved_not_defaulted",
+    "top_k_status": "unresolved_not_defaulted",
+    "request_timeout_seconds": 60,
+    "parallelism": 1,
+    "retry_count": 0,
+    "request_order": [
+      "F",
+      "HF"
+    ],
+    "actual_backend": null,
+    "backend_version": null,
+    "strict_json_schema_support": "unverified"
+  }
 }
