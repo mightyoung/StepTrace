@@ -20,7 +20,8 @@ This directory exchanges reviewed text and artifact identities across research e
 ## Separate RoboAssem development candidate — 2026-10-11
 
 - User-approved task 6 is prepared as a separate development candidate in [its protocol bundle](../../experiments/roboassem-task6-pilot-dev-20261011/README_zh.md); it does not replace the excluded IndEgo candidate or the frozen experiment.
-- Library materialization failed before local verification. No source bytes, PTS, frames, visual annotations, or model results are claimed. See the [access receipt](receipts/roboassem-task6-library-access-20261011.json).
+- The cloud Library materialize attempt failed; a later Mac executor report says the media and F/HF input mapping were saved and hash-checked there. This cloud environment did not inspect pixels or bytes. See the [Mac report](progress/20261011-roboassem-task6-mac-inputs.md) and its [append-only receipt](receipts/roboassem-task6-mac-input-report-20261011.json); the earlier [cloud failure receipt](receipts/roboassem-task6-library-access-20261011.json) remains unchanged.
+- Protocol status remains draft/unfrozen; model calls and experiment runs remain at zero.
 - Only non-sensitive protocol/source metadata is in the repository; media and frames are not included.
 
 ## Current stage - 2026-10-10 15:05 UTC

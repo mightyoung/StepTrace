@@ -28,15 +28,59 @@
     "transfer_method": "Bundled Library transfer helper using the complete materialize response",
     "manual_signed_url_fetch": false
   },
+  "cross_environment_report": {
+    "source": "Mac executor report relayed by the task handoff",
+    "reported_library_save": "success",
+    "reported_bytes": 3708210,
+    "reported_sha256": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06",
+    "reported_video_properties": {
+      "codec": "H.264",
+      "width": 640,
+      "height": 480,
+      "fps": "30/1",
+      "frame_count": 547,
+      "time_base": "1/30"
+    },
+    "reported_hash_check": {
+      "files_checked": 27,
+      "result": "pass",
+      "scope_note": "Per-file list and digests were not included in this status update."
+    },
+    "reported_input_mapping": {
+      "F_current": {"video_time_seconds": 17, "pts": 510, "time_base": "1/30"},
+      "HF_current": {"video_time_seconds": 17, "pts": 510, "time_base": "1/30", "same_frame_as_F": true},
+      "HF_history": [
+        {"video_time_seconds": 0, "pts": 0, "time_base": "1/30"},
+        {"video_time_seconds": 10, "pts": 300, "time_base": "1/30"},
+        {"video_time_seconds": 15, "pts": 450, "time_base": "1/30"}
+      ]
+    },
+    "directly_verified_by_this_cloud_environment": false,
+    "media_uploaded_to_public_repository": false,
+    "model_calls": 0
+  },
   "verification": {
-    "bytes_verified": false,
-    "sha256_verified": false,
-    "codec_verified": false,
-    "dimensions_verified": false,
-    "fps_verified": false,
-    "duration_verified": false,
-    "pts_verified": false,
-    "frames_viewed": false
+    "cloud_environment_direct_media_checks": {
+      "bytes_verified": false,
+      "sha256_verified": false,
+      "codec_verified": false,
+      "dimensions_verified": false,
+      "fps_verified": false,
+      "duration_verified": false,
+      "pts_verified": false,
+      "pixels_viewed": false
+    },
+    "mac_executor_reported_checks": {
+      "bytes_verified": true,
+      "sha256_verified": true,
+      "codec": "H.264",
+      "dimensions": "640x480",
+      "fps": "30/1",
+      "frame_count": 547,
+      "time_base": "1/30",
+      "input_pts_and_hash_checks": "reported_pass",
+      "independently_rechecked_by_this_cloud_environment": false
+    }
   },
   "rights": {
     "user_authorized_research_use": true,
@@ -49,5 +93,6 @@
     "frames_or_thumbnails_in_repository": false,
     "private_library_identifier_published": false,
     "absolute_host_path_published": false
-  }
+  },
+  "protocol_status": "draft_unfrozen; no model call or experiment run"
 }

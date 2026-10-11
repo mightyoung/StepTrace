@@ -1,0 +1,58 @@
+{
+  "attempt_id": "roboassem-task6-mac-input-report-20261011",
+  "task_owner": "Codex",
+  "recorded_utc": "2026-10-11T14:16:06Z",
+  "purpose": "Append the Mac executor's materialization and input-preparation report without publishing media or private identifiers.",
+  "report_provenance": {
+    "source": "Mac executor report relayed in the task handoff",
+    "directly_observed_by_this_cloud_environment": false,
+    "previous_cloud_materialize_failure": "Preserved unchanged in roboassem-task6-library-access-20261011.json"
+  },
+  "asset": {
+    "filename": "task6_m_1.mp4",
+    "official_source_url": "https://roboassem.github.io/static/videos/task6_m_1.mp4",
+    "reported_bytes": 3708210,
+    "reported_sha256": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06",
+    "reported_library_save": "success",
+    "media_properties_reported": {
+      "codec": "H.264",
+      "width": 640,
+      "height": 480,
+      "fps": "30/1",
+      "frame_count": 547,
+      "time_base": "1/30"
+    }
+  },
+  "reported_hash_checks": {
+    "files": 27,
+    "result": "pass",
+    "per_file_hashes_published": false
+  },
+  "reported_inputs": {
+    "F": {
+      "current_frame": {"video_time_seconds": 17, "pts": 510, "time_base": "1/30"}
+    },
+    "HF": {
+      "history_frames": [
+        {"video_time_seconds": 0, "pts": 0, "time_base": "1/30"},
+        {"video_time_seconds": 10, "pts": 300, "time_base": "1/30"},
+        {"video_time_seconds": 15, "pts": 450, "time_base": "1/30"}
+      ],
+      "current_frame": {"video_time_seconds": 17, "pts": 510, "time_base": "1/30"},
+      "current_frame_same_as_F": true
+    }
+  },
+  "status": {
+    "protocol_frozen": false,
+    "model_calls": 0,
+    "experiment_run": false,
+    "visual_observations_by_this_cloud_environment": 0,
+    "accuracy_or_success_rate_claimed": false
+  },
+  "privacy_boundary": {
+    "media_or_frames_in_public_repository": false,
+    "private_library_identifier_published": false,
+    "absolute_local_path_published": false,
+    "this_cloud_environment_read_media_pixels": false
+  }
+}

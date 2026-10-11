@@ -2,7 +2,19 @@
   "schema_version": "steptrace.roboassem-pilot-protocol.v1",
   "experiment_id": "roboassem-task6-dev-20261011-v0.1",
   "candidate_status": "user_approved_for_development_pilot",
-  "execution_status": "not_run_media_materialization_failed",
+  "execution_status": "unfrozen_inputs_reported_by_mac_no_model_run",
+  "freeze_status": "draft_unfrozen",
+  "media_metadata_reported_by_mac": {
+    "bytes": 3708210,
+    "sha256": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06",
+    "codec": "H.264",
+    "width": 640,
+    "height": 480,
+    "fps": "30/1",
+    "frame_count": 547,
+    "time_base": "1/30",
+    "source": "Mac executor report; not directly inspected by this cloud environment"
+  },
   "candidate_scope": {
     "source": "One RoboAssem task 6 website demonstration clip",
     "is_event_ground_truth": false,
@@ -44,6 +56,17 @@
     "F": "Single current frame at frozen cutoff PTS.",
     "HF": "Same current frame plus at most 3 real earlier frames, ordered by source PTS.",
     "H": "Last-known-only diagnostic; excluded from the primary comparison.",
+    "Mac_reported_inputs": {
+      "F_current": {"video_time_seconds": 17, "pts": 510, "time_base": "1/30"},
+      "HF_current": {"video_time_seconds": 17, "pts": 510, "time_base": "1/30", "same_frame_as_F": true},
+      "HF_history": [
+        {"video_time_seconds": 0, "pts": 0, "time_base": "1/30"},
+        {"video_time_seconds": 10, "pts": 300, "time_base": "1/30"},
+        {"video_time_seconds": 15, "pts": 450, "time_base": "1/30"}
+      ],
+      "mac_reported_hash_checked_files": 27,
+      "cloud_pixel_inspection": false
+    },
     "freeze_required": ["cutoff PTS", "source frame indices", "historical frame PTS", "resolution", "prompt text"],
     "current_and_historical_assertions_separate": true
   },
@@ -68,6 +91,6 @@
     "success_rate": null,
     "sop_completion_rate": null,
     "mechanism_gain": null,
-    "reason": "Single development candidate; source bytes and event labels are not verified in this environment."
+    "reason": "Single development candidate; bytes and selected inputs are reported verified by Mac, but are not directly verified or visually inspected in this cloud environment, and the protocol remains unfrozen."
   }
 }
