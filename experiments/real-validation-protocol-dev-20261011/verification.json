@@ -1,43 +1,63 @@
 {
-  "schema_version": "steptrace-real-validation-offline-verification/1",
-  "date": "2026-10-11",
-  "scope": "offline_only",
   "checks": [
     {
-      "command": "python -m py_compile experiments/real-validation-protocol-dev-20261011/validate_bundle.py experiments/real-validation-protocol-dev-20261011/render_cache_comparison.py tests/test_steptrace_real_validation_bundle.py",
+      "command": "python -m py_compile experiments/real-validation-protocol-dev-20261011/validate_bundle.py experiments/real-validation-protocol-dev-20261011/render_cache_comparison.py tests/test_steptrace_real_validation_bundle.py tests/test_steptrace_independent_review_regressions.py",
       "status": "PASS"
     },
     {
-      "command": "python -m unittest -v tests.test_steptrace_real_validation_bundle",
+      "classification": "offline synthetic contract tests; not research samples",
+      "command": "python -B -m unittest -v tests.test_steptrace_real_validation_bundle tests.test_steptrace_independent_review_regressions",
       "status": "PASS",
-      "tests_passed": 18
+      "tests_passed": 27
     },
     {
       "command": "python -B -m unittest -v test_process_visible_state.py",
-      "working_directory": "experiments/process-visible-state-dev-20261011",
       "status": "PASS",
-      "tests_passed": 6
+      "tests_passed": 6,
+      "working_directory": "experiments/process-visible-state-dev-20261011"
     },
     {
       "command": "python -B experiments/real-validation-protocol-dev-20261011/render_cache_comparison.py",
-      "status": "PASS",
       "output": "experiments/real-validation-protocol-dev-20261011/cache-comparison.html",
-      "output_sha256": "f693ba7a17e545cf9cf5e2ece4055befcb43656f74cfa284f93746dc5f4d0428"
+      "output_sha256": "f693ba7a17e545cf9cf5e2ece4055befcb43656f74cfa284f93746dc5f4d0428",
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
     },
     {
       "command": "python -m pytest -q",
-      "status": "UNAVAILABLE",
-      "reason": "pytest is not installed in the selected environment; no package was installed"
+      "reason": "pytest is not installed in the selected environment; no package was installed",
+      "status": "UNAVAILABLE"
     }
   ],
-  "real_evaluation": {
-    "status": "NOT_RUN_MATERIALS_BLOCKED",
-    "model_calls": 0,
-    "training_runs": 0,
-    "media_downloads": 0,
-    "dependencies_installed": 0,
-    "reason": "No qualified real video bundle, adjudicated truth, or three-arm outputs are present in this cloud checkout."
+  "crop_pixel_verifier": {
+    "already_present": true,
+    "dependency": "Pillow",
+    "installed_for_this_task": false,
+    "observed_version": "12.3.0",
+    "rule_pins_runtime_version": true
   },
+  "date": "2026-10-11",
+  "implementation_commit": "5fe0e4fc019bb58d72b95800e3b36fe6949209ae",
+  "independent_review": {
+    "initial_finding": "malformed response status could hide a valid complete normalized answer",
+    "resolution": "complete normalized JSON cannot be marked malformed; regression added and reviewed",
+    "reviewer_recommendation": "approve for push",
+    "scope": "read-only code review of the patch and regression tests",
+    "status": "APPROVED_FOR_PUSH"
+  },
+  "real_evaluation": {
+    "dependencies_installed": 0,
+    "media_downloads": 0,
+    "model_calls": 0,
+    "reason": "No qualified real video bundle, adjudicated truth, or three-arm outputs are present in this cloud checkout.",
+    "status": "NOT_RUN_MATERIALS_BLOCKED",
+    "training_runs": 0
+  },
+  "schema_version": "steptrace-real-validation-offline-verification/1",
+  "scope": "offline_only",
   "source_cache": {
     "commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
     "public_manifest_sha256": "4c7638d6dd90119915513af511f19c3b8890e32106a9b911b7a850c9bfebc38c",
@@ -46,8 +66,13 @@
     "q92_sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694"
   },
   "storage_status": {
-    "cloud_workspace": "present",
     "Mac_backup": "pending",
+    "cloud_workspace": "present",
     "note": "Hashes support a later Mac copy and verification; no Mac save is asserted."
+  },
+  "synthetic_review_reproductions": {
+    "after": "experiments/real-validation-protocol-dev-20261011/review-reproduction-after.json",
+    "baseline": "experiments/real-validation-protocol-dev-20261011/review-baseline-7f919e5.json",
+    "classification": "synthetic contract counterexamples only"
   }
 }

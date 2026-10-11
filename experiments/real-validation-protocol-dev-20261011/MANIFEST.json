@@ -3,9 +3,9 @@
   "branch": "task/current-visible-state-contrast-20261011",
   "files": [
     {
-      "bytes": 2479,
+      "bytes": 2869,
       "path": "experiments/real-validation-protocol-dev-20261011/README_zh.md",
-      "sha256": "72b7190d5df17b5ca116a18b0a92f6f112fd1465a6f8e46cd1ce8f05f7ea7bc2"
+      "sha256": "02c1e11529cf99acf643f6a82b693646e77e8ecd505d303a519fc64df557bb00"
     },
     {
       "bytes": 9127,
@@ -13,14 +13,14 @@
       "sha256": "0a162602082796627838dc9e6463300196b72925db09311dd6201355bd573562"
     },
     {
-      "bytes": 6747,
+      "bytes": 8786,
       "path": "experiments/real-validation-protocol-dev-20261011/BUNDLE_FORMAT_zh.md",
-      "sha256": "74c746ee158b9568b3b2d5f706852a0f51e84635c53f7b173c820b12239d1840"
+      "sha256": "0121afac472393157a86fe5b7903381a7216305b9b593694debec3fd3c8d6a09"
     },
     {
-      "bytes": 40597,
+      "bytes": 53379,
       "path": "experiments/real-validation-protocol-dev-20261011/validate_bundle.py",
-      "sha256": "61b476b68a370d49448e5f1999377999ed4bf95a9655c2b56a80e3e2958f71e4"
+      "sha256": "5f202ea9487863b3182578944d5e025ebdf0e29ebee4a0f96a4356b444a66c0d"
     },
     {
       "bytes": 11963,
@@ -33,27 +33,53 @@
       "sha256": "f693ba7a17e545cf9cf5e2ece4055befcb43656f74cfa284f93746dc5f4d0428"
     },
     {
-      "bytes": 2197,
-      "path": "experiments/real-validation-protocol-dev-20261011/verification.json",
-      "sha256": "55481349f1940d65be57237d825d62028a9c4ee5c333dc3df4f550afa925fc30"
+      "bytes": 2006,
+      "path": "experiments/real-validation-protocol-dev-20261011/review-baseline-7f919e5.json",
+      "sha256": "b6037817fd80af48091a615477c735eb427d9591238ccb25e7f703073ccf3ebb"
     },
     {
-      "bytes": 26585,
+      "bytes": 3855,
+      "path": "experiments/real-validation-protocol-dev-20261011/review-reproduction-after.json",
+      "sha256": "729d18d724f752b35f04d78bbce6150ecde7f37807d1b97da254a28865aaeb22"
+    },
+    {
+      "bytes": 3027,
+      "path": "experiments/real-validation-protocol-dev-20261011/REVIEW_ACCEPTANCE_zh.md",
+      "sha256": "6f96339d47f1b909f5fe26595bf0c52263e8246a1890affdb5bb58851b063792"
+    },
+    {
+      "bytes": 3424,
+      "path": "experiments/real-validation-protocol-dev-20261011/verification.json",
+      "sha256": "c9a597568dd9c39d40f84f09f5e77c6ec6ea2da22ea92e65818c7d391249c96b"
+    },
+    {
+      "bytes": 30521,
       "path": "tests/test_steptrace_real_validation_bundle.py",
-      "sha256": "53317d64e670bfa2f1458c4cf7888b1a818cbfb48c4ad6b632fa2bc0ecf58410"
+      "sha256": "a262c83557d5e83d1270ab7a1fa4becbb1c4a1d16d91aac699057d02fd6d9628"
+    },
+    {
+      "bytes": 10131,
+      "path": "tests/test_steptrace_independent_review_regressions.py",
+      "sha256": "6aa589b64a266dbb8f08ddfb1a8a8d9024ce12508f69e32d5004ed2099062e0b"
     }
   ],
+  "implementation_commit": "5fe0e4fc019bb58d72b95800e3b36fe6949209ae",
   "paths_relative_to": "repository_root",
   "protocol_version": "steptrace-minimal-real-validation/1.0",
   "real_material_status": {
     "blinded_adjudicated_truth_present": false,
     "qualified_video_bundle_present": false,
-    "reason": "The cloud checkout has only the previously verified public cache; the official additional source was denied with HTTP 403 in the prior access attempt.",
+    "reason": "The cloud checkout contains only the previously verified public cache and synthetic unit fixtures; the official additional source remains unavailable after the prior HTTP 403 attempt. No synthetic fixture is counted as real evidence.",
     "score_generated": false,
     "three_real_arm_outputs_present": false
   },
   "repository": "https://github.com/mightyoung/StepTrace",
-  "research_status": "offline_intake_ready_real_execution_gated",
+  "research_status": "offline_intake_independently_reviewed_real_execution_gated",
+  "review_status": {
+    "acceptance_note": "experiments/real-validation-protocol-dev-20261011/REVIEW_ACCEPTANCE_zh.md",
+    "reviewed_code_commit": "5fe0e4fc019bb58d72b95800e3b36fe6949209ae",
+    "status": "approved_for_push"
+  },
   "schema_version": "steptrace-research-deliverable-manifest/1",
   "source_cache": {
     "cached_answers": [
@@ -79,6 +105,6 @@
   "storage_status": {
     "Mac_backup": "pending",
     "cloud_workspace": "present",
-    "note": "These hashes support a later Mac copy and verification; no Mac save is asserted."
+    "note": "Hashes support a later Mac copy and verification; no Mac save is asserted."
   }
 }
