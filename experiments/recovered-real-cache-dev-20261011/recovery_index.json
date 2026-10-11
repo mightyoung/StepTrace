@@ -1,0 +1,61 @@
+{
+  "search_scope": [
+    "Mac Documents/development/Downloads/temp directories",
+    "complete public research tree at parent SHA",
+    "bounded Library content/title queries and two full StepTrace report reads"
+  ],
+  "parent_commit": "08eed4dd68fee2dd6091ba054e653fd6479c4420",
+  "recovered_local_project": true,
+  "old_real_separation_original_packet_found": false,
+  "discovery_not_exhaustive": true,
+  "library_reports_read": [
+    "StepTrace_三条件小试_报告与逐题原文_20261010.md",
+    "StepTrace_7answer_report_zh_20261010.md"
+  ],
+  "library_full_original_JSON_recovered": false,
+  "legacy_real_reference": {
+    "frames": [
+      {
+        "frame_key": "000000",
+        "bytes": 81894,
+        "sha256": "c02792cceadd3dc04c3d1f3dd1553e51b934fe844328dceb88b590d29df772b5",
+        "registered_bytes_match": true,
+        "registered_sha_match": true,
+        "human_gt_verified": false
+      },
+      {
+        "frame_key": "000040",
+        "bytes": 126736,
+        "sha256": "62737d6a10a5b3594366bbb9f666d0fc14fb5a04ee94c5d59c4e49665f0def39",
+        "registered_bytes_match": true,
+        "registered_sha_match": true,
+        "human_gt_verified": false
+      },
+      {
+        "frame_key": "000080",
+        "bytes": 104764,
+        "sha256": "2b096aade18c3185ed1d76ee7edc345738f73ea242199018330f62307c764797",
+        "registered_bytes_match": true,
+        "registered_sha_match": true,
+        "human_gt_verified": false
+      },
+      {
+        "frame_key": "000119",
+        "bytes": 128191,
+        "sha256": "752d06c7ffdffaad3d63ad379e2e9b2d9369f924b139fe7e4c10c69dc168c3ec",
+        "registered_bytes_match": true,
+        "registered_sha_match": true,
+        "human_gt_verified": false
+      }
+    ],
+    "clip_sha256": "1d2d3fbb9c0b331dd6aa08c0688603ffe2c7197ed47d2f03b0602abcbc55fd25",
+    "clip_matches_registered_sha": true,
+    "raw_Qwen_response_files_found": 4,
+    "independent_human_truth_verified": false,
+    "full_source_video_retained": false
+  },
+  "private_original_media_uploaded": false,
+  "private_original_logs_uploaded": false,
+  "method_review_archive_contains_visual_inputs": false,
+  "still_needed": "existing IndEgo119-128s disassembly original packet containing input-frame manifest and H/F/HF first-answer JSON; accessible local path or Library filename"
+}

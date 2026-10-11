@@ -286,7 +286,7 @@ def test_shipped_knowledge_packs_are_explicitly_non_formal_and_valid():
     root = pytest.importorskip("pathlib").Path(__file__).parents[1]
     packs = sorted((root / "configs/vlm/state_risk").glob("*.yaml"))
     assert {path.name for path in packs} == {
-        "meccano-development.yaml", "software-fixture.yaml"
+        "meccano-development.yaml", "software-fixture.yaml", "gv06-reference-port.yaml"
     }
     assert {load_knowledge(path)["status"] for path in packs} == {
         "DEVELOPMENT_ONLY", "SYNTHETIC_SOFTWARE_TEST_ONLY"

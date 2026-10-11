@@ -1,0 +1,50 @@
+{
+  "parent_commit": "08eed4dd68fee2dd6091ba054e653fd6479c4420",
+  "python_version": "3.12.10",
+  "knowledge_pack_fix": "test exact YAML-name set now includes unchanged gv06-reference-port.yaml",
+  "selected_existing_pytest_passed": 62,
+  "selected_existing_pytest_exit_code": 0,
+  "previous_record_audit_unittests_passed": 10,
+  "previous_consumer_unittests_passed": 7,
+  "new_real_cache_unittests_passed": 5,
+  "new_real_cache_unittests_exit_code": 0,
+  "deterministic_results_reproduced_byte_equal": true,
+  "preexisting_failure_preserved_in_prior_commit": true,
+  "private_originals_unmodified": true,
+  "new_model_calls": 0,
+  "video_downloads": 0,
+  "training_runs": 0,
+  "physical_truth_verified": false,
+  "artifacts": [
+    {
+      "path": "experiments/recovered-real-cache-dev-20261011/README_zh.md",
+      "bytes": 5091,
+      "sha256": "086fee3750b97b9647369c27293211db47f0270284fcc41ba3eb7cf275aa6ca3"
+    },
+    {
+      "path": "experiments/recovered-real-cache-dev-20261011/check_progress_support.py",
+      "bytes": 5586,
+      "sha256": "a17c30d2b1aaa6705ad30fa485e1afdaa8e8492ae4aca2b8f4160dad47b09583"
+    },
+    {
+      "path": "experiments/recovered-real-cache-dev-20261011/recovery_index.json",
+      "bytes": 2321,
+      "sha256": "4bb596bda7dde9cfeb3d7cd553ce5c0a6939efc5cf185dd7b9d7e948de21f034"
+    },
+    {
+      "path": "experiments/recovered-real-cache-dev-20261011/results.json",
+      "bytes": 3448,
+      "sha256": "b746548fc12a1d9608636cf1e02e19806eab2f0ccb06643c24dcc14d723fd33b"
+    },
+    {
+      "path": "experiments/recovered-real-cache-dev-20261011/test_progress_support.py",
+      "bytes": 2330,
+      "sha256": "0d988beeafc68922eb7674742576a085942dd5e9484c5e17faa8ec00c9240053"
+    }
+  ],
+  "knowledge_pack_sha256": {
+    "gv06-reference-port.yaml": "770a573c0e7d56425e49752ef9e6cf24b3275bc8f79a63b3e91a88e46ffe02d8",
+    "meccano-development.yaml": "be9f9312949ca8b9fdca2bb96d434e325f95ba78ddb51d898f1cfd44777e297d",
+    "software-fixture.yaml": "2feb882f3f17ee9940eb4888323f7d9872099fd438e6e426348ae40027a5352c"
+  }
+}

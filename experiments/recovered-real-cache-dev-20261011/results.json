@@ -1,0 +1,111 @@
+{
+  "schema_version": "recovered-real-progress-record-audit/1",
+  "scope": "real_video_cached_detector_records; no new perception or independent GT",
+  "source_event_trace_sha256": "97e8f353ea53e0bb7ff4b820d9a825088547ef93d08b485151a03cf4307d535c",
+  "source_video_sha256": "8d79d430ba1f30305ba4c62e489bc50e46b6385b38c689698a256076321b5d8b",
+  "source_video_bytes": 26886373,
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 12.0,
+    "frames": 351,
+    "decode_checks": [
+      {
+        "frame": 0,
+        "decoded": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "decoded_bgr_sha256": "9e39339222c4b93fa7aedd5c820c45fe5ac2146c741da26cb3323b3c18723564"
+      },
+      {
+        "frame": 5,
+        "decoded": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "decoded_bgr_sha256": "8a58cdad7b5c36390422f031e9258722e1b9e85a592fab287f3c49f82a199cfa"
+      },
+      {
+        "frame": 6,
+        "decoded": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "decoded_bgr_sha256": "4b28606514377a316ef66792b7f07f3fcb6fb92c7a2297d2c24c7e6845045b41"
+      },
+      {
+        "frame": 175,
+        "decoded": true,
+        "shape": [
+          1080,
+          1920,
+          3
+        ],
+        "decoded_bgr_sha256": "0726475ae2b317cd62ccddadabe27f7d8a23d0fd3a56ea0490199fde558dc306"
+      }
+    ]
+  },
+  "split": "development_exposed_MECCANO_0009_tombstoned_for_formal_test",
+  "selection": "first consecutive confirmation/unknown-retained-progress pair in saved trace; retrospective",
+  "selected_real_record_pair": [
+    {
+      "frame": 5,
+      "historical_progress": "pick_components",
+      "next_expected_step": "pick_components",
+      "cached_decision": "normal",
+      "cached_confirmation": "pick_components",
+      "support_label": "current_confirmation_by_cached_detector",
+      "new_confirmation_eligible": true,
+      "scope": "cached_detector_record_only",
+      "human_gt": false,
+      "physical_completion": "unknown"
+    },
+    {
+      "frame": 6,
+      "historical_progress": "pick_components",
+      "next_expected_step": "align_components",
+      "cached_decision": "unknown",
+      "cached_confirmation": null,
+      "support_label": "historical_progress_without_new_confirmation",
+      "new_confirmation_eligible": false,
+      "scope": "cached_detector_record_only",
+      "human_gt": false,
+      "physical_completion": "unknown"
+    }
+  ],
+  "selected_source_record_canonical_sha256": [
+    "210396eead89c04ee343a02a395a68a59f409cccc3cb56f4e2cdaf75ae642cf9",
+    "a533bfe1c7f0c74beab8ddaaa4bf104620d3ba1d72fc7a4978fd786515126ff7"
+  ],
+  "lossy_control": {
+    "projection": "current_step_only",
+    "same_projected_value": "pick_components",
+    "collision": true,
+    "status": "RED_expected_collision_if_misused_as_new_confirmation"
+  },
+  "decision_counts": {
+    "unknown": 349,
+    "normal": 2
+  },
+  "support_label_counts": {
+    "no_current_confirmation": 5,
+    "current_confirmation_by_cached_detector": 2,
+    "historical_progress_without_new_confirmation": 344
+  },
+  "new_confirmation_rows": 2,
+  "production_bug_established": false,
+  "independent_human_truth_count": 0,
+  "physical_false_revocation_rate": null,
+  "recognition_accuracy": null,
+  "mechanism_gain": null,
+  "new_model_calls": 0,
+  "new_training_runs": 0,
+  "future_frames_used_for_pair_selection_only": true
+}
