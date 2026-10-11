@@ -1,0 +1,228 @@
+{
+  "schema_version": "claim-applicability-audit/1",
+  "source_commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
+  "cache_manifest_sha256": "4c7638d6dd90119915513af511f19c3b8890e32106a9b911b7a850c9bfebc38c",
+  "verified_manifest_entries": 23,
+  "labels": [
+    {
+      "packet_id": "q31",
+      "label": "direct-supported-by-record",
+      "current_visible_confirmation_eligible": true,
+      "direct_relation_by_record": "external_connection_supported",
+      "basis": "direct_current",
+      "assumptions": [],
+      "historical_connections": [
+        {
+          "connection_id": "q31_c1",
+          "host_instance_id": "table_a",
+          "part_instance_id": "leg_b",
+          "interface_id": "corner_query_1",
+          "confirmation_frame_ids": [
+            "f1743"
+          ],
+          "confirmed_at_pts": 1743,
+          "connection_level": "external_relation_only",
+          "process_capture": "missedprocess"
+        }
+      ],
+      "active_connection_ids": [
+        "q31_c1"
+      ],
+      "unobserved_intervals": [],
+      "frame_labels": [
+        {
+          "frame_id": "f1743",
+          "pts": 1743,
+          "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+          "recorded_relation": "external_connection_supported",
+          "origin": "AI_model_label",
+          "human_gt": false
+        }
+      ],
+      "origin": "AI_record_derived",
+      "human_gt": false,
+      "mechanical_firmness": "unknown",
+      "safety": "not_evaluated"
+    },
+    {
+      "packet_id": "q68",
+      "label": "conditional-history",
+      "current_visible_confirmation_eligible": false,
+      "direct_relation_by_record": "occluded_or_unknown",
+      "basis": "conditional_history",
+      "assumptions": [
+        "两帧之间仍是同一台板及目标黑腿，未发生未被提供帧显示的分离或替换。",
+        "末帧接口的投影遮挡不构成拆卸证据；在上述条件下沿用先前外部连接确认。"
+      ],
+      "historical_connections": [
+        {
+          "connection_id": "q68_c1",
+          "host_instance_id": "table_a",
+          "part_instance_id": "leg_b",
+          "interface_id": "corner_query_1",
+          "confirmation_frame_ids": [
+            "f1743"
+          ],
+          "confirmed_at_pts": 1743,
+          "connection_level": "external_relation_only",
+          "process_capture": "missedprocess"
+        }
+      ],
+      "active_connection_ids": [
+        "q68_c1"
+      ],
+      "unobserved_intervals": [
+        {
+          "after_pts": 1743,
+          "before_pts": 1746,
+          "changes_excluded": false
+        }
+      ],
+      "frame_labels": [
+        {
+          "frame_id": "f1743",
+          "pts": 1743,
+          "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+          "recorded_relation": "external_connection_supported",
+          "origin": "AI_model_label",
+          "human_gt": false
+        },
+        {
+          "frame_id": "f1746",
+          "pts": 1746,
+          "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+          "recorded_relation": "occluded_or_unknown",
+          "origin": "AI_model_label",
+          "human_gt": false
+        }
+      ],
+      "origin": "AI_record_derived",
+      "human_gt": false,
+      "mechanical_firmness": "unknown",
+      "safety": "not_evaluated"
+    },
+    {
+      "packet_id": "q92",
+      "label": "direct-supported-by-record",
+      "current_visible_confirmation_eligible": true,
+      "direct_relation_by_record": "external_connection_supported",
+      "basis": "direct_current",
+      "assumptions": [],
+      "historical_connections": [
+        {
+          "connection_id": "c1",
+          "host_instance_id": "table_a",
+          "part_instance_id": "leg_b",
+          "interface_id": "corner_query_1",
+          "confirmation_frame_ids": [
+            "f1743"
+          ],
+          "confirmed_at_pts": 1743,
+          "connection_level": "external_relation_only",
+          "process_capture": "missedprocess"
+        }
+      ],
+      "active_connection_ids": [
+        "c1"
+      ],
+      "unobserved_intervals": [
+        {
+          "after_pts": 1743,
+          "before_pts": 1746,
+          "changes_excluded": false
+        },
+        {
+          "after_pts": 1746,
+          "before_pts": 1752,
+          "changes_excluded": false
+        }
+      ],
+      "frame_labels": [
+        {
+          "frame_id": "f1743",
+          "pts": 1743,
+          "frame_sha256": "657d9679c3961f5885d8bfb2163fb9641760f6591cbb8008857647f331998a21",
+          "recorded_relation": "external_connection_supported",
+          "origin": "AI_model_label",
+          "human_gt": false
+        },
+        {
+          "frame_id": "f1746",
+          "pts": 1746,
+          "frame_sha256": "04d391e7b1e97e17c9c1b64b3f8595ae210dbc098f5e6814e1e484169091c649",
+          "recorded_relation": "occluded_or_unknown",
+          "origin": "AI_model_label",
+          "human_gt": false
+        },
+        {
+          "frame_id": "f1752",
+          "pts": 1752,
+          "frame_sha256": "9e6f3fc5c79dd96f30ab76e52e65017088472dd1d2c27a9aaf37d511c66a4f9d",
+          "recorded_relation": "external_connection_supported",
+          "origin": "AI_model_label",
+          "human_gt": false
+        }
+      ],
+      "origin": "AI_record_derived",
+      "human_gt": false,
+      "mechanical_firmness": "unknown",
+      "safety": "not_evaluated"
+    }
+  ],
+  "negative_control": {
+    "status": "RED_expected_projection_collision",
+    "q31": {
+      "relation_state": "external_connection_supported",
+      "active": true
+    },
+    "q68": {
+      "relation_state": "external_connection_supported",
+      "active": true
+    },
+    "collision": true,
+    "interpretation": "lossy projection cannot supervise current visible confirmation; no production bug established"
+  },
+  "synthetic_negatives": [
+    {
+      "case": "conditions_removed_and_current_claim",
+      "kind": "synthetic_code_negative",
+      "guard_status": "PASS_rejected",
+      "reason": "direct_claim_not_supported"
+    },
+    {
+      "case": "future_backfill_into_f1746",
+      "kind": "synthetic_code_negative",
+      "guard_status": "PASS_rejected",
+      "reason": "frozen_frame_label_changed"
+    },
+    {
+      "case": "unseen_changes_excluded",
+      "kind": "synthetic_code_negative",
+      "guard_status": "PASS_rejected",
+      "reason": "unobserved_change_exclusion_not_supported"
+    },
+    {
+      "case": "model_copy_claimed_human_gt",
+      "kind": "synthetic_code_negative",
+      "guard_status": "PASS_rejected",
+      "reason": "provenance_upgrade"
+    },
+    {
+      "case": "model_copy_claimed_independent_ground_truth",
+      "kind": "synthetic_code_negative",
+      "guard_status": "PASS_rejected",
+      "reason": "provenance_upgrade"
+    }
+  ],
+  "source_events": 1,
+  "prefixes": 3,
+  "unique_frames": 3,
+  "repeated_observation_rows": 6,
+  "physical_held_negative_count": 0,
+  "physical_false_revocation_rate": null,
+  "mechanism_gain": null,
+  "new_model_calls": 0,
+  "new_visual_samples": 0,
+  "cross_round_memory_experiment": false,
+  "pixel_truth_verified": false
+}

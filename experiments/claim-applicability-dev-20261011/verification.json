@@ -1,0 +1,56 @@
+{
+  "source_commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
+  "source_tree_sha": "9d31d9819622a6ff2373b6f6d971087466a95937",
+  "environment": "macOS; local old snapshot plus connector-restored public text",
+  "python_version": "3.12.10",
+  "baseline_blob_files_verified": 346,
+  "source_tree_listing_truncated": false,
+  "project_AGENTS_handoff_brief_or_agents_skill_files_in_tree": [],
+  "commands": [
+    "python3 -B -m unittest -v test_audit.py",
+    "python3 -B audit.py --output results.json"
+  ],
+  "tests_count": 10,
+  "tests_exit_code": 0,
+  "audit_exit_code": 0,
+  "subject_model_calls": 0,
+  "source_media_downloads": 0,
+  "production_bridge_found": false,
+  "production_files_verified": {
+    "src/display_project/vlm_sop/state_risk_contract.py": "46d68829c669b6e3277ab8a4d16311eb52703ece",
+    "src/display_project/metrics/state_risk.py": "71d9a73bbd92850b1307bb1e3a029b341e27115e"
+  },
+  "limitations": [
+    "Git clone/fetch remote failed due unavailable proxy and DNS; authorized GitHub connector used",
+    "Old true-separation original input/answer absent; descriptive summary insufficient to reconstruct control",
+    "Adapter relies on separately hash-checked frozen AI labels; no human GT or pixel authentication"
+  ],
+  "artifacts": [
+    {
+      "path": "README_zh.md",
+      "bytes": 4659,
+      "sha256": "6a6cc7230da6d45363b401a7c32f4dfd138e466b8c80a814b5c2bd58ebb85685"
+    },
+    {
+      "path": "audit.py",
+      "bytes": 9152,
+      "sha256": "085e2563f0237bc530887e709bde6a210545d41cb773067320dff6850e51d8d2"
+    },
+    {
+      "path": "results.json",
+      "bytes": 7181,
+      "sha256": "d29416cdf2987027d95e5fff483c09385a47448767032ba3df78591c7b00ab44"
+    },
+    {
+      "path": "test_audit.py",
+      "bytes": 4202,
+      "sha256": "5902c8ef9f04be42154ef1cbb3bb34451cfed9086c36766946b5a4c94d590cde"
+    }
+  ],
+  "audit_output_reproduced_byte_equal": true,
+  "retained_failed_check": {
+    "action": "editing historical handoff index before recheck",
+    "outcome": "cache_integrity:docs/research-handoff/README.md; 0 tests executed; audit rejected",
+    "resolution": "original index restored byte-for-byte; new progress stored separately; all ten tests and deterministic reproduction then pass"
+  }
+}
