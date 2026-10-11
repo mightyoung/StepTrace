@@ -23,9 +23,9 @@
       "sha256": "6f96339d47f1b909f5fe26595bf0c52263e8246a1890affdb5bb58851b063792"
     },
     {
-      "bytes": 2652,
+      "bytes": 6175,
       "path": "experiments/real-validation-protocol-dev-20261011/REVIEW_FOLLOWUP_525a76c_zh.md",
-      "sha256": "a541ab442c0d0f73d9a254ecdcc639041a3d53afd990c43574a52a312cfa8333"
+      "sha256": "b893c8971766b82c291cf0c11583067dc2a72abea0d2f8518bbf4ddbab5627d1"
     },
     {
       "bytes": 7604,
@@ -43,9 +43,9 @@
       "sha256": "b6037817fd80af48091a615477c735eb427d9591238ccb25e7f703073ccf3ebb"
     },
     {
-      "bytes": 3079,
+      "bytes": 6362,
       "path": "experiments/real-validation-protocol-dev-20261011/review-followup-after.json",
-      "sha256": "7efd49288716b2d05132de844d37329019097cae9cac14d20edcf2196cd436ca"
+      "sha256": "1d395da53293d8365c83d81c6ce7087f71491160113351bd8e73714aa37267d1"
     },
     {
       "bytes": 1648,
@@ -63,9 +63,9 @@
       "sha256": "b4d21d766f5391d0eda0757d7b735fe62a650f7a6313fcd319dcf4942b0bf9a2"
     },
     {
-      "bytes": 5352,
+      "bytes": 8766,
       "path": "experiments/real-validation-protocol-dev-20261011/verification.json",
-      "sha256": "c5183fffbf42438d08a4a7bb064f8e0fb1356cf36fdf16cd32caf0172a47589f"
+      "sha256": "7f86d164e8c6877529089aacb34dd9da3ee844d8662fbb4505c0909a3528f8cc"
     },
     {
       "bytes": 13108,
@@ -130,6 +130,14 @@
     "validator_tests_passed": 30,
     "process_visible_state_tests_passed": 6,
     "real_evaluation": "not_run",
-    "mac_backup": "pending"
+    "mac_backup": "pending",
+    "fixed_commit_reverification": "experiments/real-validation-protocol-dev-20261011/review-followup-after.json",
+    "material_state": "waiting_for_qualified_materials"
+  },
+  "root_independent_reverification": {
+    "reviewed_commit": "841f571b169182ca1791b582cb6320f32cb93105",
+    "status": "ST3_ST4_CLOSED_C0_I0",
+    "real_video_experiment": "not_run",
+    "next_action": "wait for the existing IndEgo original packet and qualified real-evaluation materials"
   }
 }

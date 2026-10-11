@@ -114,6 +114,67 @@
     "training_runs": 0,
     "media_downloads": 0,
     "dependencies_installed": 0,
-    "implementation_commit": "7815091afff73330ce67ba820ee8a25aa1f9a41c"
+    "implementation_commit": "7815091afff73330ce67ba820ee8a25aa1f9a41c",
+    "fixed_commit_independent_reverification": {
+      "reviewed_commit": "841f571b169182ca1791b582cb6320f32cb93105",
+      "reviewer": "root_independent_verifier",
+      "classification": "C0/I0",
+      "status": "ST3_ST4_CLOSED",
+      "validator_tests": "30/30 focused tests passed",
+      "st3": {
+        "legal_input_schema": "steptrace-real-validation-input/1.1",
+        "legal_sop_schema": "steptrace-sop-evidence-rules/1.1",
+        "empty_rules_with_recomputed_and_synchronized_sha": "BLOCKED_FOR_TRUTH_RULE_ASSOCIATION",
+        "delete_adjudication_binding": "BLOCKED",
+        "delete_full_video_binding": "BLOCKED",
+        "blank_criterion": "BLOCKED",
+        "not_rejected_by_old_schema_version": true
+      },
+      "st4": {
+        "valid_rule_id_retained": true,
+        "step_evidence_basis": "conditional_history",
+        "step_completion": "complete",
+        "status": "SCORED",
+        "synthetic_fcr": 1.0,
+        "synthetic_coverage": 0.5,
+        "rule_basis_violation_n": 1
+      },
+      "unknown_rule_id": "continues to block as intake integrity error; this does not claim every invalid rule output is scoreable",
+      "frozen_protocol_sha256": "0a162602082796627838dc9e6463300196b72925db09311dd6201355bd573562",
+      "real_video_experiment": "NOT_RUN"
+    },
+    "real_material_state": {
+      "private_archive_needed": "IndEgo disassembly window 119-128s: original frame manifest and matching H/F/HF raw first-answer JSON, with prompt/frame mapping and source identity if available",
+      "public_source_identity": {
+        "source_id": "INDEGO_232cf338",
+        "path": "1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+        "bytes": 13326100,
+        "sha256": "3552fbc900518a3499191be00e9897957dee562d9bdc59a23ec0c8b1d499c490",
+        "fps": "10/1",
+        "time_base": "1/10240",
+        "availability_in_cloud": "not_asserted"
+      },
+      "qualifying_real_evaluation_also_needs": [
+        "authorized source video and frame manifest with frame hashes, timestamps, and provenance",
+        "independent blinded truth and adjudication tied to frozen SOP criteria for real occlusion-hold, removal, and identity-change cases",
+        "three arm outputs on matching cutoffs under one frozen run contract"
+      ],
+      "insufficient_substitutes": [
+        "q31/q68/q92 are related prefixes from one development event",
+        "G-V0-6 has AI-reviewed labels and no full source video; it is not independent human ground truth",
+        "MECCANO-0009 remains development and a formal test tombstone"
+      ],
+      "state": "WAITING_FOR_QUALIFIED_MATERIALS"
+    },
+    "recovery_commands": {
+      "verify_existing_local_indego_source_without_downloading": [
+        "shasum -a 256 \"$INDEGO_MP4\"",
+        "stat -f '%z %N' \"$INDEGO_MP4\""
+      ],
+      "existing_public_cache_replay": "cd experiments/recovered-real-cache-dev-20261011 && python3 -B check_progress_support.py --events \"$EVENTS_PATH\" --video \"$VIDEO_PATH\" --output results.json",
+      "existing_offline_validator_when_full_1_1_bundle_exists": "python3 -B experiments/real-validation-protocol-dev-20261011/validate_bundle.py --bundle \"$BUNDLE_1_1\" --root \"$ASSET_ROOT\" --output \"$SCORE_PATH\"",
+      "executed": false,
+      "reason_not_executed": "The original IndEgo archive and a qualified real evaluation bundle are not present in this cloud checkout."
+    }
   }
 }
