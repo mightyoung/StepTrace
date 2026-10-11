@@ -1,0 +1,59 @@
+{
+  "attempt_id": "indego-232cf338-download-20261011",
+  "task_owner": "Codex",
+  "purpose": "One bounded attempt to retrieve the official IndEgo source video for the frozen 119-128 second window.",
+  "started_utc": "2026-10-11T12:57:02+00:00",
+  "finished_utc": "2026-10-11T12:57:02+00:00",
+  "attempt_count": 1,
+  "source": {
+    "dataset": "FraunhoferIPK/IndEgo",
+    "dataset_page": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo",
+    "official_index_page": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/tree/main/1_Disassembly/mp4_480",
+    "official_commit_page": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/commit/058ec4a00bc71a1f4ceec8333a175f69d269e28a",
+    "revision": "058ec4a00bc71a1f4ceec8333a175f69d269e28a",
+    "artifact_path": "1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+    "source_id": "INDEGO_232cf338",
+    "license_label": "CC BY 4.0",
+    "lfs_sha256": "3552fbc900518a3499191be00e9897957dee562d9bdc59a23ec0c8b1d499c490",
+    "expected_bytes": 13326100,
+    "expected_fps": "10/1",
+    "expected_time_base": "1/10240",
+    "local_manifest_url": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/resolve/main/1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+    "request_url": "https://huggingface.co/datasets/FraunhoferIPK/IndEgo/resolve/058ec4a00bc71a1f4ceec8333a175f69d269e28a/1_Disassembly/mp4_480/232cf338-98a7-4cdc-8683-417c0e2adf7a_480.mp4",
+    "version_note": "The mutable main URL was replaced for this attempt with the immutable official commit that records the exact file path, LFS SHA-256, and byte size. The official dataset page also warns that paths and folder names are being reorganized."
+  },
+  "transfer": {
+    "method": "GET",
+    "origin_http_status": null,
+    "transport_result": "blocked_before_origin_response",
+    "proxy_connect_status": 403,
+    "error": "Tunnel connection failed: 403 Forbidden",
+    "redirect_count": 0,
+    "response_body_bytes_read": 0,
+    "asset_bytes_received": 0,
+    "partial_file_bytes": 0,
+    "retries": 0,
+    "authentication_used": false,
+    "alternate_host_or_mirror_used": false,
+    "asset_saved": false,
+    "asset_path": null
+  },
+  "experiment": {
+    "window_seconds": [119.0, 128.0],
+    "frames_extracted": false,
+    "media_attributes_verified": false,
+    "original_frame_mapping_recovered": false,
+    "original_h_f_hf_answers_recovered": false,
+    "experiment_run": false,
+    "reason": "The single request was denied by the cloud egress CONNECT tunnel before an HTTP response from the official source. Per the bounded-attempt instruction, no retry or alternate access path was used."
+  },
+  "remaining_requirements": [
+    "A legally obtained copy of the exact UUID-named source video must be supplied through an accessible user-side path before media verification and frame extraction can continue.",
+    "The original 119-128 second frame manifest and matching H/F/HF first-answer JSON remain missing; newly extracted frames would not recover those original records."
+  ],
+  "evidence_limits": [
+    "The official listing and commit metadata establish the intended artifact identity and expected digest/size, but no media bytes were obtained or verified in this attempt.",
+    "No frames, labels, human ground truth, model outputs, or experiment results were created.",
+    "The approximately 86 MB video mentioned as a possible confound was not requested; this receipt targets only the UUID-named 13,326,100-byte file."
+  ]
+}
