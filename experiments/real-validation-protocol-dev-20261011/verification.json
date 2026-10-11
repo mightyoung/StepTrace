@@ -74,5 +74,45 @@
     "after": "experiments/real-validation-protocol-dev-20261011/review-reproduction-after.json",
     "baseline": "experiments/real-validation-protocol-dev-20261011/review-baseline-7f919e5.json",
     "classification": "synthetic contract counterexamples only"
+  },
+  "followup": {
+    "baseline_commit": "525a76cf33ca8b1626949a2c2c719cbe870af89d",
+    "classification": "synthetic_contract_fixture_only",
+    "findings": [
+      "conditional_history complete is scored as a model error and remains visible to FCR",
+      "complete/incomplete reference truth must bind to a frozen SOP criterion before entering denominators",
+      "valid rule basis mismatches are diagnosed but do not block scoring"
+    ],
+    "after_record": "experiments/real-validation-protocol-dev-20261011/review-followup-after.json",
+    "baseline_record": "experiments/real-validation-protocol-dev-20261011/review-followup-baseline-525a76c.json",
+    "validator_unittests_passed": 30,
+    "process_visible_state_unittests_passed": 6,
+    "schema_versions": {
+      "input": "steptrace-real-validation-input/1.1",
+      "sop": "steptrace-sop-evidence-rules/1.1",
+      "score": "steptrace-real-validation-score/1.1"
+    },
+    "py_compile": "PASS",
+    "git_diff_check": "PASS",
+    "cache_comparison_html_sha256": "f693ba7a17e545cf9cf5e2ece4055befcb43656f74cfa284f93746dc5f4d0428",
+    "pytest": "UNAVAILABLE_NOT_INSTALLED_NO_INSTALL_ATTEMPTED",
+    "independent_review": {
+      "status": "APPROVED_FOR_PUSH",
+      "scope": "read-only review of full follow-up diff, schema versions, tests, and synthetic-result boundaries",
+      "reviewer_recommendation": "No blockers; approve for push",
+      "independent_validator_tests_passed": 30,
+      "reviewer_made_edits": false,
+      "reviewer_pushed": false,
+      "prior_review": {
+        "status": "APPROVED_FOR_PUSH",
+        "reviewer_recommendation": "No blockers; approve for push",
+        "independent_validator_tests_passed": 29
+      }
+    },
+    "real_evaluation": "NOT_RUN",
+    "model_calls": 0,
+    "training_runs": 0,
+    "media_downloads": 0,
+    "dependencies_installed": 0
   }
 }

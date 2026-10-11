@@ -1,0 +1,82 @@
+{
+  "schema_version": "steptrace-review-followup-after/1",
+  "classification": "SYNTHETIC_CONTRACT_FIXTURE_ONLY",
+  "baseline_commit": "525a76cf33ca8b1626949a2c2c719cbe870af89d",
+  "schema_versions": {
+    "input": "steptrace-real-validation-input/1.1",
+    "sop": "steptrace-sop-evidence-rules/1.1",
+    "score": "steptrace-real-validation-score/1.1"
+  },
+  "reproductions": [
+    {
+      "finding": "ST4_conditional_history_complete_is_blocked_as_input_error",
+      "after_status": "SCORED_AS_MODEL_ERROR",
+      "full_frame_batch_metrics": {
+        "incomplete_truth_n": 1,
+        "false_complete": 1,
+        "fcr": 1.0,
+        "coverage": 0.5,
+        "rule_basis_violation_n": 1
+      }
+    },
+    {
+      "finding": "ST3_unqualified_truth_enters_denominator_without_sop_rule",
+      "after_status": "BLOCKED_UNQUALIFIED_REFERENCE_TRUTH",
+      "reason": "full_video step_reference_rule_id references unknown SOP rule synthetic-step-rule-1; truth cannot be included without a frozen step criterion."
+    },
+    {
+      "finding": "definitive_output_uses_basis_not_allowed_by_valid_rule",
+      "after_status": "SCORED_AS_MODEL_ERROR",
+      "per_arm_metrics": {
+        "incomplete_truth_n": 1,
+        "false_complete": 1,
+        "fcr": 1.0,
+        "coverage": 0.5,
+        "rule_basis_violation_n": 1
+      }
+    }
+  ],
+  "verification": {
+    "validator_unittests": {
+      "command": "python -B -m unittest -v tests.test_steptrace_real_validation_bundle tests.test_steptrace_independent_review_regressions",
+      "status": "PASS",
+      "tests_passed": 30
+    },
+    "process_visible_state_unittests": {
+      "command": "python -B -m unittest -v test_process_visible_state.py",
+      "status": "PASS",
+      "tests_passed": 6
+    },
+    "py_compile": "PASS",
+    "git_diff_check": "PASS",
+    "cache_comparison_renderer": {
+      "status": "PASS",
+      "sha256": "f693ba7a17e545cf9cf5e2ece4055befcb43656f74cfa284f93746dc5f4d0428"
+    },
+    "pytest": {
+      "status": "UNAVAILABLE",
+      "reason": "pytest is not installed in the selected environment; no package was installed"
+    }
+  },
+  "independent_review": {
+    "status": "APPROVED_FOR_PUSH",
+    "scope": "read-only review of complete follow-up diff, schema version changes, tests, and synthetic-result boundaries",
+    "reviewer_recommendation": "No blockers; approve for push",
+    "independent_validator_tests_passed": 30,
+    "reviewer_made_edits": false,
+    "reviewer_pushed": false,
+    "prior_review": {
+      "status": "APPROVED_FOR_PUSH",
+      "reviewer_recommendation": "No blockers; approve for push",
+      "independent_validator_tests_passed": 29
+    }
+  },
+  "real_evaluation": {
+    "status": "NOT_RUN",
+    "model_calls": 0,
+    "training_runs": 0,
+    "media_downloads": 0,
+    "dependencies_installed": 0
+  },
+  "evidence_note": "These reproductions use temporary synthetic contract fixtures. They are not videos, model results, real samples, or experiment outcomes. No real-evaluation result is inferred."
+}

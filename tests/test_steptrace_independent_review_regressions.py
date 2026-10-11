@@ -17,6 +17,7 @@ from tests.test_steptrace_real_validation_bundle import (
     _api,
     _build_bundle,
     _frame_pixels,
+    _json_bytes,
     _png_bytes,
     _write,
 )
@@ -116,6 +117,37 @@ class IndependentReviewRegressionTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "SOP artifact hash"):
                 api.validate_and_score(bundle, root=root)
 
+    def test_step_truth_cannot_use_a_missing_sop_rule_as_a_denominator(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            api = _api()
+            bundle = _build_bundle(root)
+            sop = {
+                "schema_version": "steptrace-sop-evidence-rules/1.1",
+                "steps": [{"step_id": "synthetic-step-1", "rules": []}],
+            }
+            sop_artifact = _write(root, "rules/no-step-criteria.json", _json_bytes(sop))
+            bundle["sop_artifact"] = sop_artifact
+            bundle["shared_run_contract"]["sop_sha256"] = sop_artifact["sha256"]
+            for arm in bundle["arms"]:
+                arm["run_contract"]["sop_sha256"] = sop_artifact["sha256"]
+                for output in arm["outputs"]:
+                    output.update(
+                        step_completion="unknown",
+                        step_evidence_basis="insufficient_evidence",
+                        step_evidence_rule_id=None,
+                        step_evidence_frame_ids=[],
+                        process_evidence_frame_ids=[],
+                    )
+                    _write_parsed_response(
+                        root,
+                        output,
+                        f"outputs/{arm['method_id']}-{output['opportunity_id']}.json",
+                    )
+
+            with self.assertRaisesRegex(ValueError, "SOP.*rule|rule.*step_reference|step_reference.*rule"):
+                api.validate_and_score(bundle, root=root)
+
     def test_conditional_history_complete_is_scored_as_false_complete(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -123,8 +155,6 @@ class IndependentReviewRegressionTests(unittest.TestCase):
             bundle = _build_bundle(root)
             output = bundle["arms"][0]["outputs"][0]
             output["step_evidence_basis"] = "conditional_history"
-            output["step_evidence_rule_id"] = None
-            output["step_evidence_frame_ids"] = []
             _write_parsed_response(root, output)
 
             result = api.validate_and_score(bundle, root=root)
@@ -134,6 +164,28 @@ class IndependentReviewRegressionTests(unittest.TestCase):
         self.assertEqual(metrics["incomplete_truth_n"], 1)
         self.assertEqual(metrics["fcr"], 1.0)
         self.assertEqual(metrics["coverage"], 0.5)
+        self.assertEqual(metrics["rule_basis_violation_n"], 1)
+
+    def test_disallowed_rule_basis_is_reported_without_blocking_scoring(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            api = _api()
+            bundle = _build_bundle(root)
+            sop = json.loads((root / bundle["sop_artifact"]["path"]).read_text())
+            sop["steps"][0]["rules"][0]["allowed_evidence_bases"] = ["process_observed"]
+            sop_artifact = _write(root, "rules/process-only.json", _json_bytes(sop))
+            bundle["sop_artifact"] = sop_artifact
+            bundle["shared_run_contract"]["sop_sha256"] = sop_artifact["sha256"]
+            for arm in bundle["arms"]:
+                arm["run_contract"]["sop_sha256"] = sop_artifact["sha256"]
+
+            result = api.validate_and_score(bundle, root=root)
+
+        for metrics in result["arms"].values():
+            self.assertEqual(metrics["false_complete"], 1)
+            self.assertEqual(metrics["fcr"], 1.0)
+            self.assertEqual(metrics["coverage"], 0.5)
+            self.assertEqual(metrics["rule_basis_violation_n"], 1)
 
     def test_malformed_response_is_normalized_to_abstention(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -230,7 +282,18 @@ class IndependentReviewRegressionTests(unittest.TestCase):
                 json.loads(line)
                 for line in (root / source["frame_manifest"]["path"]).read_text().splitlines()
             ]
-            references = api._validate_review(opportunity, frame_rows)
+            references = api._validate_review(
+                opportunity,
+                frame_rows,
+                {
+                    "synthetic-step-rule-1": {
+                        "criterion": "Synthetic unit-test criterion; not a real SOP step.",
+                        "allowed_evidence_bases": frozenset(
+                            {"process_observed", "sop_rule_supported"}
+                        ),
+                    }
+                },
+            )
             future_id = frame_rows[-1]["frame_id"]
             self.assertIn(future_id, references["event_truth_support_frame_ids"])
             self.assertIn(future_id, references["step_reference_support_frame_ids"])

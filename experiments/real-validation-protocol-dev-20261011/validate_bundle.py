@@ -18,7 +18,9 @@ import sys
 from typing import Any, Mapping, Sequence
 
 
-SCHEMA_VERSION = "steptrace-real-validation-input/1.0"
+SCHEMA_VERSION = "steptrace-real-validation-input/1.1"
+SOP_SCHEMA_VERSION = "steptrace-sop-evidence-rules/1.1"
+SCORE_SCHEMA_VERSION = "steptrace-real-validation-score/1.1"
 SCOPE = "DEVELOPMENT_ONLY_REAL_VALIDATION"
 ARM_SPECS = {
     "full_frame_batch": ("full_frame", "batch", "per_opportunity"),
@@ -116,30 +118,30 @@ def _load_sop_rules(
     root: Path,
     sop_artifact: Any,
     shared_contract: Any,
-    opportunities: Mapping[str, Mapping[str, Any]],
-) -> dict[str, dict[str, frozenset[str]]]:
+) -> dict[str, dict[str, dict[str, Any]]]:
     _need(isinstance(shared_contract, Mapping), "shared_run_contract is required")
     expected_digest = _sha(shared_contract.get("sop_sha256"), "shared_run_contract.sop_sha256")
     sop, digest = _read_json_artifact(root, sop_artifact, "sop_artifact")
     _need(digest == expected_digest, "SOP artifact hash differs from shared_run_contract.sop_sha256")
     _need(
-        sop.get("schema_version") == "steptrace-sop-evidence-rules/1.0",
-        "SOP artifact schema_version must be steptrace-sop-evidence-rules/1.0",
+        sop.get("schema_version") == SOP_SCHEMA_VERSION,
+        f"SOP artifact schema_version must be {SOP_SCHEMA_VERSION}",
     )
     steps = sop.get("steps")
     _need(isinstance(steps, list) and bool(steps), "SOP artifact must contain a non-empty steps list")
-    indexed: dict[str, dict[str, frozenset[str]]] = {}
+    indexed: dict[str, dict[str, dict[str, Any]]] = {}
     for step_index, step in enumerate(steps):
         _need(isinstance(step, Mapping), f"SOP steps[{step_index}] must be an object")
         step_id = _text(step.get("step_id"), f"SOP steps[{step_index}].step_id")
         _need(step_id not in indexed, f"duplicate SOP step_id: {step_id}")
         rules = step.get("rules")
         _need(isinstance(rules, list), f"SOP step {step_id} rules must be a list")
-        rules_by_id: dict[str, frozenset[str]] = {}
+        rules_by_id: dict[str, dict[str, Any]] = {}
         for rule_index, rule in enumerate(rules):
             _need(isinstance(rule, Mapping), f"SOP step {step_id} rules[{rule_index}] must be an object")
             rule_id = _text(rule.get("rule_id"), f"SOP step {step_id} rule_id")
             _need(rule_id not in rules_by_id, f"duplicate SOP rule_id {rule_id} under step {step_id}")
+            criterion = _text(rule.get("criterion"), f"SOP step {step_id} rule {rule_id} criterion")
             bases = rule.get("allowed_evidence_bases")
             _need(isinstance(bases, list) and bool(bases), f"SOP rule {rule_id} must list allowed evidence bases")
             normalized_bases = frozenset(
@@ -147,13 +149,34 @@ def _load_sop_rules(
                 for base in bases
             )
             _need(len(normalized_bases) == len(bases), f"SOP rule {rule_id} repeats an evidence basis")
-            rules_by_id[rule_id] = normalized_bases
+            rules_by_id[rule_id] = {
+                "criterion": criterion,
+                "allowed_evidence_bases": normalized_bases,
+            }
         indexed[step_id] = rules_by_id
-
-    for op_id, opportunity in opportunities.items():
-        step_id = _text(opportunity.get("sop_step_id"), f"{op_id}.sop_step_id")
-        _need(step_id in indexed, f"{op_id} references unknown SOP step {step_id}")
     return indexed
+
+
+def _truth_rule_id(
+    step_reference: str,
+    rule_id: Any,
+    step_rules: Mapping[str, Mapping[str, Any]],
+    field: str,
+) -> str | None:
+    if step_reference == "unknown":
+        if rule_id is None:
+            return None
+        normalized_id = _text(rule_id, field)
+        _need(normalized_id in step_rules, f"{field} references unknown SOP rule {normalized_id}")
+        return normalized_id
+
+    normalized_id = _text(rule_id, f"{field} is required for complete/incomplete truth")
+    _need(
+        normalized_id in step_rules,
+        f"{field} references unknown SOP rule {normalized_id}; truth cannot be included without a frozen step criterion",
+    )
+    _text(step_rules[normalized_id].get("criterion"), f"{field} SOP criterion")
+    return normalized_id
 
 
 def _validate_response_artifact(
@@ -455,7 +478,11 @@ def _checked_frame_refs(value: Any, field: str, allowed_ids: set[str]) -> list[s
     return result
 
 
-def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+def _validate_review(
+    opportunity: Mapping[str, Any],
+    manifest: Sequence[Mapping[str, Any]],
+    step_rules: Mapping[str, Mapping[str, Any]],
+) -> dict[str, Any]:
     review = opportunity.get("blind_review")
     _need(isinstance(review, Mapping), "blind_review is required for every opportunity")
     frames_by_id = {str(row["frame_id"]): row for row in manifest}
@@ -490,7 +517,13 @@ def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[
                 _enum(row.get("identity_status"), IDENTITIES, f"{role}.identity_status")
                 _enum(row.get("interface_visibility"), VISIBILITY, f"{role}.interface_visibility")
             else:
-                _enum(row.get("step_reference"), STEP_LABELS, f"{role}.step_reference")
+                step_reference = _enum(row.get("step_reference"), STEP_LABELS, f"{role}.step_reference")
+                _truth_rule_id(
+                    step_reference,
+                    row.get("step_reference_rule_id"),
+                    step_rules,
+                    f"{role} step_reference_rule_id",
+                )
                 _enum(row.get("challenge_type"), REQUIRED_STRATA | {"other"}, f"{role}.challenge_type")
                 _enum(row.get("event_truth"), EVENT_TRUTHS, f"{role}.event_truth")
                 _need(isinstance(row.get("process_observed"), bool), f"{role}.process_observed must be explicitly labeled")
@@ -508,6 +541,12 @@ def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[
     visibility = _enum(labels.get("interface_visibility"), VISIBILITY, "adjudicated interface_visibility")
     _need(isinstance(labels.get("process_observed"), bool), "adjudicated process_observed must be explicitly labeled")
     step = _enum(labels.get("step_reference"), STEP_LABELS, "adjudicated step_reference")
+    step_rule_id = _truth_rule_id(
+        step,
+        labels.get("step_reference_rule_id"),
+        step_rules,
+        "adjudicated step_reference_rule_id",
+    )
     challenge = _enum(labels.get("challenge_type"), REQUIRED_STRATA | {"other"}, "adjudicated challenge_type")
     event_truth = _enum(labels.get("event_truth"), EVENT_TRUTHS, "adjudicated event_truth")
     current_support = _checked_frame_refs(
@@ -550,6 +589,7 @@ def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[
         "interface_visibility": visibility,
         "process_observed": labels["process_observed"],
         "step_reference": step,
+        "step_reference_rule_id": step_rule_id,
         "challenge_type": challenge,
         "event_truth": event_truth,
         "current_state_support_frame_ids": current_support,
@@ -563,6 +603,7 @@ def _validate_opportunities(
     value: Any,
     source_events: Mapping[str, Mapping[str, Any]],
     frame_manifests: Mapping[str, Sequence[Mapping[str, Any]]],
+    sop_rules: Mapping[str, Mapping[str, Mapping[str, Any]]],
 ) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
     _need(isinstance(value, list) and bool(value), "opportunities must be a non-empty list")
     opportunities: dict[str, dict[str, Any]] = {}
@@ -582,7 +623,8 @@ def _validate_opportunities(
         _need(isinstance(target, Mapping), f"{op_id}.target must be an object")
         for key in ("host", "part", "interface"):
             _text(target.get(key), f"{op_id}.target.{key}")
-        _text(opportunity.get("sop_step_id"), f"{op_id}.sop_step_id")
+        sop_step_id = _text(opportunity.get("sop_step_id"), f"{op_id}.sop_step_id")
+        _need(sop_step_id in sop_rules, f"{op_id} references unknown SOP step {sop_step_id}")
         cutoff = opportunity.get("cutoff")
         _need(isinstance(cutoff, Mapping), f"{op_id}.cutoff must be an object")
         cutoff_pts = _integer(cutoff.get("pts"), f"{op_id}.cutoff.pts")
@@ -614,7 +656,7 @@ def _validate_opportunities(
             )
         _need(actual_prefix == expected_prefix, f"{op_id} prefix does not exactly match all source frames through cutoff")
         challenge = _enum(opportunity.get("challenge_type"), REQUIRED_STRATA | {"other"}, f"{op_id}.challenge_type")
-        reference = _validate_review(opportunity, source_rows)
+        reference = _validate_review(opportunity, source_rows, sop_rules[sop_step_id])
         _need(challenge == reference["challenge_type"], f"{op_id} challenge type differs from adjudicated truth")
         if source["split"] == "validation":
             validation_strata.add(challenge)
@@ -622,6 +664,7 @@ def _validate_opportunities(
             **opportunity,
             "source_event_id": event_id,
             "source_group_id": group_id,
+            "sop_step_id": sop_step_id,
             "cutoff": {"pts": cutoff_pts, "time_base": cutoff["time_base"]},
             "prefix_frames": actual_prefix,
             "challenge_type": challenge,
@@ -749,7 +792,7 @@ def _validate_arms(
     opportunities: Mapping[str, Mapping[str, Any]],
     shared_contract: Any,
     frame_manifests: Mapping[str, Sequence[Mapping[str, Any]]],
-    sop_rules: Mapping[str, Mapping[str, frozenset[str]]],
+    sop_rules: Mapping[str, Mapping[str, Mapping[str, Any]]],
 ) -> dict[str, dict[str, dict[str, Any]]]:
     _need(isinstance(shared_contract, Mapping), "shared_run_contract is required")
     required_contract_keys = {
@@ -883,16 +926,14 @@ def _validate_arms(
             step_id = opportunity["sop_step_id"]
             _need(step_id in sop_rules, f"{method_id}/{op_id} references unknown SOP step {step_id}")
             rules_for_step = sop_rules[step_id]
+            step_rule_basis_valid = None
             if step_rule_id is not None:
                 step_rule_id = _text(step_rule_id, f"{method_id}/{op_id}.step_evidence_rule_id")
                 _need(
                     step_rule_id in rules_for_step,
                     f"{method_id}/{op_id} cites unknown SOP rule {step_rule_id} for step {step_id}",
                 )
-                _need(
-                    step_basis in rules_for_step[step_rule_id],
-                    f"{method_id}/{op_id} SOP rule {step_rule_id} does not allow evidence basis {step_basis}",
-                )
+                step_rule_basis_valid = step_basis in rules_for_step[step_rule_id]["allowed_evidence_bases"]
             if step in {"complete", "incomplete"}:
                 if step_basis == "process_observed":
                     _need(bool(step_refs), f"{method_id}/{op_id} definitive step output requires evidence references")
@@ -909,6 +950,7 @@ def _validate_arms(
                     f"{method_id}/{op_id} unknown step completion must be marked insufficient_evidence",
                 )
             row["step_completion"] = step
+            row["step_rule_basis_valid"] = step_rule_basis_valid
         if method_id == "temporal_memory":
             _validate_temporal_runs(arm, by_id, opportunities)
         validated[method_id] = by_id
@@ -929,6 +971,11 @@ def _metric_rows(
     incomplete_ids = [op_id for op_id in selected_ids if references[op_id]["step_reference"] == "incomplete"]
     false_complete = sum(predictions[op_id]["step_completion"] == "complete" for op_id in incomplete_ids)
     decisive = sum(predictions[op_id]["step_completion"] in {"complete", "incomplete"} for op_id in known_ids)
+    rule_basis_violation_n = sum(
+        predictions[op_id].get("step_rule_basis_valid") is False
+        and predictions[op_id]["step_completion"] in {"complete", "incomplete"}
+        for op_id in selected_ids
+    )
     known_count = len(known_ids)
     coverage_value = _safe_ratio(decisive, known_count)
     return {
@@ -938,6 +985,7 @@ def _metric_rows(
         "unknown_truth_n": counts["unknown"],
         "false_complete": false_complete,
         "fcr": _safe_ratio(false_complete, len(incomplete_ids)),
+        "rule_basis_violation_n": rule_basis_violation_n,
         "decisive_output_n": decisive,
         "coverage": coverage_value,
         "abstention_rate": None if coverage_value is None else 1.0 - coverage_value,
@@ -958,15 +1006,17 @@ def validate_and_score(bundle: Mapping[str, Any], *, root: Path) -> dict[str, An
     evaluation_id = _text(bundle.get("evaluation_id"), "evaluation_id")
     resolved_root = root.resolve()
     source_events, frame_manifests = _validate_sources(resolved_root, bundle.get("source_events"))
-    opportunities, references = _validate_opportunities(
-        bundle.get("opportunities"), source_events, frame_manifests
-    )
     shared_contract = bundle.get("shared_run_contract")
     sop_rules = _load_sop_rules(
         resolved_root,
         bundle.get("sop_artifact"),
         shared_contract,
-        opportunities,
+    )
+    opportunities, references = _validate_opportunities(
+        bundle.get("opportunities"),
+        source_events,
+        frame_manifests,
+        sop_rules,
     )
     arms = _validate_arms(
         resolved_root,
@@ -996,7 +1046,7 @@ def validate_and_score(bundle: Mapping[str, Any], *, root: Path) -> dict[str, An
 
     canonical_bundle = json.dumps(bundle, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
     return {
-        "schema_version": "steptrace-real-validation-score/1.0",
+        "schema_version": SCORE_SCHEMA_VERSION,
         "scope": SCOPE,
         "status": "DEVELOPMENT_DESCRIPTIVE_ONLY",
         "evaluation_id": evaluation_id,

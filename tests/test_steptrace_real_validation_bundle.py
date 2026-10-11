@@ -198,6 +198,9 @@ def _build_bundle(root: Path) -> dict:
                         "annotator_id": "full-a",
                         "blind_to_methods": True,
                         "step_reference": step_truth,
+                        "step_reference_rule_id": (
+                            "synthetic-step-rule-1" if step_truth != "unknown" else None
+                        ),
                         "challenge_type": stratum,
                         "event_truth": event_truth,
                         "support_frame_ids": [frame_rows[-1]["frame_id"]],
@@ -207,6 +210,9 @@ def _build_bundle(root: Path) -> dict:
                         "annotator_id": "full-b",
                         "blind_to_methods": True,
                         "step_reference": step_truth,
+                        "step_reference_rule_id": (
+                            "synthetic-step-rule-1" if step_truth != "unknown" else None
+                        ),
                         "challenge_type": stratum,
                         "event_truth": event_truth,
                         "support_frame_ids": [frame_rows[-1]["frame_id"]],
@@ -223,6 +229,9 @@ def _build_bundle(root: Path) -> dict:
                         "interface_visibility": visibility,
                         "process_observed": False,
                         "step_reference": step_truth,
+                        "step_reference_rule_id": (
+                            "synthetic-step-rule-1" if step_truth != "unknown" else None
+                        ),
                         "challenge_type": stratum,
                         "event_truth": event_truth,
                         "current_state_support_frame_ids": [prefix[-1]["frame_id"]],
@@ -237,13 +246,14 @@ def _build_bundle(root: Path) -> dict:
         expected_frames[opportunity_id] = prefix
 
     sop_document = {
-        "schema_version": "steptrace-sop-evidence-rules/1.0",
+        "schema_version": "steptrace-sop-evidence-rules/1.1",
         "steps": [
             {
                 "step_id": "synthetic-step-1",
                 "rules": [
                     {
                         "rule_id": "synthetic-step-rule-1",
+                        "criterion": "Synthetic unit-test criterion; not a real SOP step.",
                         "allowed_evidence_bases": ["process_observed", "sop_rule_supported"],
                     }
                 ],
@@ -403,7 +413,7 @@ def _build_bundle(root: Path) -> dict:
         arms.append(arm)
 
     return {
-        "schema_version": "steptrace-real-validation-input/1.0",
+        "schema_version": "steptrace-real-validation-input/1.1",
         "scope": "DEVELOPMENT_ONLY_REAL_VALIDATION",
         "evaluation_id": "synthetic-contract-test",
         "shared_run_contract": shared_contract,
@@ -426,6 +436,7 @@ class RealValidationBundleTests(unittest.TestCase):
             result = api.validate_and_score(_build_bundle(root), root=root)
 
         self.assertEqual(result["status"], "DEVELOPMENT_DESCRIPTIVE_ONLY")
+        self.assertEqual(result["schema_version"], "steptrace-real-validation-score/1.1")
         self.assertEqual(
             result["reference_counts"], {"complete": 1, "incomplete": 1, "unknown": 1}
         )
@@ -441,6 +452,16 @@ class RealValidationBundleTests(unittest.TestCase):
             self.assertEqual(metrics["abstention_rate"], 0.5)
             self.assertEqual(metrics["unknown_truth_n"], 1)
             self.assertFalse(metrics["inferential_claim_allowed"])
+
+    def test_v1_0_bundle_is_not_silently_accepted_as_v1_1(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            api = _api()
+            bundle = _build_bundle(root)
+            bundle["schema_version"] = "steptrace-real-validation-input/1.0"
+
+            with self.assertRaisesRegex(ValueError, "schema_version must be steptrace-real-validation-input/1.1"):
+                api.validate_and_score(bundle, root=root)
 
     def test_missing_media_fails_closed_before_scoring(self):
         with tempfile.TemporaryDirectory() as directory:

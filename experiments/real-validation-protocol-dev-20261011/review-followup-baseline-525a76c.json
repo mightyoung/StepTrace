@@ -1,0 +1,31 @@
+{
+  "schema_version": "steptrace-review-followup-baseline/1",
+  "classification": "SYNTHETIC_CONTRACT_FIXTURE_ONLY",
+  "baseline_commit": "525a76cf33ca8b1626949a2c2c719cbe870af89d",
+  "reproductions": [
+    {
+      "finding": "ST4_conditional_history_complete_is_blocked_as_input_error",
+      "mutation": "In _build_bundle, set only arms[0].outputs[0].step_evidence_basis to conditional_history; keep completion complete, valid rule ID, frame references, and all other fields; synchronize the parsed response JSON.",
+      "baseline_status": "BLOCKED",
+      "reason": "The valid SOP rule allows process_observed and sop_rule_supported, so validation rejects conditional_history before FCR scoring.",
+      "expected_status": "SCORED_AS_MODEL_ERROR"
+    },
+    {
+      "finding": "ST3_unqualified_truth_enters_denominator_without_sop_rule",
+      "mutation": "Use SOP step synthetic-step-1 with rules: []; synchronize the SOP artifact SHA in the shared contract and all arms; set every model output to unknown/insufficient with no evidence references; retain known complete/incomplete adjudicated truth.",
+      "baseline_status": "SCORED",
+      "observed_reference_counts": {
+        "complete": 1,
+        "incomplete": 1,
+        "unknown": 1
+      },
+      "observed_all_arm_metrics": {
+        "false_complete": 0,
+        "fcr": 0.0,
+        "coverage": 0.0
+      },
+      "expected_status": "BLOCKED_UNQUALIFIED_REFERENCE_TRUTH"
+    }
+  ],
+  "evidence_note": "These reproductions use temporary synthetic contract fixtures. They are not videos, model results, real samples, or experiment outcomes. No real-evaluation result is inferred."
+}
