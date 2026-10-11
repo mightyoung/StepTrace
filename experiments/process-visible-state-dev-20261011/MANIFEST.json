@@ -1,0 +1,59 @@
+{
+  "schema_version": "steptrace-cloud-artifact-manifest/1",
+  "repository": "https://github.com/mightyoung/StepTrace",
+  "branch": "task/current-visible-state-contrast-20261011",
+  "analysis_parent_commit": "64e62dbff44e766551479f080e2a7ba60c613e83",
+  "artifact_root": "experiments/process-visible-state-dev-20261011",
+  "storage_status": {
+    "cloud_workspace": "present",
+    "Mac_backup": "pending",
+    "note": "These hashes support a later Mac copy and verification; no Mac save is asserted."
+  },
+  "source_cache": {
+    "commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
+    "public_manifest_path": "experiments/real-reappearance-dev-20261010/public_manifest.json",
+    "public_manifest_sha256": "4c7638d6dd90119915513af511f19c3b8890e32106a9b911b7a850c9bfebc38c",
+    "verified_public_manifest_entries": 23,
+    "cached_answer_json": [
+      {
+        "path": "experiments/real-reappearance-dev-20261010/model_outputs/q31.json",
+        "sha256": "8b6a48870b2e5a563a46f48f67c5e2997289fdc2c7447f42ad86d8d896489df3"
+      },
+      {
+        "path": "experiments/real-reappearance-dev-20261010/model_outputs/q68.json",
+        "sha256": "e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1"
+      },
+      {
+        "path": "experiments/real-reappearance-dev-20261010/model_outputs/q92.json",
+        "sha256": "3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "README_zh.md",
+      "bytes": 3120,
+      "sha256": "607a8180ab02c8a3580fa7812cff327acb9f20f261b44118838b65a3a97945f3"
+    },
+    {
+      "path": "process_visible_state.py",
+      "bytes": 12632,
+      "sha256": "940ac604b38f5b9b8957f8f37f0b4e9ff8a5c32e894816f479f94fb7445971a4"
+    },
+    {
+      "path": "test_process_visible_state.py",
+      "bytes": 5177,
+      "sha256": "1603d9a1a22c2f76a96a5c02d38dd747d23d1b88e2f8cdeae824e40dd92c8118"
+    },
+    {
+      "path": "results.json",
+      "bytes": 12606,
+      "sha256": "a1a80e2bc0cbdff4ba1cfd222340e489e91415b04a8210a0ba83dade0207ac4e"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 2889,
+      "sha256": "b0f06f0a68683d01cd71f65df501f6b01f33d650b7dc62ed7dd4529e09d44773"
+    }
+  ]
+}

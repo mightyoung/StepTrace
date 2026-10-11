@@ -1,0 +1,78 @@
+{
+  "schema_version": "process-visible-state-verification/1",
+  "analysis_parent_commit": "64e62dbff44e766551479f080e2a7ba60c613e83",
+  "cache_source_commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
+  "cache_manifest_sha256": "4c7638d6dd90119915513af511f19c3b8890e32106a9b911b7a850c9bfebc38c",
+  "environment": {
+    "execution": "cloud workspace",
+    "python": "system Python 3; no package installation",
+    "model_runtime_used": false
+  },
+  "test_first": {
+    "red_command": "python3 -B -m unittest -v test_process_visible_state.py",
+    "red_tests": 6,
+    "red_exit_code": 1,
+    "red_reason": "The expected offline CLI did not exist yet; each contract assertion failed on its nonzero subprocess exit.",
+    "green_command": "python3 -B -m unittest -v test_process_visible_state.py",
+    "green_tests": 6,
+    "green_exit_code": 0
+  },
+  "existing_adjacent_checks": [
+    {
+      "command": "python3 -B -m unittest -v test_audit.py",
+      "tests": 10,
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -B -m unittest -v test_progress_support.py",
+      "tests": 5,
+      "exit_code": 0
+    }
+  ],
+  "offline_comparison": {
+    "command": "python3 -B process_visible_state.py --output results.json",
+    "exit_code": 0,
+    "repeat_output_byte_equal": true,
+    "verified_public_cache_files": 23,
+    "new_model_calls": 0,
+    "new_training_runs": 0,
+    "new_media_downloads": 0,
+    "dependency_installs": 0,
+    "production_changes": 0
+  },
+  "full_project_test_suite": {
+    "command": "python3 -B -m pytest -q",
+    "status": "not_run",
+    "exit_code": 1,
+    "reason": "pytest is not installed in this environment; installation is outside the authorized scope."
+  },
+  "limitations": [
+    "The three cached answer prefixes belong to one development source event and are not independent samples.",
+    "Cached AI answer labels are not human or physical ground truth.",
+    "The original IndEgo 119-128 second separation packet remains unavailable; no real removal control was reconstructed.",
+    "No process-step mapping, process accuracy, recognition accuracy, physical false-revocation rate, or mechanism gain was measured.",
+    "Generated files are in the cloud workspace; Mac backup has not been performed."
+  ],
+  "artifacts": [
+    {
+      "path": "README_zh.md",
+      "bytes": 3120,
+      "sha256": "607a8180ab02c8a3580fa7812cff327acb9f20f261b44118838b65a3a97945f3"
+    },
+    {
+      "path": "process_visible_state.py",
+      "bytes": 12632,
+      "sha256": "940ac604b38f5b9b8957f8f37f0b4e9ff8a5c32e894816f479f94fb7445971a4"
+    },
+    {
+      "path": "test_process_visible_state.py",
+      "bytes": 5177,
+      "sha256": "1603d9a1a22c2f76a96a5c02d38dd747d23d1b88e2f8cdeae824e40dd92c8118"
+    },
+    {
+      "path": "results.json",
+      "bytes": 12606,
+      "sha256": "a1a80e2bc0cbdff4ba1cfd222340e489e91415b04a8210a0ba83dade0207ac4e"
+    }
+  ]
+}
