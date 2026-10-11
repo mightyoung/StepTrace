@@ -31,6 +31,22 @@ RELATIONS = {"connected", "disconnected", "unknown"}
 IDENTITIES = {"same", "different", "uncertain"}
 VISIBILITY = {"visible", "occluded", "partly_occluded", "unknown"}
 EVENT_TRUTHS = {"relation_held", "relation_separated", "identity_changed", "unknown"}
+STEP_EVIDENCE_BASES = {"process_observed", "sop_rule_supported"}
+RESPONSE_FIELDS = (
+    "opportunity_id",
+    "cutoff",
+    "direct_relation",
+    "current_estimate",
+    "basis",
+    "assumptions",
+    "historical_record_ids",
+    "history_applicability",
+    "process_evidence_frame_ids",
+    "step_completion",
+    "step_evidence_basis",
+    "step_evidence_rule_id",
+    "step_evidence_frame_ids",
+)
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
@@ -76,6 +92,250 @@ def _artifact(root: Path, value: Any, field: str) -> tuple[Path, str]:
     actual = sha256_file(path)
     _need(actual == expected, f"{field} sha256 mismatch: {raw_path}")
     return path, actual
+
+
+def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        _need(key not in result, f"JSON object repeats field {key!r}")
+        result[key] = value
+    return result
+
+
+def _read_json_artifact(root: Path, value: Any, field: str) -> tuple[dict[str, Any], str]:
+    path, digest = _artifact(root, value, field)
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique_json_object)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{field} must be valid UTF-8 JSON") from exc
+    _need(isinstance(document, dict), f"{field} must be a JSON object")
+    return document, digest
+
+
+def _load_sop_rules(
+    root: Path,
+    sop_artifact: Any,
+    shared_contract: Any,
+    opportunities: Mapping[str, Mapping[str, Any]],
+) -> dict[str, dict[str, frozenset[str]]]:
+    _need(isinstance(shared_contract, Mapping), "shared_run_contract is required")
+    expected_digest = _sha(shared_contract.get("sop_sha256"), "shared_run_contract.sop_sha256")
+    sop, digest = _read_json_artifact(root, sop_artifact, "sop_artifact")
+    _need(digest == expected_digest, "SOP artifact hash differs from shared_run_contract.sop_sha256")
+    _need(
+        sop.get("schema_version") == "steptrace-sop-evidence-rules/1.0",
+        "SOP artifact schema_version must be steptrace-sop-evidence-rules/1.0",
+    )
+    steps = sop.get("steps")
+    _need(isinstance(steps, list) and bool(steps), "SOP artifact must contain a non-empty steps list")
+    indexed: dict[str, dict[str, frozenset[str]]] = {}
+    for step_index, step in enumerate(steps):
+        _need(isinstance(step, Mapping), f"SOP steps[{step_index}] must be an object")
+        step_id = _text(step.get("step_id"), f"SOP steps[{step_index}].step_id")
+        _need(step_id not in indexed, f"duplicate SOP step_id: {step_id}")
+        rules = step.get("rules")
+        _need(isinstance(rules, list), f"SOP step {step_id} rules must be a list")
+        rules_by_id: dict[str, frozenset[str]] = {}
+        for rule_index, rule in enumerate(rules):
+            _need(isinstance(rule, Mapping), f"SOP step {step_id} rules[{rule_index}] must be an object")
+            rule_id = _text(rule.get("rule_id"), f"SOP step {step_id} rule_id")
+            _need(rule_id not in rules_by_id, f"duplicate SOP rule_id {rule_id} under step {step_id}")
+            bases = rule.get("allowed_evidence_bases")
+            _need(isinstance(bases, list) and bool(bases), f"SOP rule {rule_id} must list allowed evidence bases")
+            normalized_bases = frozenset(
+                _enum(base, STEP_EVIDENCE_BASES, f"SOP rule {rule_id} allowed evidence basis")
+                for base in bases
+            )
+            _need(len(normalized_bases) == len(bases), f"SOP rule {rule_id} repeats an evidence basis")
+            rules_by_id[rule_id] = normalized_bases
+        indexed[step_id] = rules_by_id
+
+    for op_id, opportunity in opportunities.items():
+        step_id = _text(opportunity.get("sop_step_id"), f"{op_id}.sop_step_id")
+        _need(step_id in indexed, f"{op_id} references unknown SOP step {step_id}")
+    return indexed
+
+
+def _validate_response_artifact(
+    root: Path,
+    row: Mapping[str, Any],
+    op_id: str,
+    expected_cutoff: Mapping[str, Any],
+) -> None:
+    artifact = row.get("response_artifact")
+    path, _ = _artifact(root, artifact, f"{op_id} response artifact")
+    parse_status = _enum(
+        row.get("response_parse_status"),
+        {"parsed", "malformed"},
+        f"{op_id}.response_parse_status",
+    )
+    if parse_status == "malformed":
+        try:
+            parsed_malformed = json.loads(
+                path.read_text(encoding="utf-8"),
+            )
+        except (UnicodeDecodeError, ValueError):
+            parsed_malformed = None
+        _need(
+            not (
+                isinstance(parsed_malformed, Mapping)
+                and set(parsed_malformed) == set(RESPONSE_FIELDS)
+            ),
+            f"{op_id} response is marked malformed but contains a complete normalized response object",
+        )
+        _need(row.get("opportunity_id") == op_id, f"{op_id} malformed-response row opportunity_id mismatch")
+        _need(row.get("cutoff") == expected_cutoff, f"{op_id} malformed-response row cutoff mismatch")
+        expected_abstention = {
+            "direct_relation": "unknown",
+            "current_estimate": "unknown",
+            "basis": "insufficient_current_evidence",
+            "assumptions": [],
+            "historical_record_ids": [],
+            "history_applicability": "none",
+            "process_evidence_frame_ids": [],
+            "step_completion": "unknown",
+            "step_evidence_basis": "insufficient_evidence",
+            "step_evidence_rule_id": None,
+            "step_evidence_frame_ids": [],
+        }
+        _need(
+            all(row.get(key) == value for key, value in expected_abstention.items()),
+            f"{op_id} malformed response must normalize to an abstention before scoring",
+        )
+        return
+
+    try:
+        parsed = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique_json_object)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{op_id} response is marked parsed but is not valid UTF-8 JSON") from exc
+    _need(isinstance(parsed, Mapping), f"{op_id} parsed response must be a JSON object")
+    _need(
+        set(parsed) == set(RESPONSE_FIELDS),
+        f"{op_id} parsed response fields do not match the normalized score schema",
+    )
+    expected = {field: row.get(field) for field in RESPONSE_FIELDS}
+    _need(
+        parsed == expected,
+        f"{op_id} parsed response mismatch with scored output row",
+    )
+
+
+def _verify_local_crop_pixels(
+    root: Path,
+    presentation: Mapping[str, Any],
+    expected_frame: Mapping[str, Any],
+    source_frame: Mapping[str, Any],
+    crop_rule: Mapping[str, Any],
+    field: str,
+) -> None:
+    _need(
+        presentation.get("crop_source_frame_id") == expected_frame["frame_id"],
+        f"{field} crop source frame does not match its cutoff-prefix frame",
+    )
+    source_hash = _sha(presentation.get("crop_source_sha256"), f"{field}.crop_source_sha256")
+    _need(
+        source_hash == expected_frame["sha256"],
+        f"{field} crop source hash does not match its cutoff-prefix frame",
+    )
+    _need(
+        crop_rule.get("schema_version") == "steptrace-local-crop-rule/1.0"
+        and crop_rule.get("coordinate_system") == "pixel_xywh"
+        and crop_rule.get("coordinate_source") == "cutoff_prefix_only"
+        and crop_rule.get("source_frame_binding") == "opportunity_prefix_frame"
+        and crop_rule.get("color_mode") == "RGB"
+        and crop_rule.get("output_format") == "PNG",
+        f"{field} frozen crop rule does not define supported pixel reconstruction",
+    )
+
+    box = presentation.get("crop_box_xywh")
+    _need(
+        isinstance(box, list)
+        and len(box) == 4
+        and all(isinstance(item, int) and not isinstance(item, bool) for item in box),
+        f"{field} crop_box_xywh must contain four integers",
+    )
+    x, y, crop_width, crop_height = box
+    _need(
+        x >= 0
+        and y >= 0
+        and crop_width > 0
+        and crop_height > 0
+        and x + crop_width <= expected_frame["width"]
+        and y + crop_height <= expected_frame["height"],
+        f"{field} crop box is outside source frame bounds",
+    )
+    output_size = presentation.get("output_size")
+    _need(
+        isinstance(output_size, list)
+        and len(output_size) == 2
+        and all(isinstance(item, int) and not isinstance(item, bool) and item > 0 for item in output_size),
+        f"{field} crop output_size must be two positive integers",
+    )
+
+    try:
+        from PIL import Image
+    except ImportError as exc:
+        raise ValueError(
+            "Pillow is required to verify local crop pixels; local-crop scoring is blocked"
+        ) from exc
+
+    try:
+        pillow_version = getattr(Image, "__version__", None)
+        _need(
+            crop_rule.get("pixel_decoder") == "Pillow"
+            and crop_rule.get("pixel_decoder_version") == pillow_version,
+            f"{field} Pillow version differs from the frozen crop rule",
+        )
+        source_path, actual_source_hash = _artifact(
+            root,
+            {"path": source_frame.get("path"), "sha256": source_frame.get("sha256")},
+            f"{field} source frame asset",
+        )
+        _need(
+            actual_source_hash == expected_frame["sha256"],
+            f"{field} source frame asset SHA differs from cutoff-prefix frame",
+        )
+        presented_path, _ = _artifact(root, presentation, field)
+        with Image.open(source_path) as source_image:
+            source_image.load()
+            _need(
+                source_image.size == (expected_frame["width"], expected_frame["height"]),
+                f"{field} source frame decoded dimensions disagree with its manifest",
+            )
+            _need(source_image.mode == crop_rule["color_mode"], f"{field} source frame mode differs from frozen color mode")
+            source_pixels = source_image.copy()
+        with Image.open(presented_path) as presented_image:
+            presented_image.load()
+            _need(
+                presented_image.format == crop_rule["output_format"],
+                f"{field} crop format differs from frozen output format",
+            )
+            _need(presented_image.mode == crop_rule["color_mode"], f"{field} crop mode differs from frozen color mode")
+            actual_pixels = presented_image.copy()
+        resampling = getattr(Image, "Resampling", Image)
+        filters = {
+            "nearest": resampling.NEAREST,
+            "bilinear": resampling.BILINEAR,
+            "bicubic": resampling.BICUBIC,
+            "lanczos": resampling.LANCZOS,
+        }
+        filter_name = _text(crop_rule.get("resize_filter"), f"{field} crop resize_filter")
+        _need(filter_name in filters, f"{field} frozen crop rule has unsupported resize filter {filter_name}")
+        expected_pixels = source_pixels.crop((x, y, x + crop_width, y + crop_height))
+        if expected_pixels.size != tuple(output_size):
+            expected_pixels = expected_pixels.resize(tuple(output_size), resample=filters[filter_name])
+        _need(
+            actual_pixels.size == tuple(output_size),
+            f"{field} presented crop dimensions differ from frozen output_size",
+        )
+        _need(
+            actual_pixels.tobytes() == expected_pixels.tobytes(),
+            f"{field} crop pixels are not derived from the declared cutoff-prefix source frame",
+        )
+    except (OSError, ValueError) as exc:
+        if isinstance(exc, ValueError) and str(exc).startswith(("local_crop_batch", "Pillow is required")):
+            raise
+        raise ValueError(f"{field} crop pixel verification failed: {exc}") from exc
 
 
 def _jsonl(path: Path, field: str) -> list[dict[str, Any]]:
@@ -187,6 +447,14 @@ def _frame_projection(row: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _checked_frame_refs(value: Any, field: str, allowed_ids: set[str]) -> list[str]:
+    _need(isinstance(value, list) and bool(value), f"{field} must cite one or more evidence frames")
+    result = [_text(frame_id, f"{field} frame id") for frame_id in value]
+    _need(len(result) == len(set(result)), f"{field} must not repeat frame ids")
+    _need(set(result).issubset(allowed_ids), f"{field} cites a frame outside its allowed evidence view")
+    return result
+
+
 def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     review = opportunity.get("blind_review")
     _need(isinstance(review, Mapping), "blind_review is required for every opportunity")
@@ -212,14 +480,11 @@ def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[
             seen.add(annotator)
             reviewer_ids.add(annotator)
             _need(row.get("blind_to_methods") is True, f"{role} annotation must be blinded to methods")
-            support = row.get("support_frame_ids")
-            _need(
-                isinstance(support, list) and bool(support),
-                f"{role} support_frame_ids must cite evidence frames",
+            _checked_frame_refs(
+                row.get("support_frame_ids"),
+                f"{role} support_frame_ids",
+                prefix_ids if role == "prefix_only" else all_ids,
             )
-            for frame_id in support:
-                frame = _text(frame_id, f"{role} support frame id")
-                _need(frame in (prefix_ids if role == "prefix_only" else all_ids), f"{role} support frame is outside its allowed view")
             if role == "prefix_only":
                 _enum(row.get("current_relation"), RELATIONS, f"{role}.current_relation")
                 _enum(row.get("identity_status"), IDENTITIES, f"{role}.identity_status")
@@ -245,13 +510,26 @@ def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[
     step = _enum(labels.get("step_reference"), STEP_LABELS, "adjudicated step_reference")
     challenge = _enum(labels.get("challenge_type"), REQUIRED_STRATA | {"other"}, "adjudicated challenge_type")
     event_truth = _enum(labels.get("event_truth"), EVENT_TRUTHS, "adjudicated event_truth")
-    support = labels.get("support_frame_ids")
-    _need(
-        isinstance(support, list) and bool(support),
-        "adjudicated support_frame_ids must cite evidence frames",
+    current_support = _checked_frame_refs(
+        labels.get("current_state_support_frame_ids"),
+        "adjudicated current_state_support_frame_ids",
+        prefix_ids,
     )
-    for frame_id in support:
-        _need(_text(frame_id, "adjudicated support frame id") in all_ids, "adjudicated support frame is outside source event")
+    step_support = _checked_frame_refs(
+        labels.get("step_reference_support_frame_ids"),
+        "adjudicated step_reference_support_frame_ids",
+        all_ids,
+    )
+    event_support = _checked_frame_refs(
+        labels.get("event_truth_support_frame_ids"),
+        "adjudicated event_truth_support_frame_ids",
+        all_ids,
+    )
+    # Retain the old broad reference field only as a general source pointer.
+    # It is never used to establish the current state at cutoff.
+    support = labels.get("support_frame_ids")
+    if support is not None:
+        support = _checked_frame_refs(support, "adjudicated support_frame_ids", all_ids)
 
     if challenge == "occlusion_hold":
         _need(event_truth == "relation_held", "occlusion_hold requires full-video evidence that relation_held through the gap")
@@ -274,6 +552,9 @@ def _validate_review(opportunity: Mapping[str, Any], manifest: Sequence[Mapping[
         "step_reference": step,
         "challenge_type": challenge,
         "event_truth": event_truth,
+        "current_state_support_frame_ids": current_support,
+        "step_reference_support_frame_ids": step_support,
+        "event_truth_support_frame_ids": event_support,
         "support_frame_ids": support,
     }
 
@@ -467,6 +748,8 @@ def _validate_arms(
     arm_rows: Any,
     opportunities: Mapping[str, Mapping[str, Any]],
     shared_contract: Any,
+    frame_manifests: Mapping[str, Sequence[Mapping[str, Any]]],
+    sop_rules: Mapping[str, Mapping[str, frozenset[str]]],
 ) -> dict[str, dict[str, dict[str, Any]]]:
     _need(isinstance(shared_contract, Mapping), "shared_run_contract is required")
     required_contract_keys = {
@@ -499,16 +782,21 @@ def _validate_arms(
         _need(arm.get("update_mode") == expected_update, f"{method_id} update_mode mismatch")
         _need(arm.get("reset_policy") == expected_reset, f"{method_id} reset_policy mismatch")
         _need(arm.get("run_contract") == shared_contract, f"{method_id} run contract differs across arms")
+        crop_rule: Mapping[str, Any] | None = None
         if method_id == "local_crop_batch":
             crop_rule_sha256 = _sha(
                 arm.get("crop_rule_sha256"), "local_crop_batch.crop_rule_sha256"
             )
-            _, crop_rule_digest = _artifact(
+            crop_rule, crop_rule_digest = _read_json_artifact(
                 root,
                 arm.get("crop_rule_artifact"),
                 "local_crop_batch.crop_rule_artifact",
             )
             _need(crop_rule_digest == crop_rule_sha256, "local crop rule artifact hash mismatch")
+            _need(
+                crop_rule.get("schema_version") == "steptrace-local-crop-rule/1.0",
+                "local crop rule artifact schema_version is unsupported",
+            )
             _need(
                 arm.get("crop_rule_frozen_before_outputs") is True,
                 "local crop rule must be frozen before outputs",
@@ -528,6 +816,8 @@ def _validate_arms(
             row = by_id[op_id]
             _need(row.get("cutoff") == opportunity["cutoff"], f"{method_id}/{op_id} cutoff mismatch")
             expected_frames = opportunity["prefix_frames"]
+            source_frame_rows = frame_manifests[opportunity["source_event_id"]]
+            source_frames_by_id = {str(frame["frame_id"]): frame for frame in source_frame_rows}
             input_frames = row.get("input_frames")
             _need(isinstance(input_frames, list), f"{method_id}/{op_id}.input_frames must be a list")
             normalized_inputs = []
@@ -550,47 +840,26 @@ def _validate_arms(
             for expected, presentation in zip(expected_frames, presented):
                 _need(isinstance(presentation, Mapping), f"{method_id}/{op_id} presented frame must be an object")
                 _need(presentation.get("frame_id") == expected["frame_id"], f"{method_id}/{op_id} presented frame order mismatch")
-                path, digest = _artifact(root, presentation, f"{method_id}/{op_id} presented frame")
-                _ = path
+                _, digest = _artifact(root, presentation, f"{method_id}/{op_id} presented frame")
                 if method_id != "local_crop_batch":
-                    matching_source = next(
-                        source_row
-                        for source_row in opportunities[op_id]["prefix_frames"]
-                        if source_row["frame_id"] == expected["frame_id"]
-                    )
+                    matching_source = source_frames_by_id[expected["frame_id"]]
                     _need(digest == matching_source["sha256"], f"{method_id}/{op_id} full-frame presentation changed source pixels")
                 else:
-                    _need(digest != expected["sha256"], f"{method_id}/{op_id} local crop artifact is identical to full source frame")
                     _need(
                         presentation.get("crop_rule_sha256") == crop_rule_sha256,
                         f"{method_id}/{op_id} crop row does not match frozen crop rule",
                     )
-                    box = presentation.get("crop_box_xywh")
-                    _need(
-                        isinstance(box, list)
-                        and len(box) == 4
-                        and all(isinstance(item, int) and not isinstance(item, bool) for item in box),
-                        f"{method_id}/{op_id} crop_box_xywh must contain four integers",
-                    )
-                    x, y, crop_width, crop_height = box
-                    _need(
-                        x >= 0
-                        and y >= 0
-                        and crop_width > 0
-                        and crop_height > 0
-                        and x + crop_width <= expected["width"]
-                        and y + crop_height <= expected["height"],
-                        f"{method_id}/{op_id} crop box is outside source frame bounds",
-                    )
-                    output_size = presentation.get("output_size")
-                    _need(
-                        isinstance(output_size, list)
-                        and len(output_size) == 2
-                        and all(isinstance(item, int) and not isinstance(item, bool) and item > 0 for item in output_size),
-                        f"{method_id}/{op_id} crop output_size must be two positive integers",
+                    source_frame = source_frames_by_id[expected["frame_id"]]
+                    _verify_local_crop_pixels(
+                        root,
+                        presentation,
+                        expected,
+                        source_frame,
+                        crop_rule,
+                        f"{method_id}/{op_id} presented crop",
                     )
 
-            _artifact(root, row.get("response_artifact"), f"{method_id}/{op_id} response artifact")
+            _validate_response_artifact(root, row, op_id, opportunity["cutoff"])
             if method_id == "temporal_memory":
                 expected_order = [frame["frame_id"] for frame in expected_frames]
                 _need(row.get("ordered_frame_ids") == expected_order, f"{method_id}/{op_id} temporal frame order differs from prefix")
@@ -611,15 +880,29 @@ def _validate_arms(
             prefix_ids = {frame["frame_id"] for frame in expected_frames}
             for ref in process_refs + step_refs:
                 _need(_text(ref, f"{method_id}/{op_id} evidence frame id") in prefix_ids, f"{method_id}/{op_id} evidence reference is outside cutoff prefix")
-            if step in {"complete", "incomplete"}:
-                _need(bool(step_refs), f"{method_id}/{op_id} definitive step output requires evidence references")
+            step_id = opportunity["sop_step_id"]
+            _need(step_id in sop_rules, f"{method_id}/{op_id} references unknown SOP step {step_id}")
+            rules_for_step = sop_rules[step_id]
+            if step_rule_id is not None:
+                step_rule_id = _text(step_rule_id, f"{method_id}/{op_id}.step_evidence_rule_id")
                 _need(
-                    step_basis in {"process_observed", "sop_rule_supported"},
-                    f"{method_id}/{op_id} definitive step output requires process or frozen SOP-rule evidence, not conditional history",
+                    step_rule_id in rules_for_step,
+                    f"{method_id}/{op_id} cites unknown SOP rule {step_rule_id} for step {step_id}",
                 )
-                _text(step_rule_id, f"{method_id}/{op_id}.step_evidence_rule_id")
+                _need(
+                    step_basis in rules_for_step[step_rule_id],
+                    f"{method_id}/{op_id} SOP rule {step_rule_id} does not allow evidence basis {step_basis}",
+                )
+            if step in {"complete", "incomplete"}:
                 if step_basis == "process_observed":
+                    _need(bool(step_refs), f"{method_id}/{op_id} definitive step output requires evidence references")
                     _need(bool(process_refs), f"{method_id}/{op_id} process-observed step output requires process evidence frames")
+                    _need(step_rule_id is not None, f"{method_id}/{op_id} process-observed step output requires a frozen SOP rule id")
+                elif step_basis == "sop_rule_supported":
+                    _need(bool(step_refs), f"{method_id}/{op_id} SOP-rule step output requires evidence references")
+                    _need(step_rule_id is not None, f"{method_id}/{op_id} SOP-rule step output requires a frozen SOP rule id")
+                # A conditional-history completion is a model error, but the
+                # protocol scores it as a completion and exposes it to FCR.
             else:
                 _need(
                     step_basis == "insufficient_evidence",
@@ -678,11 +961,20 @@ def validate_and_score(bundle: Mapping[str, Any], *, root: Path) -> dict[str, An
     opportunities, references = _validate_opportunities(
         bundle.get("opportunities"), source_events, frame_manifests
     )
+    shared_contract = bundle.get("shared_run_contract")
+    sop_rules = _load_sop_rules(
+        resolved_root,
+        bundle.get("sop_artifact"),
+        shared_contract,
+        opportunities,
+    )
     arms = _validate_arms(
         resolved_root,
         bundle.get("arms"),
         opportunities,
-        bundle.get("shared_run_contract"),
+        shared_contract,
+        frame_manifests,
+        sop_rules,
     )
 
     truth_counts = Counter(reference["step_reference"] for reference in references.values())

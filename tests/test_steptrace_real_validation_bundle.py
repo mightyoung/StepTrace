@@ -7,14 +7,17 @@ observations and must not be counted as real validation samples.
 from __future__ import annotations
 
 import copy
+import binascii
 import hashlib
 import importlib.util
 import json
 from pathlib import Path
 import sys
 import shutil
+import struct
 import tempfile
 import unittest
+import zlib
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,8 +49,65 @@ def _json_bytes(value: object) -> bytes:
     return (json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n").encode()
 
 
+def _rewrite_parsed_response(root: Path, output: dict) -> None:
+    payload = {field: output[field] for field in RESPONSE_FIELDS}
+    path = output["response_artifact"]["path"]
+    output["response_artifact"] = _write(root, path, _json_bytes(payload))
+    output["response_parse_status"] = "parsed"
+
+
+def _frame_pixels(event_index: int, frame_number: int, width: int = 16, height: int = 12):
+    pixels = []
+    base = event_index * 40 + frame_number * 10
+    for y in range(height):
+        pixels.append(
+            [
+                ((base + x) % 256, (base * 3 + y) % 256, (base + x + y) % 256)
+                for x in range(width)
+            ]
+        )
+    return pixels
+
+
+def _png_bytes(width: int, height: int, pixels) -> bytes:
+    def chunk(kind: bytes, data: bytes) -> bytes:
+        body = kind + data
+        return struct.pack(">I", len(data)) + body + struct.pack(">I", binascii.crc32(body) & 0xFFFFFFFF)
+
+    scanlines = b"".join(
+        b"\x00" + bytes(channel for pixel in row for channel in pixel)
+        for row in pixels
+    )
+    header = struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)
+    return (
+        b"\x89PNG\r\n\x1a\n"
+        + chunk(b"IHDR", header)
+        + chunk(b"IDAT", zlib.compress(scanlines))
+        + chunk(b"IEND", b"")
+    )
+
+
+RESPONSE_FIELDS = (
+    "opportunity_id",
+    "cutoff",
+    "direct_relation",
+    "current_estimate",
+    "basis",
+    "assumptions",
+    "historical_record_ids",
+    "history_applicability",
+    "process_evidence_frame_ids",
+    "step_completion",
+    "step_evidence_basis",
+    "step_evidence_rule_id",
+    "step_evidence_frame_ids",
+)
+
+
 def _build_bundle(root: Path) -> dict:
     """Create a small, explicitly synthetic three-stratum contract fixture."""
+    from PIL import __version__ as pillow_version
+
     strata = ("occlusion_hold", "true_removal", "identity_change")
     source_events = []
     opportunities = []
@@ -61,8 +121,8 @@ def _build_bundle(root: Path) -> dict:
             frame_id = f"{event_id}-f{frame_number}"
             frame = _write(
                 root,
-                f"frames/{event_id}/{frame_id}.bin",
-                f"synthetic-frame:{frame_id}".encode(),
+                f"frames/{event_id}/{frame_id}.png",
+                _png_bytes(16, 12, _frame_pixels(index, frame_number)),
             )
             frame_rows.append(
                 {
@@ -72,8 +132,8 @@ def _build_bundle(root: Path) -> dict:
                     "path": frame["path"],
                     "sha256": frame["sha256"],
                     "source_video_sha256": video["sha256"],
-                    "width": 640,
-                    "height": 480,
+                    "width": 16,
+                    "height": 12,
                 }
             )
         manifest_bytes = b"".join(_json_bytes(row) for row in frame_rows)
@@ -140,8 +200,8 @@ def _build_bundle(root: Path) -> dict:
                         "step_reference": step_truth,
                         "challenge_type": stratum,
                         "event_truth": event_truth,
-                        "process_observed": False,
                         "support_frame_ids": [frame_rows[-1]["frame_id"]],
+                        "process_observed": False,
                     },
                     {
                         "annotator_id": "full-b",
@@ -149,8 +209,8 @@ def _build_bundle(root: Path) -> dict:
                         "step_reference": step_truth,
                         "challenge_type": stratum,
                         "event_truth": event_truth,
-                        "process_observed": False,
                         "support_frame_ids": [frame_rows[-1]["frame_id"]],
+                        "process_observed": False,
                     },
                 ],
                 "adjudication": {
@@ -165,7 +225,10 @@ def _build_bundle(root: Path) -> dict:
                         "step_reference": step_truth,
                         "challenge_type": stratum,
                         "event_truth": event_truth,
-                        "support_frame_ids": [prefix[-1]["frame_id"]],
+                        "current_state_support_frame_ids": [prefix[-1]["frame_id"]],
+                        "step_reference_support_frame_ids": [frame_rows[-1]["frame_id"]],
+                        "event_truth_support_frame_ids": [frame_rows[-1]["frame_id"]],
+                        "support_frame_ids": [frame_rows[-1]["frame_id"]],
                     },
                 },
             },
@@ -173,20 +236,42 @@ def _build_bundle(root: Path) -> dict:
         opportunities.append(opportunity)
         expected_frames[opportunity_id] = prefix
 
+    sop_document = {
+        "schema_version": "steptrace-sop-evidence-rules/1.0",
+        "steps": [
+            {
+                "step_id": "synthetic-step-1",
+                "rules": [
+                    {
+                        "rule_id": "synthetic-step-rule-1",
+                        "allowed_evidence_bases": ["process_observed", "sop_rule_supported"],
+                    }
+                ],
+            }
+        ],
+    }
+    sop_artifact = _write(root, "rules/frozen-sop-rules.json", _json_bytes(sop_document))
     shared_contract = {
         "protocol_sha256": "1" * 64,
-        "sop_sha256": "2" * 64,
+        "sop_sha256": sop_artifact["sha256"],
         "prompt_sha256": "3" * 64,
         "output_schema_sha256": "4" * 64,
         "model_fingerprint_sha256": "5" * 64,
         "decode_config_sha256": "6" * 64,
     }
     arms = []
-    crop_rule_artifact = _write(
-        root,
-        "configs/frozen-local-crop-rule.json",
-        b'{"synthetic":true,"coordinate_source":"current_prefix"}\n',
-    )
+    crop_rule_document = {
+        "schema_version": "steptrace-local-crop-rule/1.0",
+        "coordinate_system": "pixel_xywh",
+        "coordinate_source": "cutoff_prefix_only",
+        "source_frame_binding": "opportunity_prefix_frame",
+        "color_mode": "RGB",
+        "output_format": "PNG",
+        "pixel_decoder": "Pillow",
+        "pixel_decoder_version": pillow_version,
+        "resize_filter": "nearest",
+    }
+    crop_rule_artifact = _write(root, "configs/frozen-local-crop-rule.json", _json_bytes(crop_rule_document))
     arm_specs = (
         ("full_frame_batch", "full_frame", "batch", "per_opportunity"),
         ("local_crop_batch", "local_crop", "batch", "per_opportunity"),
@@ -200,17 +285,24 @@ def _build_bundle(root: Path) -> dict:
             presented = []
             for frame_row in rows:
                 if view_mode == "local_crop":
+                    crop_box = [2, 2, 6, 6]
+                    x, y, crop_width, crop_height = crop_box
+                    frame_number = int(frame_row["frame_id"].rsplit("f", 1)[1])
+                    source_pixels = _frame_pixels(index, frame_number)
+                    crop_pixels = [row[x : x + crop_width] for row in source_pixels[y : y + crop_height]]
                     crop = _write(
                         root,
-                        f"crops/{method_id}/{frame_row['frame_id']}.bin",
-                        f"synthetic-crop:{frame_row['frame_id']}".encode(),
+                        f"crops/{method_id}/{frame_row['frame_id']}.png",
+                        _png_bytes(crop_width, crop_height, crop_pixels),
                     )
                     presented.append(
                         {
                             "frame_id": frame_row["frame_id"],
                             **crop,
-                            "crop_box_xywh": [10, 10, 100, 100],
-                            "output_size": [224, 224],
+                            "crop_source_frame_id": frame_row["frame_id"],
+                            "crop_source_sha256": frame_row["sha256"],
+                            "crop_box_xywh": crop_box,
+                            "output_size": [crop_width, crop_height],
                             "crop_rule_sha256": crop_rule_artifact["sha256"],
                         }
                     )
@@ -222,15 +314,11 @@ def _build_bundle(root: Path) -> dict:
                             "sha256": frame_row["sha256"],
                         }
                     )
-            response = _write(
-                root,
-                f"outputs/{method_id}/{op_id}.json",
-                _json_bytes({"synthetic": True, "method_id": method_id, "opportunity_id": op_id}),
-            )
             step_completion = ("complete", "unknown", "unknown")[index]
             output = {
                 "opportunity_id": op_id,
                 "cutoff": copy.deepcopy(opportunity["cutoff"]),
+                "response_parse_status": "parsed",
                 "input_frames": [
                     {
                         key: row[key]
@@ -239,7 +327,6 @@ def _build_bundle(root: Path) -> dict:
                     for row in rows
                 ],
                 "presented_frames": presented,
-                "response_artifact": response,
                 "direct_relation": "unknown",
                 "current_estimate": "connected",
                 "basis": "conditional_history",
@@ -260,6 +347,12 @@ def _build_bundle(root: Path) -> dict:
                     [rows[-1]["frame_id"]] if step_completion != "unknown" else []
                 ),
             }
+            response_payload = {field: output[field] for field in RESPONSE_FIELDS}
+            output["response_artifact"] = _write(
+                root,
+                f"outputs/{method_id}/{op_id}.json",
+                _json_bytes(response_payload),
+            )
             if method_id == "temporal_memory":
                 output["ordered_frame_ids"] = [row["frame_id"] for row in rows]
                 output["temporal_session_id"] = f"synthetic-session-{opportunity['source_event_id']}"
@@ -314,6 +407,7 @@ def _build_bundle(root: Path) -> dict:
         "scope": "DEVELOPMENT_ONLY_REAL_VALIDATION",
         "evaluation_id": "synthetic-contract-test",
         "shared_run_contract": shared_contract,
+        "sop_artifact": sop_artifact,
         "source_events": source_events,
         "opportunities": opportunities,
         "arms": arms,
@@ -461,6 +555,7 @@ class RealValidationBundleTests(unittest.TestCase):
             output["basis"] = "direct_current"
             output["history_applicability"] = "none"
             output["assumptions"] = []
+            _rewrite_parsed_response(root, output)
 
             with self.assertRaisesRegex(
                 ValueError, "conditional|unknown.*connected|unqualified"
@@ -477,20 +572,29 @@ class RealValidationBundleTests(unittest.TestCase):
             output["current_estimate"] = "connected"
             output["basis"] = "conditional_history"
             output["history_applicability"] = "conditional"
+            _rewrite_parsed_response(root, output)
 
             with self.assertRaisesRegex(ValueError, "separation|disconnected|revok"):
                 api.validate_and_score(bundle, root=root)
 
-    def test_conditional_history_cannot_be_the_evidence_basis_for_step_completion(self):
+    def test_conditional_history_complete_is_retained_as_a_false_complete(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             api = _api()
             bundle = _build_bundle(root)
             output = bundle["arms"][0]["outputs"][0]
             output["step_evidence_basis"] = "conditional_history"
+            output["step_evidence_rule_id"] = None
+            output["step_evidence_frame_ids"] = []
+            _rewrite_parsed_response(root, output)
 
-            with self.assertRaisesRegex(ValueError, "step.*evidence|conditional history"):
-                api.validate_and_score(bundle, root=root)
+            result = api.validate_and_score(bundle, root=root)
+
+        metrics = result["arms"]["full_frame_batch"]
+        self.assertEqual(metrics["false_complete"], 1)
+        self.assertEqual(metrics["incomplete_truth_n"], 1)
+        self.assertEqual(metrics["fcr"], 1.0)
+        self.assertEqual(metrics["coverage"], 0.5)
 
     def test_unlabeled_step_truth_is_rejected_instead_of_scored_as_unknown(self):
         with tempfile.TemporaryDirectory() as directory:

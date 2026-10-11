@@ -1,0 +1,87 @@
+{
+  "baseline_commit": "7f919e5159d7790b9ab3b3a66e7c9c5684a70c79",
+  "classification": "SYNTHETIC_CONTRACT_FIXTURE_ONLY",
+  "evidence_note": "All reproductions use temporary synthetic files from offline unit-test fixtures. They are not real videos, model outputs, samples, or experiment results. Pixel comparison establishes equality to the frame-manifest image asset and does not independently establish that asset's extraction from its source video.",
+  "implementation_revision": "working_tree_on_task_current-visible-state-contrast-20261011",
+  "protocol_file_unchanged": "experiments/real-validation-protocol-dev-20261011/PROTOCOL_zh.md",
+  "reproductions": [
+    {
+      "after": "BLOCKED",
+      "declared_crop_source_frame_id": "synthetic-event-0-f0",
+      "finding": "ST1_future_pixels_as_local_crop",
+      "future_source_frame_id": "synthetic-event-0-f2",
+      "reason": "local_crop_batch/synthetic-opportunity-0 presented crop crop pixels are not derived from the declared cutoff-prefix source frame"
+    },
+    {
+      "after": "BLOCKED",
+      "finding": "ST2_response_says_incomplete_scored_complete",
+      "raw_step_completion": "incomplete",
+      "reason": "synthetic-opportunity-0 parsed response mismatch with scored output row",
+      "scored_step_completion": "complete"
+    },
+    {
+      "after": "BLOCKED",
+      "finding": "ST3_nonexistent_frozen_sop_rule",
+      "reason": "full_frame_batch/synthetic-opportunity-0 cites unknown SOP rule ABSENT-RULE-NEVER-FROZEN for step synthetic-step-1",
+      "rule_id": "ABSENT-RULE-NEVER-FROZEN"
+    },
+    {
+      "after": "SCORED",
+      "finding": "ST4_conditional_history_completion",
+      "metrics": {
+        "abstention_rate": 0.5,
+        "complete_truth_n": 1,
+        "coverage": 0.5,
+        "decisive_output_n": 1,
+        "false_complete": 1,
+        "fcr": 1.0,
+        "incomplete_truth_n": 1,
+        "inferential_claim_allowed": false,
+        "opportunity_n": 3,
+        "unknown_truth_n": 1
+      },
+      "model_error": "definitive completion based only on conditional history",
+      "truth": "incomplete"
+    },
+    {
+      "after": "BLOCKED",
+      "finding": "ST5_current_direct_adjudication_only_future_evidence",
+      "future_frame_id": "synthetic-event-1-f2",
+      "reason": "adjudicated current_state_support_frame_ids cites a frame outside its allowed evidence view"
+    },
+    {
+      "after": "SCORED",
+      "current_state_future_frame_allowed": false,
+      "event_truth_future_frame_allowed": true,
+      "finding": "ST5_positive_full_video_future_evidence_is_allowed",
+      "full_video_truth_future_frame_id": "synthetic-event-0-f2",
+      "metrics": {
+        "abstention_rate": 0.5,
+        "complete_truth_n": 1,
+        "coverage": 0.5,
+        "decisive_output_n": 1,
+        "false_complete": 1,
+        "fcr": 1.0,
+        "incomplete_truth_n": 1,
+        "inferential_claim_allowed": false,
+        "opportunity_n": 3,
+        "unknown_truth_n": 1
+      },
+      "step_reference_future_frame_allowed": true
+    },
+    {
+      "after": "BLOCKED",
+      "finding": "ST6_malformed_status_hides_valid_complete_response",
+      "raw_step_completion": "complete",
+      "reason": "synthetic-opportunity-0 response is marked malformed but contains a complete normalized response object",
+      "response_parse_status": "malformed",
+      "scored_step_completion": "unknown"
+    }
+  ],
+  "schema_version": "steptrace-review-reproduction-after/1",
+  "unit_tests": {
+    "command": "python -B -m unittest tests.test_steptrace_real_validation_bundle tests.test_steptrace_independent_review_regressions",
+    "passed": true,
+    "run": 27
+  }
+}

@@ -11,6 +11,7 @@
 - `schema_version`: `steptrace-real-validation-input/1.0`
 - `scope`: `DEVELOPMENT_ONLY_REAL_VALIDATION`
 - `evaluation_id`
+- `sop_artifact`: 冻结 SOP 证据规则 `{path, sha256}`。其 SHA 必须等于 `shared_run_contract.sop_sha256`。
 - `shared_run_contract`: `protocol_sha256`、`sop_sha256`、`prompt_sha256`、`output_schema_sha256`、`model_fingerprint_sha256`、`decode_config_sha256`。每个方法臂必须逐字段一致。
 - `source_events`、`opportunities`、`arms`
 
@@ -28,7 +29,7 @@
 
 - `prefix_only`：只能引用 cutoff 前缀帧；分别标 `current_relation`（connected/disconnected/unknown）、`identity_status`（same/different/uncertain）、`interface_visibility`（visible/occluded/partly_occluded/unknown）与证据帧。
 - `full_video`：可引用完整事件帧；标 `step_reference`（complete/incomplete/unknown）、挑战类别、`event_truth`（relation_held/relation_separated/identity_changed/unknown）、是否观察到过程和证据帧。`occlusion_hold` 必须由全事件证据支持关系跨遮挡间隔保持；“遮挡中没看见分离”本身不够。
-- `adjudication`：必须是第三位独立且对方法输出盲态的裁决者（`blind_to_methods: true`），`status: resolved`，提供上述字段的裁决标签。unknown 是允许且需要显式写出的真值；缺失标签、待裁决或越界证据会阻断计分。
+- `adjudication`：必须是第三位独立且对方法输出盲态的裁决者（`blind_to_methods: true`），`status: resolved`，提供上述字段的裁决标签。裁决字段需分别列出 `current_state_support_frame_ids`、`step_reference_support_frame_ids`、`event_truth_support_frame_ids`。当前关系、身份和可见性只能由截止前缀帧支持；步骤及完整事件真值可由事件全帧支持。旧的宽泛 `support_frame_ids` 不能作为当前状态证据。unknown 是允许且需要显式写出的真值；缺失标签、待裁决或越界证据会阻断计分。
 
 validation 划分必须有经裁决且有来源证据的三类机会：`occlusion_hold`（完整事件证据表明关系保持，但 cutoff 的当前直接关系为 unknown、同一对象、接口遮挡）、`true_removal`（同一对象且完整事件证据支持直接分离）、`identity_change`（完整事件证据支持目标身份变化）。这只是覆盖类别的接入门槛，不是样本量、功效或充足性结论。若事件无法由来源视频/独立参考核实，应将事件真值保留为 unknown，不能用合成例补足。
 
@@ -42,7 +43,11 @@ validation 划分必须有经裁决且有来源证据的三类机会：`occlusio
 | `local_crop_batch` | `local_crop` | `batch` | `per_opportunity` |
 | `temporal_memory` | `full_frame` | `incremental` | `per_source_event` |
 
-所有输出都需记录同一 cutoff、相同 `input_frames`（帧 ID/PTS/time base/SHA/尺寸），渲染后 `presented_frames`、原始响应文件及 SHA。每路帧集合必须与机会前缀逐项相等。local-crop 还需 `crop_rule_artifact` 与 `crop_rule_sha256`、`crop_rule_frozen_before_outputs: true`；每帧提供源坐标 `crop_box_xywh`、`output_size` 和规则 SHA，裁切框须落在源帧尺寸内。
+所有输出都需记录同一 cutoff、相同 `input_frames`（帧 ID/PTS/time base/SHA/尺寸）、渲染后 `presented_frames`、原始响应文件及 SHA、`response_parse_status`。每路帧集合必须与机会前缀逐项相等。
+
+`response_parse_status: parsed` 时，响应文件须为 UTF-8 JSON，字段恰为本格式中的 13 个规范化输出字段；文件内容必须逐字段等于同一输出行的计分字段。解析状态或原始响应与计分行不一致会阻断计分。格式无效输出可标为 `malformed`，但一个完整的 13 字段规范化 JSON 对象不能标为 malformed；对应行还必须将关系和步骤判定归一为 unknown/insufficient、清空历史与证据引用。malformed 按拒判计入 coverage，而不是缺失机会。两种状态下仍校验原始响应文件 SHA。
+
+local-crop 还需 JSON `crop_rule_artifact` 与 `crop_rule_sha256`、`crop_rule_frozen_before_outputs: true`。规则需冻结坐标系、截止前缀来源、源帧绑定、RGB、PNG 输出、Pillow 名称与精确版本、nearest/bilinear/bicubic/lanczos 重采样方式。每个裁剪行需提供 `crop_source_frame_id`、`crop_source_sha256`、`crop_box_xywh`、`output_size` 和规则 SHA。计分器会打开哈希核验后的帧资产与裁剪资产，按规则重新裁剪/缩放并逐像素比较；仅有路径和哈希不够。运行环境缺少 Pillow、版本与冻结规则不一致或无法解码任一图像时，local-crop 臂和整包计分都会阻断。此像素比较证明裁剪与帧清单所指的帧文件一致；它不单独证明该帧文件确实由来源视频解码而来，来源视频/帧清单归属仍需独立核验。
 
 时序臂另需按来源事件提供唯一 `temporal_runs`：每事件只在首帧前 `reset_before_first_frame: true` 一次，帧摄入序列不得超过该事件最晚 cutoff 的前缀；`emissions` 按 cutoff 排序列出每个机会，并逐个绑定其已处理的完整前缀。每个输出的 `temporal_session_id` 必须绑定到对应事件会话。
 
@@ -55,7 +60,7 @@ validation 划分必须有经裁决且有来源证据的三类机会：`occlusio
 
 若 `direct_relation: unknown` 而 `current_estimate: connected`，必须使用 `basis: conditional_history`，标 `history_applicability: conditional`，提供历史记录 ID 和非空假设。unknown 不可转成 disconnected。若当前直接关系明确 disconnected，任何旧历史都须保留为记录并标 `revoked`，不得继续作为当前 connected。
 
-步骤完成与关系分开：complete/incomplete 需要证据帧、冻结的 SOP rule ID，且证据依据为 `process_observed` 或 `sop_rule_supported`；不能以 `conditional_history` 直接作为步骤完成依据。unknown 必须标 `insufficient_evidence`。条件历史即使仍被保留，也不能被计成步骤已完成。
+步骤完成与关系分开：SOP 文件内必须包含每个机会所引用的 `sop_step_id`，每条被输出引用的 rule ID 必须存在于该步骤下，且规则必须允许所选证据依据。`process_observed` 和 `sop_rule_supported` 的 complete/incomplete 声明都需引用规则和截止前缀证据；过程证据还需有对应过程帧引用。若输出 `step_completion: complete` 且 `step_evidence_basis: conditional_history`，验证器会保留它并按完成声明计分；真值为 incomplete 时计入 FCR 分子。这是模型错误，不是输入缺陷。unknown 必须标 `insufficient_evidence`。条件历史本身不能变成步骤证据。
 
 ## 计分与停止条件
 

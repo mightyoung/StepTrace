@@ -1,0 +1,59 @@
+{
+  "schema_version": "steptrace-review-reproduction/1",
+  "classification": "SYNTHETIC_CONTRACT_FIXTURE_ONLY",
+  "baseline_commit": "7f919e5159d7790b9ab3b3a66e7c9c5684a70c79",
+  "protocol_file_unchanged": "experiments/real-validation-protocol-dev-20261011/PROTOCOL_zh.md",
+  "validator_tests": {
+    "run": 16,
+    "passed": true
+  },
+  "reproductions": [
+    {
+      "finding": "ST1_future_pixels_as_local_crop",
+      "before": "ACCEPTED",
+      "observed_metrics": {
+        "fcr": 1.0,
+        "false_complete": 1,
+        "coverage": 0.5
+      },
+      "expected_after": "BLOCKED_INPUT_PROVENANCE"
+    },
+    {
+      "finding": "ST2_response_says_incomplete_scored_complete",
+      "before": "ACCEPTED",
+      "observed_metrics": {
+        "fcr": 1.0,
+        "false_complete": 1,
+        "coverage": 0.5
+      },
+      "expected_after": "BLOCKED_RESPONSE_SCORE_MISMATCH"
+    },
+    {
+      "finding": "ST3_nonexistent_frozen_sop_rule",
+      "before": "ACCEPTED",
+      "observed_metrics": {
+        "fcr": 1.0,
+        "false_complete": 1,
+        "coverage": 0.5
+      },
+      "expected_after": "BLOCKED_UNKNOWN_RULE_ID"
+    },
+    {
+      "finding": "ST4_conditional_history_completion",
+      "before": "BLOCKED",
+      "reason": "full_frame_batch/synthetic-opportunity-0 definitive step output requires process or frozen SOP-rule evidence, not conditional history",
+      "expected_after": "SCORED_AS_FALSE_COMPLETE_WHEN_TRUTH_INCOMPLETE"
+    },
+    {
+      "finding": "ST5_current_direct_adjudication_only_future_evidence",
+      "before": "ACCEPTED",
+      "observed_metrics": {
+        "fcr": 1.0,
+        "false_complete": 1,
+        "coverage": 0.5
+      },
+      "expected_after": "BLOCKED_CURRENT_LABEL_FUTURE_EVIDENCE"
+    }
+  ],
+  "evidence_note": "All rows above were reproduced with temporary synthetic files from tests/test_steptrace_real_validation_bundle.py. They are contract counterexamples, not real videos, model outputs, samples, or evidence of experiment contamination."
+}

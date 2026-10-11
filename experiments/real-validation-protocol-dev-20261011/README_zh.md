@@ -7,7 +7,7 @@
 ## 交付
 
 - [输入包格式与验收条件](BUNDLE_FORMAT_zh.md)：冻结视频/帧/裁切/标注/输出字段以及阻断条件。
-- [离线验收与计分器](validate_bundle.py)：缺任一媒体、标签、挑战类别或任一臂机会记录时停止，不输出分数；完整包只输出挑战集 FCR、coverage 和 unknown 计数，不作推断。
+- [离线验收与计分器](validate_bundle.py)：校验 SOP 文件及规则引用、解析响应与计分行一致性、裁剪像素与截止帧一致性，并分别限制当前状态与全事件真值的证据范围；缺失或来源不一致时不输出分数。
 - [q31/q68/q92 缓存字段对照](cache-comparison.html)：可分享的独立 HTML，仅呈现已核验缓存中的字段，不包含或伪造原图。
 - [缓存对照生成器](render_cache_comparison.py)：从旧离线回放和来源 manifest 校验哈希后生成 HTML。
 
@@ -16,9 +16,13 @@
 在仓库根目录：
 
 ```sh
-python -B -m unittest -v tests.test_steptrace_real_validation_bundle
+python -B -m unittest -v \
+  tests.test_steptrace_real_validation_bundle \
+  tests.test_steptrace_independent_review_regressions
 python -B experiments/real-validation-protocol-dev-20261011/render_cache_comparison.py
 ```
+
+local-crop 像素核验需要运行环境已有 Pillow；缺失时验证器会明确阻断，不会只凭裁剪文件哈希放行。此工作未安装依赖。
 
 真实材料到齐后，按 [输入格式](BUNDLE_FORMAT_zh.md) 生成 bundle，再运行：
 
