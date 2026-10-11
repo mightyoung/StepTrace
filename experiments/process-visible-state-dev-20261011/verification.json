@@ -42,7 +42,7 @@
   },
   "full_project_test_suite": {
     "command": "python3 -B -m pytest -q",
-    "status": "not_run",
+    "status": "unavailable_before_test_discovery",
     "exit_code": 1,
     "reason": "pytest is not installed in this environment; installation is outside the authorized scope."
   },
