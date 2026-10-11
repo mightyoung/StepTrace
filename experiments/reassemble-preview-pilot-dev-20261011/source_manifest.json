@@ -1,0 +1,112 @@
+{
+  "schema_version": "steptrace.preview-pilot-prep.v1",
+  "experiment_id": "reassemble-preview-pilot-dev-20261011-v0.1",
+  "status": "preparation_only_media_blocked",
+  "created_utc": "2026-10-11",
+  "task_owner": "Codex",
+  "purpose": "Prepare a separate small exploratory comparison using two official REASSEMBLE website demonstration clips, without claiming model performance.",
+  "separation": {
+    "not_a_recovery_of": "IndEgo 119-128 second frozen experiment",
+    "indego_frozen_experiment_status": "NOT_RUN",
+    "no_historical_input_mapping_reconstructed": true,
+    "no_indego_status_or_result_modified": true
+  },
+  "official_project_page": "https://tuwien-asl.github.io/REASSEMBLE_page/",
+  "official_data_record": {
+    "url": "https://researchdata.tuwien.ac.at/records/0ewrv-8cb44",
+    "version": "1.0.0",
+    "doi": "10.48436/0ewrv-8cb44",
+    "role": "separate underlying dataset record; no raw data fetched"
+  },
+  "attribution": {
+    "work": "REASSEMBLE: A Multimodal Dataset for Contact-rich Robotic Assembly and Disassembly",
+    "authors": [
+      "Daniel Sliwowski",
+      "Shail Jadav",
+      "Sergej Stanovcic",
+      "Jedrzej Orbik",
+      "Johannes Heidersberger",
+      "Dongheui Lee"
+    ],
+    "affiliations": ["TU Wien", "DLR"],
+    "publication": "Robotics: Science and Systems 2025"
+  },
+  "license_context": {
+    "website_display_license": "CC BY-SA 4.0",
+    "website_license_evidence": "The REASSEMBLE project page states that the website is licensed under Creative Commons Attribution-ShareAlike 4.0 International.",
+    "underlying_raw_dataset_license": "CC BY 4.0 per the task-provided source note; it is separate from the website license.",
+    "raw_dataset_downloaded": false,
+    "license_application": "Any use of the supplied website preview videos follows the website display license; the raw-data license is not applied to those website previews."
+  },
+  "assets": [
+    {
+      "asset_id": "REASSEMBLE_MPL_small",
+      "kind": "website_demonstration_preview",
+      "url": "https://tuwien-asl.github.io/REASSEMBLE_page/videos/MPL_small.mp4",
+      "expected_bytes_task_supplied": 5486312,
+      "expected_sha256_task_supplied": "7ce7070eccd66cc4bb382609560aa141e08ec7799ceb9a5b25196c36d1b82a4b",
+      "expected_identity_verified_from_bytes": false,
+      "request_attempts": 1,
+      "request_time_utc": "2026-10-11T13:07:22+00:00",
+      "request_status": "blocked_before_origin_response",
+      "origin_http_status": null,
+      "connect_tunnel_status": 403,
+      "error": "Tunnel connection failed: 403 Forbidden",
+      "redirects": 0,
+      "bytes_received": 0,
+      "saved": false,
+      "visual_review": false,
+      "task_supplied_candidate_cue": "MPL has a '2X' cue; exact event times and continuity across actions are unverified."
+    },
+    {
+      "asset_id": "REASSEMBLE_AD_small",
+      "kind": "website_demonstration_preview",
+      "url": "https://tuwien-asl.github.io/REASSEMBLE_page/videos/AD_small.mp4",
+      "expected_bytes_task_supplied": 9459622,
+      "expected_sha256_task_supplied": "3fd408868ed6fb0cd1786def6f304546278e6d4d8441993d36d483eb4e10c385",
+      "expected_identity_verified_from_bytes": false,
+      "request_attempts": 0,
+      "request_status": "not_attempted_fail_stop_after_MPL_block",
+      "bytes_received": 0,
+      "saved": false,
+      "visual_review": false,
+      "task_supplied_candidate_cue": "Approximate 76-100 second interval: after lifting, a gear reportedly drops. 'Prediction' subtitle is not ground truth."
+    }
+  ],
+  "retrieval_boundary": {
+    "max_attempts_per_asset": 1,
+    "authorized_hosts": ["tuwien-asl.github.io"],
+    "authentication_used": false,
+    "mirrors_or_alternate_hosts_used": false,
+    "retry_after_denial": false,
+    "reason_second_asset_not_attempted": "Stop-on-denial instruction applied after MPL CONNECT tunnel returned 403."
+  },
+  "preparation_outputs": {
+    "media_bytes_obtained": false,
+    "frame_index_created": false,
+    "raw_frames_extracted": false,
+    "masked_model_inputs_created": false,
+    "keyframe_contact_sheet_created": false,
+    "visual_ai_preannotation_created": false,
+    "model_api_calls": 0,
+    "experiment_run": false,
+    "success_rate_or_accuracy_reported": false
+  },
+  "planned_comparison": {
+    "unit": "video prefix ending at a frozen source PTS cutoff",
+    "identical_inputs_across_arms": true,
+    "arms": [
+      "current visible state at the cutoff",
+      "process events and uncertainty interval within the same observed prefix"
+    ],
+    "preserve_historical_event_separately_from_current_applicability": true,
+    "never_infer_mechanical_security_or_torque_from_rgb_only": true,
+    "never_treat_prediction_subtitles_as_ground_truth": true
+  },
+  "required_before_visual_preannotation": [
+    "User-side accessible copies of the exact two official preview URLs, or an environment path where the same files are already readable.",
+    "Exact size/SHA verification before decoding.",
+    "Per-frame source PTS/time-base map and separate raw-frame/masked-input artifacts outside Git."
+  ],
+  "receipt": "docs/research-handoff/receipts/reassemble-preview-fetch-20261011.json"
+}

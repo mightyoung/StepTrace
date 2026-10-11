@@ -1,0 +1,38 @@
+{
+  "attempt_id": "reassemble-preview-fetch-20261011",
+  "task_owner": "Codex",
+  "purpose": "One bounded official-host fetch attempt for the first of two supplied REASSEMBLE website preview URLs.",
+  "started_utc": "2026-10-11T13:07:22+00:00",
+  "finished_utc": "2026-10-11T13:07:22+00:00",
+  "requested_url": "https://tuwien-asl.github.io/REASSEMBLE_page/videos/MPL_small.mp4",
+  "expected_bytes_task_supplied": 5486312,
+  "expected_sha256_task_supplied": "7ce7070eccd66cc4bb382609560aa141e08ec7799ceb9a5b25196c36d1b82a4b",
+  "method": "GET",
+  "origin_http_status": null,
+  "transport_result": "CONNECT tunnel failed before origin response",
+  "connect_tunnel_status": 403,
+  "error": "Tunnel connection failed: 403 Forbidden",
+  "redirect_count": 0,
+  "bytes_received": 0,
+  "partial_file_bytes": 0,
+  "retries": 0,
+  "authentication_used": false,
+  "alternate_host_or_mirror_used": false,
+  "asset_saved": false,
+  "visual_review_performed": false,
+  "second_asset": {
+    "url": "https://tuwien-asl.github.io/REASSEMBLE_page/videos/AD_small.mp4",
+    "expected_bytes_task_supplied": 9459622,
+    "expected_sha256_task_supplied": "3fd408868ed6fb0cd1786def6f304546278e6d4d8441993d36d483eb4e10c385",
+    "request_attempts": 0,
+    "reason": "The user instructed stop if a fetch is denied; AD was therefore not requested after MPL was blocked."
+  },
+  "experiment_impact": {
+    "new_pilot_status": "preparation_only_media_blocked",
+    "frames_extracted": false,
+    "ai_preannotations_created": false,
+    "model_api_calls": 0,
+    "experiment_run": false,
+    "old_indego_frozen_experiment_changed": false
+  }
+}
