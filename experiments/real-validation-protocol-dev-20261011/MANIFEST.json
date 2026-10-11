@@ -1,0 +1,29 @@
+{
+  "schema_version": "steptrace-design-artifact-manifest/1",
+  "repository": "https://github.com/mightyoung/StepTrace",
+  "branch": "task/current-visible-state-contrast-20261011",
+  "branch_base_commit": "60a3fbc5491595a6afdbff42615f0d2383aa7c34",
+  "protocol_version": "steptrace-minimal-real-validation/1.0",
+  "status": "design_frozen_execution_gated",
+  "storage_status": {
+    "cloud_workspace": "present",
+    "Mac_backup": "pending"
+  },
+  "evidence_basis": [
+    {
+      "commit": "64e62dbff44e766551479f080e2a7ba60c613e83",
+      "scope": "recovered real cache and study handoff"
+    },
+    {
+      "commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3",
+      "scope": "pinned q31/q68/q92 public cached answers"
+    }
+  ],
+  "files": [
+    {
+      "path": "PROTOCOL_zh.md",
+      "bytes": 9127,
+      "sha256": "0a162602082796627838dc9e6463300196b72925db09311dd6201355bd573562"
+    }
+  ]
+}
