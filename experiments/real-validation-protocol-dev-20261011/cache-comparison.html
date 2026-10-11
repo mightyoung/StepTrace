@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="StepTrace q31/q68/q92 已核验缓存字段回放">
+  <title>StepTrace q31 · q68 · q92 缓存字段回放</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    body { margin: 0; padding: 1.25rem; color: CanvasText; background: Canvas; }
+    main { max-width: 68rem; margin: 0 auto; }
+    h1 { margin: 0 0 .35rem; font-size: clamp(1.35rem, 3vw, 1.9rem); }
+    .subtitle, .scope, .provenance { color: color-mix(in srgb, CanvasText 72%, Canvas); }
+    .scope { margin: 1rem 0; padding: .75rem 1rem; border-left: .25rem solid #b7791f; background: color-mix(in srgb, #b7791f 12%, Canvas); }
+    .records { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: stretch; }
+    .record { min-width: 0; padding: 1rem; border: 1px solid color-mix(in srgb, CanvasText 18%, Canvas); border-radius: .6rem; }
+    .record.conditional { border-color: #b7791f; box-shadow: inset 0 .25rem #b7791f; }
+    h2 { margin: 0 0 .6rem; font-size: 1.15rem; }
+    .relation { min-height: 2.8rem; font-weight: 650; }
+    dl { margin: .6rem 0; }
+    dl div { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: .5rem; padding: .22rem 0; }
+    dt { color: color-mix(in srgb, CanvasText 68%, Canvas); }
+    dd { margin: 0; overflow-wrap: anywhere; }
+    .path-label { margin: 1rem 0 .4rem; font-size: .9rem; font-weight: 600; }
+    .frame-path { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; font-size: .82rem; }
+    .frame-path span { padding: .28rem .42rem; border-radius: .3rem; background: color-mix(in srgb, #3178a8 14%, Canvas); }
+    .assumptions { padding-left: 1.2rem; font-size: .88rem; }
+    .interpretation { min-height: 3.2rem; font-size: .9rem; }
+    .record-hash { margin: 1rem 0 0; font-size: .75rem; overflow-wrap: anywhere; }
+    .q68-callout { margin: 1rem 0; padding: .8rem 1rem; border-left: .25rem solid #b7791f; }
+    .timeline-labels { display: flex; justify-content: space-between; color: color-mix(in srgb, CanvasText 65%, Canvas); font-size: .78rem; }
+    .provenance { margin-top: 1.2rem; font-size: .78rem; overflow-wrap: anywhere; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    @media (max-width: 760px) { .records { grid-template-columns: 1fr; } .record { padding: .85rem; } .relation, .interpretation { min-height: 0; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>q31 → q68 → q92：缓存字段回放</h1>
+  <p class="subtitle">同一开发事件的三个相关输入前缀。字段并排展示当前关系、历史条件与步骤完成。</p>
+  <p class="scope"><strong>范围：</strong>缓存字段回放，不是新模型实验。云端没有这些记录对应的原始图像；本页不生成或模拟原图。缓存标签不是人工、像素或物理真值。</p>
+  <div class="timeline-labels" aria-label="三个相关前缀"><span>q31 / f1743</span><span>q68 / f1746</span><span>q92 / f1752</span></div>
+  <section class="records" aria-label="缓存记录逐条对比"><article class="record " aria-labelledby="q31-title">
+  <h2 id="q31-title">q31 · f1743</h2>
+  <p class="relation">缓存记录：当前直接支持外部连接</p>
+  <dl>
+    <div><dt>状态依据</dt><dd><code>direct_current</code></dd></div>
+    <div><dt>历史适用性</dt><dd><code>direct-supported-by-record</code></dd></div>
+    <div><dt>历史记录</dt><dd>q31_c1</dd></div>
+    <div><dt>步骤完成</dt><dd><strong>unknown</strong></dd></div>
+    <div><dt>过程输入</dt><dd><code>process_not_supplied</code></dd></div>
+  </dl>
+  <p class="path-label">缓存所含帧关系</p>
+  <div class="frame-path" aria-label="q31 帧关系路径"><span>f1743: external_connection_supported</span></div>
+  <p class="interpretation">仅表示该缓存答复对所列帧作出的字段判断，不是人工或物理真值。</p>
+  <p class="record-hash">答复 SHA-256 <code>8b6a48870b2e5a563a46f48f67c5e2997289fdc2c7447f42ad86d8d896489df3</code></p>
+</article><article class="record conditional" aria-labelledby="q68-title">
+  <h2 id="q68-title">q68 · f1746</h2>
+  <p class="relation">当前直接关系：unknown（接口遮挡）</p>
+  <dl>
+    <div><dt>状态依据</dt><dd><code>conditional_history</code></dd></div>
+    <div><dt>历史适用性</dt><dd><code>conditional-history</code></dd></div>
+    <div><dt>历史记录</dt><dd>q68_c1</dd></div>
+    <div><dt>步骤完成</dt><dd><strong>unknown</strong></dd></div>
+    <div><dt>过程输入</dt><dd><code>process_not_supplied</code></dd></div>
+  </dl>
+  <p class="path-label">缓存所含帧关系</p>
+  <div class="frame-path" aria-label="q68 帧关系路径"><span>f1743: external_connection_supported</span> → <span>f1746: occluded_or_unknown</span></div>
+  <ul class="assumptions"><li>两帧之间仍是同一台板及目标黑腿，未发生未被提供帧显示的分离或替换。</li><li>末帧接口的投影遮挡不构成拆卸证据；在上述条件下沿用先前外部连接确认。</li></ul>
+  <p class="interpretation">f1743 的历史连接记录被保留；f1746 当前关系仍是 unknown。沿用连接只在原答复列出的身份连续、期间未分离等条件成立时适用。</p>
+  <p class="record-hash">答复 SHA-256 <code>e8cb2b8d705b1179c62a6df169c3a52802f54db3a2e96491daa04e5a8b0a59f1</code></p>
+</article><article class="record " aria-labelledby="q92-title">
+  <h2 id="q92-title">q92 · f1752</h2>
+  <p class="relation">缓存记录：当前直接支持外部连接</p>
+  <dl>
+    <div><dt>状态依据</dt><dd><code>direct_current</code></dd></div>
+    <div><dt>历史适用性</dt><dd><code>direct-supported-by-record</code></dd></div>
+    <div><dt>历史记录</dt><dd>c1</dd></div>
+    <div><dt>步骤完成</dt><dd><strong>unknown</strong></dd></div>
+    <div><dt>过程输入</dt><dd><code>process_not_supplied</code></dd></div>
+  </dl>
+  <p class="path-label">缓存所含帧关系</p>
+  <div class="frame-path" aria-label="q92 帧关系路径"><span>f1743: external_connection_supported</span> → <span>f1746: occluded_or_unknown</span> → <span>f1752: external_connection_supported</span></div>
+  <p class="interpretation">仅表示该缓存答复对所列帧作出的字段判断，不是人工或物理真值。</p>
+  <p class="record-hash">答复 SHA-256 <code>3444a71a98f397977ee407e7744b06e7b6e7f5e43dcc50bbc6403f90096bc694</code></p>
+</article></section>
+  <aside class="q68-callout"><strong>关键边界：</strong>q68 只记录了 f1743 的历史连接，并把 f1746 的当前直接关系记为 unknown；历史连续性是假设条件，不能直接写成“当前已连接”。q92 后来再次出现直接支持，也不会回填 q68 当时不可见的关系。</aside>
+  <p class="scope"><strong>步骤判断：</strong>三份记录都标为 <code>unknown</code>。缓存记有 <code>missedprocess</code>（输入未提供安装过程），端点外观不能替代 SOP 过程证据。</p>
+  <footer class="provenance">
+    来源提交：<code>955d2bae7f047c5e699caa90ac094b74b9b738e3</code><br>
+    公开缓存 manifest SHA-256：<code>4c7638d6dd90119915513af511f19c3b8890e32106a9b911b7a850c9bfebc38c</code><br>
+    字段回放结果 SHA-256：<code>a1a80e2bc0cbdff4ba1cfd222340e489e91415b04a8210a0ba83dade0207ac4e</code><br>
+    私有素材：未包含在本页；云端缓存路径不代表已回存 Mac。
+  </footer>
+</main>
+</body>
+</html>
