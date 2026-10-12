@@ -39,3 +39,9 @@ Mac 报告媒体为 H.264、640×480、30 fps、547 帧、time base `1/30`；报
 ## 离线请求预检草稿
 
 [离线预检包](offline_runner/README_zh.md) 已录入 Mac 提供的提示、部分参数、F/HF 分臂 schema 及遮罩 PNG 文件元数据。云端没有 PNG 字节，后端版本与 schema 能力、`top_p/top_k`、三项独立操作授权和费用/计算授权仍未核实；脚本会继续阻断。配套 Kaggle Notebook 只做离线检查，未上传；没有模型下载或推理调用。
+
+## 2026-10-12 执行准入包
+
+[Task6 执行准入包](admission_20261012/EXECUTION_ADMISSION_20261012_zh.md)以 030b186/v5 为 runner 对象，固定候选模型、Mac 报告的四帧输入身份、F/HF 独立请求、输出合同、两次请求与每次 60 秒预算、停止和结果私有留存步骤。机器可读清单为 [execution-admission-20261012.json](admission_20261012/execution-admission-20261012.json)。
+
+**当前状态仍为 `preparation_only_blocked_for_execution`。** 既有记录称 Kaggle 曾对模型和四张图重哈希，但本次没有当前 Kaggle 会话/配额复核；CUDA build 未确认成功，且缺少实际 `runtime-verification.json` 中的 `llama-server --version` 与二进制 SHA。v5 虽经有限独立复审并获建议推送，仍未上传或在 Kaggle 运行。此次只准备和核验已有记录，不重下权重、不启动服务器、不调用模型。

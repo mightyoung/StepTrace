@@ -24,6 +24,12 @@ This directory exchanges reviewed text and artifact identities across research e
 - Protocol status remains draft/unfrozen; model calls and experiment runs remain at zero.
 - Only non-sensitive protocol/source metadata is in the repository; media and frames are not included.
 
+## RoboAssem task 6 execution admission — 2026-10-12
+
+- [Task6 admission package](../../experiments/roboassem-task6-pilot-dev-20261011/admission_20261012/EXECUTION_ADMISSION_20261012_zh.md) pins the Qwen GGUF/projector candidate, the four Mac-reported masked frame identities, independent F/HF contexts, output schema behavior, one-shot budget, shutdown, and private result retention.
+- Status is `preparation_only_blocked_for_execution`: the earlier Kaggle record reports successful model/image hash rechecks but the current session and quota are unverified; CUDA build success and `runtime-verification.json` with backend version/binary SHA are absent; v5 source readback in Kaggle is absent. No weight redownload or real inference occurred.
+- This is a separate RoboAssem Task6 record. Earlier Mac input and runner receipts remain unchanged; the new [admission receipt](receipts/roboassem-task6-admission-20261012.json) identifies exactly which runtime records are still required.
+
 ## Current stage - 2026-10-10 15:05 UTC
 
 - [Current progress, actual results and remaining evidence gaps](progress/20261010T1505Z-current-stage.md)

@@ -1,0 +1,331 @@
+{
+  "schema_version": "steptrace.roboassem-task6-execution-admission.v1",
+  "experiment_id": "roboassem-task6-dev-20261011-v0.1",
+  "status": "preparation_only_blocked_for_execution",
+  "source_commit": "030b186f252d9ac78a2ed6e2e3978c5e2c9f41b8",
+  "prior_protocol_commit": "7ba5e530b6b2c0fd722a2dd0278f665cc594f1a0",
+  "request_contract_commit": "a2cdc0b712ccc70d929a3d0e6b00d6b414dbde98",
+  "runner_patch_source_commit": "1f9b501f6cef873d38bf5ec8b077e6aa99ea1448",
+  "candidate_model": {
+    "repo_id": "unsloth/Qwen3.5-9B-GGUF",
+    "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+    "artifacts": [
+      {
+        "filename": "Qwen3.5-9B-Q4_K_M.gguf",
+        "bytes": 5680522464,
+        "sha256": "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8",
+        "present_in_cloud_repo": false,
+        "previous_kaggle_hash_recheck_reported": true,
+        "current_kaggle_mount_rechecked": false
+      },
+      {
+        "filename": "mmproj-BF16.gguf",
+        "bytes": 921705024,
+        "sha256": "853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383",
+        "present_in_cloud_repo": false,
+        "previous_kaggle_hash_recheck_reported": true,
+        "current_kaggle_mount_rechecked": false,
+        "T4_compatibility": "unverified"
+      }
+    ],
+    "redownload_authorized": false
+  },
+  "candidate_backend": {
+    "name": "llama.cpp llama-server",
+    "source_commit": "8345f333951c661d166b00e6f9362e553768f292",
+    "source_archive_sha256": null,
+    "build_profile": {
+      "GGML_CUDA": true,
+      "CUDA_ARCHITECTURES": "75",
+      "BUILD_TYPE": "Release",
+      "BUILD_SERVER": true,
+      "BUILD_TESTS": false,
+      "BUILD_EXAMPLES": false,
+      "LLAMA_CURL": false,
+      "jobs": 4,
+      "build_timeout_seconds": 480
+    },
+    "binary_version": null,
+    "binary_sha256": null,
+    "required_runtime_record": "runtime-verification.json",
+    "runtime_record_success_confirmed": false,
+    "latest_observation": "Build 0; build_success_confirmed=false"
+  },
+  "runner_v5": {
+    "archive": {
+      "filename": "task6-runner-patch-20261012-v5.zip",
+      "path": "../mac_runner_readonly_audit_20261012/deliverables/task6-runner-patch-20261012-v5.zip",
+      "bytes": 30926,
+      "sha256": "7bd01775520cc4b555f83b2edd1211430c51983cf1f07fe65475bab477de2f5c",
+      "present_in_current_cloud_workspace": true,
+      "tracked_in_git": false,
+      "library_metadata_persisted_reported": true
+    },
+    "source_base_path": "../mac_runner_readonly_audit_20261012/",
+    "sources": [
+      {
+        "path": "sources/prepared-run_pair-crashsafe.py",
+        "bytes": 29513,
+        "sha256": "baf2c20e0ef837fd095a6e1f87d893d05160206c2cfec9a593ffb51066a57e4b"
+      },
+      {
+        "path": "sources/runner_safety.py",
+        "bytes": 19874,
+        "sha256": "d42e869daac52bd6261665f85122a747ef4011140e9498ea379ae504fbfd4075"
+      },
+      {
+        "path": "sources/prepared-execute-pair-bootstrap-crashsafe.py",
+        "bytes": 7412,
+        "sha256": "967bc1386e4ff5eeb3019631e0a274fa9663dbdf36632a21e4a3e7e7e5df53d0"
+      },
+      {
+        "path": "tests/test_prepared_runner_crash_safety.py",
+        "bytes": 45030,
+        "sha256": "930993db6d4eb78905a8c5cf4e98109885df7df3e0bf85fc2fec7a2438377c5f"
+      }
+    ],
+    "review_status": "independent reviewer recommended approve for push; mocked safety scope only",
+    "tests_reported": {
+      "normal": "24/24",
+      "python_O": "24/24"
+    },
+    "uploaded_to_kaggle_reported": false,
+    "executed_on_kaggle": false,
+    "known_review_limit": "Inner message objects are not fully semantically validated; {messages:[{}]} reaches mocked urlopen."
+  },
+  "media": {
+    "filename": "task6_m_1.mp4",
+    "bytes": 3708210,
+    "sha256": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06",
+    "codec": "H.264",
+    "width": 640,
+    "height": 480,
+    "fps": "30/1",
+    "frame_count": 547,
+    "time_base": "1/30",
+    "identity_source": "Mac executor report; not present in cloud workspace"
+  },
+  "input_contract": {
+    "source_contract_path": "../mac_runner_readonly_audit_20261012/historical-request-source-contract.json",
+    "source_contract_bytes": 19714,
+    "source_contract_sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+    "source_schema_paths": {
+      "F": "../mac_runner_readonly_audit_20261012/content-schema-F.json",
+      "HF": "../mac_runner_readonly_audit_20261012/content-schema-HF.json"
+    },
+    "model_inputs": [
+      {
+        "id": "k01",
+        "source_frame": "frame-01.png",
+        "source_frame_index": 0,
+        "pts": 0,
+        "time_base": "1/30",
+        "source_bytes": 188844,
+        "source_sha256": "6133cfd6a5c7e43bf8c15969fd24736786b727e8d508fcc8f27ac4fa536773ec",
+        "role": "HF_past",
+        "bytes": 182917,
+        "sha256": "d460c282a5fb02b5c98b36ad0b90f0840a037edfd9114fad4e2609a35a95fcc9"
+      },
+      {
+        "id": "k02",
+        "source_frame": "frame-02.png",
+        "source_frame_index": 300,
+        "pts": 300,
+        "time_base": "1/30",
+        "source_bytes": 200574,
+        "source_sha256": "e4c2c8aaedf45460a1414ada5dc3f5b3abca81dea5b785d2e405b4c0dd69b2c3",
+        "role": "HF_past",
+        "bytes": 194260,
+        "sha256": "6f73af6b1dc20d8adc5ba01a5bc55246c5f3f1c8373c0e9ad55b3d3db0915091"
+      },
+      {
+        "id": "k03",
+        "source_frame": "frame-03.png",
+        "source_frame_index": 450,
+        "pts": 450,
+        "time_base": "1/30",
+        "source_bytes": 202480,
+        "source_sha256": "f553ab609b40c421076e7fb3735a14cdc3d7818a068616344feba7f223bcb8db",
+        "role": "HF_past",
+        "bytes": 195651,
+        "sha256": "601c93866a4263af370480dcf0d79f672342b110d7cf4ab67b918ec5e2bf262d"
+      },
+      {
+        "id": "k04",
+        "source_frame": "frame-04.png",
+        "source_frame_index": 510,
+        "pts": 510,
+        "time_base": "1/30",
+        "source_bytes": 229759,
+        "source_sha256": "cc2f0bed03c5df2245392b58fd6da5a02b53a0e0e9a6acd6cb3b75750aec80a2",
+        "role": "F_current_and_HF_current",
+        "bytes": 223238,
+        "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8"
+      }
+    ],
+    "dimensions": [640, 480],
+    "derivative_mask": {
+      "type": "opaque_black_rectangle",
+      "xywh": [0, 400, 112, 80],
+      "opacity": 1,
+      "outside_rectangle_rgb_unchanged_reported": true,
+      "inpainting_or_generated_pixels": false
+    },
+    "bytes_present_in_cloud_workspace": false,
+    "previous_kaggle_hash_recheck_reported": true,
+    "current_kaggle_mount_rechecked": false
+  },
+  "requests": {
+    "contexts_are_independent": true,
+    "order": ["F", "HF"],
+    "F_input_ids": ["k04"],
+    "HF_input_ids": ["k01", "k02", "k03", "k04"],
+    "same_k04_bytes_both_arms": true,
+    "system_prompt_sha256": "4f08f7f8529e2badafa35cc80a66bf781b8f6bff376102556f1e762f0e273a57",
+    "common_question_sha256": "160e6d72526c226aa4f124abf7bf675840b2b74be467ddfb483a6ca8495f48d6",
+    "F_condition_text_sha256": "a4a21adddece15794b7757af27b0bf7a58627cfb99bcfbc859cd917fcda4cc74",
+    "F_assembled_user_text_sha256": "d9a23f4a7085cc140e31b46c73602d01e8916675612b954ed19244d850f51e5c",
+    "HF_condition_text_sha256": "1b4405192c094559fd1d0d12c32ba0eb182c32a0008f46e160b15ad851b0be8a",
+    "HF_assembled_user_text_sha256": "a6bb4cd47d15dc3eaf5a55ea0d0d21401dc08952b4d3cfb2f2753bc5d3cf1df6",
+    "prospective_unsent_request_hashes_from_Mac_audit": {
+      "source_path": "../mac_runner_readonly_audit_20261012/prospective-request-plan.json",
+      "F": {
+        "bytes": 301251,
+        "sha256": "abce46707c52ccff413f9a432bc87107b2a12fac25b09c527b20e7d73bf5f1cf",
+        "actual_request_sent": false
+      },
+      "HF": {
+        "bytes": 1065537,
+        "sha256": "7cfea8f7a9977840a2a5efb3ababc4f0e9e167bad56f1f4a4b2fdbfa82e54a23",
+        "actual_request_sent": false
+      }
+    },
+    "actual_v5_request_sha256": null,
+    "actual_v5_request_hash_emitted_at_send_intent": true
+  },
+  "generation_parameters": {
+    "model": "Qwen3.5-9B-Q4_K_M",
+    "temperature": 0,
+    "top_p": 0.95,
+    "top_k": 40,
+    "seed": 1,
+    "max_tokens_each": 2048,
+    "stream": false,
+    "enable_thinking": false,
+    "cache_prompt": false,
+    "provenance_note": "top_p/top_k were unspecified in the original text source contract but are inserted by both archived sender and v5 code; chosen as the v5 candidate and require runtime config readback."
+  },
+  "response_contract": {
+    "format": "json_schema",
+    "name": "roboassem_task6_visual_state",
+    "strict": true,
+    "schema_dialect": "Draft 2020-12 source schemas, hash-bound separately for F and HF",
+    "source_schema_sha256": {
+      "F": "77240e2c680ae3d5b4ec6f28083c32bdb54eb8e757b47e0678b63ac40c751b4d",
+      "HF": "45075bdcf0eb9144ddca918c74600901f4660f4b4a2d06b0601277b5b2193753"
+    },
+    "required_top_level_fields": [
+      "schema_version", "condition", "authority", "state_write_allowed", "identity_continuity",
+      "current_relations", "historical_events", "history_current_applicability", "assumptions",
+      "SOP_completion", "mechanical_lock", "force_state", "limitations"
+    ],
+    "fixed_values": {
+      "schema_version": "1",
+      "authority": "development_state_estimation_only",
+      "state_write_allowed": false,
+      "SOP_completion": "unknown",
+      "mechanical_lock": "unknown",
+      "force_state": "unknown"
+    },
+    "object_ids": ["white_u_part", "blue_seat_left", "blue_seat_right"],
+    "appearance_enum": [
+      "visible_separation", "contact_or_alignment", "insertion_appearance",
+      "apparent_external_position", "unknown"
+    ],
+    "generation_schema_drops": ["$schema", "contains", "minContains", "maxContains", "uniqueItems"],
+    "offline_full_schema_validation": true,
+    "extra_exact_seat_set_check": ["blue_seat_left", "blue_seat_right"],
+    "backend_generation_schema_support": "unverified",
+    "state_write_allowed": false,
+    "fixed_unknown_fields": ["SOP_completion", "mechanical_lock", "force_state"],
+    "F_history": "empty; identity_continuity=not_observed",
+    "HF_history_input_ids": ["k01", "k02", "k03"],
+    "current_relation_evidence_input_id": "k04"
+  },
+  "request_policy": {
+    "max_generation_requests": 2,
+    "max_retries": 0,
+    "parallelism": 1,
+    "request_order": ["F", "HF"],
+    "per_request_wall_clock_timeout_seconds": 60,
+    "cancellation_reserve_seconds": 0.05,
+    "max_output_tokens_per_request": 2048,
+    "maximum_output_tokens_pair": 4096,
+    "H_requests": 0,
+    "F_transport_failure_aborts_HF": true,
+    "F_parse_or_schema_failure_aborts_HF": true,
+    "old_prospective_plan_claimed_schema_errors_continue_HF": true,
+    "conflict_resolution": "v5 source code aborts on parse_response validation exception; v5 behavior governs, old prospective plan is stale",
+    "timeout_delivery_status": "unknown; no replay"
+  },
+  "context_preflight": {
+    "effective_context_minimum": 16384,
+    "image_max_tokens_each": 2048,
+    "output_tokens": 2048,
+    "safety_margin_tokens": 128,
+    "F_bound": "F_text_tokens + 4224 <= 16384",
+    "HF_bound": "HF_text_tokens + 10368 <= 16384",
+    "server_load_timeout_seconds": 240,
+    "token_counts_measured": false
+  },
+  "shutdown_and_retention": {
+    "local_server_terminate_then_wait_seconds": 20,
+    "kill_then_wait_if_still_running": true,
+    "gpu_monitor_stop_and_join": true,
+    "server_stopped_record": "server-stopped.json",
+    "recorded_send_intents_are_not_server_receipts": true,
+    "zip": "task6-results.zip",
+    "private_artifacts_include_base64_requests_and_raw_responses": true,
+    "public_git_may_contain_raw_requests_or_media": false,
+    "explicit_kaggle_ui_session_stop_required": true,
+    "current_session_stop_independently_verified": false
+  },
+  "authorization": {
+    "development_candidate_approved": true,
+    "current_cloud_compute_authorized": false,
+    "current_kaggle_upload_authorized": false,
+    "current_model_download_authorized": false,
+    "current_inference_authorized": false
+  },
+  "current_kaggle_evidence": {
+    "full_notebook_export_present": false,
+    "notebook_export_sha256": null,
+    "notebook_cell_status_source": "manual transcription of prior UI receipts",
+    "prior_model_hash_recheck_reported": true,
+    "prior_four_frame_rehash_reported": true,
+    "prior_cuda_build_success": false,
+    "latest_gpu_stop": "user_reported_manual_stop",
+    "latest_gpu_stop_independently_verified": false,
+    "prepared_v5_runner_uploaded": false,
+    "prepared_v5_runner_executed": false,
+    "F_requests": 0,
+    "HF_requests": 0,
+    "raw_model_responses_exist": false
+  },
+  "execution_gate": [
+    {"item": "current Kaggle session identity/status, GPU and quota", "status": "unverified"},
+    {"item": "current Kaggle private input/model mount hash readback", "status": "historical recheck only; current mount unverified"},
+    {"item": "v5 prepared sources uploaded and SHA-readback", "status": "not uploaded"},
+    {"item": "pinned backend successful build version and binary SHA", "status": "missing runtime-verification.json"},
+    {"item": "effective context, token bounds and schema profile", "status": "not measured; backend schema support unverified"},
+    {"item": "current compute/inference authorization", "status": "not granted in execution protocol"},
+    {"item": "clean attempt ledger and no active runner", "status": "current Kaggle workspace not inspected"},
+    {"item": "Kaggle session shutdown proof", "status": "latest user-reported only; no independent verification"}
+  ],
+  "this_preparation_performed": {
+    "weight_redownloads": 0,
+    "real_inference_calls": 0,
+    "kaggle_session_starts": 0,
+    "model_weight_bytes_read": false
+  }
+}

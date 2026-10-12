@@ -1,0 +1,65 @@
+{
+  "schema_version": "steptrace.roboassem-task6-admission-receipt.v1",
+  "attempt_id": "roboassem-task6-admission-20261012",
+  "status": "preparation_only_blocked_for_execution",
+  "repository": {
+    "source_commit": "030b186f252d9ac78a2ed6e2e3978c5e2c9f41b8",
+    "candidate_branch": "task/roboassem-task6-execution-admission-20261012"
+  },
+  "admission_package": {
+    "markdown_path": "experiments/roboassem-task6-pilot-dev-20261011/admission_20261012/EXECUTION_ADMISSION_20261012_zh.md",
+    "markdown_sha256": "1977918fe8eb0829c13676e0c1c719d0181fc83de63df7a7efc3c0a912cf6dc7",
+    "machine_manifest_path": "experiments/roboassem-task6-pilot-dev-20261011/admission_20261012/execution-admission-20261012.json",
+    "machine_manifest_sha256": "05a681386b770ef981afebfb69e42f332a7607a8cdf886cf0e22bc84ae0a117d"
+  },
+  "v5_runner": {
+    "bytes": 30926,
+    "sha256": "7bd01775520cc4b555f83b2edd1211430c51983cf1f07fe65475bab477de2f5c",
+    "review_status": "independent reviewer recommended approve for push; mock safety only",
+    "runner_uploaded_or_run_in_kaggle": false
+  },
+  "input_contract": {
+    "source_contract_sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+    "model_input_frame_ids": ["k01", "k02", "k03", "k04"],
+    "prior_kaggle_hash_recheck_reported": true,
+    "current_kaggle_mount_rechecked": false,
+    "cloud_media_and_png_bytes_present": false
+  },
+  "backend": {
+    "source_commit": "8345f333951c661d166b00e6f9362e553768f292",
+    "successful_build_confirmed": false,
+    "runtime_verification_json_present": false,
+    "binary_version": null,
+    "binary_sha256": null
+  },
+  "budgets": {
+    "max_requests": 2,
+    "order": ["F", "HF"],
+    "serial": true,
+    "retries": 0,
+    "timeout_each_seconds": 60,
+    "max_output_tokens_each": 2048,
+    "compute_or_inference_authorized": false
+  },
+  "current_kaggle_status": {
+    "session_currently_verified": false,
+    "gpu_type_or_quota_verified": false,
+    "latest_gpu_stop_independently_verified": false,
+    "full_notebook_export_present": false,
+    "F_requests": 0,
+    "HF_requests": 0
+  },
+  "prohibited_this_preparation": {
+    "weight_redownloads": 0,
+    "real_inference_calls": 0,
+    "kaggle_session_starts": 0
+  },
+  "specific_records_still_needed": [
+    "Current Kaggle session status, GPU type and authorized available quota evidence",
+    "Current Kaggle readback of execution-input-contract.json and download-verification.json plus read-only hashes for both GGUFs and k01-k04 PNGs; stop rather than download if missing",
+    "Kaggle readback SHA of the v5 prepared runner, runner_safety module and bootstrap",
+    "Successful runtime-verification.json with pinned llama.cpp commit, llama-server version, binary SHA-256 and build time",
+    "backend-props.json and preflight-F.json/preflight-HF.json with no-generation token bounds and schema profile readback",
+    "After a future authorized run only: private task6-results.zip hash and independently verified Kaggle session stopped state"
+  ]
+}
