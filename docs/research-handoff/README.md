@@ -11,6 +11,13 @@ This directory exchanges reviewed text and artifact identities across research e
 - No project or third-party license is created or changed here. Unknown redistribution rights remain unknown.
 - This initial batch contains status snapshots and metadata only, except the explicitly identified synthetic-smoke text inputs in PCG. Publication approval is not execution approval.
 
+## Process evidence and current-state contrast — 2026-10-12
+
+- [Cloud-only contrast and evidence limits](progress/20261012-process-current-state-contrast.md) rechecks the public cached-answer comparison rooted at `64e62dbff44e766551479f080e2a7ba60c613e83` and the recovered-record support tests. The cache distinguishes a direct endpoint record, a current-frame unknown with conditional history, and a later endpoint record that does not relabel the hidden interval.
+- The offline package and its existing [Mac restore manifest](../../experiments/process-visible-state-dev-20261011/MANIFEST.json) remain unchanged. Six process-state tests and five recovered-cache support tests passed; a fresh no-model result matched the archived result byte-for-byte. This cloud verification does not mean the package was saved on Mac.
+- The q31/q68/q92 answers are related prefixes of one development event, not independent samples or human ground truth. Synthetic occlusion/removal/identity-change cases are logic controls only; none is a real negative or metric denominator. No accuracy, general gain, physical truth, or process-step accuracy is supported.
+- [Append-only verification receipt](receipts/process-current-state-contrast-20261012.json). The user-reported Mac archive (403 files, about 34 MB) is separate from this public-code manifest; the private video was not uploaded. The original IndEgo 119–128 s dismantling frame manifest and H/F/HF JSON remain missing.
+
 ## Current stage - 2026-10-10 15:05 UTC
 
 - [Current progress, actual results and remaining evidence gaps](progress/20261010T1505Z-current-stage.md)

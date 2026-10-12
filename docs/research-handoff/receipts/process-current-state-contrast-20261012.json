@@ -1,0 +1,72 @@
+{
+  "schema_version": "steptrace.process-current-state-contrast-receipt.v1",
+  "attempt_id": "process-current-state-contrast-20261012",
+  "status": "cloud_only_readonly_reverification",
+  "repository": {
+    "branch": "task/process-visible-state-evidence-20261012",
+    "base_commit": "525a76cf33ca8b1626949a2c2c719cbe870af89d",
+    "analysis_parent_commit": "64e62dbff44e766551479f080e2a7ba60c613e83",
+    "public_cache_source_commit": "955d2bae7f047c5e699caa90ac094b74b9b738e3"
+  },
+  "public_cache": {
+    "manifest_path": "experiments/real-reappearance-dev-20261010/public_manifest.json",
+    "manifest_sha256": "4c7638d6dd90119915513af511f19c3b8890e32106a9b911b7a850c9bfebc38c",
+    "verified_entries_by_test": 23,
+    "cached_answer_ids": ["q31", "q68", "q92"],
+    "source_events": 1,
+    "related_prefixes": 3,
+    "unique_frame_ids": 3,
+    "repeated_observation_rows": 6,
+    "human_ground_truth": false
+  },
+  "commands": [
+    {
+      "command": "python3 -B -m unittest -v test_process_visible_state.py",
+      "working_directory": "experiments/process-visible-state-dev-20261011",
+      "exit_code": 0,
+      "tests_passed": 6,
+      "tests_failed": 0
+    },
+    {
+      "command": "python3 -B process_visible_state.py --output /tmp/steptrace-process-visible-results-20261012.json",
+      "working_directory": "experiments/process-visible-state-dev-20261011",
+      "exit_code": 0,
+      "output_sha256": "a1a80e2bc0cbdff4ba1cfd222340e489e91415b04a8210a0ba83dade0207ac4e",
+      "byte_equal_to_checked_in_results": true
+    },
+    {
+      "command": "python3 -B -m unittest -v test_progress_support.py",
+      "working_directory": "experiments/recovered-real-cache-dev-20261011",
+      "exit_code": 0,
+      "tests_passed": 5,
+      "tests_failed": 0,
+      "source_video_opened": false,
+      "event_log_opened": false
+    }
+  ],
+  "restore_manifest": {
+    "path": "experiments/process-visible-state-dev-20261011/MANIFEST.json",
+    "sha256": "c02074ee247a03385b78f98dcafd50f3de9be09b5a09143e783b7535e6932347",
+    "artifacts_checked": 6,
+    "source_answer_hashes_checked": 3,
+    "Mac_backup": "pending"
+  },
+  "execution_boundaries": {
+    "model_calls": 0,
+    "training_runs": 0,
+    "media_downloads": 0,
+    "dependency_installs": 0,
+    "production_changes": 0,
+    "accuracy_or_gain_claim": false,
+    "synthetic_cases_counted_as_real_negatives": false
+  },
+  "user_reported_separate_Mac_archive": {
+    "status": "user_reported_completed",
+    "files": 403,
+    "approximate_bytes": 34000000,
+    "private_video_uploaded_to_cloud": false,
+    "independently_verified_by_this_cloud_run": false,
+    "report_source": "user-provided task handoff"
+  },
+  "remaining_material_gap": "Original IndEgo 119-128 second dismantling packet with its frame manifest and matching H/F/HF first-answer JSON; no reconstruction from prose or screenshots."
+}
