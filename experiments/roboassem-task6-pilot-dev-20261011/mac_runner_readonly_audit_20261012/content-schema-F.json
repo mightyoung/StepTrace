@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RoboAssem task6 development visual state output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "condition",
+    "authority",
+    "state_write_allowed",
+    "identity_continuity",
+    "current_relations",
+    "historical_events",
+    "history_current_applicability",
+    "assumptions",
+    "SOP_completion",
+    "mechanical_lock",
+    "force_state",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "condition": {
+      "const": "F"
+    },
+    "authority": {
+      "const": "development_state_estimation_only"
+    },
+    "state_write_allowed": {
+      "const": false
+    },
+    "identity_continuity": {
+      "const": "not_observed"
+    },
+    "current_relations": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "part_id",
+          "seat_id",
+          "appearance",
+          "evidence_input_ids",
+          "reason"
+        ],
+        "properties": {
+          "part_id": {
+            "const": "white_u_part"
+          },
+          "seat_id": {
+            "enum": [
+              "blue_seat_left",
+              "blue_seat_right"
+            ]
+          },
+          "appearance": {
+            "enum": [
+              "visible_separation",
+              "contact_or_alignment",
+              "insertion_appearance",
+              "apparent_external_position",
+              "unknown"
+            ]
+          },
+          "evidence_input_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "const": "k04"
+            }
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "contains": {
+        "properties": {
+          "seat_id": {
+            "const": "blue_seat_left"
+          }
+        },
+        "required": [
+          "seat_id"
+        ]
+      },
+      "minContains": 1,
+      "maxContains": 1
+    },
+    "historical_events": {
+      "type": "array",
+      "maxItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "part_id",
+          "seat_id",
+          "event",
+          "evidence_input_ids",
+          "uncertainty"
+        ],
+        "properties": {
+          "part_id": {
+            "const": "white_u_part"
+          },
+          "seat_id": {
+            "enum": [
+              "blue_seat_left",
+              "blue_seat_right",
+              "unknown"
+            ]
+          },
+          "event": {
+            "enum": [
+              "visible_separation",
+              "insertion_appearance",
+              "apparent_hold_after_release",
+              "unknown"
+            ]
+          },
+          "evidence_input_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "k01",
+                "k02",
+                "k03"
+              ]
+            }
+          },
+          "uncertainty": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "history_current_applicability": {
+      "type": "string"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "SOP_completion": {
+      "const": "unknown"
+    },
+    "mechanical_lock": {
+      "const": "unknown"
+    },
+    "force_state": {
+      "const": "unknown"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

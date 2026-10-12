@@ -1,0 +1,27 @@
+{
+  "status": "deployment_preparation_unfrozen",
+  "execution_frozen": false,
+  "experiment_complete": false,
+  "F_requests": 0,
+  "HF_requests": 0,
+  "raw_model_responses_exist": false,
+  "uploaded_source_sender_executed": false,
+  "prepared_context_sender_uploaded_or_executed": false,
+  "source_contract_authorization_fields": "Historical offline false flags retained byte-for-byte; later user authorization exists separately, not a frozen execution proof",
+  "GPU_stop_latest": "user_reported_manual_stop",
+  "GPU_stop_independently_verified_after_latest_report": false,
+  "models_downloaded_and_sha_verified": true,
+  "restored_weight_and_four_PNG_hashes_verified": true,
+  "CUDA_runtime_build_success_confirmed": false,
+  "file_review_scope": "Mac local files only; no UI, GPU, inference, network model downloads or notebook edits",
+  "public_exclusions": [
+    "PNG pixels",
+    "video",
+    "weights",
+    "request base64 payload",
+    "credentials",
+    "private notebook URL",
+    "user message identifiers",
+    "absolute Mac paths"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "steptrace.mac-runner-readonly-snapshot.v1",
+  "execution_frozen": false,
+  "actual_model_requests": {
+    "F": 0,
+    "HF": 0
+  },
+  "files": [
+    {
+      "path": "sources/uploaded-setup.py",
+      "bytes": 1699,
+      "sha256": "9dd7af29757afa401e9e979537de29298fa4f8bd26dc8afbc1885540732558dc",
+      "actual_uploaded_to_private_dataset": true,
+      "executed_as_model_sender": false
+    },
+    {
+      "path": "sources/uploaded-build.py",
+      "bytes": 1390,
+      "sha256": "120d880a870697678a59cf988d34547bcf3ce712baf1dde9787d9c1ec341f33c",
+      "actual_uploaded_to_private_dataset": true,
+      "executed_as_model_sender": false
+    },
+    {
+      "path": "sources/uploaded-run_pair.py",
+      "bytes": 8090,
+      "sha256": "9cb830588290d28b730f5dde1ce096d3e2ba43d6198bffcc79fe1ad2aabcf985",
+      "actual_uploaded_to_private_dataset": true,
+      "executed_as_model_sender": false
+    },
+    {
+      "path": "sources/prepared-context-run_pair.py",
+      "bytes": 8811,
+      "sha256": "74a53c1b017f0d478c9b482e86f54c66d1f3d77f870ecc206c237ab7e15e4a03",
+      "actual_uploaded_to_private_dataset": false,
+      "executed_as_model_sender": false
+    },
+    {
+      "path": "sources/prepared-execute-pair-bootstrap.py",
+      "bytes": 1487,
+      "sha256": "0b4211266c75b12f871626e046cac8689b03b0516ea653b732978db66da11dbf",
+      "actual_uploaded_to_private_dataset": false,
+      "executed_as_model_sender": false
+    },
+    {
+      "path": "historical-request-source-contract.json",
+      "bytes": 19714,
+      "sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+      "actual_uploaded_to_private_dataset": true,
+      "executed_as_model_sender": false
+    },
+    {
+      "path": "content-schema-F.json",
+      "bytes": 3737,
+      "sha256": "77240e2c680ae3d5b4ec6f28083c32bdb54eb8e757b47e0678b63ac40c751b4d",
+      "actual_uploaded_to_private_dataset": true,
+      "executed_as_model_sender": false
+    },
+    {
+      "path": "content-schema-HF.json",
+      "bytes": 3804,
+      "sha256": "45075bdcf0eb9144ddca918c74600901f4660f4b4a2d06b0601277b5b2193753",
+      "actual_uploaded_to_private_dataset": true,
+      "executed_as_model_sender": false
+    }
+  ]
+}

@@ -1,0 +1,643 @@
+{
+  "schema": "steptrace-task6-text-execution-input-contract/1",
+  "status": "OFFLINE_INPUT_CONTRACT_EXECUTION_NOT_AUTHORIZED",
+  "created_utc": "2026-10-11T14:46:51.042965+00:00",
+  "experiment": "one development opportunity from one RoboAssem task6 clip",
+  "source_media": {
+    "filename": "task6_m_1.mp4",
+    "bytes": 3708210,
+    "sha256": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06"
+  },
+  "system_prompt_exact": "仅做视觉开发审查。固定使用white_u_part、blue_seat_left和blue_seat_right名称；左右蓝座ID不得交换，白件换座或姿态变化不创建新物理身份。身份连续性和关系不清楚时输出unknown。只用本条件给定图像，不利用文件名、真实时间、数据集先验或字幕猜答案。当前外观与历史事件/当前适用性分别表达。可见分离、插入外观、夹爪离开后的在位外观都不证明锁紧、受力、牢固或完整SOP完成。F只有当前图，不补历史或判断未提供的变化。HF只引用实际给定过去图，不因过去在左座就无条件延续到当前，也不将左右座变化说成白件物理身份变化。SOP_completion、mechanical_lock、force_state固定unknown；不推进状态。只返回符合本条件JSON Schema的一个对象。",
+  "common_question_exact": "描述当前白U件分别相对于左、右蓝座的可见关系与未知项。如提供过去图，另描述可见过程候选、身份连续性及过去关系当前是否适用。区分当前图直接观察与历史条件推断，不把换连接对象解释为换物体。",
+  "generation_parameters_exact": {
+    "model": "Qwen3.5-9B-Q4_K_M",
+    "temperature": 0,
+    "seed": 1,
+    "max_tokens": 2048,
+    "stream": false,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "unspecified_effective_sampler_fields": [
+    "top_p",
+    "top_k"
+  ],
+  "backend": "UNRESOLVED; prior Qwen service unavailable per user",
+  "backend_version": "UNRESOLVED",
+  "model_candidate_revision_cloud": "3885219b6810b007914f3a7950a8d1b469d598a5",
+  "model_candidate_is_downloaded": false,
+  "physical_event_count": 1,
+  "original_frames_provenance_only": [
+    {
+      "input_id": "k01",
+      "filename": "frame-01.png",
+      "source_frame_index": 0,
+      "pts": 0,
+      "time_base": "1/30",
+      "pts_seconds": "0.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 188844,
+      "sha256": "6133cfd6a5c7e43bf8c15969fd24736786b727e8d508fcc8f27ac4fa536773ec",
+      "RGB24_sha256": "fcb65c291b971f3259b0d54e82aef6660c4866ce02f9c166fa23d3ef36f19e91"
+    },
+    {
+      "input_id": "k02",
+      "filename": "frame-02.png",
+      "source_frame_index": 300,
+      "pts": 300,
+      "time_base": "1/30",
+      "pts_seconds": "10.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 200574,
+      "sha256": "e4c2c8aaedf45460a1414ada5dc3f5b3abca81dea5b785d2e405b4c0dd69b2c3",
+      "RGB24_sha256": "aa48a446c1aaa41e841a6235375e76158e6f9490a9f17152d1b2b0c53f914bc4"
+    },
+    {
+      "input_id": "k03",
+      "filename": "frame-03.png",
+      "source_frame_index": 450,
+      "pts": 450,
+      "time_base": "1/30",
+      "pts_seconds": "15.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 202480,
+      "sha256": "f553ab609b40c421076e7fb3735a14cdc3d7818a068616344feba7f223bcb8db",
+      "RGB24_sha256": "4ac9f22ccb8d3c622f3c11003e96083e23ff7add9a4251c6deef1376682efc81"
+    },
+    {
+      "input_id": "k04",
+      "filename": "frame-04.png",
+      "source_frame_index": 510,
+      "pts": 510,
+      "time_base": "1/30",
+      "pts_seconds": "17.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 229759,
+      "sha256": "cc2f0bed03c5df2245392b58fd6da5a02b53a0e0e9a6acd6cb3b75750aec80a2",
+      "RGB24_sha256": "1106df5e586b06cffa9dbd6a10fb777b41277c260687052488a1cce4ea26b4b5"
+    }
+  ],
+  "model_input_frames": [
+    {
+      "input_id": "k01",
+      "filename": "k01.png",
+      "source_frame_index": 0,
+      "pts": 0,
+      "time_base": "1/30",
+      "pts_seconds": "0.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 182917,
+      "sha256": "d460c282a5fb02b5c98b36ad0b90f0840a037edfd9114fad4e2609a35a95fcc9",
+      "RGB24_sha256": "ca34314f422625c2d41e3cb853a8e30e991af8bbab9e82fd6231da9f5b98de45"
+    },
+    {
+      "input_id": "k02",
+      "filename": "k02.png",
+      "source_frame_index": 300,
+      "pts": 300,
+      "time_base": "1/30",
+      "pts_seconds": "10.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 194260,
+      "sha256": "6f73af6b1dc20d8adc5ba01a5bc55246c5f3f1c8373c0e9ad55b3d3db0915091",
+      "RGB24_sha256": "5491f3838a623d30295d959a3fe406acdd63ae42b160c92f6ee6a3549b85ff07"
+    },
+    {
+      "input_id": "k03",
+      "filename": "k03.png",
+      "source_frame_index": 450,
+      "pts": 450,
+      "time_base": "1/30",
+      "pts_seconds": "15.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 195651,
+      "sha256": "601c93866a4263af370480dcf0d79f672342b110d7cf4ab67b918ec5e2bf262d",
+      "RGB24_sha256": "4d9985b3971b9eaaaa0c9d568d4e9f09afd501458cc1b0605034e83969cde0e5"
+    },
+    {
+      "input_id": "k04",
+      "filename": "k04.png",
+      "source_frame_index": 510,
+      "pts": 510,
+      "time_base": "1/30",
+      "pts_seconds": "17.000000",
+      "width": 640,
+      "height": 480,
+      "bytes": 223238,
+      "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8",
+      "RGB24_sha256": "2c49af4c049ab1042f72054ee83df0948cbb8791e01a3680f41993ff073286fb"
+    }
+  ],
+  "mask": {
+    "xywh": [
+      0,
+      400,
+      112,
+      80
+    ],
+    "RGB": [
+      0,
+      0,
+      0
+    ],
+    "source": "Pinned task6 protocol overlay rule plus inspected original 1× text",
+    "outside_rectangle_RGB_unchanged": true,
+    "originals_preserved": true,
+    "generated_pixels_or_inpainting": false
+  },
+  "requests": [
+    {
+      "condition": "F",
+      "input_ids": [
+        "k04"
+      ],
+      "independent_context": true,
+      "exact_user_content_sequence": [
+        {
+          "type": "text",
+          "text": "描述当前白U件分别相对于左、右蓝座的可见关系与未知项。如提供过去图，另描述可见过程候选、身份连续性及过去关系当前是否适用。区分当前图直接观察与历史条件推断，不把换连接对象解释为换物体。\n本条件图像角色：[{\"input_id\":\"k04\",\"role\":\"current\"}]"
+        },
+        {
+          "type": "text",
+          "text": "图像ID=k04；角色=current"
+        },
+        {
+          "type": "image_reference",
+          "input_id": "k04",
+          "filename": "k04.png",
+          "expected_bytes": 223238,
+          "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema_name": "roboassem_task6_visual_state",
+        "strict": true,
+        "schema_filename": "content-schema-F.json"
+      },
+      "source_request_json_filename": "request-F-OFFLINE-NOT-SENT.json",
+      "source_request_json_sha256": "2a3157f1b0c16f67d491005680b6d81d3fcdd48dde4a6558b384cf227f09a26a"
+    },
+    {
+      "condition": "HF",
+      "input_ids": [
+        "k01",
+        "k02",
+        "k03",
+        "k04"
+      ],
+      "independent_context": true,
+      "exact_user_content_sequence": [
+        {
+          "type": "text",
+          "text": "描述当前白U件分别相对于左、右蓝座的可见关系与未知项。如提供过去图，另描述可见过程候选、身份连续性及过去关系当前是否适用。区分当前图直接观察与历史条件推断，不把换连接对象解释为换物体。\n本条件图像角色：[{\"input_id\":\"k01\",\"role\":\"past\"},{\"input_id\":\"k02\",\"role\":\"past\"},{\"input_id\":\"k03\",\"role\":\"past\"},{\"input_id\":\"k04\",\"role\":\"current\"}]"
+        },
+        {
+          "type": "text",
+          "text": "图像ID=k01；角色=past"
+        },
+        {
+          "type": "image_reference",
+          "input_id": "k01",
+          "filename": "k01.png",
+          "expected_bytes": 182917,
+          "sha256": "d460c282a5fb02b5c98b36ad0b90f0840a037edfd9114fad4e2609a35a95fcc9"
+        },
+        {
+          "type": "text",
+          "text": "图像ID=k02；角色=past"
+        },
+        {
+          "type": "image_reference",
+          "input_id": "k02",
+          "filename": "k02.png",
+          "expected_bytes": 194260,
+          "sha256": "6f73af6b1dc20d8adc5ba01a5bc55246c5f3f1c8373c0e9ad55b3d3db0915091"
+        },
+        {
+          "type": "text",
+          "text": "图像ID=k03；角色=past"
+        },
+        {
+          "type": "image_reference",
+          "input_id": "k03",
+          "filename": "k03.png",
+          "expected_bytes": 195651,
+          "sha256": "601c93866a4263af370480dcf0d79f672342b110d7cf4ab67b918ec5e2bf262d"
+        },
+        {
+          "type": "text",
+          "text": "图像ID=k04；角色=current"
+        },
+        {
+          "type": "image_reference",
+          "input_id": "k04",
+          "filename": "k04.png",
+          "expected_bytes": 223238,
+          "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema_name": "roboassem_task6_visual_state",
+        "strict": true,
+        "schema_filename": "content-schema-HF.json"
+      },
+      "source_request_json_filename": "request-HF-OFFLINE-NOT-SENT.json",
+      "source_request_json_sha256": "1850734c954051f04b23ec69fbc0e3eb9f7b7f780526becd3b7e6e950b02788b"
+    }
+  ],
+  "F_HF_current_same_bytes_proof": {
+    "method": "Decoded base64 only for local verification, compared complete PNG byte arrays from saved F and HF requests; no image payload included in this contract",
+    "input_id": "k04",
+    "filename": "k04.png",
+    "bytes": 223238,
+    "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8",
+    "byte_comparison_equal": true
+  },
+  "content_schemas": {
+    "F": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "RoboAssem task6 development visual state output",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "condition",
+        "authority",
+        "state_write_allowed",
+        "identity_continuity",
+        "current_relations",
+        "historical_events",
+        "history_current_applicability",
+        "assumptions",
+        "SOP_completion",
+        "mechanical_lock",
+        "force_state",
+        "limitations"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1"
+        },
+        "condition": {
+          "const": "F"
+        },
+        "authority": {
+          "const": "development_state_estimation_only"
+        },
+        "state_write_allowed": {
+          "const": false
+        },
+        "identity_continuity": {
+          "const": "not_observed"
+        },
+        "current_relations": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "part_id",
+              "seat_id",
+              "appearance",
+              "evidence_input_ids",
+              "reason"
+            ],
+            "properties": {
+              "part_id": {
+                "const": "white_u_part"
+              },
+              "seat_id": {
+                "enum": [
+                  "blue_seat_left",
+                  "blue_seat_right"
+                ]
+              },
+              "appearance": {
+                "enum": [
+                  "visible_separation",
+                  "contact_or_alignment",
+                  "insertion_appearance",
+                  "apparent_external_position",
+                  "unknown"
+                ]
+              },
+              "evidence_input_ids": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "const": "k04"
+                }
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          },
+          "contains": {
+            "properties": {
+              "seat_id": {
+                "const": "blue_seat_left"
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        "historical_events": {
+          "type": "array",
+          "maxItems": 0,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "part_id",
+              "seat_id",
+              "event",
+              "evidence_input_ids",
+              "uncertainty"
+            ],
+            "properties": {
+              "part_id": {
+                "const": "white_u_part"
+              },
+              "seat_id": {
+                "enum": [
+                  "blue_seat_left",
+                  "blue_seat_right",
+                  "unknown"
+                ]
+              },
+              "event": {
+                "enum": [
+                  "visible_separation",
+                  "insertion_appearance",
+                  "apparent_hold_after_release",
+                  "unknown"
+                ]
+              },
+              "evidence_input_ids": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "enum": [
+                    "k01",
+                    "k02",
+                    "k03"
+                  ]
+                }
+              },
+              "uncertainty": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "history_current_applicability": {
+          "type": "string"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "SOP_completion": {
+          "const": "unknown"
+        },
+        "mechanical_lock": {
+          "const": "unknown"
+        },
+        "force_state": {
+          "const": "unknown"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "HF": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "RoboAssem task6 development visual state output",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "condition",
+        "authority",
+        "state_write_allowed",
+        "identity_continuity",
+        "current_relations",
+        "historical_events",
+        "history_current_applicability",
+        "assumptions",
+        "SOP_completion",
+        "mechanical_lock",
+        "force_state",
+        "limitations"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1"
+        },
+        "condition": {
+          "const": "HF"
+        },
+        "authority": {
+          "const": "development_state_estimation_only"
+        },
+        "state_write_allowed": {
+          "const": false
+        },
+        "identity_continuity": {
+          "enum": [
+            "visually_supported",
+            "unknown",
+            "not_observed"
+          ]
+        },
+        "current_relations": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "part_id",
+              "seat_id",
+              "appearance",
+              "evidence_input_ids",
+              "reason"
+            ],
+            "properties": {
+              "part_id": {
+                "const": "white_u_part"
+              },
+              "seat_id": {
+                "enum": [
+                  "blue_seat_left",
+                  "blue_seat_right"
+                ]
+              },
+              "appearance": {
+                "enum": [
+                  "visible_separation",
+                  "contact_or_alignment",
+                  "insertion_appearance",
+                  "apparent_external_position",
+                  "unknown"
+                ]
+              },
+              "evidence_input_ids": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "const": "k04"
+                }
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          },
+          "contains": {
+            "properties": {
+              "seat_id": {
+                "const": "blue_seat_left"
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        "historical_events": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "part_id",
+              "seat_id",
+              "event",
+              "evidence_input_ids",
+              "uncertainty"
+            ],
+            "properties": {
+              "part_id": {
+                "const": "white_u_part"
+              },
+              "seat_id": {
+                "enum": [
+                  "blue_seat_left",
+                  "blue_seat_right",
+                  "unknown"
+                ]
+              },
+              "event": {
+                "enum": [
+                  "visible_separation",
+                  "insertion_appearance",
+                  "apparent_hold_after_release",
+                  "unknown"
+                ]
+              },
+              "evidence_input_ids": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "enum": [
+                    "k01",
+                    "k02",
+                    "k03"
+                  ]
+                }
+              },
+              "uncertainty": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "history_current_applicability": {
+          "type": "string"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "SOP_completion": {
+          "const": "unknown"
+        },
+        "mechanical_lock": {
+          "const": "unknown"
+        },
+        "force_state": {
+          "const": "unknown"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "run_budget_proposal": {
+    "max_requests": 2,
+    "max_retries": 0,
+    "parallelism": 1,
+    "HTTP_timeout_each_seconds": 60,
+    "output_token_cap_each": 2048,
+    "output_token_cap_total": 4096,
+    "request_order": [
+      "F",
+      "HF"
+    ],
+    "H_requests": 0
+  },
+  "output_boundaries": {
+    "state_write_allowed": false,
+    "SOP_completion": "unknown",
+    "mechanical_lock": "unknown",
+    "force_state": "unknown",
+    "accuracy_computed": false
+  },
+  "authorizations": {
+    "compute": false,
+    "Kaggle_upload": false,
+    "model_download": false,
+    "inference": false
+  },
+  "no_model_calls_made": true,
+  "no_upload_or_weight_download": true
+}

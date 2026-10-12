@@ -1,0 +1,48 @@
+{
+  "status": "not_frozen_not_sent",
+  "contract_sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+  "request_order": [
+    "F",
+    "HF"
+  ],
+  "max_generation_attempts": 2,
+  "retries": 0,
+  "parallelism": 1,
+  "timeout_each_seconds": 60,
+  "F_error_aborts_HF": true,
+  "schema_error_only_recorded_does_not_abort_HF": true,
+  "request_parameter_additions": {
+    "top_p": 0.95,
+    "top_k": 40,
+    "cache_prompt": false
+  },
+  "requests": [
+    {
+      "condition": "F",
+      "input_ids": [
+        "k04"
+      ],
+      "prospective_source_serialized_request_sha256": "abce46707c52ccff413f9a432bc87107b2a12fac25b09c527b20e7d73bf5f1cf",
+      "prospective_source_serialized_request_bytes": 301251,
+      "hash_computed_offline_now": true,
+      "actual_request_sent": false,
+      "historical_offline_full_schema_request_sha256": "2a3157f1b0c16f67d491005680b6d81d3fcdd48dde4a6558b384cf227f09a26a",
+      "historical_hash_is_not_current_sender_hash": true
+    },
+    {
+      "condition": "HF",
+      "input_ids": [
+        "k01",
+        "k02",
+        "k03",
+        "k04"
+      ],
+      "prospective_source_serialized_request_sha256": "7cfea8f7a9977840a2a5efb3ababc4f0e9e167bad56f1f4a4b2fdbfa82e54a23",
+      "prospective_source_serialized_request_bytes": 1065537,
+      "hash_computed_offline_now": true,
+      "actual_request_sent": false,
+      "historical_offline_full_schema_request_sha256": "1850734c954051f04b23ec69fbc0e3eb9f7b7f780526becd3b7e6e950b02788b",
+      "historical_hash_is_not_current_sender_hash": true
+    }
+  ]
+}

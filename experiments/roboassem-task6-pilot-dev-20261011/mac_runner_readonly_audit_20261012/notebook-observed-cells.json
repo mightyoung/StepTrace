@@ -1,0 +1,23 @@
+{
+  "notebook_export_present": false,
+  "full_notebook_sha256": null,
+  "basis": "Manually transcribed from earlier actual UI tool receipts; current task performs file-only review, no UI refresh or notebook edit",
+  "cells": [
+    {
+      "role": "download_and_image_hash_check",
+      "source_transcribed": "from pathlib import Path\nimport json, hashlib, runpy\nconfigs = [p for p in Path('/kaggle/input').rglob('execution-input-contract.json') if 'steptrace-task6-private-inputs-v1-20261011' in p.parts]\nassert len(configs) == 1, configs\npackage = configs[0].parent\ncontract = json.loads(configs[0].read_text())\nassert all((package / f['filename']).stat().st_size == f['bytes'] and hashlib.sha256((package / f['filename']).read_bytes()).hexdigest() == f['sha256'] for f in contract['model_input_frames'])\nprint('FOUR_INPUT_HASHES_VERIFIED; NO_INFERENCE')\nrunpy.run_path(str(package / 'setup.py'))",
+      "transcribed_source_sha256": "6570457562f073c2378e41d2c2150ba270fa263101e7c26e40b28e0ed3931d1b",
+      "last_observed_elapsed_seconds": 67.424,
+      "observed_status": "DOWNLOADS_VERIFIED_NO_INFERENCE"
+    },
+    {
+      "role": "restored_hash_check_and_build",
+      "source_transcribed": "from pathlib import Path\nimport json, hashlib, runpy\npackage = Path('/kaggle/input/datasets/amurdaddy/steptrace-task6-private-inputs-v1-20261011')\nroot = Path('/kaggle/working/steptrace-task6')\nassert (root / 'download-verification.json').is_file(), 'PERSISTENCE_MISSING: stop before download or inference'\nv = json.loads((root / 'download-verification.json').read_text())\nassert v['runtime_commit'] == '8345f333951c661d166b00e6f9362e553768f292'\nassert v['model_revision'] == '3885219b6810b007914f3a7950a8d1b469d598a5'\nsha = lambda p: hashlib.file_digest(p.open('rb'), 'sha256').hexdigest()\nassert all((root / a['filename']).stat().st_size == a['bytes'] and sha(root / a['filename']) == a['sha256'] for a in v['artifacts'])\nc = json.loads((package / 'execution-input-contract.json').read_text())\nassert all((package / a['filename']).stat().st_size == a['bytes'] and sha(package / a['filename']) == a['sha256'] for a in c['model_input_frames'])\nprint('PERSISTED_MODELS_AND_FOUR_IMAGES_REHASHED; ZERO_MODEL_REQUESTS')\n_ = runpy.run_path(str(package / 'build.py'))",
+      "transcribed_source_sha256": "1961ca4870d6d5310983b8e27df2c267fa5724386b4ad027a9c489023fc2c6d4",
+      "last_observed_elapsed_seconds": 24.251,
+      "observed_status": "PERSISTED_MODELS_AND_FOUR_IMAGES_REHASHED; ZERO_MODEL_REQUESTS; Build 0",
+      "build_success_confirmed": false
+    }
+  ],
+  "inference_cell_submitted": false
+}
