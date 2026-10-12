@@ -1,0 +1,163 @@
+{
+  "baseline_archive_manifest": {
+    "all_entries_verified_against_worktree": true,
+    "entries": [
+      {
+        "bytes": 5667,
+        "path": "README_zh.md",
+        "sha256": "fd1d0cbebeaa3b82c54cd6b8fc95959523340a8080b1506aa48f6ab50579d702"
+      },
+      {
+        "bytes": 3737,
+        "path": "content-schema-F.json",
+        "sha256": "77240e2c680ae3d5b4ec6f28083c32bdb54eb8e757b47e0678b63ac40c751b4d"
+      },
+      {
+        "bytes": 3804,
+        "path": "content-schema-HF.json",
+        "sha256": "45075bdcf0eb9144ddca918c74600901f4660f4b4a2d06b0601277b5b2193753"
+      },
+      {
+        "bytes": 19714,
+        "path": "historical-request-source-contract.json",
+        "sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8"
+      },
+      {
+        "bytes": 2620,
+        "path": "notebook-observed-cells.json",
+        "sha256": "475850c8ce3f0245d5d414176ff44c1240062e3c4706ec6308ec7670ed1a1c72"
+      },
+      {
+        "bytes": 1564,
+        "path": "prospective-request-plan.json",
+        "sha256": "00213ed0870a0cd2303a43ddafaaafa0c3fe10583af5b695046cb5797943e81f"
+      },
+      {
+        "bytes": 1049,
+        "path": "sanitized-status-index.json",
+        "sha256": "f5be38d033d25d38c291e7ae45f12b3f6d5651dd7bb4a368f54c06c5eb4849fa"
+      },
+      {
+        "bytes": 2212,
+        "path": "source-manifest.json",
+        "sha256": "c092db49f2e1ec23578def70160102220c3f9a22c85ab0fbde880b4493c829cb"
+      },
+      {
+        "bytes": 8811,
+        "path": "sources/prepared-context-run_pair.py",
+        "sha256": "74a53c1b017f0d478c9b482e86f54c66d1f3d77f870ecc206c237ab7e15e4a03"
+      },
+      {
+        "bytes": 1487,
+        "path": "sources/prepared-execute-pair-bootstrap.py",
+        "sha256": "0b4211266c75b12f871626e046cac8689b03b0516ea653b732978db66da11dbf"
+      },
+      {
+        "bytes": 1390,
+        "path": "sources/uploaded-build.py",
+        "sha256": "120d880a870697678a59cf988d34547bcf3ce712baf1dde9787d9c1ec341f33c"
+      },
+      {
+        "bytes": 8090,
+        "path": "sources/uploaded-run_pair.py",
+        "sha256": "9cb830588290d28b730f5dde1ce096d3e2ba43d6198bffcc79fe1ad2aabcf985"
+      },
+      {
+        "bytes": 1699,
+        "path": "sources/uploaded-setup.py",
+        "sha256": "9dd7af29757afa401e9e979537de29298fa4f8bd26dc8afbc1885540732558dc"
+      }
+    ],
+    "entry_count": 13,
+    "included_at": "baseline/bundle-manifest.json",
+    "sha256": "aa15316eaaf5a9bbd760e78d448b4f561830766daafe9304c7317cdd780f8779"
+  },
+  "created_utc": "2026-10-12T01:51:20.312675+00:00",
+  "included_explanation": {
+    "bytes": 4379,
+    "path": "README.md",
+    "sha256": "6406ce3c1a937ca3899e3f4a62f0e55aed295c440e639aea5a64d0934693b0cd"
+  },
+  "local_base_branch_commit": "a2cdc0b712ccc70d929a3d0e6b00d6b414dbde98",
+  "no_private_frames_model_weights_or_secrets_in_archive": true,
+  "no_real_inference_or_kaggle_execution": true,
+  "patch_files": [
+    {
+      "bytes": 12216,
+      "path": "sources/runner_safety.py",
+      "sha256": "05bbfabba096d2e89e890f40c24c5cfaa60731f56df4ffd44813fbd3e79cfcd9"
+    },
+    {
+      "bytes": 14706,
+      "path": "sources/prepared-run_pair-crashsafe.py",
+      "sha256": "ab38ba5653f3477a6bc7ba4f42516125ca899d4b22ea79c0480d16cab7daee55"
+    },
+    {
+      "bytes": 3781,
+      "path": "sources/prepared-execute-pair-bootstrap-crashsafe.py",
+      "sha256": "eb876437077866ce14d9f2e20be1d53709020be6398795d5028409210f1e146b"
+    },
+    {
+      "bytes": 20575,
+      "path": "tests/test_prepared_runner_crash_safety.py",
+      "sha256": "303b4f88579ebf848e044d7d93c039362b0192fc54fe5f153b151a6d9c18e0ef"
+    }
+  ],
+  "patch_is_uncommitted": true,
+  "schema": "steptrace.task6-runner-patch-bundle.v1",
+  "source_snapshot_commit": "1f9b501f6cef873d38bf5ec8b077e6aa99ea1448",
+  "tests": {
+    "cases": [
+      {
+        "covers": "Input mount resolution when the runner lives in a working-copy directory.",
+        "name": "test_working_copy_uses_private_input_mount_not_its_script_parent"
+      },
+      {
+        "covers": "Rejects aliased F/HF message contexts before invoking a sender.",
+        "name": "test_shared_message_context_is_rejected_before_any_send"
+      },
+      {
+        "covers": "Mock F success then HF timeout; 60-second timeout, one send per arm, durable journal, response_unknown and replay block.",
+        "name": "test_f_success_hf_failure_is_recorded_once_and_never_retried"
+      },
+      {
+        "covers": "Injects KeyboardInterrupt after durable intent and before mocked transport; a later invocation is blocked.",
+        "name": "test_crash_after_durable_send_intent_blocks_a_second_run"
+      },
+      {
+        "covers": "Mock HTTP 503, save raw error bytes and hash, and record failure.",
+        "name": "test_http_error_body_is_preserved_as_a_failure_artifact"
+      },
+      {
+        "covers": "Second local runner cannot send while the run lock is held.",
+        "name": "test_active_run_lock_blocks_a_second_sender"
+      },
+      {
+        "covers": "Pinned source hashes and atomic copy behavior; preparation does not execute the sender.",
+        "name": "test_bootstrap_verifies_and_copies_the_prepared_source_without_running_it"
+      },
+      {
+        "covers": "Synthetic PNGs/contracts and mocked subprocess/localhost endpoints; checks F then HF, serial single attempts, 60-second timeout, and independent messages.",
+        "name": "test_prepared_working_copy_sends_f_then_hf_through_mock_only"
+      }
+    ],
+    "existing_offline_preflight_suite": {
+      "command": "python -m unittest discover -s experiments/roboassem-task6-pilot-dev-20261011/offline_runner/tests -v",
+      "failed": 0,
+      "passed": 24
+    },
+    "new_suite": {
+      "command": "python -m unittest discover -s experiments/roboassem-task6-pilot-dev-20261011/mac_runner_readonly_audit_20261012/tests -v",
+      "failed": 0,
+      "passed": 8
+    }
+  },
+  "uncovered_crash_windows": [
+    "SIGKILL/kernel/power loss and fsync durability on the actual Kaggle filesystem.",
+    "Backend accepts or executes a request but the client dies before persisting the response; the outcome stays unknown and the intent blocks replay.",
+    "Process loss after F response persistence and before HF; the runner has no resume/reconcile flow and HF may remain unsent.",
+    "Torn JSONL writes, filesystem-full failures, and recovery of a partial journal were not fault-injected.",
+    "Cross-host/network-filesystem flock semantics were not tested.",
+    "Real server receipt/duplicate suppression, Kaggle deployment state, and frozen model/backend artifact hashes were not verified."
+  ]
+}

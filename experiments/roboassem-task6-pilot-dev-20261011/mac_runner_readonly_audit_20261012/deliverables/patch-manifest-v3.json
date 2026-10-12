@@ -1,0 +1,214 @@
+{
+  "schema": "steptrace.task6-runner-patch-bundle.v3",
+  "package_version": 3,
+  "created_utc": "2026-10-12T02:42:40.798663+00:00",
+  "local_base_branch_commit": "a2cdc0b712ccc70d929a3d0e6b00d6b414dbde98",
+  "source_snapshot_commit": "1f9b501f6cef873d38bf5ec8b077e6aa99ea1448",
+  "patch_is_uncommitted": true,
+  "review_status": "M1/M2 addressed; independent re-review pending",
+  "new_behavior": [
+    "Invalid F response schema/seat failures are persisted and abort before HF.",
+    "A 60-second per-request wall deadline cancels and reaps the local generation sender child process; delivery remains unknown and the pair stops without retry or next arm.",
+    "Bootstrap reads each source once, hashes and writes those same bytes, then hashes destination readback.",
+    "Bootstrap acquires the run lock before source replacement and passes the same guard through runner start; all runner result artifacts are written under the lock.",
+    "Runtime and protocol safety checks use explicit errors and remain active under python -O."
+  ],
+  "bootstrap_pins": {
+    "prepared_runner_sha256": "8945acc95c779d71ae57416cf2e9e700808cf9ca50dac0a0f8093b8a0b9a48ea",
+    "runner_safety_sha256": "b13ba2c7d4b6f3c5fcdd6dcb50d86e3a88be9492bcbfdedc2b16b97634aa07a2",
+    "both_match_bootstrap_constants": true
+  },
+  "baseline_archive_manifest": {
+    "included_at": "baseline/bundle-manifest.json",
+    "entry_count": 13,
+    "all_entries_reverified_unchanged": true,
+    "sha256": "aa15316eaaf5a9bbd760e78d448b4f561830766daafe9304c7317cdd780f8779",
+    "entries": [
+      {
+        "path": "README_zh.md",
+        "bytes": 5667,
+        "sha256": "fd1d0cbebeaa3b82c54cd6b8fc95959523340a8080b1506aa48f6ab50579d702"
+      },
+      {
+        "path": "content-schema-F.json",
+        "bytes": 3737,
+        "sha256": "77240e2c680ae3d5b4ec6f28083c32bdb54eb8e757b47e0678b63ac40c751b4d"
+      },
+      {
+        "path": "content-schema-HF.json",
+        "bytes": 3804,
+        "sha256": "45075bdcf0eb9144ddca918c74600901f4660f4b4a2d06b0601277b5b2193753"
+      },
+      {
+        "path": "historical-request-source-contract.json",
+        "bytes": 19714,
+        "sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8"
+      },
+      {
+        "path": "notebook-observed-cells.json",
+        "bytes": 2620,
+        "sha256": "475850c8ce3f0245d5d414176ff44c1240062e3c4706ec6308ec7670ed1a1c72"
+      },
+      {
+        "path": "prospective-request-plan.json",
+        "bytes": 1564,
+        "sha256": "00213ed0870a0cd2303a43ddafaaafa0c3fe10583af5b695046cb5797943e81f"
+      },
+      {
+        "path": "sanitized-status-index.json",
+        "bytes": 1049,
+        "sha256": "f5be38d033d25d38c291e7ae45f12b3f6d5651dd7bb4a368f54c06c5eb4849fa"
+      },
+      {
+        "path": "source-manifest.json",
+        "bytes": 2212,
+        "sha256": "c092db49f2e1ec23578def70160102220c3f9a22c85ab0fbde880b4493c829cb"
+      },
+      {
+        "path": "sources/prepared-context-run_pair.py",
+        "bytes": 8811,
+        "sha256": "74a53c1b017f0d478c9b482e86f54c66d1f3d77f870ecc206c237ab7e15e4a03"
+      },
+      {
+        "path": "sources/prepared-execute-pair-bootstrap.py",
+        "bytes": 1487,
+        "sha256": "0b4211266c75b12f871626e046cac8689b03b0516ea653b732978db66da11dbf"
+      },
+      {
+        "path": "sources/uploaded-build.py",
+        "bytes": 1390,
+        "sha256": "120d880a870697678a59cf988d34547bcf3ce712baf1dde9787d9c1ec341f33c"
+      },
+      {
+        "path": "sources/uploaded-run_pair.py",
+        "bytes": 8090,
+        "sha256": "9cb830588290d28b730f5dde1ce096d3e2ba43d6198bffcc79fe1ad2aabcf985"
+      },
+      {
+        "path": "sources/uploaded-setup.py",
+        "bytes": 1699,
+        "sha256": "9dd7af29757afa401e9e979537de29298fa4f8bd26dc8afbc1885540732558dc"
+      }
+    ]
+  },
+  "patch_files": [
+    {
+      "path": "sources/runner_safety.py",
+      "bytes": 17350,
+      "sha256": "b13ba2c7d4b6f3c5fcdd6dcb50d86e3a88be9492bcbfdedc2b16b97634aa07a2"
+    },
+    {
+      "path": "sources/prepared-run_pair-crashsafe.py",
+      "bytes": 20069,
+      "sha256": "8945acc95c779d71ae57416cf2e9e700808cf9ca50dac0a0f8093b8a0b9a48ea"
+    },
+    {
+      "path": "sources/prepared-execute-pair-bootstrap-crashsafe.py",
+      "bytes": 7412,
+      "sha256": "c2b7c5b854fb518d393fd6045d91e3291eebfc32aaee5c0df5d820cfbbb52366"
+    },
+    {
+      "path": "tests/test_prepared_runner_crash_safety.py",
+      "bytes": 40045,
+      "sha256": "75d5f52d25621c0cbc6394c363da78f3555b1d7a464186ed88aa864f2462b644"
+    }
+  ],
+  "previous_artifacts": [
+    {
+      "version": 1,
+      "file": "task6-runner-patch-20261012.zip",
+      "bytes": 21003,
+      "sha256": "dbf82796095f3f56c4ffeb2e0d5a4e7ad64faa01e3161f208e27b6c4f1546121",
+      "preserved_unchanged": true
+    },
+    {
+      "version": 2,
+      "file": "task6-runner-patch-20261012-v2.zip",
+      "bytes": 23472,
+      "sha256": "9214e6668d7e3b455557b9a5fda39b5d1f362cd45dcc3d92a1bded00fcf2d4db",
+      "preserved_unchanged": true
+    }
+  ],
+  "no_private_frames_model_weights_or_secrets_in_archive": true,
+  "no_real_inference_or_external_network_calls": true,
+  "test_results": {
+    "safety_suite": {
+      "command": "python -m unittest discover -s tests -p test_prepared_runner_crash_safety.py -q",
+      "passed": 21,
+      "failed": 0
+    },
+    "optimized_safety_suite": {
+      "command": "python -O -m unittest discover -s tests -p test_prepared_runner_crash_safety.py -q",
+      "passed": 21,
+      "failed": 0
+    },
+    "existing_offline_preflight_suite": {
+      "command": "python -m unittest discover -s experiments/roboassem-task6-pilot-dev-20261011/offline_runner/tests -q",
+      "passed": 24,
+      "failed": 0
+    },
+    "all_http_and_subprocess_operations_mocked": true,
+    "suite_cases": [
+      "test_working_copy_uses_private_input_mount_not_its_script_parent",
+      "test_shared_message_context_is_rejected_before_any_send",
+      "test_f_success_hf_failure_is_recorded_once_and_never_retried",
+      "test_crash_after_durable_send_intent_blocks_a_second_run",
+      "test_sender_wall_clock_deadline_records_unknown_delivery_and_stops_pair",
+      "test_wall_clock_deadline_terminates_hung_sender_before_next_arm",
+      "test_http_error_body_is_preserved_as_a_failure_artifact",
+      "test_active_run_lock_blocks_a_second_sender",
+      "test_bootstrap_verifies_and_copies_the_prepared_source_without_running_it",
+      "test_bootstrap_copies_the_exact_bytes_it_hash_verified",
+      "test_bootstrap_rejects_a_target_changed_during_copy",
+      "test_bootstrap_refuses_to_replace_working_code_when_run_lock_is_held",
+      "test_invalid_f_schema_is_persisted_and_hf_is_not_sent",
+      "test_runner_lock_contention_does_not_overwrite_execution_config",
+      "test_bootstrap_holds_run_lock_through_runner_start",
+      "test_wall_clock_deadline_kills_the_mocked_local_sender_process",
+      "test_optimized_mode_rejects_input_frame_hash_mismatch",
+      "test_optimized_mode_rejects_runtime_commit_mismatch",
+      "test_optimized_mode_rejects_incomplete_finish_reason",
+      "test_optimized_mode_rejects_backend_truncation",
+      "test_prepared_working_copy_sends_f_then_hf_through_mock_only"
+    ],
+    "review_regressions_red_before_fix_green_after_fix": {
+      "observed_red_before_fix": true,
+      "observed_green_after_fix": true,
+      "cases": [
+        "test_bootstrap_refuses_to_replace_working_code_when_run_lock_is_held",
+        "test_runner_lock_contention_does_not_overwrite_execution_config",
+        "test_bootstrap_holds_run_lock_through_runner_start",
+        "test_wall_clock_deadline_kills_the_mocked_local_sender_process",
+        "test_optimized_mode_rejects_input_frame_hash_mismatch",
+        "test_optimized_mode_rejects_runtime_commit_mismatch",
+        "test_optimized_mode_rejects_incomplete_finish_reason",
+        "test_optimized_mode_rejects_backend_truncation"
+      ]
+    },
+    "optimized_mode_checks": [
+      "input frame byte/hash mismatch",
+      "runtime commit mismatch",
+      "incomplete finish reason",
+      "backend truncation"
+    ],
+    "hung_sender_test": {
+      "case": "test_wall_clock_deadline_kills_the_mocked_local_sender_process",
+      "asserts": [
+        "kill called",
+        "sender terminated recorded",
+        "delivery unknown",
+        "HF not sent"
+      ],
+      "process_object_is_mocked": true
+    }
+  },
+  "uncovered_crash_windows": [
+    "SIGKILL, kernel/power loss, disk-full behavior, torn JSONL, partial request writes, and filesystem fsync faults were not injected.",
+    "The local server may accept or execute a request before sender termination; delivery is unknown, with no server receipt reconciliation or idempotency key.",
+    "Process loss after F response persistence but before HF starts leaves HF unsent; any intent journal blocks replay and there is no resume path.",
+    "flock was exercised only on one local host/filesystem, not across network mounts or hosts.",
+    "Post-readback mutation of the working copy before runpy opens it is not prevented by an immutable mount or file-descriptor execution path.",
+    "The OS-level child kill/wait path was tested through a mocked process object, not a real local child or Kaggle process.",
+    "Real backend/model artifact hashes, effective schema support, deployment state, and output quality remain unverified."
+  ]
+}

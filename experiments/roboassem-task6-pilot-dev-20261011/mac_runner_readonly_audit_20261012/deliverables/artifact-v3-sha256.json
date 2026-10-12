@@ -1,0 +1,22 @@
+{
+  "artifact": "task6-runner-patch-20261012-v3.zip",
+  "artifact_bytes": 27844,
+  "artifact_sha256": "12b30e69ada0a6fb4c14ce93aedef5c0a9dfac4236f996c71bffcf58189e50d6",
+  "embedded_manifest": "patch-manifest.json",
+  "embedded_manifest_sha256": "ed9adc31a9007296e60565156a5c60e24f1772b7b84f9d88977d148fcb1a3c85",
+  "previous_v1": {
+    "artifact_sha256": "dbf82796095f3f56c4ffeb2e0d5a4e7ad64faa01e3161f208e27b6c4f1546121",
+    "preserved_unchanged": true
+  },
+  "previous_v2": {
+    "artifact_sha256": "9214e6668d7e3b455557b9a5fda39b5d1f362cd45dcc3d92a1bded00fcf2d4db",
+    "preserved_unchanged": true
+  },
+  "library_upload": {
+    "library_file_id": "libfile_f5cabe8d47b08191962d532bbd6d34fa",
+    "file_id": "file_00000000141881f58c4245b6c0ed38f6",
+    "current_version_number": 0,
+    "bytes": 27844,
+    "local_library_metadata_persisted": true
+  }
+}

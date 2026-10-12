@@ -1,0 +1,7 @@
+{
+  "artifact": "task6-runner-patch-20261012.zip",
+  "artifact_bytes": 21003,
+  "artifact_sha256": "dbf82796095f3f56c4ffeb2e0d5a4e7ad64faa01e3161f208e27b6c4f1546121",
+  "embedded_manifest": "patch-manifest.json",
+  "embedded_manifest_sha256": "a6aa07a54694fafc54d8891dd048b26b9e2dbdad5d53e19ece63148135e5f743"
+}

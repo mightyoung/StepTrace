@@ -1,0 +1,249 @@
+{
+  "schema": "steptrace.task6-runner-patch-bundle.v5",
+  "package_version": 5,
+  "created_utc": "2026-10-12T03:32:27+00:00",
+  "local_base_branch_commit": "a2cdc0b712ccc70d929a3d0e6b00d6b414dbde98",
+  "source_snapshot_commit": "1f9b501f6cef873d38bf5ec8b077e6aa99ea1448",
+  "patch_is_uncommitted": true,
+  "review_status": "v4 review findings addressed in v5; v5 independent re-review pending",
+  "new_behavior": [
+    "The inline generation worker rejects empty input, invalid JSON, and non-chat request shapes before calling urlopen, so a child that observes stdin EOF cannot submit an empty POST.",
+    "Termination is confirmed only when kill() was requested and wait()/poll() observed reaping. A process that exited without a kill request is not reported as sender_terminated; unconfirmed states remain pending.",
+    "Popen spawn is represented as pending until a process handle is registered; timeout cancellation and spawn registration synchronize through a condition.",
+    "A 50 ms reserve of the 60 second budget starts cancellation early enough to kill/reap before the hard request deadline; both epochs and the reserve are persisted.",
+    "If cancellation returns while spawn is still pending, a later process is killed and reaped before communicate can write request bytes.",
+    "A timeout records response_unknown, does not start HF, and the durable intent blocks retry. v3 F-schema, exact-byte bootstrap, shared run lock, and python -O safety checks are retained."
+  ],
+  "bootstrap_pins": {
+    "prepared_runner_sha256": "baf2c20e0ef837fd095a6e1f87d893d05160206c2cfec9a593ffb51066a57e4b",
+    "runner_safety_sha256": "d42e869daac52bd6261665f85122a747ef4011140e9498ea379ae504fbfd4075",
+    "both_match_bootstrap_constants": true
+  },
+  "baseline_archive_manifest": {
+    "included_at": "baseline/bundle-manifest.json",
+    "entry_count": 13,
+    "all_entries_reverified_unchanged": true,
+    "sha256": "0e74d3a39beb83f77c28685c0446108e05dd2f34b8c92fe37832317c5fd84723",
+    "entries": [
+      {
+        "path": "README_zh.md",
+        "bytes": 5667,
+        "sha256": "fd1d0cbebeaa3b82c54cd6b8fc95959523340a8080b1506aa48f6ab50579d702"
+      },
+      {
+        "path": "content-schema-F.json",
+        "bytes": 3737,
+        "sha256": "77240e2c680ae3d5b4ec6f28083c32bdb54eb8e757b47e0678b63ac40c751b4d"
+      },
+      {
+        "path": "content-schema-HF.json",
+        "bytes": 3804,
+        "sha256": "45075bdcf0eb9144ddca918c74600901f4660f4b4a2d06b0601277b5b2193753"
+      },
+      {
+        "path": "historical-request-source-contract.json",
+        "bytes": 19714,
+        "sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8"
+      },
+      {
+        "path": "notebook-observed-cells.json",
+        "bytes": 2620,
+        "sha256": "475850c8ce3f0245d5d414176ff44c1240062e3c4706ec6308ec7670ed1a1c72"
+      },
+      {
+        "path": "prospective-request-plan.json",
+        "bytes": 1564,
+        "sha256": "00213ed0870a0cd2303a43ddafaaafa0c3fe10583af5b695046cb5797943e81f"
+      },
+      {
+        "path": "sanitized-status-index.json",
+        "bytes": 1049,
+        "sha256": "f5be38d033d25d38c291e7ae45f12b3f6d5651dd7bb4a368f54c06c5eb4849fa"
+      },
+      {
+        "path": "source-manifest.json",
+        "bytes": 2212,
+        "sha256": "c092db49f2e1ec23578def70160102220c3f9a22c85ab0fbde880b4493c829cb"
+      },
+      {
+        "path": "sources/prepared-context-run_pair.py",
+        "bytes": 8811,
+        "sha256": "74a53c1b017f0d478c9b482e86f54c66d1f3d77f870ecc206c237ab7e15e4a03"
+      },
+      {
+        "path": "sources/prepared-execute-pair-bootstrap.py",
+        "bytes": 1487,
+        "sha256": "0b4211266c75b12f871626e046cac8689b03b0516ea653b732978db66da11dbf"
+      },
+      {
+        "path": "sources/uploaded-build.py",
+        "bytes": 1390,
+        "sha256": "120d880a870697678a59cf988d34547bcf3ce712baf1dde9787d9c1ec341f33c"
+      },
+      {
+        "path": "sources/uploaded-run_pair.py",
+        "bytes": 8090,
+        "sha256": "9cb830588290d28b730f5dde1ce096d3e2ba43d6198bffcc79fe1ad2aabcf985"
+      },
+      {
+        "path": "sources/uploaded-setup.py",
+        "bytes": 1699,
+        "sha256": "9dd7af29757afa401e9e979537de29298fa4f8bd26dc8afbc1885540732558dc"
+      }
+    ]
+  },
+  "patch_files": [
+    {
+      "path": "sources/runner_safety.py",
+      "bytes": 19874,
+      "sha256": "d42e869daac52bd6261665f85122a747ef4011140e9498ea379ae504fbfd4075"
+    },
+    {
+      "path": "sources/prepared-run_pair-crashsafe.py",
+      "bytes": 29513,
+      "sha256": "baf2c20e0ef837fd095a6e1f87d893d05160206c2cfec9a593ffb51066a57e4b"
+    },
+    {
+      "path": "sources/prepared-execute-pair-bootstrap-crashsafe.py",
+      "bytes": 7412,
+      "sha256": "967bc1386e4ff5eeb3019631e0a274fa9663dbdf36632a21e4a3e7e7e5df53d0"
+    },
+    {
+      "path": "tests/test_prepared_runner_crash_safety.py",
+      "bytes": 45030,
+      "sha256": "930993db6d4eb78905a8c5cf4e98109885df7df3e0bf85fc2fec7a2438377c5f"
+    }
+  ],
+  "previous_artifacts": [
+    {
+      "version": 1,
+      "file": "task6-runner-patch-20261012.zip",
+      "bytes": 21003,
+      "sha256": "dbf82796095f3f56c4ffeb2e0d5a4e7ad64faa01e3161f208e27b6c4f1546121",
+      "preserved_unchanged": true
+    },
+    {
+      "version": 2,
+      "file": "task6-runner-patch-20261012-v2.zip",
+      "bytes": 23472,
+      "sha256": "9214e6668d7e3b455557b9a5fda39b5d1f362cd45dcc3d92a1bded00fcf2d4db",
+      "preserved_unchanged": true
+    },
+    {
+      "version": 3,
+      "file": "task6-runner-patch-20261012-v3.zip",
+      "bytes": 27844,
+      "sha256": "12b30e69ada0a6fb4c14ce93aedef5c0a9dfac4236f996c71bffcf58189e50d6",
+      "preserved_unchanged": true
+    },
+    {
+      "version": 4,
+      "file": "task6-runner-patch-20261012-v4.zip",
+      "bytes": 29469,
+      "sha256": "2c54eaa19c9f36dbd4b9ac579fa82b1f5524326e65b8d54c6c689c0b294f7381",
+      "preserved_unchanged": true
+    }
+  ],
+  "no_private_frames_model_weights_or_secrets_in_archive": true,
+  "no_real_inference_or_external_network_calls": true,
+  "test_results": {
+    "safety_suite": {
+      "command": "python -m unittest discover -s tests -p test_prepared_runner_crash_safety.py -q",
+      "passed": 24,
+      "failed": 0
+    },
+    "optimized_safety_suite": {
+      "command": "python -O -m unittest discover -s tests -p test_prepared_runner_crash_safety.py -q",
+      "passed": 24,
+      "failed": 0
+    },
+    "all_http_and_subprocess_operations_mocked": true,
+    "suite_cases": [
+      "test_termination_confirmation_requires_kill_request_and_reap",
+      "test_empty_or_malformed_worker_stdin_never_calls_urlopen",
+      "test_working_copy_uses_private_input_mount_not_its_script_parent",
+      "test_shared_message_context_is_rejected_before_any_send",
+      "test_f_success_hf_failure_is_recorded_once_and_never_retried",
+      "test_crash_after_durable_send_intent_blocks_a_second_run",
+      "test_sender_wall_clock_deadline_records_unknown_delivery_and_stops_pair",
+      "test_wall_clock_deadline_terminates_hung_sender_before_next_arm",
+      "test_http_error_body_is_preserved_as_a_failure_artifact",
+      "test_active_run_lock_blocks_a_second_sender",
+      "test_bootstrap_verifies_and_copies_the_prepared_source_without_running_it",
+      "test_bootstrap_copies_the_exact_bytes_it_hash_verified",
+      "test_bootstrap_rejects_a_target_changed_during_copy",
+      "test_bootstrap_refuses_to_replace_working_code_when_run_lock_is_held",
+      "test_invalid_f_schema_is_persisted_and_hf_is_not_sent",
+      "test_runner_lock_contention_does_not_overwrite_execution_config",
+      "test_bootstrap_holds_run_lock_through_runner_start",
+      "test_wall_clock_deadline_kills_the_mocked_local_sender_process",
+      "test_deadline_pending_spawn_is_marked_pending_then_killed_before_request_write",
+      "test_optimized_mode_rejects_input_frame_hash_mismatch",
+      "test_optimized_mode_rejects_runtime_commit_mismatch",
+      "test_optimized_mode_rejects_incomplete_finish_reason",
+      "test_optimized_mode_rejects_backend_truncation",
+      "test_prepared_working_copy_sends_f_then_hf_through_mock_only"
+    ],
+    "v4_pending_spawn_regression": {
+      "case": "test_deadline_pending_spawn_is_marked_pending_then_killed_before_request_write",
+      "red_before_fix": true,
+      "green_after_fix": true,
+      "properties": [
+        "pending_spawn is persisted with sender_terminated=false",
+        "spawned child is killed and wait/poll confirms exit",
+        "communicate is not called after cancellation",
+        "F-only intent",
+        "later replay refused"
+      ]
+    },
+    "v5_regressions": {
+      "worker_input_guard": {
+        "case": "test_empty_or_malformed_worker_stdin_never_calls_urlopen",
+        "red_before_fix": true,
+        "green_after_fix": true,
+        "inputs": [
+          "empty bytes",
+          "invalid JSON",
+          "JSON array",
+          "empty object",
+          "empty messages list"
+        ],
+        "assertion": "SystemExit occurs before mocked urlopen is called"
+      },
+      "termination_evidence": {
+        "case": "test_termination_confirmation_requires_kill_request_and_reap",
+        "red_before_fix": true,
+        "green_after_fix": true,
+        "assertions": [
+          "kill requested and reaped => confirmed",
+          "reaped without kill request => not confirmed",
+          "kill requested without reap => not confirmed"
+        ]
+      }
+    },
+    "older_offline_preflight_suite": {
+      "status": "not rerun for v5; not part of this verification claim"
+    }
+  },
+  "uncovered_crash_windows": [
+    "The deterministic race test mocks Popen and the child process; the OS kill/reap path was not run against a real child or Kaggle process in this turn.",
+    "The local server may accept or execute a request before cancellation; delivery remains unknown and there is no receipt reconciliation or idempotency key.",
+    "If kill/reap is not confirmed by the send deadline, the persisted state remains pending; a later spawn is killed before request bytes are written, but an indefinitely stalled Popen call cannot be forcibly cancelled before it returns.",
+    "Process loss after F response persistence but before HF begins leaves no resume path; any attempt journal blocks replay.",
+    "SIGKILL, machine/power loss, disk-full behavior, torn JSONL, partial request writes, fsync faults, and cross-host flock were not tested.",
+    "Post-readback mutation of the working copy before runpy opens it is not prevented by an immutable mount or file-descriptor execution path.",
+    "Real backend/model artifact hashes, schema support, deployment state, and output quality remain unverified."
+  ],
+  "review_findings_from_v4": [
+    {
+      "finding": "Child EOF could pass an empty request to the local generation endpoint.",
+      "v5_change": "Worker validates stdin as nonempty JSON with a nonempty messages array before constructing a request or calling urlopen.",
+      "regression": "Empty and malformed input cases assert SystemExit and no mocked urlopen call."
+    },
+    {
+      "finding": "A reaped process could be marked terminated even when kill() was not requested.",
+      "v5_change": "A shared predicate requires both kill_requested and reaped; all sender cleanup paths retain and pass both values.",
+      "regression": "Pure local predicate test covers both required and missing conditions."
+    }
+  ]
+}

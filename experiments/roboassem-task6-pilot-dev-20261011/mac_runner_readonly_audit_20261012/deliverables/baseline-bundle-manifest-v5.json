@@ -1,0 +1,71 @@
+{
+  "purpose": "unfrozen read-only source audit archive",
+  "excluded_images_weights_raw_requests_secrets": true,
+  "files": [
+    {
+      "path": "README_zh.md",
+      "bytes": 5667,
+      "sha256": "fd1d0cbebeaa3b82c54cd6b8fc95959523340a8080b1506aa48f6ab50579d702"
+    },
+    {
+      "path": "content-schema-F.json",
+      "bytes": 3737,
+      "sha256": "77240e2c680ae3d5b4ec6f28083c32bdb54eb8e757b47e0678b63ac40c751b4d"
+    },
+    {
+      "path": "content-schema-HF.json",
+      "bytes": 3804,
+      "sha256": "45075bdcf0eb9144ddca918c74600901f4660f4b4a2d06b0601277b5b2193753"
+    },
+    {
+      "path": "historical-request-source-contract.json",
+      "bytes": 19714,
+      "sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8"
+    },
+    {
+      "path": "notebook-observed-cells.json",
+      "bytes": 2620,
+      "sha256": "475850c8ce3f0245d5d414176ff44c1240062e3c4706ec6308ec7670ed1a1c72"
+    },
+    {
+      "path": "prospective-request-plan.json",
+      "bytes": 1564,
+      "sha256": "00213ed0870a0cd2303a43ddafaaafa0c3fe10583af5b695046cb5797943e81f"
+    },
+    {
+      "path": "sanitized-status-index.json",
+      "bytes": 1049,
+      "sha256": "f5be38d033d25d38c291e7ae45f12b3f6d5651dd7bb4a368f54c06c5eb4849fa"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 2212,
+      "sha256": "c092db49f2e1ec23578def70160102220c3f9a22c85ab0fbde880b4493c829cb"
+    },
+    {
+      "path": "sources/prepared-context-run_pair.py",
+      "bytes": 8811,
+      "sha256": "74a53c1b017f0d478c9b482e86f54c66d1f3d77f870ecc206c237ab7e15e4a03"
+    },
+    {
+      "path": "sources/prepared-execute-pair-bootstrap.py",
+      "bytes": 1487,
+      "sha256": "0b4211266c75b12f871626e046cac8689b03b0516ea653b732978db66da11dbf"
+    },
+    {
+      "path": "sources/uploaded-build.py",
+      "bytes": 1390,
+      "sha256": "120d880a870697678a59cf988d34547bcf3ce712baf1dde9787d9c1ec341f33c"
+    },
+    {
+      "path": "sources/uploaded-run_pair.py",
+      "bytes": 8090,
+      "sha256": "9cb830588290d28b730f5dde1ce096d3e2ba43d6198bffcc79fe1ad2aabcf985"
+    },
+    {
+      "path": "sources/uploaded-setup.py",
+      "bytes": 1699,
+      "sha256": "9dd7af29757afa401e9e979537de29298fa4f8bd26dc8afbc1885540732558dc"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "artifact": "task6-runner-patch-20261012-v2.zip",
+  "artifact_bytes": 23472,
+  "artifact_sha256": "9214e6668d7e3b455557b9a5fda39b5d1f362cd45dcc3d92a1bded00fcf2d4db",
+  "embedded_manifest": "patch-manifest.json",
+  "embedded_manifest_sha256": "f0a1494a256e5fcf9afc93fea51b194afa8c22a5864cc39a1b97b28905aeb1db",
+  "previous_v1_artifact_sha256": "dbf82796095f3f56c4ffeb2e0d5a4e7ad64faa01e3161f208e27b6c4f1546121",
+  "previous_v1_preserved_unchanged": true
+}

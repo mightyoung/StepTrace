@@ -1,0 +1,47 @@
+{
+  "artifact": "task6-runner-patch-20261012-v5.zip",
+  "artifact_bytes": 30926,
+  "artifact_sha256": "7bd01775520cc4b555f83b2edd1211430c51983cf1f07fe65475bab477de2f5c",
+  "embedded_manifest": "patch-manifest.json",
+  "embedded_manifest_sha256": "88d04e7b899611207b398a8e0cb9d9e75250848e39f4256ece88a82d106e7fb5",
+  "previous_artifacts": [
+    {
+      "file": "task6-runner-patch-20261012.zip",
+      "bytes": 21003,
+      "sha256": "dbf82796095f3f56c4ffeb2e0d5a4e7ad64faa01e3161f208e27b6c4f1546121",
+      "preserved_unchanged": true
+    },
+    {
+      "file": "task6-runner-patch-20261012-v2.zip",
+      "bytes": 23472,
+      "sha256": "9214e6668d7e3b455557b9a5fda39b5d1f362cd45dcc3d92a1bded00fcf2d4db",
+      "preserved_unchanged": true
+    },
+    {
+      "file": "task6-runner-patch-20261012-v3.zip",
+      "bytes": 27844,
+      "sha256": "12b30e69ada0a6fb4c14ce93aedef5c0a9dfac4236f996c71bffcf58189e50d6",
+      "preserved_unchanged": true
+    },
+    {
+      "file": "task6-runner-patch-20261012-v4.zip",
+      "bytes": 29469,
+      "sha256": "2c54eaa19c9f36dbd4b9ac579fa82b1f5524326e65b8d54c6c689c0b294f7381",
+      "preserved_unchanged": true
+    }
+  ],
+  "library_upload": {
+    "library_file_id": "libfile_9ef0b75da2f881919eaaff193623a3f1",
+    "file_id": "file_00000000f18c81f9b7124f2f8530d310",
+    "current_version_number": 0,
+    "bytes": 30926,
+    "local_library_metadata_persisted": true,
+    "xattrs_helper_exit_code": 0
+  },
+  "independent_review": {
+    "reviewer": "same independent reviewer as v4",
+    "status": "recommended approve for push",
+    "scope_note": "The worker rejects empty stdin, invalid JSON, non-object JSON, and missing or empty messages before urlopen, but does not fully validate each message object. A semantically malformed payload such as {\"messages\":[{}]} can still reach the mocked urlopen. Reviewer considered this non-blocking for the pending-spawn EOF race and the README wording; treat as a blocker only if full semantic request validation is required.",
+    "reviewed_archive_sha256": "7bd01775520cc4b555f83b2edd1211430c51983cf1f07fe65475bab477de2f5c"
+  }
+}
