@@ -1,0 +1,51 @@
+{
+  "schema_version": "steptrace.task6.environment-lock.v1",
+  "status": "candidate_lock_unverified_on_gpu",
+  "platform": {
+    "os": "Linux x86_64",
+    "machine": "x86_64",
+    "python": "3.12.14",
+    "jsonschema": "4.26.0",
+    "Pillow": "12.3.0"
+  },
+  "cuda": {
+    "toolkit_update": "12.5.1",
+    "nvcc_release": "12.5",
+    "nvcc_version_marker": "V12.5.82",
+    "minimum_linux_driver_for_CUDA_12.5_Update_1": "555.42.06",
+    "minimum_compute_capability": 7.5,
+    "minimum_vram_mib": 16384,
+    "minimum_host_ram_mib": 32768,
+    "minimum_free_disk_gib": 20
+  },
+  "llama_cpp": {
+    "repository": "https://github.com/ggml-org/llama.cpp.git",
+    "commit": "8345f333951c661d166b00e6f9362e553768f292",
+    "cuda_architecture": "75",
+    "build_type": "Release",
+    "server": true,
+    "tests_examples_curl": false,
+    "build_workers": 4,
+    "build_timeout_seconds": 480
+  },
+  "runner": {
+    "version": "v5 crash-safe reviewed source snapshot",
+    "server_ready_timeout_seconds": 240,
+    "request_timeout_seconds": 60,
+    "request_limit": 2,
+    "retries": 0,
+    "shutdown_wait_seconds": 20
+  },
+  "required_runtime_capture": [
+    "OS release (ID, VERSION_ID) and architecture",
+    "Python/jsonschema/Pillow versions",
+    "CUDA nvcc and host driver versions",
+    "GPU0 model/compute capability/total VRAM",
+    "host RAM and free disk",
+    "CMake and C++ compiler version output",
+    "llama.cpp git commit",
+    "llama-server --version and binary size/SHA-256",
+    "llama-server --help required flag readback"
+  ],
+  "resource_thresholds_are_proven_capacity": false
+}

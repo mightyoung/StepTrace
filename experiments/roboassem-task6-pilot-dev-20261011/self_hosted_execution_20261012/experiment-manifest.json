@@ -1,0 +1,223 @@
+{
+  "schema_version": "steptrace.roboassem-task6-self-hosted-experiment.v1",
+  "experiment_id": "roboassem-task6-dev-20261011-v0.1",
+  "package_status": "preparation_only_blocked_for_execution",
+  "source_admission_commit": "7afd086e88a5d5b4511a318e42fde1f53d2aa550",
+  "source_protocol_commit": "a2cdc0b712ccc70d929a3d0e6b00d6b414dbde98",
+  "request_protocol": {
+    "arms": ["F", "HF"],
+    "order": ["F", "HF"],
+    "serial": true,
+    "independent_contexts": true,
+    "F_input_ids": ["k04"],
+    "HF_input_ids": ["k01", "k02", "k03", "k04"],
+    "same_current_frame": "k04",
+    "max_generation_requests": 2,
+    "retries": 0,
+    "timeout_seconds_each": 60,
+    "max_output_tokens_each": 2048,
+    "generation_calls_during_preflight": 0,
+    "on_F_failure": "do_not_send_HF",
+    "on_timeout": "delivery_unknown_block_replay"
+  },
+  "input_contract": {
+    "filename": "execution-input-contract.json",
+    "bytes": 19714,
+    "sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+    "derived_from": "experiments/roboassem-task6-pilot-dev-20261011/mac_runner_readonly_audit_20261012/historical-request-source-contract.json"
+  },
+  "inputs": {
+    "source_video": {
+      "filename": "task6_m_1.mp4",
+      "bytes": 3708210,
+      "sha256": "49e048efeb14f8da2c9d6a2a23707f721b76d46bf76a4280cb2a03edcbfc3a06",
+      "format_reported": "H.264",
+      "dimensions": [640, 480],
+      "fps": "30/1",
+      "frames": 547,
+      "role": "private provenance only; not placed into model requests",
+      "download_status": "no_public_url_verified",
+      "license_status": "unverified; private rights attestation required"
+    },
+    "frames": [
+      {
+        "input_id": "k01",
+        "filename": "k01.png",
+        "source_frame_index": 0,
+        "pts": 0,
+        "time_seconds": "0.000000",
+        "dimensions": [640, 480],
+        "bytes": 182917,
+        "sha256": "d460c282a5fb02b5c98b36ad0b90f0840a037edfd9114fad4e2609a35a95fcc9",
+        "role": "HF past"
+      },
+      {
+        "input_id": "k02",
+        "filename": "k02.png",
+        "source_frame_index": 300,
+        "pts": 300,
+        "time_seconds": "10.000000",
+        "dimensions": [640, 480],
+        "bytes": 194260,
+        "sha256": "6f73af6b1dc20d8adc5ba01a5bc55246c5f3f1c8373c0e9ad55b3d3db0915091",
+        "role": "HF past"
+      },
+      {
+        "input_id": "k03",
+        "filename": "k03.png",
+        "source_frame_index": 450,
+        "pts": 450,
+        "time_seconds": "15.000000",
+        "dimensions": [640, 480],
+        "bytes": 195651,
+        "sha256": "601c93866a4263af370480dcf0d79f672342b110d7cf4ab67b918ec5e2bf262d",
+        "role": "HF past"
+      },
+      {
+        "input_id": "k04",
+        "filename": "k04.png",
+        "source_frame_index": 510,
+        "pts": 510,
+        "time_seconds": "17.000000",
+        "dimensions": [640, 480],
+        "bytes": 223238,
+        "sha256": "7fa67434a107f5086628a5175c74a9a7935ff2992b0ef10a4d1ffed0506645a8",
+        "role": "F and HF current"
+      }
+    ],
+    "derivation": {
+      "mask": {"type": "opaque black rectangle", "x": 0, "y": 400, "width": 112, "height": 80},
+      "pixel_generation_or_inpainting": false,
+      "exact_derivatives_required": true,
+      "regenerate_if_missing": false,
+      "reason": "Decoder and PNG-encoding provenance is insufficient to claim byte-identical regeneration. Obtain the exact authorized masked PNGs or block."
+    }
+  },
+  "data_rights_gate": {
+    "status": "blocked_unverified",
+    "public_dataset_or_download_url": null,
+    "required_private_evidence": "rights-attestation.json plus evidence file referenced inside private input root",
+    "must_authorize": ["inference on the selected provider", "transfer to the selected compute environment"],
+    "public_redistribution_allowed_by_default": false,
+    "mac_unlock_required": false
+  },
+  "model": {
+    "repository": "unsloth/Qwen3.5-9B-GGUF",
+    "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+    "license_label_observed": "apache-2.0",
+    "license_evidence": "Download and retain the pinned repository metadata/license evidence in private run records; do not infer data rights from the model license.",
+    "files": [
+      {
+        "filename": "Qwen3.5-9B-Q4_K_M.gguf",
+        "bytes": 5680522464,
+        "sha256": "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8"
+      },
+      {
+        "filename": "mmproj-BF16.gguf",
+        "bytes": 921705024,
+        "sha256": "853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383"
+      }
+    ],
+    "download_bytes_total": 6602227488,
+    "download_requires_authentication": false,
+    "download_policy": "Explicit pinned-revision downloads only; stop on missing file, size/hash mismatch, or license mismatch. Never let the v5 runner/setup script download missing weights."
+  },
+  "backend": {
+    "repository": "https://github.com/ggml-org/llama.cpp.git",
+    "commit": "8345f333951c661d166b00e6f9362e553768f292",
+    "build": {
+      "GGML_CUDA": true,
+      "CMAKE_CUDA_ARCHITECTURES": "75",
+      "CMAKE_BUILD_TYPE": "Release",
+      "LLAMA_BUILD_SERVER": true,
+      "LLAMA_BUILD_TESTS": false,
+      "LLAMA_BUILD_EXAMPLES": false,
+      "LLAMA_CURL": false,
+      "workers": 4,
+      "timeout_seconds": 480
+    },
+    "server_arguments": [
+      "--device", "CUDA0", "-ngl", "99", "-c", "16384", "--parallel", "1", "--threads", "4",
+      "--flash-attn", "off", "--image-min-tokens", "1024", "--image-max-tokens", "2048",
+      "--no-context-shift", "--no-cache-prompt", "--host", "127.0.0.1", "--port", "8080",
+      "--top-k", "40", "--top-p", "0.95", "--temp", "0", "--seed", "1", "--jinja", "--no-mmproj-offload"
+    ],
+    "runtime_binary_identity": "not yet available; record-runtime.json must be generated after successful pinned build"
+  },
+  "gpu_non_generating_preflight": {
+    "command": "task6_bundle.py gpu-preflight",
+    "bind_host": "127.0.0.1",
+    "generation_calls": 0,
+    "external_network_calls": 0,
+    "local_endpoints": ["/health", "/props", "/apply-template", "/tokenize"],
+    "loads_model_weights": true,
+    "writes_private_backend_props_and_token_bounds": true,
+    "stops_server_before_operator_review": true,
+    "preflight_output_must_be_outside_git_worktree": true,
+    "restarts_server_for_later_v5_run": true,
+    "candidate_max_phase_budget_seconds": 340,
+    "strict_schema_generation_support_verified": false
+  },
+  "environment": {
+    "os": "Linux x86_64",
+    "machine": "x86_64",
+    "python_version": "3.12.14",
+    "jsonschema_version": "4.26.0",
+    "pillow_version": "12.3.0",
+    "cuda_release": "12.5",
+    "cuda_update": "12.5.1",
+    "nvcc_version_marker": "V12.5.82",
+    "minimum_driver_version": "555.42.06",
+    "minimum_compute_capability": 7.5,
+    "minimum_vram_mib": 16384,
+    "minimum_host_ram_mib": 32768,
+    "minimum_free_disk_gib": 20,
+    "status": "candidate_lock_unverified_on_gpu"
+  },
+  "budget": {
+    "build_timeout_seconds": 480,
+    "server_ready_timeout_seconds": 240,
+    "request_timeout_seconds_each": 60,
+    "max_generation_seconds_total": 120,
+    "server_stop_wait_seconds": 20,
+    "max_generation_requests": 2,
+    "max_output_tokens_each": 2048,
+    "retries": 0,
+    "maximum_capped_run_phases_seconds": 860,
+    "maximum_capped_preflight_plus_run_phases_seconds": 1200,
+    "not_included": ["provider provisioning", "private input transfer", "model download", "upload/return transfer"],
+    "provider_cost_authorization": "operator must choose and record their own bounded allocation; no price or cloud provider assumed"
+  },
+  "runner_files": [
+    {
+      "filename": "prepared-run_pair-crashsafe.py",
+      "bytes": 29513,
+      "sha256": "baf2c20e0ef837fd095a6e1f87d893d05160206c2cfec9a593ffb51066a57e4b"
+    },
+    {
+      "filename": "runner_safety.py",
+      "bytes": 19874,
+      "sha256": "d42e869daac52bd6261665f85122a747ef4011140e9498ea379ae504fbfd4075"
+    },
+    {
+      "filename": "prepared-execute-pair-bootstrap-crashsafe.py",
+      "bytes": 7412,
+      "sha256": "967bc1386e4ff5eeb3019631e0a274fa9663dbdf36632a21e4a3e7e7e5df53d0"
+    }
+  ],
+  "v5_archive": {
+    "filename": "task6-runner-patch-20261012-v5.zip",
+    "bytes": 30926,
+    "sha256": "7bd01775520cc4b555f83b2edd1211430c51983cf1f07fe65475bab477de2f5c",
+    "review_scope": "independent mocked crash-safety review; not a real GPU/model/backend validation"
+  },
+  "output": {
+    "private_result_root": "<TASK6_RUN_ROOT>/results",
+    "private_archive": "<TASK6_RUN_ROOT>/task6-results.zip",
+    "private_return_manifest": "private-return-manifest.json",
+    "public_summary": "redacted-summary.json",
+    "public_summary_default_publication_allowed": false,
+    "raw_model_outputs_are_private": true,
+    "request_json_contains_base64_images": true
+  }
+}

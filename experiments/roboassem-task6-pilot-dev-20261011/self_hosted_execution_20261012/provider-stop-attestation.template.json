@@ -1,0 +1,9 @@
+{
+  "schema_version": "steptrace.task6.provider-stop-attestation.v1",
+  "status": "unknown",
+  "resource_type": "cloud-vm",
+  "provider_id": "UNSET",
+  "instance_reference": "",
+  "stopped_at_utc": "",
+  "evidence_reference": ""
+}

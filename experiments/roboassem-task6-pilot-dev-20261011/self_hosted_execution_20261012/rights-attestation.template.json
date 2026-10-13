@@ -1,0 +1,16 @@
+{
+  "schema_version": "steptrace.data-rights-attestation.v1",
+  "experiment_id": "roboassem-task6-dev-20261011-v0.1",
+  "input_contract_sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+  "authorization_status": "not_authorized",
+  "rights_basis": "",
+  "license_id": "",
+  "evidence_reference": "",
+  "evidence_file": "",
+  "inference_authorized": false,
+  "transfer_authorized": false,
+  "provider_id": "UNSET",
+  "expires_utc": "",
+  "public_redistribution_authorized": false,
+  "synthetic_template_only": true
+}

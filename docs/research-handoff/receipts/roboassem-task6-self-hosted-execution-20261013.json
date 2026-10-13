@@ -1,0 +1,99 @@
+{
+  "schema_version": "steptrace.roboassem-task6-self-hosted-execution-receipt.v1",
+  "attempt_id": "roboassem-task6-self-hosted-execution-20261013",
+  "status": "preparation_only_blocked_for_execution",
+  "repository": {
+    "base_commit": "7afd086e88a5d5b4511a318e42fde1f53d2aa550",
+    "candidate_branch": "task/roboassem-task6-execution-admission-20261012",
+    "previous_admission_receipt_unchanged": true
+  },
+  "package": {
+    "path": "experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012",
+    "operator_guide": {
+      "path": "experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/README_zh.md",
+      "sha256": "8c12e38e44e689ddb921c7813173bfc165f0d6ac8737024a84e459c1f8c2a3f4"
+    },
+    "manifest": {
+      "path": "experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/experiment-manifest.json",
+      "sha256": "031f08d11a5c585c4b89343a1007e9ce4c894d94197763f408651ad3a5b9bcc1"
+    },
+    "input_contract": {
+      "bytes": 19714,
+      "sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8"
+    },
+    "tool": {
+      "path": "experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_bundle.py",
+      "sha256": "5389a9e152b7b96d66121cc731fcfd04e922e15ff1f8abe62d4653a1067592af"
+    },
+    "tests": {
+      "path": "experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests/test_task6_bundle.py",
+      "sha256": "19ebea75e06336ed981de62dd18f9b9ecf071ddb5ad958d9cbbf973de0204828"
+    },
+    "environment_lock_sha256": "4cc63c8378f9bc16b922d9ad81397693c739b88bd8918421247cd69eb2f784d6",
+    "output_schema_sha256": "b8da306b775a5a142a3efdb720b195ba26febf1a02f30cffddc1e1c989418928",
+    "synthetic_example_sha256": "e43885f828c1e685453b00a9be732f80db41bdb7d2a2cd855f6a872a2ee90df3"
+  },
+  "progress_note": {
+    "path": "docs/research-handoff/progress/20261013-roboassem-task6-self-hosted.md",
+    "sha256": "0c80a5a9f593b92baeef189e3ddddfd4635fa91126a969ceb26ee0bbefb8367b"
+  },
+  "public_sources": {
+    "model_repo_revision": "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF/tree/3885219b6810b007914f3a7950a8d1b469d598a5",
+    "model_license_label_observed": "apache-2.0",
+    "media_public_url_verified": false,
+    "media_file_license_verified": false,
+    "media_use_and_transfer_rights_verified": false
+  },
+  "inputs_and_model": {
+    "cloud_video_or_frame_bytes_present": false,
+    "cloud_gguf_bytes_present": false,
+    "source_contract_sha_is_exact_copy": true,
+    "mac_reported_media_hashes_rehashed_in_this_environment": false,
+    "exact_png_regeneration_permitted": false
+  },
+  "runtime": {
+    "gpu_host_selected": false,
+    "cuda_build_run": false,
+    "backend_runtime_record_present": false,
+    "gpu_non_generating_preflight_implemented": true,
+    "gpu_non_generating_preflight_run": false,
+    "generation_calls": 0,
+    "provider_session_started": false,
+    "provider_stop_state": "not_applicable_no_session"
+  },
+  "verification": {
+    "new_package_unit_tests": "26/26 passed; synthetic fixtures and mocked process/loopback responses only",
+    "existing_task6_offline_tests": "24/24 passed",
+    "existing_v5_crash_safety_tests_normal": "24/24 passed; mocked requests only",
+    "existing_v5_crash_safety_tests_optimized": "24/24 passed; mocked requests only",
+    "cpu_cli_missing-inputs_smoke": {
+      "exit_code": 2,
+      "execution_ready": false,
+      "network_calls": 0,
+      "generation_calls": 0,
+      "expected_blocked": true
+    },
+    "gpu_cli_missing-inputs_smoke": {
+      "exit_code": 2,
+      "preflight_passed": false,
+      "external_network_calls": 0,
+      "generation_calls": 0,
+      "server_started": false,
+      "expected_blocked": true
+    }
+  },
+  "still_required_before_execution": [
+    "Owner-backed rights evidence for exact media, including inference and transfer to the named provider",
+    "Exact authorized video and masked k01-k04 PNG files with matching manifest hashes",
+    "Model artifact bytes with pinned-revision license evidence and matching hashes in the private run root",
+    "An operator-selected host and separately authorized compute allocation",
+    "Successful pinned CUDA backend build and runtime verification with environment/resource readback",
+    "Operator-run GPU non-generating preflight, report review and a decision whether to proceed to the one-shot v5 runner",
+    "Schema/backend compatibility remains unmeasured; no accuracy, ground-truth or gain claim is supported"
+  ],
+  "privacy_boundary": {
+    "private_media_weights_base64_requests_raw_responses_model_outputs_and_logs_added_to_git": false,
+    "synthetic_fixtures_are_real_research_evidence": false,
+    "redacted_summary_publication_allowed_by_default": false
+  }
+}

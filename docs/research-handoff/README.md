@@ -30,6 +30,13 @@ This directory exchanges reviewed text and artifact identities across research e
 - Status is `preparation_only_blocked_for_execution`: the earlier Kaggle record reports successful model/image hash rechecks but the current session and quota are unverified; CUDA build success and `runtime-verification.json` with backend version/binary SHA are absent; v5 source readback in Kaggle is absent. No weight redownload or real inference occurred.
 - This is a separate RoboAssem Task6 record. Earlier Mac input and runner receipts remain unchanged; the new [admission receipt](receipts/roboassem-task6-admission-20261012.json) identifies exactly which runtime records are still required.
 
+## RoboAssem task 6 self-hosted package — 2026-10-13
+
+- [Self-hosted execution guide](../../experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/README_zh.md) adds a CPU-only preflight/result audit package, an opt-in local GPU no-generation preflight, and a documented path for a user-selected Linux CUDA server. It reuses the reviewed v5 runner source without modifying it.
+- Status remains `preparation_only_blocked_for_execution`: no public video/PNG URL or file-level dataset license was verified; the cloud workspace has none of the real video/PNG/GGUF bytes; rights to use and transfer those inputs remain unverified. The Qwen repository's Apache-2.0 label does not establish media rights.
+- Local package fixtures and mocked loopback/server responses are synthetic software tests only. They do not count as real positive/negative examples, ground truth, model output, accuracy or method gain. No model, server, GPU build, GPU preflight or inference ran in this increment.
+- See the new [append-only self-hosted package receipt](receipts/roboassem-task6-self-hosted-execution-20261013.json) and [progress note](progress/20261013-roboassem-task6-self-hosted.md). The prior admission receipt and earlier research records remain unchanged.
+
 ## Current stage - 2026-10-10 15:05 UTC
 
 - [Current progress, actual results and remaining evidence gaps](progress/20261010T1505Z-current-stage.md)

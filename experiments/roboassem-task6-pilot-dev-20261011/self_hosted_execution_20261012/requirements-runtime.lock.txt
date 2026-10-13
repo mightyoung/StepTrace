@@ -1,0 +1,8 @@
+# Python package versions required by the reviewed v5 runner/result validator.
+# The preflight CLI uses only Python's standard library; no package install is needed for it.
+attrs==26.1.0
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+Pillow==12.3.0
+referencing==0.37.0
+rpds-py==2026.6.3

@@ -1,0 +1,17 @@
+{
+  "schema_version": "steptrace.task6.redacted-summary.v1",
+  "experiment_id": "synthetic-task6-example-only",
+  "synthetic": true,
+  "publication_status": "held_for_owner_review",
+  "publication_allowed": false,
+  "inference_status": "not_started",
+  "arm_status": {
+    "F": "not_attempted",
+    "HF": "not_attempted"
+  },
+  "request_count": 0,
+  "provider_session_status": "unknown",
+  "contains_model_output": false,
+  "contains_private_paths": false,
+  "contains_private_artifact_hashes": false
+}

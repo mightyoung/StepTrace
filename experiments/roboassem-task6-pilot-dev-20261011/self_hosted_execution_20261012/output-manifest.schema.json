@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Task6 private return manifest or redacted public summary",
+  "oneOf": [
+    {"$ref": "#/$defs/privateReturn"},
+    {"$ref": "#/$defs/redactedSummary"}
+  ],
+  "$defs": {
+    "armStatus": {
+      "type": "string",
+      "enum": ["not_attempted", "completed", "failed", "unknown"]
+    },
+    "audit": {
+      "type": "object",
+      "required": ["schema_version", "synthetic", "valid", "errors", "inference_status", "arms", "request_count", "replay_blocked", "resource_cleanup"],
+      "properties": {
+        "schema_version": {"const": "steptrace.task6.v5-run-audit.v1"},
+        "synthetic": {"type": "boolean"},
+        "valid": {"type": "boolean"},
+        "errors": {"type": "array", "items": {"type": "string"}},
+        "inference_status": {"type": "string", "enum": ["not_started", "success", "failed", "unknown"]},
+        "arms": {
+          "type": "object",
+          "required": ["F", "HF"],
+          "properties": {
+            "F": {"$ref": "#/$defs/arm"},
+            "HF": {"$ref": "#/$defs/arm"}
+          },
+          "additionalProperties": false
+        },
+        "request_count": {"type": "integer", "minimum": 0, "maximum": 2},
+        "replay_blocked": {"type": "boolean"},
+        "resource_cleanup": {
+          "type": "object",
+          "required": ["local_server", "provider_session"],
+          "properties": {
+            "local_server": {"type": "string", "enum": ["verified_stopped", "unknown"]},
+            "provider_session": {"type": "string", "enum": ["verified_stopped", "not_applicable", "unknown"]}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "arm": {
+      "type": "object",
+      "required": ["status", "request_id"],
+      "properties": {
+        "status": {"$ref": "#/$defs/armStatus"},
+        "request_id": {"type": ["string", "null"]},
+        "response_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "privateArtifact": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256", "classification"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "classification": {"const": "private"}
+      },
+      "additionalProperties": false
+    },
+    "privateReturn": {
+      "type": "object",
+      "required": ["schema_version", "experiment_id", "synthetic", "classification", "audit", "private_artifacts"],
+      "properties": {
+        "schema_version": {"const": "steptrace.task6.private-return-manifest.v1"},
+        "experiment_id": {"type": "string", "minLength": 1},
+        "synthetic": {"type": "boolean"},
+        "classification": {"enum": ["private", "synthetic-only"]},
+        "audit": {"$ref": "#/$defs/audit"},
+        "private_artifacts": {"type": "array", "items": {"$ref": "#/$defs/privateArtifact"}}
+      },
+      "additionalProperties": false
+    },
+    "redactedSummary": {
+      "type": "object",
+      "required": ["schema_version", "experiment_id", "synthetic", "publication_status", "publication_allowed", "inference_status", "arm_status", "request_count", "provider_session_status", "contains_model_output", "contains_private_paths", "contains_private_artifact_hashes"],
+      "properties": {
+        "schema_version": {"const": "steptrace.task6.redacted-summary.v1"},
+        "experiment_id": {"type": "string", "minLength": 1},
+        "synthetic": {"type": "boolean"},
+        "publication_status": {"const": "held_for_owner_review"},
+        "publication_allowed": {"const": false},
+        "inference_status": {"type": "string", "enum": ["not_started", "success", "failed", "unknown"]},
+        "arm_status": {
+          "type": "object",
+          "required": ["F", "HF"],
+          "properties": {
+            "F": {"$ref": "#/$defs/armStatus"},
+            "HF": {"$ref": "#/$defs/armStatus"}
+          },
+          "additionalProperties": false
+        },
+        "request_count": {"type": "integer", "minimum": 0, "maximum": 2},
+        "provider_session_status": {"type": "string", "enum": ["verified_stopped", "not_applicable", "unknown"]},
+        "contains_model_output": {"const": false},
+        "contains_private_paths": {"const": false},
+        "contains_private_artifact_hashes": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  }
+}

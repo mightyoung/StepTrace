@@ -45,3 +45,7 @@ Mac 报告媒体为 H.264、640×480、30 fps、547 帧、time base `1/30`；报
 [Task6 执行准入包](admission_20261012/EXECUTION_ADMISSION_20261012_zh.md)以 030b186/v5 为 runner 对象，固定候选模型、Mac 报告的四帧输入身份、F/HF 独立请求、输出合同、两次请求与每次 60 秒预算、停止和结果私有留存步骤。机器可读清单为 [execution-admission-20261012.json](admission_20261012/execution-admission-20261012.json)。
 
 **当前状态仍为 `preparation_only_blocked_for_execution`。** 既有记录称 Kaggle 曾对模型和四张图重哈希，但本次没有当前 Kaggle 会话/配额复核；CUDA build 未确认成功，且缺少实际 `runtime-verification.json` 中的 `llama-server --version` 与二进制 SHA。v5 虽经有限独立复审并获建议推送，仍未上传或在 Kaggle 运行。此次只准备和核验已有记录，不重下权重、不启动服务器、不调用模型。
+
+## 2026-10-12 自托管运行与回传包
+
+[中文操作手册](self_hosted_execution_20261012/README_zh.md)说明在使用者自选 Linux CUDA 主机上的 CPU 预检、候选环境、固定模型来源/哈希、v5 F/HF 一次性运行命令、停止 attestation 与私有/脱敏回传。工具与单测位于 [运行包目录](self_hosted_execution_20261012/)。此云端仍无真实输入/模型，不连接主机、不下载、不构建、不推理；Task6 视频和 PNG 的公开 URL、数据许可与私有使用/传输授权仍未核实。模型仓库的 Apache-2.0 标签不授予视频或帧的权利。单测与示例只包含合成 fixture，不可作为真实事件证据或性能/准确率结论。
