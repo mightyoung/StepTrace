@@ -1,7 +1,49 @@
 """Software regression checks on frozen AI records and explicit synthetic negatives."""
 from copy import deepcopy
+import json
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
+import audit
 from audit import adapt, load_cache, lossy_projection, negative_records, PROVENANCE, run
+
+
+class PinnedManifestFallback(unittest.TestCase):
+    def test_load_cache_uses_pinned_blobs_when_workspace_artifacts_change(self):
+        manifest_path = audit.CACHE / 'public_manifest.json'
+        manifest = json.loads(manifest_path.read_text())
+        expected_events = json.loads((audit.CACHE / 'frozen_events.v1.json').read_text())
+        expected_q31_events = next(f['events'] for f in expected_events['fixtures']
+                                   if f['case_id'] == 'q31')
+        with TemporaryDirectory() as temp_dir:
+            temp_root = Path(temp_dir)
+            for entry in manifest['files']:
+                source = audit.ROOT / entry['path']
+                target = temp_root / entry['path']
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(source.read_bytes())
+
+            # Simulate later documentation edits and a changed cache file in a
+            # disposable worktree. The audit must consume the pinned Git blobs.
+            changed_readme = temp_root / 'docs/research-handoff/README.md'
+            changed_readme.write_bytes(changed_readme.read_bytes() + b'\nLater handoff update.\n')
+            changed_q31 = temp_root / 'experiments/real-reappearance-dev-20261010/model_outputs/q31.json'
+            changed_q31.write_text('{"packet_id":"tampered"}')
+            changed_events = temp_root / 'experiments/real-reappearance-dev-20261010/frozen_events.v1.json'
+            changed_events.write_text('{"fixtures":[]}')
+
+            cache = temp_root / 'experiments/real-reappearance-dev-20261010'
+            (cache / 'public_manifest.json').write_bytes(manifest_path.read_bytes())
+            with patch.object(audit, 'ROOT', temp_root), patch.object(audit, 'CACHE', cache):
+                try:
+                    records, events, verified = audit.load_cache()
+                except ValueError as exc:
+                    self.fail(f'pinned cache verification should survive workspace edits: {exc}')
+
+        self.assertEqual(len(verified), 23)
+        self.assertEqual(records['q31']['packet_id'], 'q31')
+        self.assertEqual(events['q31'], expected_q31_events)
 
 
 class Applicability(unittest.TestCase):

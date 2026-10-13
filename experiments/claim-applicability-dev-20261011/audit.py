@@ -4,15 +4,44 @@ from copy import deepcopy
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 
 BASELINE = '955d2bae7f047c5e699caa90ac094b74b9b738e3'
-ROOT = Path(__file__).resolve().parents[2]
+GIT_ROOT = Path(__file__).resolve().parents[2]
+ROOT = GIT_ROOT
 CACHE = ROOT / 'experiments/real-reappearance-dev-20261010'
 
 
 def require(condition, reason):
     if not condition:
         raise ValueError(reason)
+
+
+def _git_blob_bytes(blob_sha):
+    result = subprocess.run(['git', 'cat-file', 'blob', blob_sha], cwd=GIT_ROOT,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    require(result.returncode == 0, 'blob_unavailable:' + blob_sha)
+    data = result.stdout
+    actual_blob_sha = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+    require(actual_blob_sha == blob_sha, 'blob_object_integrity:' + blob_sha)
+    return data
+
+
+def _read_verified_manifest_bytes(entry, root=ROOT):
+    try:
+        data = (root / entry['path']).read_bytes()
+    except OSError:
+        data = b''
+    expected_blob_sha = hashlib.sha1(
+        b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+    if (len(data) != entry['bytes'] or hashlib.sha256(data).hexdigest() != entry['sha256'] or
+            expected_blob_sha != entry['git_blob_sha']):
+        data = _git_blob_bytes(entry['git_blob_sha'])
+    require(len(data) == entry['bytes'] and hashlib.sha256(data).hexdigest() == entry['sha256'],
+            'cache_integrity:' + entry['path'])
+    actual_blob_sha = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+    require(actual_blob_sha == entry['git_blob_sha'], 'blob_integrity:' + entry['path'])
+    return data
 
 
 def lossy_projection(record):
@@ -92,17 +121,16 @@ def adapt(record, reference_events, provenance):
 def load_cache():
     manifest = json.loads((CACHE / 'public_manifest.json').read_text())
     verified = []
+    verified_bytes = {}
     for entry in manifest['files']:
-        data = (ROOT / entry['path']).read_bytes()
-        require(len(data) == entry['bytes'] and hashlib.sha256(data).hexdigest() == entry['sha256'],
-                'cache_integrity:' + entry['path'])
-        require(hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
-                == entry['git_blob_sha'], 'blob_integrity:' + entry['path'])
+        verified_bytes[entry['path']] = _read_verified_manifest_bytes(entry, root=ROOT)
         verified.append(entry)
-    records = {p: json.loads((CACHE / 'model_outputs' / (p + '.json')).read_text())
+    records = {p: json.loads(verified_bytes[
+                   'experiments/real-reappearance-dev-20261010/model_outputs/' + p + '.json'])
                for p in ('q31', 'q68', 'q92')}
     events = {f['case_id']: f['events'] for f in
-              json.loads((CACHE / 'frozen_events.v1.json').read_text())['fixtures']}
+              json.loads(verified_bytes[
+                  'experiments/real-reappearance-dev-20261010/frozen_events.v1.json'])['fixtures']}
     return records, events, verified
 
 

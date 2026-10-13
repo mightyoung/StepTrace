@@ -48,7 +48,11 @@ python3 -B scan_consumers.py --output source_scan.json
 python3 -B -m pytest -q tests/test_vlm_state_risk_contract.py tests/test_vlm_state_memory.py tests/test_state_machine.py tests/test_state_risk_metrics.py tests/test_g1_derivation.py
 ```
 
-新增7项通过；较宽既有检查61通过、1失败，不能称全套通过。失败是 test_shipped_knowledge_packs_are_explicitly_non_formal_and_valid 只允许 meccano-development.yaml/software-fixture.yaml，但固定源码还含 gv06-reference-port.yaml。文件同基线核验一致，本轮未修改其列表或知识包，保留既有不一致，不删除第三包。
+新增7项通过；当时较宽既有检查61通过、1失败，不能称全套通过。失败是 test_shipped_knowledge_packs_are_explicitly_non_formal_and_valid 的文件名清单缺少 gv06-reference-port.yaml。那次检查没有修改清单或知识包，保留了当时的不一致。
+
+2026-10-13 后续核对：提交 `64e62dbff44e766551479f080e2a7ba60c613e83` 已把 `gv06-reference-port.yaml` 加入该单测的预期清单，先前记录的这一处失败已在源码中修复。当前 Python 环境没有 pytest，因此没有重跑原单测或较宽套件；使用项目的 `load_knowledge` 对三个现有包逐项复核了文件清单、非正式状态集合及 task-id 守卫，等价断言通过。原 61/1 数字保留为历史运行记录，不能据此声称当前全套通过。
+
+2026-10-13 本地回归续验：为兼容后续工作树文档更新，缓存审计现在按清单中的 Git blob SHA 读取并校验冻结字节；q31/q68/q92 与冻结事件也从同一份已验证字节解析。针对临时工作树改写 README、q31 和事件 JSON 的回归用例通过。`test_audit.py` 11/11、过程/当前状态测试 6/6、缓存进度测试 5/5 通过；两个离线分析命令生成的 JSON 均与已保存结果逐字节一致。pytest 不可用，因此广泛的 pytest 套件本轮仍未重跑。
 
 第一次运行新路由夹具时 enabled_risk_ids 为空，被评分器在前置校验拒绝；修正为 synthetic-risk 后到达目标分支。失败记录保留在 verification.json，不能把前置拒绝当作连接消费结果。
 
