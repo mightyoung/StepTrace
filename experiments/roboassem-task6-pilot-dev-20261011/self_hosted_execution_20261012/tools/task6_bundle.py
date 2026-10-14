@@ -1076,10 +1076,17 @@ def run_preflight(
         blockers.append(f"private source video provenance file is {status}")
 
     rights_issues: list[str]
+    rights_identity: dict[str, Any] = {}
     if not rights_path.is_file():
         rights_issues = ["private rights attestation file is missing"]
     else:
         try:
+            attestation_size, attestation_sha256 = sha256_file(rights_path)
+            rights_identity = {
+                "attestation_file": rights_path.name,
+                "attestation_bytes": attestation_size,
+                "attestation_sha256": attestation_sha256,
+            }
             attestation = _read_json(rights_path)
             rights_issues = validate_rights_attestation(
                 attestation,
@@ -1093,18 +1100,35 @@ def run_preflight(
                     evidence_path = safe_artifact_path(input_root, evidence_file)
                     if not evidence_path.is_file():
                         rights_issues.append("private evidence_file is missing from input root")
+                    else:
+                        evidence_size, evidence_sha256 = sha256_file(evidence_path)
+                        rights_identity.update(
+                            {
+                                "evidence_file": evidence_file,
+                                "evidence_bytes": evidence_size,
+                                "evidence_sha256": evidence_sha256,
+                            }
+                        )
                 except ValueError as exc:
                     rights_issues.append(str(exc))
         except (OSError, json.JSONDecodeError) as exc:
             rights_issues = [f"private rights attestation is invalid JSON: {exc}"]
-    checks.append({"name": "data_rights", "status": "verified" if not rights_issues else "blocked", "issues": rights_issues})
+    checks.append(
+        {
+            "name": "data_rights",
+            "status": "verified" if not rights_issues else "blocked",
+            "issues": rights_issues,
+            **rights_identity,
+        }
+    )
     blockers.extend(rights_issues)
 
-    for artifact in manifest["model"]["files"]:
-        status, detail = _file_check(run_root / artifact["filename"], artifact["bytes"], artifact["sha256"])
-        checks.append({"name": f"model_{artifact['filename']}", "status": status, **detail})
-        if status != "verified":
-            blockers.append(f"model artifact {artifact['filename']} is {status}; do not redownload through runner")
+    if phase == "execution":
+        for artifact in manifest["model"]["files"]:
+            status, detail = _file_check(run_root / artifact["filename"], artifact["bytes"], artifact["sha256"])
+            checks.append({"name": f"model_{artifact['filename']}", "status": status, **detail})
+            if status != "verified":
+                blockers.append(f"model artifact {artifact['filename']} is {status}; do not redownload through runner")
 
     runner_root = PACKAGE_ROOT / "runner_sources"
     for artifact in manifest["runner_files"]:

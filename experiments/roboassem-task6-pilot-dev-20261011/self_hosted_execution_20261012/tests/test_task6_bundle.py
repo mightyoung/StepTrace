@@ -1045,6 +1045,79 @@ class GpuPreflightTests(unittest.TestCase):
 
 
 class PackageIntegrationTests(unittest.TestCase):
+    def test_inputs_phase_verifies_exact_inputs_without_requiring_model_weights(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_root = root / "private-inputs"
+            input_root.mkdir()
+            run_root = root / "run"
+            contract_bytes = b'{"synthetic":true}\n'
+            source_bytes = b"synthetic-source-video"
+            (input_root / "execution-input-contract.json").write_bytes(contract_bytes)
+            (input_root / "synthetic.mp4").write_bytes(source_bytes)
+            rights_path = input_root / "rights-attestation.json"
+            rights_bytes = b'{"evidence_file":"source-rights-record.json"}\n'
+            rights_path.write_bytes(rights_bytes)
+            evidence_bytes = b"synthetic-source-and-rights-record"
+            (input_root / "source-rights-record.json").write_bytes(evidence_bytes)
+            manifest = {
+                "experiment_id": SYNTHETIC_EXPERIMENT,
+                "input_contract": {
+                    "bytes": len(contract_bytes),
+                    "sha256": hashlib.sha256(contract_bytes).hexdigest(),
+                },
+                "inputs": {
+                    "frames": [],
+                    "source_video": {
+                        "filename": "synthetic.mp4",
+                        "bytes": len(source_bytes),
+                        "sha256": hashlib.sha256(source_bytes).hexdigest(),
+                    },
+                },
+                "model": {
+                    "files": [
+                        {"filename": "synthetic.gguf", "bytes": 1, "sha256": "0" * 64}
+                    ]
+                },
+                "runner_files": [],
+                "environment": {},
+            }
+            manifest_path = root / "manifest.json"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+            with mock.patch("task6_bundle.validate_rights_attestation", return_value=[]):
+                input_report = run_preflight(
+                    manifest_path=manifest_path,
+                    input_root=input_root,
+                    run_root=run_root,
+                    rights_path=rights_path,
+                    provider_id=SYNTHETIC_PROVIDER,
+                    phase="inputs",
+                )
+                execution_report = run_preflight(
+                    manifest_path=manifest_path,
+                    input_root=input_root,
+                    run_root=run_root,
+                    rights_path=rights_path,
+                    provider_id=SYNTHETIC_PROVIDER,
+                    phase="execution",
+                )
+
+        self.assertTrue(input_report["input_ready"], input_report["blockers"])
+        self.assertFalse(input_report["execution_ready"])
+        self.assertFalse(any(check["name"].startswith("model_") for check in input_report["checks"]))
+        rights_check = next(check for check in input_report["checks"] if check["name"] == "data_rights")
+        self.assertEqual(rights_check["attestation_bytes"], len(rights_bytes))
+        self.assertEqual(rights_check["attestation_sha256"], hashlib.sha256(rights_bytes).hexdigest())
+        self.assertEqual(rights_check["evidence_file"], "source-rights-record.json")
+        self.assertEqual(rights_check["evidence_bytes"], len(evidence_bytes))
+        self.assertEqual(rights_check["evidence_sha256"], hashlib.sha256(evidence_bytes).hexdigest())
+        model_check = next(
+            check for check in execution_report["checks"] if check["name"] == "model_synthetic.gguf"
+        )
+        self.assertEqual(model_check["status"], "missing")
+        self.assertFalse(execution_report["execution_ready"])
+
     def test_missing_private_inputs_and_rights_stay_blocked_without_network_or_model_calls(self) -> None:
         package = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as tmp:

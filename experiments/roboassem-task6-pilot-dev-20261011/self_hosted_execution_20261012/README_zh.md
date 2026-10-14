@@ -20,7 +20,7 @@
 - [Qwen3.5-9B 模型卡](https://huggingface.co/Qwen/Qwen3.5-9B)提供模型来源信息；运行候选实际使用的是上方固定 revision 的 GGUF 与 projector 文件。
 - [CUDA Toolkit 12.5.1 官方发布说明](https://docs.nvidia.com/cuda/archive/12.5.1/cuda-toolkit-release-notes/index.html)记录 CUDA 12.5 Update 1 的版本信息。本包候选要求 nvcc `release 12.5`、版本标记 `V12.5.82`，Linux driver floor 设为 `555.42.06`。
 - [llama.cpp 固定源码 commit](https://github.com/ggml-org/llama.cpp/tree/8345f333951c661d166b00e6f9362e553768f292)是 backend 候选源码身份；尚无成功构建、二进制版本或 GPU 兼容性实测。
-- 没有核实到 Task6 视频及四张 PNG 的公开下载 URL 或可据以使用的独立数据许可。过往 Mac 报告提供了文件身份/hash，但本云端没有这些字节，亦未重新哈希。研究者必须通过自己有权使用的私有来源取得**原有精确文件**；无需解锁 Mac，但不能猜测来源、从网页重新抓取、重新解码/导出或补造 PNG。无法证明使用及传输权限时就停在准入阶段。
+- 2026-10-14 的[来源与权利审计](../../../docs/research-handoff/audits/roboassem-task6-source-rights-audit-20261014.md)找到固定 RoboAssem 网站版本的视频来源候选和 3,708,210-byte 元数据；视频正文及 SHA-256 未获取，固定来源树也没有原样 k01–k04 PNG。网站级许可与这些媒体/衍生帧的适用范围仍未明确。此前 Mac 报告中的文件身份/hash 不是本机复验。只能从有权使用的私有来源取得**原有精确文件**；不得据此下载公开候选、重新解码/导出或补造 PNG。无法证明对准确输入及准确接收环境的使用和传输权限时就停在准入阶段。
 
 ## 固定输入与判断界限
 
@@ -50,7 +50,7 @@ export TASK6_RUN_ROOT="/private/task6-run"
 mkdir -p "$TASK6_INPUT_ROOT" "$TASK6_RUN_ROOT"
 ```
 
-把 package 内的 `execution-input-contract.json` 复制进私有输入目录；从有权使用的私有来源放入四张精确 PNG、同一来源视频、下面列出的三个 runner 源文件，以及私有 `rights-attestation.json` 和其证据文件。不要把输入/证据提交 Git。三个 runner 文件位于本目录的 `runner_sources/`，预期身份在 manifest 中；原 `mac_runner_readonly_audit_20261012/sources/` 快照保持原样。
+把 package 内的 `execution-input-contract.json` 复制进私有输入目录；从有权使用的私有来源放入四张精确 PNG、同一来源视频、下面列出的三个 runner 源文件，以及私有 `rights-attestation.json` 和其证据文件。证据须能说明这组精确文件的取得/来源、遮罩帧衍生链、使用许可范围，以及向所选主机/provider 传输并在其上推理的权限；网页源码或模型许可不替代这些凭据。`evidence_file` 指向的文件必须位于私有输入根目录内。不要把输入/证据提交 Git。三个 runner 文件位于本目录的 `runner_sources/`，预期身份在 manifest 中；原 `mac_runner_readonly_audit_20261012/sources/` 快照保持原样。
 
 从模板制作 rights 文件时，需由权利人填写真实的 `rights_basis`、`license_id`、`evidence_reference`、`evidence_file`、带时区的 `expires_utc` 和获授权的 `provider_id`，并将 `synthetic_template_only` 显式改为 `false`；仅在证据明确覆盖这些行为时，才将 `authorization_status=authorized`、`inference_authorized=true`、`transfer_authorized=true`。公开再分发保持 `false`。用户认可“开发候选”不替代此逐项许可。不要填写示例文字冒充许可。
 
@@ -69,6 +69,8 @@ python3 "$PKG/tools/task6_bundle.py" preflight \
 
 这项检查只读文件、逐项校验字节数/SHA、权限门、私有 runner 副本和 one-shot 结果根；`network_calls=0`、`generation_calls=0`。已有运行产物、无法检查的结果根或账本不完整时会阻断重跑。首次空 `results/` 可通过；`setup-evidence/` 可保存 GPU/CPU 预检材料，但不得放入请求、响应或运行账本。完整 GPU 预检输出中的 `server.log` 仅在 `setup-evidence/gpu-preflight/` 且同目录保留 `gpu-preflight.json` 与 `server-stopped.json` 时可用作预检证据；根目录正式 `server.log` 或缺少这两份回执的日志仍阻断启动。输入/许可缺失或不匹配会返回 exit code 2，这是预期的阻断信号；不要以新下载/重编码来绕过。该阶段的 `execution_ready` 总是 false，因为它没有核对 GPU runtime。
 
+`phase=inputs` 检查的是输入合同、视频、四张 PNG、rights attestation/evidence、runner 副本和 one-shot 结果根；它刻意不查模型权重，因此可以在不下载 GGUF 时先验输入/权利。`data_rights` check 记录 attestation 与 `evidence_file` 的实际字节数/SHA。此阶段 `execution_ready` 必然为 false，CLI 也会返回 exit 2；读取 JSON 报告中的 `input_ready` 和 `checks`，只有 `input_ready=true` 且无 blockers 才表示这个前置阶段通过。模型大小/SHA 仍在之后的 `phase=execution` 和 GPU 预检前强制核验。
+
 ## 模型文件、候选环境和资源上界
 
 候选模型：`unsloth/Qwen3.5-9B-GGUF` revision `3885219b6810b007914f3a7950a8d1b469d598a5`。两个文件总计 6,602,227,488 bytes；以下 SHA 来自既有审计记录，本云端未下载或重算：
@@ -78,7 +80,7 @@ python3 "$PKG/tools/task6_bundle.py" preflight \
 | `Qwen3.5-9B-Q4_K_M.gguf` | 5,680,522,464 | `03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8` |
 | `mmproj-BF16.gguf` | 921,705,024 | `853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383` |
 
-若使用已经获准且可用的模型缓存，应先逐文件核对大小/SHA，并保存 pinned revision 与许可页面的私有来源记录。若权利人另行许可从固定 revision 获取模型，可使用精确 revision URL（不要加 token/凭证、改用浮动分支或使用 runner 自动下载）：
+模型文件只在 execution 阶段和 GPU 预检前需要。若使用已经获准且可用的模型缓存，应先逐文件核对大小/SHA，并保存 pinned revision 与许可页面的私有来源记录。若权利人另行许可从固定 revision 获取模型，可使用精确 revision URL（不要加 token/凭证、改用浮动分支或使用 runner 自动下载）：
 
 ```bash
 REV=3885219b6810b007914f3a7950a8d1b469d598a5
@@ -135,6 +137,16 @@ exit code 必须为 0 才表示这些静态/资源门通过；这仍不验证模
 
 ### GPU 端无生成预检
 
+`record-runtime` 记录机器/软件/GPU 特征，但不采集 provider 或 VM/主机实例 ID。选定主机后、GPU 预检和运行前，在私有 one-shot 允许的 `results/setup-evidence/` 中建立 provider 停机记录副本：
+
+```bash
+mkdir -p "$TASK6_RUN_ROOT/results/setup-evidence"
+cp "$PKG/provider-stop-attestation.template.json" \
+  "$TASK6_RUN_ROOT/results/setup-evidence/provider-stop-attestation.json"
+```
+
+在此副本中填实际 `provider_id` 与本次 VM/主机的稳定 `instance_reference`，`provider_id` 必须与 rights attestation 和各 `--provider-id` 参数相同。云主机运行前保留 `status=unknown`；停止后再填 `status=stopped`、UTC 停止时间和 provider 控制台证据引用。自管主机用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local`，并引用主机归属/边界记录。该身份由操作者提供，工具不会独立查询 provider 或将其自动绑定到 runtime 记录；之后需要人工核对。模板副本位于 `setup-evidence/`，不会触发 one-shot 重放守卫，且会进入私有回传 manifest 的文件哈希清单。
+
 执行阶段 CPU gate 通过后，可先用独立命令做 GPU backend 的**无 generation**预检。这一步会加载本地 GGUF 到 CUDA0，运行固定的 `llama-server`，只访问 `127.0.0.1:8080` 的 `/health`、`/props`、`/apply-template`、`/tokenize`，为 F/HF 读回 context 与文本 token 数，按每张图 2,048 tokens 的上界计算 context bound，然后停止本地 server。它不提交 `/v1/chat/completions`，不发送图片/base64，不产生模型回答；不过会占用 GPU 并加载权重，操作者仍须先确认数据和主机授权/额度。
 
 `--output-dir` 必须是一个新建的私有目录，且输入、运行、rights 和输出目录都不能位于 Git 工作树内。通过时 exit 0 且 `status=ready_for_operator_review`；这表示预检记录齐全、F/HF context 上界通过、server 已停止，留给操作者人工审核。失败时 exit 2，保留私有报告；不得转而直接运行 v5。该阶段未验证 strict JSON Schema generation 支持、内容正确性或识别质量。
@@ -152,12 +164,17 @@ python3 "$PKG/tools/task6_bundle.py" gpu-preflight \
 
 审阅 `$TASK6_RUN_ROOT/gpu-preflight-01/gpu-preflight.json`、`backend-props.json`、`preflight-F.json`、`preflight-HF.json` 和 `server-stopped.json` 后，再决定是否进行有界 F/HF 生成。预检大致新增最多 340 秒的本地模型启动/endpoint/停止预算；之后 v5 还会重新加载模型再执行自己的预检和 generation。基础 v5 capped phases 上界 860 秒；预检加 v5 capped phases 合计候选上界 1,200 秒，模型/输入获取与主机 provision/返回传输不在内。需先获准这一完整预算；没有额度或数据权限时不执行 GPU 预检。
 
-人工审核通过且准备运行前，把 GPU 预检、runtime 和执行阶段 CPU gate 文件归档到私有 results 子目录。该目录不能包含在 Git 工作树中：
+人工审核通过且准备运行前，把输入/执行阶段 CPU gate、runtime、GPU 预检、rights attestation 和其来源/权利证据归档到私有 results 子目录。`preflight-execution.json` 列出本次输入的实际字节数/SHA；复制 rights 文件及其引用的确切证据，可使 private return manifest 哈希审阅所用证据。不要复制视频、PNG 或模型权重。该目录不能包含在 Git 工作树中：
 
 ```bash
 mkdir -p "$TASK6_RUN_ROOT/results/setup-evidence/gpu-preflight"
-cp "$TASK6_RUN_ROOT/runtime-verification.json" "$TASK6_RUN_ROOT/preflight-execution.json" \
+mkdir -p "$TASK6_RUN_ROOT/results/setup-evidence/input-rights"
+cp "$TASK6_RUN_ROOT/runtime-verification.json" "$TASK6_RUN_ROOT/preflight-inputs.json" \
+  "$TASK6_RUN_ROOT/preflight-execution.json" \
   "$TASK6_RUN_ROOT/results/setup-evidence/"
+cp "$TASK6_INPUT_ROOT/rights-attestation.json" \
+  "$TASK6_RUN_ROOT/results/setup-evidence/input-rights/"
+# 将 rights-attestation.json 的 evidence_file 和其引用的来源/取得记录原样复制到 input-rights/，保留原文件名。
 cp -a "$TASK6_RUN_ROOT/gpu-preflight-01/." \
   "$TASK6_RUN_ROOT/results/setup-evidence/gpu-preflight/"
 ```
@@ -182,21 +199,34 @@ v5 的私有 `results/` 可能含 `attempts.jsonl`、`attempt-events.jsonl`、`f
 
 审核判据：只有 F 与 HF 都有完整响应、原始响应字节/hash 可对上、各自本地完整 schema 校验通过且审计无错误，pair 才是 `success`。F 在发 HF 前失败时为 `failed`，不能把单臂结果当作完整对照。`send_intent` 后没有可验证响应、响应丢失或不能判断送达时为 `unknown`，并保持 replay blocked；不得删除 attempt journal 或重试。仅当结果根除 `runner.lock` 外为空，或仅含 `setup-evidence/`，且没有执行产物时才是 `not_started`。账本缺失、空白、无法解析或不含有效 send-intent，遇到任何结果/运行产物都将阻断并记为 `unknown`；F/HF 产物无法与对应有效尝试关联时，该臂也保持 `unknown`。完整 GPU 预检目录中的 `server.log` 只有与 `gpu-preflight.json`、`server-stopped.json` 同在 `setup-evidence/gpu-preflight/` 才作为预检材料放行；其他位置或缺少回执的日志仍视为运行产物。`execution-error.json` 可能由发送后的异常写出，不能据它推断未发送。runner 与 bootstrap 在取得 one-shot 锁后也检查这些产物，阻止仅有孤立响应或执行错误时再次启动；保留原目录，不重建账本。任何审计错误都要保留原始私有证据并报告，不能修补/改写模型输出后称为成功。
 
-本地 server 的 `server-stopped.json` 只能证明 runner 子进程退出。云端 VM/provider session 的停止需在其控制台/CLI 中单独停止，并保存私有 receipt/reference。把 `provider-stop-attestation.template.json` 填完（至少写明准确 `instance_reference`、`stopped_at_utc` 与 `evidence_reference`），保存在受限的 `results/provider-stop-attestation.json`，运行时用相同文件作为 `--stop-attestation`。工具只检查必需字段是否齐全，不连接 provider、不独立验证其证据；报告中的 `verified_stopped` 是操作人提交了停止证明字段的声明。若运行在自管主机且没有可停止的 provider session，使用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local` 并填入可审阅的边界说明引用。未知状态就保持 `unknown`。runner 自动创建的 ZIP 不含之后添加的停止证明，也不会递归收录上述 GPU setup-evidence 子目录；回传时以完整私有 results 目录和 return manifest 为准。若需要单文件传输，可在审计通过后从完整 results 树新建 ZIP 并记录 SHA；原 runner ZIP 保留原状，不要声称其含后来加入的证据。
+本地 server 的 `server-stopped.json` 只能证明 runner 子进程退出。云端 VM/provider session 的停止需在其控制台/CLI 中单独停止，并保存私有 receipt/reference；更新预先放在 `results/setup-evidence/provider-stop-attestation.json` 的同一文件：云端填 `status=stopped`、准确 `instance_reference`、UTC `stopped_at_utc` 和 `evidence_reference`，且 `provider_id` 与 rights attestation/运行命令相同。验收工具只检查必需字段，不连接 provider、不独立验证其证据；返回报告中的 `verified_stopped` 仍是操作人提交停止证明的声明。若运行在自管主机且没有可停止的 provider session，使用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local`、准确主机 `instance_reference` 和可审阅的边界说明引用。未知状态就保持 `unknown`。runner 自动创建的 ZIP 不含之后添加的停止证明，也不会递归收录上述 GPU setup-evidence 子目录；回传时以完整私有 results 目录和 return manifest 为准。若需要单文件传输，可在审计通过后从完整私有 results 树新建 ZIP 并记录 SHA；原 runner ZIP 保留原状，不要声称其含后来加入的证据。
 
 ```bash
-python3 "$PKG/tools/task6_bundle.py" validate-results \
+TASK6_RETURN_DIR="$(mktemp -d "$TASK6_RUN_ROOT/return.XXXXXX")"
+if python3 "$PKG/tools/task6_bundle.py" validate-results \
   --results-dir "$TASK6_RUN_ROOT/results" \
   --contract "$PKG/execution-input-contract.json" \
-  --stop-attestation "$TASK6_RUN_ROOT/results/provider-stop-attestation.json"
-python3 "$PKG/tools/task6_bundle.py" write-return \
+  --stop-attestation "$TASK6_RUN_ROOT/results/setup-evidence/provider-stop-attestation.json" \
+  > "$TASK6_RETURN_DIR/validate-results.out" 2>&1; then
+  VALIDATE_RESULTS_EXIT=0
+else
+  VALIDATE_RESULTS_EXIT=$?
+fi
+printf '%s\n' "$VALIDATE_RESULTS_EXIT" > "$TASK6_RETURN_DIR/validate-results.exit-code"
+if python3 "$PKG/tools/task6_bundle.py" write-return \
   --results-dir "$TASK6_RUN_ROOT/results" \
   --contract "$PKG/execution-input-contract.json" \
-  --stop-attestation "$TASK6_RUN_ROOT/results/provider-stop-attestation.json" \
-  --return-dir "$TASK6_RUN_ROOT/return"
+  --stop-attestation "$TASK6_RUN_ROOT/results/setup-evidence/provider-stop-attestation.json" \
+  --return-dir "$TASK6_RETURN_DIR" \
+  > "$TASK6_RETURN_DIR/write-return.out" 2>&1; then
+  WRITE_RETURN_EXIT=0
+else
+  WRITE_RETURN_EXIT=$?
+fi
+printf '%s\n' "$WRITE_RETURN_EXIT" > "$TASK6_RETURN_DIR/write-return.exit-code"
 ```
 
-这两个命令的 exit 0 表示 audit 结构和来源证据无内部矛盾，需再看 `inference_status`；`failed` 或 `unknown` 仍不是成功实验。`inference_status=success` 只代表 F/HF 返回字节与内容校验通过，不证明实际 generation 使用了 GPU；`gpu_execution_status` 固定为 `not_verified`，因为结果审计器不验证 GPU 执行期证据。请保留 `runtime-verification.json`、执行准入与 GPU 预检材料供人工核验，不要把响应成功写成 GPU 已运行。exit 2 表示发现格式/来源/请求账本问题，原始产物应保留并作为阻断上报，不要重试。
+即使 `validate-results` exit 2 表示 `failed`/`unknown` 或审计错误，以上 `if` 写法也会继续生成私有 return；两个命令的 stdout/stderr 和 exit code 会留在新的 return 目录。将该目录和完整私有 `results/` 交给审阅者；不要编辑/覆盖文件，也不要重跑。每次 return 使用新的目录，避免覆盖此前的失败/unknown 回执。两命令 exit 0 仅表示 audit 结构和来源证据无内部矛盾，仍需看 `inference_status`；`failed` 或 `unknown` 不是成功实验。`inference_status=success` 只代表 F/HF 返回字节与内容校验通过，不证明实际 generation 使用了 GPU；`gpu_execution_status` 固定为 `not_verified`，因为结果审计器不验证 GPU 执行期证据。exit 2 的原始产物应保留并作为阻断上报，不要重试。
 
 若需将完整私有结果树打成一个传输文件（包括嵌套 setup-evidence 与 provider stop attestation），可在审计通过后运行以下本地归档命令；它拒绝 symlink，只写入当前私有 results 内容并打印归档大小/SHA：
 
@@ -249,7 +279,7 @@ git ls-remote origin refs/heads/task/roboassem-task6-self-hosted-return-YYYYMMDD
 
 | 项目 | 状态 | 证据来源/限制 |
 |---|---|---|
-| 公开视频 URL 与视频/PNG 许可 | 未核实，执行阻断 | 无可引用的特定公开下载地址或文件级数据许可；需要私有权利证明 |
+| 视频来源元数据与视频/PNG 权利 | 仅发现固定版本来源候选，执行阻断 | 视频正文/hash 未获取；固定树无原样 PNG；媒体许可范围不明，需要精确私有文件及权利凭据 |
 | 原视频与精确 masked PNG 字节 | 云端未提供 | PTS/大小/SHA 是先前 Mac 报告，不能当成本地复验或路径 |
 | GGUF 权重与 projector | 云端未下载 | 固定 revision、文件大小/SHA 是既有审计记录；下载后需操作者校验 |
 | GPU/CUDA/backend 构建 | 未实测 | 阈值为候选；没有当前 GPU、driver、实际二进制或 schema 可用性读回 |
