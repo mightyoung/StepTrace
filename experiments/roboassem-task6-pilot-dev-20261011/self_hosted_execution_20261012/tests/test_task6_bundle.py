@@ -316,6 +316,26 @@ class ResultStateTests(unittest.TestCase):
         self.assertEqual(report["arms"]["HF"]["status"], "unknown")
         self.assertTrue(report["replay_blocked"])
 
+    def test_official_gpu_preflight_evidence_with_server_log_is_not_a_generation_run(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            results = Path(tmp) / "results"
+            preflight = results / "setup-evidence" / "gpu-preflight"
+            preflight.mkdir(parents=True)
+            for filename, payload in (
+                ("server.log", "synthetic non-generating preflight log"),
+                ("gpu-preflight.json", '{"synthetic":true,"generation_calls":0}'),
+                ("server-stopped.json", '{"synthetic":true,"generation_calls":0}'),
+                ("backend-props.json", '{"synthetic":true}'),
+                ("preflight-F.json", '{"synthetic":true}'),
+                ("preflight-HF.json", '{"synthetic":true}'),
+            ):
+                (preflight / filename).write_text(payload, encoding="utf-8")
+            report = summarize_v5_run(results, synthetic_contract())
+
+        self.assertTrue(report["valid"], report["errors"])
+        self.assertEqual(report["inference_status"], "not_started")
+        self.assertFalse(report["replay_blocked"])
+
     def test_empty_results_array_without_attempt_journal_is_unknown_and_replay_blocked(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             results = Path(tmp)
@@ -1052,6 +1072,10 @@ class PackageIntegrationTests(unittest.TestCase):
             ("attempt-events.jsonl", "{"),
             ("response-HF-raw.json", "synthetic response bytes"),
             ("execution-error.json", '{"synthetic":true}'),
+            ("server.log", "synthetic execution server log"),
+            ("setup-evidence/gpu-preflight/attempts.jsonl", ""),
+            ("setup-evidence/gpu-preflight/request-F.json", '{"synthetic":true}'),
+            ("setup-evidence/gpu-preflight/response-F-raw.json", '{"synthetic":true}'),
         )
         for filename, payload in artifact_cases:
             with self.subTest(filename=filename, payload=payload), tempfile.TemporaryDirectory() as tmp:
@@ -1061,7 +1085,13 @@ class PackageIntegrationTests(unittest.TestCase):
                 run_root = root / "run"
                 results_root = run_root / "results"
                 results_root.mkdir(parents=True)
-                (results_root / filename).write_text(payload, encoding="utf-8")
+                artifact_path = results_root / filename
+                artifact_path.parent.mkdir(parents=True, exist_ok=True)
+                if filename.startswith("setup-evidence/"):
+                    preflight_dir = results_root / "setup-evidence" / "gpu-preflight"
+                    for marker in ("gpu-preflight.json", "server-stopped.json", "server.log"):
+                        (preflight_dir / marker).write_text('{"synthetic":true}', encoding="utf-8")
+                artifact_path.write_text(payload, encoding="utf-8")
 
                 contract_bytes = b'{"synthetic":true}'
                 (input_root / "execution-input-contract.json").write_bytes(contract_bytes)
@@ -1137,6 +1167,16 @@ class PackageIntegrationTests(unittest.TestCase):
             (results_root / "setup-evidence" / "runtime-verification.json").write_text(
                 '{"synthetic":true}', encoding="utf-8"
             )
+            for filename, payload in (
+                ("server.log", "synthetic non-generating preflight log"),
+                ("gpu-preflight.json", '{"synthetic":true,"generation_calls":0}'),
+                ("server-stopped.json", '{"synthetic":true,"generation_calls":0}'),
+                ("preflight-F.json", '{"synthetic":true}'),
+                ("preflight-HF.json", '{"synthetic":true}'),
+            ):
+                (results_root / "setup-evidence" / "gpu-preflight" / filename).write_text(
+                    payload, encoding="utf-8"
+                )
 
             contract_bytes = b'{"synthetic":true}'
             (input_root / "execution-input-contract.json").write_bytes(contract_bytes)

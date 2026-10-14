@@ -55,7 +55,14 @@ class RunnerReplayGuardTests(unittest.TestCase):
                 (output / "setup-evidence" / "gpu-preflight" / "synthetic.json").write_text(
                     '{"synthetic":true}', encoding="utf-8"
                 )
-                for filename in ("backend-props.json", "server-stopped.json"):
+                for filename in (
+                    "backend-props.json",
+                    "server-stopped.json",
+                    "gpu-preflight.json",
+                    "preflight-F.json",
+                    "preflight-HF.json",
+                    "server.log",
+                ):
                     (output / "setup-evidence" / "gpu-preflight" / filename).write_text(
                         '{"synthetic":true}', encoding="utf-8"
                     )
@@ -71,6 +78,7 @@ class RunnerReplayGuardTests(unittest.TestCase):
             ("results.json", "[]"),
             ("attempt-events.jsonl", ""),
             ("failures.jsonl", ""),
+            ("server.log", "synthetic execution server log"),
         )
         for guard_type, error_type in self.guards:
             for artifact, payload in artifacts:
@@ -86,6 +94,32 @@ class RunnerReplayGuardTests(unittest.TestCase):
                     (output / artifact).unlink()
                     retry = guard_type(output).acquire()
                     retry.release()
+
+    def test_run_ledgers_inside_preflight_evidence_still_block_both_guards(self) -> None:
+        for guard_type, error_type in self.guards:
+            with self.subTest(guard=guard_type.__name__), tempfile.TemporaryDirectory() as tmp:
+                output = Path(tmp) / "results"
+                preflight = output / "setup-evidence" / "gpu-preflight"
+                preflight.mkdir(parents=True)
+                for filename, payload in (
+                    ("server.log", "synthetic preflight log"),
+                    ("gpu-preflight.json", '{"synthetic":true}'),
+                    ("server-stopped.json", '{"synthetic":true}'),
+                ):
+                    (preflight / filename).write_text(payload, encoding="utf-8")
+                for filename, payload in (
+                    ("attempts.jsonl", ""),
+                    ("request-F.json", '{"synthetic":true}'),
+                    ("response-F-raw.json", '{"synthetic":true}'),
+                ):
+                    with self.subTest(guard=guard_type.__name__, artifact=filename):
+                        artifact = preflight / filename
+                        artifact.write_text(payload, encoding="utf-8")
+                        guard = guard_type(output)
+                        with self.assertRaisesRegex(error_type, "prior execution artifacts"):
+                            guard.acquire()
+                        self.assertFalse(guard.acquired)
+                        artifact.unlink()
 
 
 if __name__ == "__main__":

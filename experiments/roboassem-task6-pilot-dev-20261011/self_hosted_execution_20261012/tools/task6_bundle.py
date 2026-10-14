@@ -71,6 +71,15 @@ def _is_run_evidence_name(name: str) -> bool:
     )
 
 
+def _is_complete_gpu_preflight_server_log(path: Path, setup_evidence_dir: Path) -> bool:
+    preflight_dir = setup_evidence_dir / "gpu-preflight"
+    return (
+        path == preflight_dir / "server.log"
+        and (preflight_dir / "gpu-preflight.json").is_file()
+        and (preflight_dir / "server-stopped.json").is_file()
+    )
+
+
 def _has_prior_execution_artifacts(results_dir: Path) -> bool:
     """Treat any result-root content as one-shot evidence, allowing staged setup evidence."""
     results_dir = Path(results_dir)
@@ -88,7 +97,9 @@ def _has_prior_execution_artifacts(results_dir: Path) -> bool:
                 if child.is_symlink() or not child.is_dir():
                     return True
                 for evidence in child.rglob("*"):
-                    if evidence.is_symlink() or _is_run_evidence_name(evidence.name):
+                    if evidence.is_symlink():
+                        return True
+                    if _is_run_evidence_name(evidence.name) and not _is_complete_gpu_preflight_server_log(evidence, child):
                         return True
                 continue
             return True

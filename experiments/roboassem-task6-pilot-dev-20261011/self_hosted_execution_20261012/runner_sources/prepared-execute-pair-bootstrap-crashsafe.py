@@ -25,7 +25,7 @@ PREPARED_RUNNER_NAME = "prepared-run_pair-crashsafe.py"
 SAFETY_MODULE_NAME = "runner_safety.py"
 
 PREPARED_RUNNER_SHA256 = "d6b2e3bd32e1f8fe1652f526586ca60c506053a95e62ff4b7211c5d8602b82b3"
-SAFETY_MODULE_SHA256 = "b05ebde87a05f1bf1873da6d9a8c7e45d37d51e9a5e2d97e8a6155e7c9bf4e42"
+SAFETY_MODULE_SHA256 = "f0c7793ba30ea18dfc4a04066b341555774c73d1abc05fd87b763cbe29637621"
 
 _RUN_EVIDENCE_NAMES = frozenset(
     {
@@ -70,13 +70,24 @@ def _has_prior_execution_artifacts(output_dir: str | Path) -> bool:
                 if child.is_symlink() or not child.is_dir():
                     return True
                 for evidence in child.rglob("*"):
-                    if evidence.is_symlink() or _is_run_evidence_name(evidence.name):
+                    if evidence.is_symlink():
+                        return True
+                    if _is_run_evidence_name(evidence.name) and not _is_complete_gpu_preflight_server_log(evidence, child):
                         return True
                 continue
             return True
     except OSError:
         return True
     return False
+
+
+def _is_complete_gpu_preflight_server_log(path: Path, setup_evidence_dir: Path) -> bool:
+    preflight_dir = setup_evidence_dir / "gpu-preflight"
+    return (
+        path == preflight_dir / "server.log"
+        and (preflight_dir / "gpu-preflight.json").is_file()
+        and (preflight_dir / "server-stopped.json").is_file()
+    )
 
 
 def _sha256(data: bytes) -> str:

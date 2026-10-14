@@ -67,7 +67,7 @@ python3 "$PKG/tools/task6_bundle.py" preflight \
   --report "$TASK6_RUN_ROOT/preflight-inputs.json"
 ```
 
-这项检查只读文件、逐项校验字节数/SHA、权限门、私有 runner 副本和 one-shot 结果根；`network_calls=0`、`generation_calls=0`。已有运行产物、无法检查的结果根或账本不完整时会阻断重跑。首次空 `results/` 可通过；`setup-evidence/` 可保存 GPU/CPU 预检材料，但不得放入请求、响应或运行账本。输入/许可缺失或不匹配会返回 exit code 2，这是预期的阻断信号；不要以新下载/重编码来绕过。该阶段的 `execution_ready` 总是 false，因为它没有核对 GPU runtime。
+这项检查只读文件、逐项校验字节数/SHA、权限门、私有 runner 副本和 one-shot 结果根；`network_calls=0`、`generation_calls=0`。已有运行产物、无法检查的结果根或账本不完整时会阻断重跑。首次空 `results/` 可通过；`setup-evidence/` 可保存 GPU/CPU 预检材料，但不得放入请求、响应或运行账本。完整 GPU 预检输出中的 `server.log` 仅在 `setup-evidence/gpu-preflight/` 且同目录保留 `gpu-preflight.json` 与 `server-stopped.json` 时可用作预检证据；根目录正式 `server.log` 或缺少这两份回执的日志仍阻断启动。输入/许可缺失或不匹配会返回 exit code 2，这是预期的阻断信号；不要以新下载/重编码来绕过。该阶段的 `execution_ready` 总是 false，因为它没有核对 GPU runtime。
 
 ## 模型文件、候选环境和资源上界
 
@@ -180,7 +180,7 @@ cp -a "$TASK6_RUN_ROOT/gpu-preflight-01/." \
 
 v5 的私有 `results/` 可能含 `attempts.jsonl`、`attempt-events.jsonl`、`failures.jsonl`、`request-F/HF.json`（base64 图片）、`response-F/HF-raw.json`、`results.json`（模型输出）、`backend-props.json`、`preflight-F/HF.json`、`server.log`、`gpu-memory.csv`、`server-stopped.json`、错误记录和 `task6-results.zip`。这些均按私有数据处理；不要提交 Git、贴到 issue、发公开链接或放入公共云盘。
 
-审核判据：只有 F 与 HF 都有完整响应、原始响应字节/hash 可对上、各自本地完整 schema 校验通过且审计无错误，pair 才是 `success`。F 在发 HF 前失败时为 `failed`，不能把单臂结果当作完整对照。`send_intent` 后没有可验证响应、响应丢失或不能判断送达时为 `unknown`，并保持 replay blocked；不得删除 attempt journal 或重试。仅当结果根除 `runner.lock` 外为空，或仅含 `setup-evidence/`，且没有执行产物时才是 `not_started`。账本缺失、空白、无法解析或不含有效 send-intent，遇到任何结果/运行产物都将阻断并记为 `unknown`；F/HF 产物无法与对应有效尝试关联时，该臂也保持 `unknown`。`execution-error.json` 可能由发送后的异常写出，不能据它推断未发送。runner 与 bootstrap 在取得 one-shot 锁后也检查这些产物，阻止仅有孤立响应或执行错误时再次启动；保留原目录，不重建账本。任何审计错误都要保留原始私有证据并报告，不能修补/改写模型输出后称为成功。
+审核判据：只有 F 与 HF 都有完整响应、原始响应字节/hash 可对上、各自本地完整 schema 校验通过且审计无错误，pair 才是 `success`。F 在发 HF 前失败时为 `failed`，不能把单臂结果当作完整对照。`send_intent` 后没有可验证响应、响应丢失或不能判断送达时为 `unknown`，并保持 replay blocked；不得删除 attempt journal 或重试。仅当结果根除 `runner.lock` 外为空，或仅含 `setup-evidence/`，且没有执行产物时才是 `not_started`。账本缺失、空白、无法解析或不含有效 send-intent，遇到任何结果/运行产物都将阻断并记为 `unknown`；F/HF 产物无法与对应有效尝试关联时，该臂也保持 `unknown`。完整 GPU 预检目录中的 `server.log` 只有与 `gpu-preflight.json`、`server-stopped.json` 同在 `setup-evidence/gpu-preflight/` 才作为预检材料放行；其他位置或缺少回执的日志仍视为运行产物。`execution-error.json` 可能由发送后的异常写出，不能据它推断未发送。runner 与 bootstrap 在取得 one-shot 锁后也检查这些产物，阻止仅有孤立响应或执行错误时再次启动；保留原目录，不重建账本。任何审计错误都要保留原始私有证据并报告，不能修补/改写模型输出后称为成功。
 
 本地 server 的 `server-stopped.json` 只能证明 runner 子进程退出。云端 VM/provider session 的停止需在其控制台/CLI 中单独停止，并保存私有 receipt/reference。把 `provider-stop-attestation.template.json` 填完（至少写明准确 `instance_reference`、`stopped_at_utc` 与 `evidence_reference`），保存在受限的 `results/provider-stop-attestation.json`，运行时用相同文件作为 `--stop-attestation`。工具只检查必需字段是否齐全，不连接 provider、不独立验证其证据；报告中的 `verified_stopped` 是操作人提交了停止证明字段的声明。若运行在自管主机且没有可停止的 provider session，使用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local` 并填入可审阅的边界说明引用。未知状态就保持 `unknown`。runner 自动创建的 ZIP 不含之后添加的停止证明，也不会递归收录上述 GPU setup-evidence 子目录；回传时以完整私有 results 目录和 return manifest 为准。若需要单文件传输，可在审计通过后从完整 results 树新建 ZIP 并记录 SHA；原 runner ZIP 保留原状，不要声称其含后来加入的证据。
 
