@@ -2,7 +2,7 @@
 
 **当前状态：`preparation_only_blocked_for_execution`。** 这是可移交的 CPU 准入、GPU 环境记录和结果回传包；此云端工作区没有视频、四张真实输入 PNG 或 GGUF 权重。本次没有构建 CUDA 后端、下载权重、启动服务器或调用模型。输入许可和可获取来源仍未核实，因此不得执行推理。
 
-本包复用既有 v5 crash-safe runner，不修改其字节，不改变此前研究结论。运行默认最多两次请求，先 F 后 HF，串行、各 60 秒、零重试。任何 send intent 都会使重放被阻止；超时保留为 `unknown`，不得补发。
+本包保留既有 Mac runner 审查快照，并在 `runner_sources/` 提供带额外 one-shot 产物守卫的版本化副本；请求与 F/HF 协议不变。运行默认最多两次请求，先 F 后 HF，串行、各 60 秒、零重试。任何 send intent 或其他运行产物都会使重放被阻止；超时保留为 `unknown`，不得补发。
 
 ## 内容
 
@@ -50,7 +50,7 @@ export TASK6_RUN_ROOT="/private/task6-run"
 mkdir -p "$TASK6_INPUT_ROOT" "$TASK6_RUN_ROOT"
 ```
 
-把 package 内的 `execution-input-contract.json` 复制进私有输入目录；从有权使用的私有来源放入四张精确 PNG、同一来源视频、下面列出的三个 v5 源文件，以及私有 `rights-attestation.json` 和其证据文件。不要把输入/证据提交 Git。三个源码文件位于仓库 `experiments/roboassem-task6-pilot-dev-20261011/mac_runner_readonly_audit_20261012/sources/`，预期身份在 manifest 中。
+把 package 内的 `execution-input-contract.json` 复制进私有输入目录；从有权使用的私有来源放入四张精确 PNG、同一来源视频、下面列出的三个 runner 源文件，以及私有 `rights-attestation.json` 和其证据文件。不要把输入/证据提交 Git。三个 runner 文件位于本目录的 `runner_sources/`，预期身份在 manifest 中；原 `mac_runner_readonly_audit_20261012/sources/` 快照保持原样。
 
 从模板制作 rights 文件时，需由权利人填写真实的 `rights_basis`、`license_id`、`evidence_reference`、`evidence_file`、带时区的 `expires_utc` 和获授权的 `provider_id`，并将 `synthetic_template_only` 显式改为 `false`；仅在证据明确覆盖这些行为时，才将 `authorization_status=authorized`、`inference_authorized=true`、`transfer_authorized=true`。公开再分发保持 `false`。用户认可“开发候选”不替代此逐项许可。不要填写示例文字冒充许可。
 
@@ -67,7 +67,7 @@ python3 "$PKG/tools/task6_bundle.py" preflight \
   --report "$TASK6_RUN_ROOT/preflight-inputs.json"
 ```
 
-这项检查只读文件、逐项校验字节数/SHA、权限门、私有 runner 副本和重放标记；`network_calls=0`、`generation_calls=0`。输入/许可缺失或不匹配会返回 exit code 2，这是预期的阻断信号；不要以新下载/重编码来绕过。该阶段的 `execution_ready` 总是 false，因为它没有核对 GPU runtime。
+这项检查只读文件、逐项校验字节数/SHA、权限门、私有 runner 副本和 one-shot 结果根；`network_calls=0`、`generation_calls=0`。已有运行产物、无法检查的结果根或账本不完整时会阻断重跑。首次空 `results/` 可通过；`setup-evidence/` 可保存 GPU/CPU 预检材料，但不得放入请求、响应或运行账本。输入/许可缺失或不匹配会返回 exit code 2，这是预期的阻断信号；不要以新下载/重编码来绕过。该阶段的 `execution_ready` 总是 false，因为它没有核对 GPU runtime。
 
 ## 模型文件、候选环境和资源上界
 
@@ -171,7 +171,7 @@ cp -a "$TASK6_RUN_ROOT/gpu-preflight-01/." \
    python3 "$TASK6_INPUT_ROOT/prepared-execute-pair-bootstrap-crashsafe.py"
    ```
 
-   这一步会再次启动本地 llama-server 并实际发请求，只能在上述门槛和授权齐备后执行一次。它不是测试命令。runner 会绑定四张精确 PNG、固定 F/HF 序列和 runtime commit；本包没有修改或替换 runner。runner 自身在 GPU 预检后没有人工暂停，所以人工复核必须先通过独立的 `gpu-preflight` 完成。
+   这一步会再次启动本地 llama-server 并实际发请求，只能在上述门槛和授权齐备后执行一次。它不是测试命令。runner 会绑定四张精确 PNG、固定 F/HF 序列和 runtime commit；版本化副本还会拒绝已存在运行产物的结果目录。runner 自身在 GPU 预检后没有人工暂停，所以人工复核必须先通过独立的 `gpu-preflight` 完成。
 3. 固定参数是 temperature 0、top_p 0.95、top_k 40、seed 1、最多 2,048 output tokens、`enable_thinking=false`、`cache_prompt=false`。F 使用 k04；成功且完整通过校验后才发 HF，HF 为 k01/k02/k03 past + 同一 k04 current。两请求独立上下文、串行。
 4. 最大 generation 总数 2，每臂最多 60 秒，无重试；另有 build 480 秒、v5 server readiness 240 秒、本地 shutdown 20 秒。v5 capped phases 合计上界 860 秒，独立 GPU 无生成预检另最多 340 秒；组合候选上界 1,200 秒（不含主机 provision、数据传输及模型获取）。超时可能已送达服务端，按 `unknown` 锁住重放；F 失败时 HF 不发。不要删除 `attempts.jsonl` 来重试。
 5. v5 runner 会再次读取 `/props` 和 F/HF 无生成 token 上界，然后自动进入 F，不会暂停等人审核。有效 context 必须 ≥16,384；F/HF tokenizer 上界分别是文本 tokens + 4,224 / + 10,368。独立 GPU 预检与 v5 内部预检的参数/报告都要保留；strict schema generation 能力尚未实测，generation 前需明确接受这一未验证项，否则停止。
@@ -180,7 +180,7 @@ cp -a "$TASK6_RUN_ROOT/gpu-preflight-01/." \
 
 v5 的私有 `results/` 可能含 `attempts.jsonl`、`attempt-events.jsonl`、`failures.jsonl`、`request-F/HF.json`（base64 图片）、`response-F/HF-raw.json`、`results.json`（模型输出）、`backend-props.json`、`preflight-F/HF.json`、`server.log`、`gpu-memory.csv`、`server-stopped.json`、错误记录和 `task6-results.zip`。这些均按私有数据处理；不要提交 Git、贴到 issue、发公开链接或放入公共云盘。
 
-审核判据：只有 F 与 HF 都有完整响应、原始响应字节/hash 可对上、各自本地完整 schema 校验通过且审计无错误，pair 才是 `success`。F 在发 HF 前失败时为 `failed`，不能把单臂结果当作完整对照。`send_intent` 后没有可验证响应、响应丢失或不能判断送达时为 `unknown`，并保持 replay blocked；不得删除 attempt journal 或重试。只有不存在 `attempts.jsonl` 且没有执行事件、失败记录、解析结果、原始响应或 `execution-error.json` 时才是 `not_started`。账本缺失/空白/无法解析，或有响应/失败/结果/执行错误产物却缺 `attempts.jsonl` 时，交接 audit 将阻断并把状态记为 `unknown`、replay blocked；`execution-error.json` 可能由发送后的异常写出，不能据它推断未发送。保留现有目录，不重建账本。任何审计错误都要保留原始私有证据并报告，不能修补/改写模型输出后称为成功。
+审核判据：只有 F 与 HF 都有完整响应、原始响应字节/hash 可对上、各自本地完整 schema 校验通过且审计无错误，pair 才是 `success`。F 在发 HF 前失败时为 `failed`，不能把单臂结果当作完整对照。`send_intent` 后没有可验证响应、响应丢失或不能判断送达时为 `unknown`，并保持 replay blocked；不得删除 attempt journal 或重试。仅当结果根除 `runner.lock` 外为空，或仅含 `setup-evidence/`，且没有执行产物时才是 `not_started`。账本缺失、空白、无法解析或不含有效 send-intent，遇到任何结果/运行产物都将阻断并记为 `unknown`；F/HF 产物无法与对应有效尝试关联时，该臂也保持 `unknown`。`execution-error.json` 可能由发送后的异常写出，不能据它推断未发送。runner 与 bootstrap 在取得 one-shot 锁后也检查这些产物，阻止仅有孤立响应或执行错误时再次启动；保留原目录，不重建账本。任何审计错误都要保留原始私有证据并报告，不能修补/改写模型输出后称为成功。
 
 本地 server 的 `server-stopped.json` 只能证明 runner 子进程退出。云端 VM/provider session 的停止需在其控制台/CLI 中单独停止，并保存私有 receipt/reference。把 `provider-stop-attestation.template.json` 填完（至少写明准确 `instance_reference`、`stopped_at_utc` 与 `evidence_reference`），保存在受限的 `results/provider-stop-attestation.json`，运行时用相同文件作为 `--stop-attestation`。工具只检查必需字段是否齐全，不连接 provider、不独立验证其证据；报告中的 `verified_stopped` 是操作人提交了停止证明字段的声明。若运行在自管主机且没有可停止的 provider session，使用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local` 并填入可审阅的边界说明引用。未知状态就保持 `unknown`。runner 自动创建的 ZIP 不含之后添加的停止证明，也不会递归收录上述 GPU setup-evidence 子目录；回传时以完整私有 results 目录和 return manifest 为准。若需要单文件传输，可在审计通过后从完整 results 树新建 ZIP 并记录 SHA；原 runner ZIP 保留原状，不要声称其含后来加入的证据。
 

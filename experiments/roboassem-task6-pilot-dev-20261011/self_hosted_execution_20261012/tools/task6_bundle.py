@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import fnmatch
 import hashlib
 import importlib.metadata
 import json
@@ -43,6 +44,57 @@ REQUIRED_SERVER_FLAGS = (
     "--temp",
     "--seed",
 )
+_RUN_EVIDENCE_NAMES = frozenset(
+    {
+        "attempts.jsonl",
+        "attempt-events.jsonl",
+        "failures.jsonl",
+        "results.json",
+        "execution-error.json",
+        "execution-config.json",
+        "server.log",
+        "gpu-memory.csv",
+    }
+)
+
+
+def _is_run_evidence_name(name: str) -> bool:
+    if name in _RUN_EVIDENCE_NAMES:
+        return True
+    return any(
+        fnmatch.fnmatchcase(name, pattern)
+        for pattern in (
+            "request-*.json",
+            "response-*-raw.json",
+            "response-*-http-error-raw.bin",
+        )
+    )
+
+
+def _has_prior_execution_artifacts(results_dir: Path) -> bool:
+    """Treat any result-root content as one-shot evidence, allowing staged setup evidence."""
+    results_dir = Path(results_dir)
+    if results_dir.is_symlink():
+        return True
+    if not results_dir.exists():
+        return False
+    if not results_dir.is_dir():
+        return True
+    try:
+        for child in results_dir.iterdir():
+            if child.name == "runner.lock":
+                continue
+            if child.name == "setup-evidence":
+                if child.is_symlink() or not child.is_dir():
+                    return True
+                for evidence in child.rglob("*"):
+                    if evidence.is_symlink() or _is_run_evidence_name(evidence.name):
+                        return True
+                continue
+            return True
+    except OSError:
+        return True
+    return False
 
 
 def sha256_file(path: Path) -> tuple[int, str]:
@@ -704,9 +756,11 @@ def summarize_v5_run(
     results_dir = Path(results_dir)
     errors: list[str] = []
     attempts_path = results_dir / "attempts.jsonl"
+    events_path = results_dir / "attempt-events.jsonl"
+    failures_path = results_dir / "failures.jsonl"
     attempts = _read_jsonl(attempts_path, errors)
-    events = _read_jsonl(results_dir / "attempt-events.jsonl", errors)
-    failures = _read_jsonl(results_dir / "failures.jsonl", errors)
+    events = _read_jsonl(events_path, errors)
+    failures = _read_jsonl(failures_path, errors)
     parsed_path = results_dir / "results.json"
     parsed_records: list[dict[str, Any]] = []
     if parsed_path.exists():
@@ -727,15 +781,22 @@ def summarize_v5_run(
         errors.append("attempt order must be an F/HF prefix; F must precede HF")
     if len(set(sequence)) != len(sequence):
         errors.append("duplicate arm attempts violate zero-retry policy")
+    valid_attempt_rows: list[dict[str, Any]] = []
+    invalid_attempt_arms: set[str] = set()
+    unattributed_attempt_row = False
     for row in attempts:
         arm = row.get("condition")
         if arm not in EXPECTED_ARMS:
             errors.append(f"attempt row contains unknown arm {arm!r}")
+            unattributed_attempt_row = True
             continue
         arms[arm]["status"] = "unknown"
         arms[arm]["request_id"] = row.get("request_id")
         if row.get("attempt") != 1 or row.get("state") != "send_intent":
             errors.append(f"{arm} attempt must be its single durable send_intent")
+            invalid_attempt_arms.add(arm)
+        else:
+            valid_attempt_rows.append(row)
         request_path_text = row.get("request_path")
         request_digest = row.get("request_sha256")
         if not isinstance(request_path_text, str) or not isinstance(request_digest, str):
@@ -797,25 +858,27 @@ def summarize_v5_run(
             continue
         result_by_arm[arm] = record
 
-    orphaned_attempt_state = not attempts and (
-        attempts_path.exists()
-        or bool(events)
-        or bool(failures)
-        or bool(parsed_records)
-        or (results_dir / "execution-error.json").exists()
-        or any(path.is_file() for path in results_dir.glob("response-*-raw.json"))
-    )
+    orphaned_attempt_state = not valid_attempt_rows and _has_prior_execution_artifacts(results_dir)
     if orphaned_attempt_state:
         errors.append(
-            "attempts.jsonl is absent or incomplete, so request delivery is unknown and replay is blocked"
+            "attempts.jsonl is absent or lacks a valid send-intent for existing execution artifacts; delivery is unknown and replay is blocked"
         )
 
+    valid_attempt_arms = {row["condition"] for row in valid_attempt_rows}
     for arm in EXPECTED_ARMS:
-        if not any(row.get("condition") == arm for row in attempts):
-            if orphaned_attempt_state:
+        if arm not in valid_attempt_arms:
+            arm_has_artifacts = (
+                bool(event_by_arm[arm])
+                or bool(failure_by_arm[arm])
+                or arm in result_by_arm
+                or (results_dir / f"request-{arm}.json").exists()
+                or (results_dir / f"response-{arm}-raw.json").exists()
+                or (results_dir / f"response-{arm}-http-error-raw.bin").exists()
+            )
+            if orphaned_attempt_state or arm_has_artifacts or arm in invalid_attempt_arms or unattributed_attempt_row:
                 arms[arm]["status"] = "unknown"
-            elif failure_by_arm[arm]:
-                arms[arm]["status"] = "failed"
+                if arm_has_artifacts and not orphaned_attempt_state:
+                    errors.append(f"{arm} artifacts exist without a matching valid send-intent; delivery is unknown")
             continue
         fail_states = {row.get("state") for row in failure_by_arm[arm]}
         response_events = [row for row in event_by_arm[arm] if row.get("state") == "response_received"]
@@ -923,7 +986,7 @@ def summarize_v5_run(
         else:
             errors.append("provider stop evidence needs status, resource_type, provider_id, instance_reference, stopped_at_utc, and evidence_reference")
 
-    if orphaned_attempt_state:
+    if orphaned_attempt_state or unattributed_attempt_row:
         inference_status = "unknown"
     elif not attempts and (results_dir / "execution-error.json").exists():
         inference_status = "failed"
@@ -946,8 +1009,8 @@ def summarize_v5_run(
         "inference_status": inference_status,
         "gpu_execution_status": "not_verified",
         "arms": arms,
-        "request_count": len(attempts),
-        "replay_blocked": attempts_path.exists() or orphaned_attempt_state,
+        "request_count": len(valid_attempt_rows),
+        "replay_blocked": attempts_path.exists() or orphaned_attempt_state or _has_prior_execution_artifacts(results_dir),
         "resource_cleanup": {"local_server": local_stop, "provider_session": provider_stop},
     }
 
@@ -1032,7 +1095,7 @@ def run_preflight(
         if status != "verified":
             blockers.append(f"model artifact {artifact['filename']} is {status}; do not redownload through runner")
 
-    runner_root = REPO_ROOT / "experiments/roboassem-task6-pilot-dev-20261011/mac_runner_readonly_audit_20261012/sources"
+    runner_root = PACKAGE_ROOT / "runner_sources"
     for artifact in manifest["runner_files"]:
         source_path = runner_root / artifact["filename"]
         status, _detail = _file_check(source_path, artifact["bytes"], artifact["sha256"])
@@ -1045,10 +1108,11 @@ def run_preflight(
         if copy_status != "verified":
             blockers.append(f"private input copy of v5 source {artifact['filename']} is {copy_status}")
 
-    attempt_path = run_root / "results" / "attempts.jsonl"
-    if attempt_path.exists():
-        blockers.append("prior attempts.jsonl exists; the v5 one-shot run may not be replayed")
-    checks.append({"name": "one_shot_root", "status": "clear" if not attempt_path.exists() else "blocked"})
+    results_root = run_root / "results"
+    prior_run_artifacts = _has_prior_execution_artifacts(results_root)
+    if prior_run_artifacts:
+        blockers.append("prior result artifacts exist or cannot be inspected; the one-shot run may not be replayed")
+    checks.append({"name": "one_shot_root", "status": "blocked" if prior_run_artifacts else "clear"})
 
     if phase == "execution":
         runtime_path = run_root / "runtime-verification.json"

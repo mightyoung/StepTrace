@@ -6,6 +6,7 @@ import base64
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -313,6 +314,70 @@ class ResultStateTests(unittest.TestCase):
         self.assertEqual(report["inference_status"], "unknown")
         self.assertEqual(report["arms"]["F"]["status"], "unknown")
         self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+        self.assertTrue(report["replay_blocked"])
+
+    def test_empty_results_array_without_attempt_journal_is_unknown_and_replay_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            results = Path(tmp)
+            (results / "results.json").write_text("[]", encoding="utf-8")
+            report = summarize_v5_run(results, synthetic_contract())
+
+        self.assertFalse(report["valid"])
+        self.assertEqual(report["inference_status"], "unknown")
+        self.assertEqual(report["arms"]["F"]["status"], "unknown")
+        self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+        self.assertTrue(report["replay_blocked"])
+
+    def test_corrupt_result_ledgers_without_attempts_are_unknown_and_replay_blocked(self) -> None:
+        for filename, payload in (
+            ("results.json", "{"),
+            ("failures.jsonl", "{"),
+            ("attempt-events.jsonl", "{"),
+        ):
+            with self.subTest(filename=filename), tempfile.TemporaryDirectory() as tmp:
+                results = Path(tmp)
+                (results / filename).write_text(payload, encoding="utf-8")
+                report = summarize_v5_run(results, synthetic_contract())
+
+            self.assertFalse(report["valid"])
+            self.assertEqual(report["inference_status"], "unknown")
+            self.assertEqual(report["arms"]["F"]["status"], "unknown")
+            self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+            self.assertTrue(report["replay_blocked"])
+
+    def test_uninterpretable_attempt_row_with_execution_error_is_unknown(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            results = Path(tmp)
+            (results / "attempts.jsonl").write_text("{}\n", encoding="utf-8")
+            (results / "execution-error.json").write_text(
+                json.dumps({"error": "synthetic exception"}), encoding="utf-8"
+            )
+            report = summarize_v5_run(results, synthetic_contract())
+
+        self.assertFalse(report["valid"])
+        self.assertEqual(report["inference_status"], "unknown")
+        self.assertEqual(report["arms"]["F"]["status"], "unknown")
+        self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+        self.assertTrue(report["replay_blocked"])
+
+    def test_hf_result_artifacts_without_hf_attempt_are_unknown(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            results = Path(tmp)
+            contract = synthetic_contract()
+            write_synthetic_success_pair(results, contract)
+            attempt_rows = [
+                json.loads(line)
+                for line in (results / "attempts.jsonl").read_text(encoding="utf-8").splitlines()
+            ]
+            (results / "attempts.jsonl").write_text(
+                json.dumps(attempt_rows[0]) + "\n", encoding="utf-8"
+            )
+            report = summarize_v5_run(results, contract)
+
+        self.assertFalse(report["valid"])
+        self.assertEqual(report["arms"]["F"]["status"], "completed")
+        self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+        self.assertEqual(report["inference_status"], "unknown")
         self.assertTrue(report["replay_blocked"])
 
     def test_invalid_attempt_journal_is_unknown_and_replay_blocked(self) -> None:
@@ -977,6 +1042,219 @@ class PackageIntegrationTests(unittest.TestCase):
         self.assertEqual(report["network_calls"], 0)
         self.assertEqual(report["generation_calls"], 0)
         self.assertTrue(any("rights" in blocker for blocker in report["blockers"]))
+
+    def test_preflight_blocks_replay_when_any_prior_result_artifact_exists(self) -> None:
+        package = Path(__file__).resolve().parents[1]
+        artifact_cases = (
+            ("results.json", "[]"),
+            ("results.json", "{"),
+            ("failures.jsonl", "{"),
+            ("attempt-events.jsonl", "{"),
+            ("response-HF-raw.json", "synthetic response bytes"),
+            ("execution-error.json", '{"synthetic":true}'),
+        )
+        for filename, payload in artifact_cases:
+            with self.subTest(filename=filename, payload=payload), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                input_root = root / "inputs"
+                input_root.mkdir()
+                run_root = root / "run"
+                results_root = run_root / "results"
+                results_root.mkdir(parents=True)
+                (results_root / filename).write_text(payload, encoding="utf-8")
+
+                contract_bytes = b'{"synthetic":true}'
+                (input_root / "execution-input-contract.json").write_bytes(contract_bytes)
+                contract_digest = hashlib.sha256(contract_bytes).hexdigest()
+                manifest = {
+                    "experiment_id": SYNTHETIC_EXPERIMENT,
+                    "input_contract": {
+                        "bytes": len(contract_bytes),
+                        "sha256": contract_digest,
+                    },
+                    "inputs": {
+                        "frames": [
+                            {
+                                "input_id": "synthetic-frame",
+                                "filename": "synthetic.png",
+                                "bytes": 1,
+                                "sha256": "0" * 64,
+                            }
+                        ],
+                        "source_video": {
+                            "filename": "synthetic.mp4",
+                            "bytes": 1,
+                            "sha256": "1" * 64,
+                        },
+                    },
+                    "model": {"files": [{"filename": "synthetic.gguf", "bytes": 1, "sha256": "2" * 64}]},
+                    "runner_files": [{"filename": "synthetic-runner.py", "bytes": 1, "sha256": "3" * 64}],
+                    "environment": {},
+                }
+                manifest_path = root / "manifest.json"
+                manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+                rights_path = input_root / "rights-attestation.json"
+                rights_path.write_text("{}", encoding="utf-8")
+                runtime_path = run_root / "runtime-verification.json"
+                runtime_path.parent.mkdir(parents=True, exist_ok=True)
+                runtime_path.write_text(
+                    json.dumps(
+                        {
+                            "binary_path": "llama.cpp/build/bin/llama-server",
+                            "binary_bytes": 1,
+                            "binary_sha256": "4" * 64,
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+
+                with mock.patch("task6_bundle._file_check", return_value=("verified", {})):
+                    with mock.patch("task6_bundle.validate_rights_attestation", return_value=[]):
+                        with mock.patch("task6_bundle.validate_runtime_record", return_value=[]):
+                            report = run_preflight(
+                                manifest_path=manifest_path,
+                                input_root=input_root,
+                                run_root=run_root,
+                                rights_path=rights_path,
+                                provider_id=SYNTHETIC_PROVIDER,
+                                phase="execution",
+                            )
+
+                one_shot = next(check for check in report["checks"] if check["name"] == "one_shot_root")
+                self.assertEqual(one_shot["status"], "blocked")
+                self.assertFalse(report["execution_ready"])
+                self.assertTrue(any("prior result artifacts" in blocker for blocker in report["blockers"]))
+
+    def test_empty_results_directory_and_setup_evidence_allow_first_preflight(self) -> None:
+        package = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            input_root = root / "inputs"
+            input_root.mkdir()
+            run_root = root / "run"
+            results_root = run_root / "results"
+            (results_root / "setup-evidence" / "gpu-preflight").mkdir(parents=True)
+            (results_root / "setup-evidence" / "runtime-verification.json").write_text(
+                '{"synthetic":true}', encoding="utf-8"
+            )
+
+            contract_bytes = b'{"synthetic":true}'
+            (input_root / "execution-input-contract.json").write_bytes(contract_bytes)
+            manifest = {
+                "experiment_id": SYNTHETIC_EXPERIMENT,
+                "input_contract": {
+                    "bytes": len(contract_bytes),
+                    "sha256": hashlib.sha256(contract_bytes).hexdigest(),
+                },
+                "inputs": {
+                    "frames": [],
+                    "source_video": {"filename": "synthetic.mp4", "bytes": 1, "sha256": "1" * 64},
+                },
+                "model": {"files": []},
+                "runner_files": [],
+                "environment": {},
+            }
+            manifest_path = root / "manifest.json"
+            manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+            rights_path = input_root / "rights-attestation.json"
+            rights_path.write_text("{}", encoding="utf-8")
+            runtime_path = run_root / "runtime-verification.json"
+            runtime_path.parent.mkdir(parents=True, exist_ok=True)
+            runtime_path.write_text(
+                json.dumps(
+                    {
+                        "binary_path": "llama.cpp/build/bin/llama-server",
+                        "binary_bytes": 1,
+                        "binary_sha256": "4" * 64,
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with mock.patch("task6_bundle._file_check", return_value=("verified", {})):
+                with mock.patch("task6_bundle.validate_rights_attestation", return_value=[]):
+                    with mock.patch("task6_bundle.validate_runtime_record", return_value=[]):
+                        report = run_preflight(
+                            manifest_path=manifest_path,
+                            input_root=input_root,
+                            run_root=run_root,
+                            rights_path=rights_path,
+                            provider_id=SYNTHETIC_PROVIDER,
+                            phase="execution",
+                        )
+
+        one_shot = next(check for check in report["checks"] if check["name"] == "one_shot_root")
+        self.assertEqual(one_shot["status"], "clear")
+        self.assertTrue(report["execution_ready"])
+
+    def test_pinned_runner_source_bytes_match_the_current_manifest(self) -> None:
+        package = Path(__file__).resolve().parents[1]
+        manifest = json.loads((package / "experiment-manifest.json").read_text(encoding="utf-8"))
+        for artifact in manifest["runner_files"]:
+            with self.subTest(filename=artifact["filename"]):
+                path = package / "runner_sources" / artifact["filename"]
+                payload = path.read_bytes()
+                self.assertEqual(len(payload), artifact["bytes"])
+                self.assertEqual(hashlib.sha256(payload).hexdigest(), artifact["sha256"])
+
+    def test_real_cli_blocks_empty_prior_artifacts_and_corrupt_ledgers(self) -> None:
+        package = Path(__file__).resolve().parents[1]
+        tool = package / "tools/task6_bundle.py"
+        cases = (
+            ("results.json", "[]"),
+            ("attempt-events.jsonl", ""),
+            ("failures.jsonl", ""),
+            ("results.json", "{"),
+            ("attempt-events.jsonl", "{"),
+            ("failures.jsonl", "{"),
+        )
+        for filename, payload in cases:
+            with self.subTest(filename=filename, payload=payload), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                results = root / "results"
+                results.mkdir()
+                contract = root / "synthetic-contract.json"
+                contract.write_text(json.dumps(synthetic_contract()), encoding="utf-8")
+                (results / filename).write_text(payload, encoding="utf-8")
+                validate = subprocess.run(
+                    [
+                        sys.executable,
+                        str(tool),
+                        "validate-results",
+                        "--results-dir",
+                        str(results),
+                        "--contract",
+                        str(contract),
+                    ],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                )
+                returned = subprocess.run(
+                    [
+                        sys.executable,
+                        str(tool),
+                        "write-return",
+                        "--results-dir",
+                        str(results),
+                        "--contract",
+                        str(contract),
+                        "--return-dir",
+                        str(root / "return"),
+                    ],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                )
+
+                self.assertEqual(validate.returncode, 2, validate.stdout + validate.stderr)
+                self.assertEqual(returned.returncode, 2, returned.stdout + returned.stderr)
+                audit = json.loads(validate.stdout)
+                private_manifest = json.loads((root / "return/private-return-manifest.json").read_text())
+                self.assertEqual(audit["inference_status"], "unknown")
+                self.assertTrue(audit["replay_blocked"])
+                self.assertEqual(private_manifest["audit"]["inference_status"], "unknown")
+                self.assertTrue(private_manifest["audit"]["replay_blocked"])
 
     def test_private_and_redacted_manifests_match_the_declared_output_schema(self) -> None:
         from jsonschema import Draft202012Validator
