@@ -37,6 +37,12 @@ This directory exchanges reviewed text and artifact identities across research e
 - Local package fixtures and mocked loopback/server responses are synthetic software tests only. They do not count as real positive/negative examples, ground truth, model output, accuracy or method gain. No model, server, GPU build, GPU preflight or inference ran in this increment.
 - See the new [append-only self-hosted package receipt](receipts/roboassem-task6-self-hosted-execution-20261013.json) and [progress note](progress/20261013-roboassem-task6-self-hosted.md). The prior admission receipt and earlier research records remain unchanged.
 
+## RoboAssem task 6 source and rights audit — 2026-10-14
+
+- The [independent source and rights audit](audits/roboassem-task6-source-rights-audit-20261014.md) is a byte-for-byte copy of the Library report, verified at 12,926 bytes with SHA-256 `d84fecde1dc6b7b8d40f3883c01db0d5e8287bedfc3797ec67b4ed9eb60d509d`.
+- The audit identifies a fixed first-party video source candidate and matching size metadata, but the video body/hash remain unverified; the inspected fixed source tree contains no original k01–k04 PNGs. Website media-rights scope remains unresolved. Model license and public hash metadata do not establish media rights, and no model weights were downloaded.
+- Task status remains `preparation_only_blocked_for_execution`. Exact private inputs/acquisition records, media and derivative-frame rights evidence, and the actual host/provider remain unresolved. This update adds no execution or research-result claim and does not change the admission gate.
+
 ## Current stage - 2026-10-10 15:05 UTC
 
 - [Current progress, actual results and remaining evidence gaps](progress/20261010T1505Z-current-stage.md)
