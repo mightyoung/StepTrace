@@ -5,6 +5,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -1045,6 +1046,68 @@ class GpuPreflightTests(unittest.TestCase):
 
 
 class PackageIntegrationTests(unittest.TestCase):
+    def test_documented_return_shell_propagates_failures_in_normal_and_errexit_shells(self) -> None:
+        package = Path(__file__).resolve().parents[1]
+        guide = (package / "README_zh.md").read_text(encoding="utf-8")
+        marker = 'TASK6_RETURN_DIR="$(mktemp -d '
+        marker_index = guide.index(marker)
+        block_start = guide.rfind("```bash\n", 0, marker_index) + len("```bash\n")
+        block_end = guide.index("\n```", marker_index)
+        shell_block = guide[block_start:block_end]
+
+        cases = (
+            ("normal-shell", False, "2", "0", 1),
+            ("errexit-shell", True, "2", "2", 1),
+            ("success-shell", True, "0", "0", 0),
+        )
+        for name, errexit, validate_exit, write_exit, aggregate_exit in cases:
+            with self.subTest(shell=name), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                run_root = root / "run"
+                run_root.mkdir()
+                fake_bin = root / "bin"
+                fake_bin.mkdir()
+                call_log = root / "calls.log"
+                fake_python = fake_bin / "python3"
+                fake_python.write_text(
+                    "#!/bin/sh\n"
+                    "printf '%s\\n' \"$2\" >> \"$CALL_LOG\"\n"
+                    "case \"$2\" in\n"
+                    "  validate-results) exit \"$VALIDATE_EXIT\" ;;\n"
+                    "  write-return) exit \"$WRITE_EXIT\" ;;\n"
+                    "  *) exit 97 ;;\n"
+                    "esac\n",
+                    encoding="utf-8",
+                )
+                fake_python.chmod(0o755)
+                env = dict(os.environ)
+                env.update(
+                    {
+                        "PATH": f"{fake_bin}{os.pathsep}{env['PATH']}",
+                        "TASK6_RUN_ROOT": str(run_root),
+                        "PKG": "/unused/task6-package",
+                        "CALL_LOG": str(call_log),
+                        "VALIDATE_EXIT": validate_exit,
+                        "WRITE_EXIT": write_exit,
+                    }
+                )
+                command = ["bash"]
+                if errexit:
+                    command.append("-e")
+                command.extend(("-c", shell_block))
+                completed = subprocess.run(command, env=env, capture_output=True, text=True)
+
+                return_dirs = list(run_root.glob("return.*"))
+                self.assertEqual(len(return_dirs), 1)
+                return_dir = return_dirs[0]
+                self.assertEqual(call_log.read_text(encoding="utf-8").splitlines(), ["validate-results", "write-return"])
+                self.assertEqual((return_dir / "validate-results.exit-code").read_text().strip(), validate_exit)
+                self.assertEqual((return_dir / "write-return.exit-code").read_text().strip(), write_exit)
+                self.assertEqual(completed.returncode, aggregate_exit)
+                self.assertEqual(
+                    (return_dir / "return.exit-code").read_text().strip(), str(aggregate_exit)
+                )
+
     def test_inputs_phase_verifies_exact_inputs_without_requiring_model_weights(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -145,7 +145,7 @@ cp "$PKG/provider-stop-attestation.template.json" \
   "$TASK6_RUN_ROOT/results/setup-evidence/provider-stop-attestation.json"
 ```
 
-在此副本中填实际 `provider_id` 与本次 VM/主机的稳定 `instance_reference`，`provider_id` 必须与 rights attestation 和各 `--provider-id` 参数相同。云主机运行前保留 `status=unknown`；停止后再填 `status=stopped`、UTC 停止时间和 provider 控制台证据引用。自管主机用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local`，并引用主机归属/边界记录。该身份由操作者提供，工具不会独立查询 provider 或将其自动绑定到 runtime 记录；之后需要人工核对。模板副本位于 `setup-evidence/`，不会触发 one-shot 重放守卫，且会进入私有回传 manifest 的文件哈希清单。
+在此副本中填实际 `provider_id` 与本次 VM/主机的稳定 `instance_reference`，`provider_id` 必须与 rights attestation 和各 `--provider-id` 参数相同。云主机运行前保留 `status=unknown`；停止后再填 `status=stopped`、UTC 停止时间和 provider 控制台证据引用。自管主机用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local`，并引用主机归属/边界记录。该身份由操作者提供，工具不会独立查询 provider 或将其自动绑定到 runtime 记录；之后需要人工核对。当前审计器在 `self-managed-host` 分支不强制 `instance_reference` 非空；仍应填写该字段，但不能把它当作机器核验结果。模板副本位于 `setup-evidence/`，不会触发 one-shot 重放守卫，且会进入私有回传 manifest 的文件哈希清单。
 
 执行阶段 CPU gate 通过后，可先用独立命令做 GPU backend 的**无 generation**预检。这一步会加载本地 GGUF 到 CUDA0，运行固定的 `llama-server`，只访问 `127.0.0.1:8080` 的 `/health`、`/props`、`/apply-template`、`/tokenize`，为 F/HF 读回 context 与文本 token 数，按每张图 2,048 tokens 的上界计算 context bound，然后停止本地 server。它不提交 `/v1/chat/completions`，不发送图片/base64，不产生模型回答；不过会占用 GPU 并加载权重，操作者仍须先确认数据和主机授权/额度。
 
@@ -224,9 +224,15 @@ else
   WRITE_RETURN_EXIT=$?
 fi
 printf '%s\n' "$WRITE_RETURN_EXIT" > "$TASK6_RETURN_DIR/write-return.exit-code"
+RETURN_EXIT=0
+if [ "$VALIDATE_RESULTS_EXIT" -ne 0 ] || [ "$WRITE_RETURN_EXIT" -ne 0 ]; then
+  RETURN_EXIT=1
+fi
+printf '%s\n' "$RETURN_EXIT" > "$TASK6_RETURN_DIR/return.exit-code"
+exit "$RETURN_EXIT"
 ```
 
-即使 `validate-results` exit 2 表示 `failed`/`unknown` 或审计错误，以上 `if` 写法也会继续生成私有 return；两个命令的 stdout/stderr 和 exit code 会留在新的 return 目录。将该目录和完整私有 `results/` 交给审阅者；不要编辑/覆盖文件，也不要重跑。每次 return 使用新的目录，避免覆盖此前的失败/unknown 回执。两命令 exit 0 仅表示 audit 结构和来源证据无内部矛盾，仍需看 `inference_status`；`failed` 或 `unknown` 不是成功实验。`inference_status=success` 只代表 F/HF 返回字节与内容校验通过，不证明实际 generation 使用了 GPU；`gpu_execution_status` 固定为 `not_verified`，因为结果审计器不验证 GPU 执行期证据。exit 2 的原始产物应保留并作为阻断上报，不要重试。
+即使 `validate-results` exit 非零或报告 `failed`/`unknown`，以上 `if` 写法仍会继续尝试 `write-return`。总退出码 `return.exit-code` 在两子命令都为 0 时为 0，否则为 1；两个原始子码分别留在 `validate-results.exit-code` 和 `write-return.exit-code`，命令输出留在对应 `.out` 文件。若 stop attestation 缺失/JSON 无效，`write-return` 可能在写 manifest 前失败；此时保留 return 目录诊断、完整 `results/` 和其未知状态，不得伪造 stop 证明，也不能保证生成 manifest。只有补到真实 stop 证据后，才可在另一个新 return 目录重跑只读审计/回传命令；不重跑模型或覆盖旧失败记录。将 return 目录及完整私有 `results/` 交给审阅者。每次 return 使用新的目录。两子命令都 exit 0 仅表示 audit 结构和来源证据无内部矛盾，仍需看 `inference_status`；`failed` 或 `unknown` 不是成功实验。`inference_status=success` 只代表 F/HF 返回字节与内容校验通过，不证明实际 generation 使用了 GPU；`gpu_execution_status` 固定为 `not_verified`，因为结果审计器不验证 GPU 执行期证据。失败和 unknown 原始产物应保留并作为阻断上报，不要重试。
 
 若需将完整私有结果树打成一个传输文件（包括嵌套 setup-evidence 与 provider stop attestation），可在审计通过后运行以下本地归档命令；它拒绝 symlink，只写入当前私有 results 内容并打印归档大小/SHA：
 
