@@ -91,6 +91,95 @@ def synthetic_request(input_ids: list[str]) -> dict:
     }
 
 
+def write_synthetic_success_pair(results: Path, contract: dict) -> None:
+    """Build only temporary synthetic v5 artifacts; never calls a model/server."""
+    seats = ["blue_seat_left", "blue_seat_right"]
+    relation_schema = {
+        "type": "object",
+        "required": ["seat_id"],
+        "properties": {"seat_id": {"type": "string", "enum": seats}},
+        "additionalProperties": False,
+    }
+    content_schema = {
+        "type": "object",
+        "required": ["current_relations"],
+        "properties": {
+            "current_relations": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": relation_schema,
+            }
+        },
+        "additionalProperties": False,
+    }
+    contract["content_schemas"] = {arm: content_schema for arm in ("F", "HF")}
+    content = {"current_relations": [{"seat_id": seat} for seat in seats]}
+    attempts = []
+    events = []
+    records = []
+    for arm, input_ids in (("F", ["k04"]), ("HF", ["k01", "k02", "k03", "k04"])):
+        request_id = f"synthetic-request-{arm}"
+        request_bytes = json.dumps(synthetic_request(input_ids)).encode("utf-8")
+        request_path = f"request-{arm}.json"
+        (results / request_path).write_bytes(request_bytes)
+        attempts.append(
+            {
+                "condition": arm,
+                "attempt": 1,
+                "request_id": request_id,
+                "request_sha256": hashlib.sha256(request_bytes).hexdigest(),
+                "request_path": request_path,
+                "state": "send_intent",
+            }
+        )
+        raw_response = json.dumps(
+            {
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {"content": json.dumps(content)},
+                    }
+                ],
+                "usage": {"prompt_tokens": 100},
+            }
+        ).encode("utf-8")
+        response_path = f"response-{arm}-raw.json"
+        (results / response_path).write_bytes(raw_response)
+        response_sha256 = hashlib.sha256(raw_response).hexdigest()
+        events.append(
+            {
+                "condition": arm,
+                "request_id": request_id,
+                "state": "response_received",
+                "response_path": response_path,
+                "response_bytes": len(raw_response),
+                "response_sha256": response_sha256,
+            }
+        )
+        records.append(
+            {
+                "condition": arm,
+                "request_id": request_id,
+                "response_sha256": response_sha256,
+                "response_bytes": len(raw_response),
+                "schema_valid": True,
+                "schema_errors": [],
+                "content": content,
+            }
+        )
+    (results / "attempts.jsonl").write_text(
+        "".join(json.dumps(row) + "\n" for row in attempts), encoding="utf-8"
+    )
+    (results / "attempt-events.jsonl").write_text(
+        "".join(json.dumps(row) + "\n" for row in events), encoding="utf-8"
+    )
+    (results / "results.json").write_text(json.dumps(records), encoding="utf-8")
+    (results / "server-stopped.json").write_text(
+        json.dumps({"returncode": 0}), encoding="utf-8"
+    )
+
+
 class RightsGateTests(unittest.TestCase):
     def test_exact_real_data_attestation_shape_is_accepted(self) -> None:
         attestation = {
@@ -200,6 +289,116 @@ class RequestAuditTests(unittest.TestCase):
 
 
 class ResultStateTests(unittest.TestCase):
+    def test_response_success_does_not_attest_gpu_execution(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            results = Path(tmp)
+            contract = synthetic_contract()
+            write_synthetic_success_pair(results, contract)
+            report = summarize_v5_run(results, contract)
+
+        self.assertTrue(report["valid"], report["errors"])
+        self.assertEqual(report["inference_status"], "success")
+        self.assertEqual(report.get("gpu_execution_status"), "not_verified")
+
+    def test_execution_error_without_attempt_journal_is_unknown_and_replay_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            results = Path(tmp)
+            (results / "execution-error.json").write_text(
+                json.dumps({"error": "synthetic exception", "epoch": 123}),
+                encoding="utf-8",
+            )
+            report = summarize_v5_run(results, synthetic_contract())
+
+        self.assertFalse(report["valid"])
+        self.assertEqual(report["inference_status"], "unknown")
+        self.assertEqual(report["arms"]["F"]["status"], "unknown")
+        self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+        self.assertTrue(report["replay_blocked"])
+
+    def test_invalid_attempt_journal_is_unknown_and_replay_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            results = Path(tmp)
+            (results / "attempts.jsonl").write_text(
+                '{"condition":"F","state":"send_intent"\n', encoding="utf-8"
+            )
+            report = summarize_v5_run(results, synthetic_contract())
+
+        self.assertFalse(report["valid"])
+        self.assertEqual(report["inference_status"], "unknown")
+        self.assertEqual(report["arms"]["F"]["status"], "unknown")
+        self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+        self.assertTrue(report["replay_blocked"])
+        self.assertTrue(any("attempts.jsonl:1" in error for error in report["errors"]))
+
+    def test_return_artifacts_without_attempt_journal_are_unknown_and_replay_blocked(self) -> None:
+        content = {
+            "current_relations": [
+                {"seat_id": "blue_seat_left"},
+                {"seat_id": "blue_seat_right"},
+            ]
+        }
+        raw_response = json.dumps(
+            {
+                "choices": [
+                    {
+                        "finish_reason": "stop",
+                        "message": {"content": json.dumps(content)},
+                    }
+                ],
+                "usage": {"prompt_tokens": 100},
+            }
+        ).encode("utf-8")
+        response_sha256 = hashlib.sha256(raw_response).hexdigest()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            results = root / "results"
+            results.mkdir()
+            (results / "response-F-raw.json").write_bytes(raw_response)
+            (results / "attempt-events.jsonl").write_text(
+                json.dumps(
+                    {
+                        "condition": "F",
+                        "state": "response_received",
+                        "response_path": "response-F-raw.json",
+                        "response_bytes": len(raw_response),
+                        "response_sha256": response_sha256,
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (results / "results.json").write_text(
+                json.dumps(
+                    [
+                        {
+                            "condition": "F",
+                            "response_sha256": response_sha256,
+                            "response_bytes": len(raw_response),
+                            "schema_valid": True,
+                            "schema_errors": [],
+                            "content": content,
+                        }
+                    ]
+                ),
+                encoding="utf-8",
+            )
+            returned = write_return_files(
+                results, synthetic_contract(), root / "return"
+            )
+            public_summary = json.loads((root / "return/redacted-summary.json").read_text())
+
+        report = returned["audit"]
+        self.assertFalse(report["valid"])
+        self.assertEqual(report["inference_status"], "unknown")
+        self.assertEqual(report["arms"]["F"]["status"], "unknown")
+        self.assertEqual(report["arms"]["HF"]["status"], "unknown")
+        self.assertEqual(report["request_count"], 0)
+        self.assertTrue(report["replay_blocked"])
+        self.assertTrue(any("attempts.jsonl" in error for error in report["errors"]))
+        self.assertIn("unknown", public_summary["inference_status"])
+        self.assertTrue(public_summary["arm_status"]["F"] == "unknown")
+        self.assertTrue(public_summary["arm_status"]["HF"] == "unknown")
+
     def test_send_intent_without_response_is_unknown_and_replay_blocked(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             results = Path(tmp)

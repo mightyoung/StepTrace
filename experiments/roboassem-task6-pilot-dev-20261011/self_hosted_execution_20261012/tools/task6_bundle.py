@@ -797,9 +797,24 @@ def summarize_v5_run(
             continue
         result_by_arm[arm] = record
 
+    orphaned_attempt_state = not attempts and (
+        attempts_path.exists()
+        or bool(events)
+        or bool(failures)
+        or bool(parsed_records)
+        or (results_dir / "execution-error.json").exists()
+        or any(path.is_file() for path in results_dir.glob("response-*-raw.json"))
+    )
+    if orphaned_attempt_state:
+        errors.append(
+            "attempts.jsonl is absent or incomplete, so request delivery is unknown and replay is blocked"
+        )
+
     for arm in EXPECTED_ARMS:
         if not any(row.get("condition") == arm for row in attempts):
-            if failure_by_arm[arm]:
+            if orphaned_attempt_state:
+                arms[arm]["status"] = "unknown"
+            elif failure_by_arm[arm]:
                 arms[arm]["status"] = "failed"
             continue
         fail_states = {row.get("state") for row in failure_by_arm[arm]}
@@ -908,7 +923,9 @@ def summarize_v5_run(
         else:
             errors.append("provider stop evidence needs status, resource_type, provider_id, instance_reference, stopped_at_utc, and evidence_reference")
 
-    if not attempts and (results_dir / "execution-error.json").exists():
+    if orphaned_attempt_state:
+        inference_status = "unknown"
+    elif not attempts and (results_dir / "execution-error.json").exists():
         inference_status = "failed"
     elif not attempts:
         inference_status = "not_started"
@@ -927,9 +944,10 @@ def summarize_v5_run(
         "valid": not errors,
         "errors": errors,
         "inference_status": inference_status,
+        "gpu_execution_status": "not_verified",
         "arms": arms,
         "request_count": len(attempts),
-        "replay_blocked": attempts_path.exists(),
+        "replay_blocked": attempts_path.exists() or orphaned_attempt_state,
         "resource_cleanup": {"local_server": local_stop, "provider_session": provider_stop},
     }
 
@@ -1120,6 +1138,7 @@ def write_return_files(
         "publication_status": "held_for_owner_review",
         "publication_allowed": False,
         "inference_status": report["inference_status"],
+        "gpu_execution_status": report["gpu_execution_status"],
         "arm_status": {arm: report["arms"][arm]["status"] for arm in EXPECTED_ARMS},
         "request_count": report["request_count"],
         "provider_session_status": report["resource_cleanup"]["provider_session"],

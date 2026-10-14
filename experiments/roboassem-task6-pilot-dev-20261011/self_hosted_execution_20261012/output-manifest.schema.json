@@ -12,13 +12,14 @@
     },
     "audit": {
       "type": "object",
-      "required": ["schema_version", "synthetic", "valid", "errors", "inference_status", "arms", "request_count", "replay_blocked", "resource_cleanup"],
+      "required": ["schema_version", "synthetic", "valid", "errors", "inference_status", "gpu_execution_status", "arms", "request_count", "replay_blocked", "resource_cleanup"],
       "properties": {
         "schema_version": {"const": "steptrace.task6.v5-run-audit.v1"},
         "synthetic": {"type": "boolean"},
         "valid": {"type": "boolean"},
         "errors": {"type": "array", "items": {"type": "string"}},
         "inference_status": {"type": "string", "enum": ["not_started", "success", "failed", "unknown"]},
+        "gpu_execution_status": {"const": "not_verified"},
         "arms": {
           "type": "object",
           "required": ["F", "HF"],
@@ -78,7 +79,7 @@
     },
     "redactedSummary": {
       "type": "object",
-      "required": ["schema_version", "experiment_id", "synthetic", "publication_status", "publication_allowed", "inference_status", "arm_status", "request_count", "provider_session_status", "contains_model_output", "contains_private_paths", "contains_private_artifact_hashes"],
+      "required": ["schema_version", "experiment_id", "synthetic", "publication_status", "publication_allowed", "inference_status", "gpu_execution_status", "arm_status", "request_count", "provider_session_status", "contains_model_output", "contains_private_paths", "contains_private_artifact_hashes"],
       "properties": {
         "schema_version": {"const": "steptrace.task6.redacted-summary.v1"},
         "experiment_id": {"type": "string", "minLength": 1},
@@ -86,6 +87,7 @@
         "publication_status": {"const": "held_for_owner_review"},
         "publication_allowed": {"const": false},
         "inference_status": {"type": "string", "enum": ["not_started", "success", "failed", "unknown"]},
+        "gpu_execution_status": {"const": "not_verified"},
         "arm_status": {
           "type": "object",
           "required": ["F", "HF"],

@@ -180,7 +180,7 @@ cp -a "$TASK6_RUN_ROOT/gpu-preflight-01/." \
 
 v5 的私有 `results/` 可能含 `attempts.jsonl`、`attempt-events.jsonl`、`failures.jsonl`、`request-F/HF.json`（base64 图片）、`response-F/HF-raw.json`、`results.json`（模型输出）、`backend-props.json`、`preflight-F/HF.json`、`server.log`、`gpu-memory.csv`、`server-stopped.json`、错误记录和 `task6-results.zip`。这些均按私有数据处理；不要提交 Git、贴到 issue、发公开链接或放入公共云盘。
 
-审核判据：只有 F 与 HF 都有完整响应、原始响应字节/hash 可对上、各自本地完整 schema 校验通过且审计无错误，pair 才是 `success`。F 在发 HF 前失败时为 `failed`，不能把单臂结果当作完整对照。`send_intent` 后没有可验证响应、响应丢失或不能判断送达时为 `unknown`，并保持 replay blocked；不得删除 attempt journal 或重试。无 send intent 时 `not_started`。任何审计错误都要保留原始私有证据并报告，不能修补/改写模型输出后称为成功。
+审核判据：只有 F 与 HF 都有完整响应、原始响应字节/hash 可对上、各自本地完整 schema 校验通过且审计无错误，pair 才是 `success`。F 在发 HF 前失败时为 `failed`，不能把单臂结果当作完整对照。`send_intent` 后没有可验证响应、响应丢失或不能判断送达时为 `unknown`，并保持 replay blocked；不得删除 attempt journal 或重试。只有不存在 `attempts.jsonl` 且没有执行事件、失败记录、解析结果、原始响应或 `execution-error.json` 时才是 `not_started`。账本缺失/空白/无法解析，或有响应/失败/结果/执行错误产物却缺 `attempts.jsonl` 时，交接 audit 将阻断并把状态记为 `unknown`、replay blocked；`execution-error.json` 可能由发送后的异常写出，不能据它推断未发送。保留现有目录，不重建账本。任何审计错误都要保留原始私有证据并报告，不能修补/改写模型输出后称为成功。
 
 本地 server 的 `server-stopped.json` 只能证明 runner 子进程退出。云端 VM/provider session 的停止需在其控制台/CLI 中单独停止，并保存私有 receipt/reference。把 `provider-stop-attestation.template.json` 填完（至少写明准确 `instance_reference`、`stopped_at_utc` 与 `evidence_reference`），保存在受限的 `results/provider-stop-attestation.json`，运行时用相同文件作为 `--stop-attestation`。工具只检查必需字段是否齐全，不连接 provider、不独立验证其证据；报告中的 `verified_stopped` 是操作人提交了停止证明字段的声明。若运行在自管主机且没有可停止的 provider session，使用 `status=not_applicable`、`resource_type=self-managed-host`、`provider_id=self-managed-local` 并填入可审阅的边界说明引用。未知状态就保持 `unknown`。runner 自动创建的 ZIP 不含之后添加的停止证明，也不会递归收录上述 GPU setup-evidence 子目录；回传时以完整私有 results 目录和 return manifest 为准。若需要单文件传输，可在审计通过后从完整 results 树新建 ZIP 并记录 SHA；原 runner ZIP 保留原状，不要声称其含后来加入的证据。
 
@@ -196,7 +196,7 @@ python3 "$PKG/tools/task6_bundle.py" write-return \
   --return-dir "$TASK6_RUN_ROOT/return"
 ```
 
-这两个命令的 exit 0 表示 audit 结构和来源证据无内部矛盾，需再看 `inference_status`；`failed` 或 `unknown` 仍不是成功实验。exit 2 表示发现格式/来源/请求账本问题，原始产物应保留并作为阻断上报，不要重试。
+这两个命令的 exit 0 表示 audit 结构和来源证据无内部矛盾，需再看 `inference_status`；`failed` 或 `unknown` 仍不是成功实验。`inference_status=success` 只代表 F/HF 返回字节与内容校验通过，不证明实际 generation 使用了 GPU；`gpu_execution_status` 固定为 `not_verified`，因为结果审计器不验证 GPU 执行期证据。请保留 `runtime-verification.json`、执行准入与 GPU 预检材料供人工核验，不要把响应成功写成 GPU 已运行。exit 2 表示发现格式/来源/请求账本问题，原始产物应保留并作为阻断上报，不要重试。
 
 若需将完整私有结果树打成一个传输文件（包括嵌套 setup-evidence 与 provider stop attestation），可在审计通过后运行以下本地归档命令；它拒绝 symlink，只写入当前私有 results 内容并打印归档大小/SHA：
 

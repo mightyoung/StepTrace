@@ -5,6 +5,7 @@
   "publication_status": "held_for_owner_review",
   "publication_allowed": false,
   "inference_status": "not_started",
+  "gpu_execution_status": "not_verified",
   "arm_status": {
     "F": "not_attempted",
     "HF": "not_attempted"
