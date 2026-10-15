@@ -567,6 +567,64 @@ class RealValidationBundleTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "temporal.*reset|reset.*source event"):
                 api.validate_and_score(bundle, root=root)
 
+    def test_nonempty_temporal_emissions_do_not_complete_all_negative_synthetic_steps(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            api = _api()
+            bundle = _build_bundle(root)
+
+            # Make every independently adjudicated synthetic SOP opportunity
+            # negative, while retaining the temporal arm's required emissions.
+            for opportunity in bundle["opportunities"]:
+                review = opportunity["blind_review"]
+                for annotation in review["full_video"]:
+                    annotation["step_reference"] = "incomplete"
+                    annotation["step_reference_rule_id"] = "synthetic-step-rule-1"
+                labels = review["adjudication"]["labels"]
+                labels["step_reference"] = "incomplete"
+                labels["step_reference_rule_id"] = "synthetic-step-rule-1"
+
+            for arm in bundle["arms"]:
+                for output in arm["outputs"]:
+                    output["process_evidence_frame_ids"] = []
+                    output["step_completion"] = "unknown"
+                    output["step_evidence_basis"] = "insufficient_evidence"
+                    output["step_evidence_rule_id"] = None
+                    output["step_evidence_frame_ids"] = []
+                    _rewrite_parsed_response(root, output)
+
+            temporal_runs = bundle["arms"][2]["temporal_runs"]
+            self.assertTrue(temporal_runs)
+            self.assertTrue(all(run["emissions"] for run in temporal_runs))
+            self.assertEqual(
+                sum(len(run["emissions"]) for run in temporal_runs),
+                len(bundle["opportunities"]),
+            )
+
+            result = api.validate_and_score(bundle, root=root)
+
+        metrics = result["arms"]["temporal_memory"]
+        self.assertEqual(metrics["incomplete_truth_n"], 3)
+        self.assertEqual(metrics["false_complete"], 0)
+        self.assertEqual(metrics["coverage"], 0.0)
+        self.assertEqual(metrics["abstention_rate"], 1.0)
+        self.assertFalse(metrics["inferential_claim_allowed"])
+
+    def test_sop_rule_completion_with_empty_evidence_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            api = _api()
+            bundle = _build_bundle(root)
+            output = bundle["arms"][2]["outputs"][0]
+            output["step_completion"] = "complete"
+            output["step_evidence_basis"] = "sop_rule_supported"
+            output["step_evidence_rule_id"] = "synthetic-step-rule-1"
+            output["step_evidence_frame_ids"] = []
+            _rewrite_parsed_response(root, output)
+
+            with self.assertRaisesRegex(ValueError, "SOP-rule step output requires evidence references"):
+                api.validate_and_score(bundle, root=root)
+
     def test_history_cannot_become_unqualified_current_connection(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

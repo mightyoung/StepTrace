@@ -59,6 +59,48 @@ def test_failure_heavy_score_keeps_missing_unknown_and_no_event_false_alarm() ->
     assert result["terminal_availability"]["availability"] == 0.5
 
 
+def test_nonempty_temporal_event_output_on_all_negative_truth_is_false_alarm_not_step_evidence() -> None:
+    truth = _truth()
+    truth["risk_events"] = []
+    truth["transitions"] = []
+    for opportunity in truth["opportunities"]:
+        opportunity["completion_state"] = "incomplete"
+
+    predictions = {
+        "schema_version": "1.0",
+        "evaluation_id": "development-fixture",
+        "method_id": "temporal-synthetic",
+        "opportunities": [
+            {
+                "opportunity_id": opportunity["opportunity_id"],
+                "job_id": opportunity["job_id"],
+                "timestamp_s": opportunity["timestamp_s"],
+                "status": "unknown",
+            }
+            for opportunity in truth["opportunities"]
+        ],
+        # Synthetic non-empty event output despite an all-negative reference.
+        "risk_events": [
+            {"event_id": "synthetic-segment-a", "job_id": "j1", "risk_id": "missing", "timestamp_s": 12.0},
+            {"event_id": "synthetic-segment-b", "job_id": "j2", "risk_id": "orientation", "timestamp_s": 20.0},
+        ],
+        "terminal_jobs": [
+            {"job_id": "j1", "status": "completed"},
+            {"job_id": "j2", "status": "completed"},
+        ],
+    }
+
+    result = score_state_risk(truth, predictions)
+
+    assert result["state"]["unknown"] == len(truth["opportunities"])
+    assert result["state"]["coverage"] == 0.0
+    assert result["risk"]["tp"] == 0
+    assert result["risk"]["fp"] == 2
+    assert result["risk"]["fn"] == 0
+    assert result["risk"]["event_macro_f1"] == 0.0
+    assert result["transitions"]["matched_transitions"] == 0
+
+
 def test_one_to_one_event_matching_makes_duplicate_alarm_a_false_positive() -> None:
     truth = _truth()
     prediction = _predictions()
