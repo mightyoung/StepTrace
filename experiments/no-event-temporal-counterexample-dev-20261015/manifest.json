@@ -25,7 +25,7 @@
   "synthetic_counterexamples": {
     "all_negative_sop": {
       "truth": "three synthetic opportunities adjudicated incomplete",
-      "temporal_run_emissions": 3,
+      "temporal_run_audit_emissions": 3,
       "prediction": "unknown with insufficient_evidence and empty evidence references",
       "metrics": {
         "false_complete": 0,
@@ -38,13 +38,13 @@
     "nonempty_event_output": {
       "truth_risk_events": 0,
       "predicted_point_event_rows": 2,
-      "predicted_sop_status": "unknown for every opportunity",
+      "predicted_opportunity_status": "unknown for every opportunity",
       "metrics": {
         "true_positives": 0,
         "false_positives": 2,
         "false_negatives": 0,
         "event_macro_f1": 0.0,
-        "step_coverage": 0.0,
+        "state_coverage": 0.0,
         "matched_transitions": 0
       },
       "interpretation": "This repo's risk-event scorer consumes point event rows, not interval segments; unmatched outputs against empty truth are false alarms and do not populate SOP state."
@@ -77,7 +77,7 @@
     },
     "python_compile": "passed",
     "git_diff_check": "passed",
-    "independent_review": "read-only review completed; no production gap found"
+    "independent_review": "read-only review completed; no gap found in the tested no-event, abstention, or empty-evidence paths"
   },
   "real_material_status": {
     "mac_report": "Exact source video and four PNGs are reported present on the Mac; hashes and RGB/derivation were verified there.",
