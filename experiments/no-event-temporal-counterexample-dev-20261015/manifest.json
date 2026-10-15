@@ -1,0 +1,94 @@
+{
+  "schema_version": "steptrace-synthetic-output-boundary/1",
+  "scope": "SYNTHETIC_SOFTWARE_ONLY",
+  "tested_commit": "1f3d9cb4197112b95c9821638a35ef54f18da389",
+  "branch": "task/synthetic-negative-temporal-20261015",
+  "production_code_changed": false,
+  "comparison_to_existing_public_cache": {
+    "source": "experiments/recovered-real-cache-dev-20261011/results.json",
+    "cached_records": {
+      "frame_5": {
+        "decision": "normal",
+        "current_step": "pick_components",
+        "confirmed_step": "pick_components"
+      },
+      "frame_6": {
+        "decision": "unknown",
+        "current_step": "pick_components",
+        "confirmed_step": null
+      }
+    },
+    "supported_interpretation": "The cached records distinguish retained historical progress from a new current confirmation.",
+    "physical_truth": "unknown",
+    "accuracy_or_method_gain": null
+  },
+  "synthetic_counterexamples": {
+    "all_negative_sop": {
+      "truth": "three synthetic opportunities adjudicated incomplete",
+      "temporal_run_emissions": 3,
+      "prediction": "unknown with insufficient_evidence and empty evidence references",
+      "metrics": {
+        "false_complete": 0,
+        "coverage": 0.0,
+        "abstention_rate": 1.0,
+        "inferential_claim_allowed": false
+      },
+      "interpretation": "Required temporal-run emission records do not imply an SOP action or completion."
+    },
+    "nonempty_event_output": {
+      "truth_risk_events": 0,
+      "predicted_point_event_rows": 2,
+      "predicted_sop_status": "unknown for every opportunity",
+      "metrics": {
+        "true_positives": 0,
+        "false_positives": 2,
+        "false_negatives": 0,
+        "event_macro_f1": 0.0,
+        "step_coverage": 0.0,
+        "matched_transitions": 0
+      },
+      "interpretation": "This repo's risk-event scorer consumes point event rows, not interval segments; unmatched outputs against empty truth are false alarms and do not populate SOP state."
+    },
+    "empty_sop_evidence": {
+      "prediction": "complete with valid SOP-rule ID and empty step_evidence_frame_ids",
+      "result": "BLOCKED",
+      "guard": "sop_rule_supported requires non-empty evidence references"
+    }
+  },
+  "verified_files": [
+    {
+      "path": "tests/test_steptrace_real_validation_bundle.py",
+      "sha256": "f70ea584e1b9c3f7494189e07468a3ba3c6217b65f974a2906ac6ba1d5f4560e"
+    },
+    {
+      "path": "tests/test_state_risk_metrics.py",
+      "sha256": "4a78cab5ba69888c9ea5859fcc356ed7aea56f15de455455ddd77e65903d789a"
+    }
+  ],
+  "verification": {
+    "standard_library_bundle_tests": {
+      "command": "python -B tests/test_steptrace_real_validation_bundle.py",
+      "passed": 21
+    },
+    "all_negative_risk_test": {
+      "result": "passed when invoked directly with a pytest import shim; the test body does not depend on pytest",
+      "pytest_available": false,
+      "dependencies_installed": false
+    },
+    "python_compile": "passed",
+    "git_diff_check": "passed",
+    "independent_review": "read-only review completed; no production gap found"
+  },
+  "real_material_status": {
+    "mac_report": "Exact source video and four PNGs are reported present on the Mac; hashes and RGB/derivation were verified there.",
+    "cloud_media_access": "none; no media was opened or rehashed in this environment",
+    "rights_attestation": "missing; real inference/transfer remains blocked",
+    "private_paths_or_hashes_included": false
+  },
+  "new_model_calls": 0,
+  "model_downloads": 0,
+  "training_runs": 0,
+  "gpu_jobs": 0,
+  "costs_incurred": 0,
+  "synthetic_cases_are_real_samples": false
+}
