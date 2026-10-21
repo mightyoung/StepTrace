@@ -1,0 +1,40 @@
+{
+  "classification": "Extracted software-test evidence; no tests or model experiments rerun",
+  "historical_receipt": "../roboassem-task6-rights-evidence-binding-20261021.json",
+  "runs": {
+    "baseline": {
+      "source_log_filename": "steptrace-baseline-pytest.log",
+      "source_log_identity": {
+        "bytes": 265685,
+        "sha256": "1a6f5f41f9c7ff4e09e13152e1dc02c48e83709343eefc70e4ea97d39ff982de"
+      },
+      "identity_matches_historical_receipt": true,
+      "source_log_line_start_1_based": 5011,
+      "source_log_line_end_1_based": 5141,
+      "source_command": "/tmp/steptrace-check-venv/bin/python -B -m pytest -q",
+      "source_cwd": "/tmp/steptrace-ed9a9e4-baseline",
+      "source_exit_code": 1,
+      "source_terminal_state": "129 failed, 880 passed, 3 skipped; identical failed node ID set on untouched baseline",
+      "tested_revision": "ed9a9e403ad81408bb6bf3a47fac581429e6257e",
+      "revision_note": "baseline pristine git archive",
+      "summary_file": "baseline.summary.txt"
+    },
+    "after": {
+      "source_log_filename": "steptrace-full-pytest.log",
+      "source_log_identity": {
+        "bytes": 263067,
+        "sha256": "533975198f4620d687b8a54fbbbb0316f34fbf68ffcfc9d7ed5068bf779f21b2"
+      },
+      "identity_matches_historical_receipt": true,
+      "source_log_line_start_1_based": 5011,
+      "source_log_line_end_1_based": 5141,
+      "source_command": "/tmp/steptrace-check-venv/bin/python -B -m pytest -q",
+      "source_cwd": "/workspace/StepTrace",
+      "source_exit_code": 1,
+      "source_terminal_state": "129 failed, 880 passed, 3 skipped; root testpaths excludes experiments/",
+      "tested_revision": "04a68c13208ad9c5d9a37490e0c434db9777b53a",
+      "revision_note": "Tested working tree before commit; code subsequently saved in implementation commit 04a68c1, not a new run at final receipt commit",
+      "summary_file": "after.summary.txt"
+    }
+  }
+}
