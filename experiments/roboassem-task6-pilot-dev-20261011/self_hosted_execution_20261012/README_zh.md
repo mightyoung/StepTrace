@@ -50,9 +50,9 @@ export TASK6_RUN_ROOT="/private/task6-run"
 mkdir -p "$TASK6_INPUT_ROOT" "$TASK6_RUN_ROOT"
 ```
 
-把 package 内的 `execution-input-contract.json` 复制进私有输入目录；从有权使用的私有来源放入四张精确 PNG、同一来源视频、下面列出的三个 runner 源文件，以及私有 `rights-attestation.json` 和其证据文件。证据须能说明这组精确文件的取得/来源、遮罩帧衍生链、使用许可范围，以及向所选主机/provider 传输并在其上推理的权限；网页源码或模型许可不替代这些凭据。`evidence_file` 指向的文件必须位于私有输入根目录内。不要把输入/证据提交 Git。三个 runner 文件位于本目录的 `runner_sources/`，预期身份在 manifest 中；原 `mac_runner_readonly_audit_20261012/sources/` 快照保持原样。
+把 package 内的 `execution-input-contract.json` 复制进私有输入目录；从有权使用的私有来源放入四张精确 PNG、同一来源视频、下面列出的三个 runner 源文件，以及私有 `rights-attestation.json` 和其证据文件。证据须能说明这组精确文件的取得/来源、遮罩帧衍生链、使用许可范围，以及向所选主机/provider 传输并在其上推理的权限；网页源码或模型许可不替代这些凭据。`evidence_file` 指向的文件必须位于私有输入根目录内；`evidence_bytes` 和 `evidence_sha256` 必须固定审阅过的同一证据文件，预检会比较其实际字节数和 SHA-256。不要把输入/证据提交 Git。三个 runner 文件位于本目录的 `runner_sources/`，预期身份在 manifest 中；原 `mac_runner_readonly_audit_20261012/sources/` 快照保持原样。
 
-从模板制作 rights 文件时，需由权利人填写真实的 `rights_basis`、`license_id`、`evidence_reference`、`evidence_file`、带时区的 `expires_utc` 和获授权的 `provider_id`，并将 `synthetic_template_only` 显式改为 `false`；仅在证据明确覆盖这些行为时，才将 `authorization_status=authorized`、`inference_authorized=true`、`transfer_authorized=true`。公开再分发保持 `false`。用户认可“开发候选”不替代此逐项许可。不要填写示例文字冒充许可。
+从模板制作 rights 文件时，需由权利人填写真实的 `rights_basis`、`license_id`、`evidence_reference`、`evidence_file`、带时区的 `expires_utc` 和获授权的 `provider_id`，并将 `synthetic_template_only` 显式改为 `false`；仅在证据明确覆盖这些行为时，才将 `authorization_status=authorized`、`inference_authorized=true`、`transfer_authorized=true`。`provider_id` 必须指明实际接收环境，空值、`UNSET`、`unknown` 和泛称 `self-hosted`/“自托管”不能通过。`expires_utc` 是准入声明的复核有效期，不代表推断出的媒体许可到期日；许可自身期限在证据中另行记录。公开再分发保持 `false`。用户认可“开发候选”不替代此逐项许可。不要填写示例文字冒充许可。
 
 先运行 CPU-only inputs 阶段：
 
@@ -69,7 +69,7 @@ python3 "$PKG/tools/task6_bundle.py" preflight \
 
 这项检查只读文件、逐项校验字节数/SHA、权限门、私有 runner 副本和 one-shot 结果根；`network_calls=0`、`generation_calls=0`。已有运行产物、无法检查的结果根或账本不完整时会阻断重跑。首次空 `results/` 可通过；`setup-evidence/` 可保存 GPU/CPU 预检材料，但不得放入请求、响应或运行账本。完整 GPU 预检输出中的 `server.log` 仅在 `setup-evidence/gpu-preflight/` 且同目录保留 `gpu-preflight.json` 与 `server-stopped.json` 时可用作预检证据；根目录正式 `server.log` 或缺少这两份回执的日志仍阻断启动。输入/许可缺失或不匹配会返回 exit code 2，这是预期的阻断信号；不要以新下载/重编码来绕过。该阶段的 `execution_ready` 总是 false，因为它没有核对 GPU runtime。
 
-`phase=inputs` 检查的是输入合同、视频、四张 PNG、rights attestation/evidence、runner 副本和 one-shot 结果根；它刻意不查模型权重，因此可以在不下载 GGUF 时先验输入/权利。`data_rights` check 记录 attestation 与 `evidence_file` 的实际字节数/SHA。此阶段 `execution_ready` 必然为 false，CLI 也会返回 exit 2；读取 JSON 报告中的 `input_ready` 和 `checks`，只有 `input_ready=true` 且无 blockers 才表示这个前置阶段通过。模型大小/SHA 仍在之后的 `phase=execution` 和 GPU 预检前强制核验。
+`phase=inputs` 检查的是输入合同、视频、四张 PNG、rights attestation/evidence、runner 副本和 one-shot 结果根；它刻意不查模型权重，因此可以在不下载 GGUF 时先验输入/权利。`data_rights` check 记录 attestation 与 `evidence_file` 的实际字节数/SHA。从 2026-10-21 起，v1 声明也必须提供正整数 `evidence_bytes` 和 64 位小写十六进制 `evidence_sha256`；旧声明缺项须重新审阅并补齐，不能自动升级为许可。此阶段 `execution_ready` 必然为 false，CLI 也会返回 exit 2；读取 JSON 报告中的 `input_ready` 和 `checks`，只有 `input_ready=true` 且无 blockers 才表示这个前置阶段通过。模型大小/SHA 仍在之后的 `phase=execution` 和 GPU 预检前强制核验。
 
 ## 模型文件、候选环境和资源上界
 
@@ -294,3 +294,7 @@ git ls-remote origin refs/heads/task/roboassem-task6-self-hosted-return-YYYYMMDD
 | 示例 JSON 与单元测试 fixture | 合成 | 仅验证代码和 schema，不属于真实负例、模型输出或研究证据 |
 
 优先继续可独立完成的 CPU 代码/manifest 检查。只要输入许可或精确文件缺失，GPU 构建和推理仍保持关闭；不要把任何 cloud workspace 路径描述成 Mac 已保存材料。
+
+## 2026-10-21 准入增量
+
+[权利、接收边界与固定后端资格计划](../../../docs/research-handoff/progress/20261021-task6-rights-evidence-binding.md)记录本次 synthetic 回归与待决事项。证据哈希绑定只验证文件一致性；`data_rights=verified` 仍表示声明字段和文件身份通过机械检查，不是工具独立确认权利人身份、许可适用范围或真实主机归属。

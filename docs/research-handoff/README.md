@@ -11,6 +11,12 @@ This directory exchanges reviewed text and artifact identities across research e
 - No project or third-party license is created or changed here. Unknown redistribution rights remain unknown.
 - This initial batch contains status snapshots and metadata only, except the explicitly identified synthetic-smoke text inputs in PCG. Publication approval is not execution approval.
 
+## Task6 rights evidence binding — 2026-10-21
+
+- [Independent increment and backend qualification plan](progress/20261021-task6-rights-evidence-binding.md) binds private rights evidence size/SHA to its attestation and rejects placeholder receiver IDs, with synthetic CPU regressions.
+- Existing video/PNG identities remain historical Mac evidence; this update does not re-read those bytes. Media-rights scope, the actual receiver, and a qualified fixed backend remain unresolved. Status stays `preparation_only_blocked_for_execution`.
+- [Append-only verification receipt](receipts/roboassem-task6-rights-evidence-binding-20261021.json) records actual commands, failures and independent review. No model/GPU execution or private media upload occurred.
+
 ## Latest evidence addendum — 2026-10-11
 
 - [IndEgo candidate review and disposition](progress/20261011-indego-candidate-review.md) records Parent-reported source-byte verification, Mac-reported frame/PTS/hash checks, and the user's suitability decision.

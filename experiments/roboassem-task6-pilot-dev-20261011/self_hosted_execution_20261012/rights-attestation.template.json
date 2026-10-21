@@ -12,5 +12,7 @@
   "provider_id": "UNSET",
   "expires_utc": "",
   "public_redistribution_authorized": false,
-  "synthetic_template_only": true
+  "synthetic_template_only": true,
+  "evidence_bytes": null,
+  "evidence_sha256": ""
 }

@@ -606,6 +606,11 @@ def validate_rights_attestation(
     for key, value in expected.items():
         if attestation.get(key) != value:
             issues.append(f"{key} must equal the approved value")
+    # Matching two placeholders does not identify a receiving environment.
+    if not isinstance(provider_id, str) or provider_id.strip().casefold() in {
+        "", "unset", "unknown", "self-hosted", "self hosted", "自托管",
+    }:
+        issues.append("provider_id must identify the selected receiving environment")
     if attestation.get("synthetic_template_only") is not False:
         issues.append("synthetic_template_only must be false for a real-data authorization")
     for key in ("rights_basis", "license_id", "evidence_reference", "expires_utc"):
@@ -619,6 +624,12 @@ def validate_rights_attestation(
     evidence_file = attestation.get("evidence_file")
     if not isinstance(evidence_file, str) or not evidence_file.strip():
         issues.append("evidence_file must name private rights evidence")
+    evidence_bytes = attestation.get("evidence_bytes")
+    if type(evidence_bytes) is not int or evidence_bytes <= 0:
+        issues.append("evidence_bytes must be a positive integer")
+    evidence_sha256 = attestation.get("evidence_sha256")
+    if not isinstance(evidence_sha256, str) or re.fullmatch(r"[0-9a-f]{64}", evidence_sha256) is None:
+        issues.append("evidence_sha256 must be a lowercase SHA-256 digest")
     expiry = attestation.get("expires_utc")
     if isinstance(expiry, str) and expiry.strip():
         try:
@@ -1102,6 +1113,11 @@ def run_preflight(
                         rights_issues.append("private evidence_file is missing from input root")
                     else:
                         evidence_size, evidence_sha256 = sha256_file(evidence_path)
+                        if (
+                            evidence_size != attestation.get("evidence_bytes")
+                            or evidence_sha256 != attestation.get("evidence_sha256")
+                        ):
+                            rights_issues.append("private evidence_file size/SHA-256 mismatch with attestation")
                         rights_identity.update(
                             {
                                 "evidence_file": evidence_file,

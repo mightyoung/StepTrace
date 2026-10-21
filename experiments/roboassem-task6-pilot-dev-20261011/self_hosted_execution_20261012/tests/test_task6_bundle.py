@@ -193,6 +193,8 @@ class RightsGateTests(unittest.TestCase):
             "license_id": "synthetic-only",
             "evidence_reference": "synthetic-evidence-reference",
             "evidence_file": "synthetic-evidence.txt",
+            "evidence_bytes": 1,
+            "evidence_sha256": "a" * 64,
             "inference_authorized": True,
             "transfer_authorized": True,
             "provider_id": SYNTHETIC_PROVIDER,
@@ -253,6 +255,8 @@ class RightsGateTests(unittest.TestCase):
             "license_id": "synthetic-only",
             "evidence_reference": "synthetic-evidence-reference",
             "evidence_file": "synthetic-evidence.txt",
+            "evidence_bytes": 1,
+            "evidence_sha256": "a" * 64,
             "inference_authorized": True,
             "transfer_authorized": True,
             "provider_id": SYNTHETIC_PROVIDER,
@@ -1119,9 +1123,13 @@ class PackageIntegrationTests(unittest.TestCase):
             (input_root / "execution-input-contract.json").write_bytes(contract_bytes)
             (input_root / "synthetic.mp4").write_bytes(source_bytes)
             rights_path = input_root / "rights-attestation.json"
-            rights_bytes = b'{"evidence_file":"source-rights-record.json"}\n'
-            rights_path.write_bytes(rights_bytes)
             evidence_bytes = b"synthetic-source-and-rights-record"
+            rights_bytes = json.dumps({
+                "evidence_file": "source-rights-record.json",
+                "evidence_bytes": len(evidence_bytes),
+                "evidence_sha256": hashlib.sha256(evidence_bytes).hexdigest(),
+            }).encode("utf-8")
+            rights_path.write_bytes(rights_bytes)
             (input_root / "source-rights-record.json").write_bytes(evidence_bytes)
             manifest = {
                 "experiment_id": SYNTHETIC_EXPERIMENT,
