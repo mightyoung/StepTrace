@@ -69,3 +69,8 @@ This directory exchanges reviewed text and artifact identities across research e
 - [2026-10-10 verified progress summary](progress/20261010-progress.md): 12 saved development first answers; two time-semantics defects; unresolved C03 count disagreement; draft contract fixtures only; cross-domain removal screening with no independent human GT; site batch remains 3/56 present.
 - [2026-10-10 task state](tasks/status-20261010.json) and [de-identified evidence index](progress/evidence-20261010.json).
 - [2026-10-09 historical handoff state](tasks/status-20261009.json) remains unchanged.
+
+## Task6 offline qualification packet — 2026-10-21 follow-up
+
+- [Implemented offline checks, actual verification and minimal outstanding fields](progress/20261021-task6-offline-qualification.md).
+- Metadata/JSON checks only: receiver/rights/backend remain unverified and execution stays blocked. Related software tests pass; the root suite retains the same 129 failures, with append-only source summaries and full node arrays.

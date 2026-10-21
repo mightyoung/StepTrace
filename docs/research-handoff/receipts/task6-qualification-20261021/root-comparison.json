@@ -1,0 +1,939 @@
+{
+  "baseline_source": "../task6-failure-comparison-20261021/comparison.json",
+  "baseline_revision": "ed9a9e403ad81408bb6bf3a47fac581429e6257e",
+  "tested_implementation_commit": "9a0ec082cffac5254d30a3e1d041c2e3d9eb8ff2",
+  "execution_note": "Tests ran on the implementation working tree before commit; no new run at the later receipt commit",
+  "root_log_identity": {
+    "filename": "steptrace-qualification-root.log",
+    "bytes": 263067,
+    "sha256": "a9e0e8688bd19dab1e10b34f32934dede7d3878387e512fcd8548e8ea22c2ef8"
+  },
+  "root_junit_identity": {
+    "filename": "steptrace-qualification-root.xml",
+    "bytes": 398458,
+    "sha256": "88cee9d477ce9aecd7bbd1d39853dc73f70bc895eb3144d27ae08ceef53d18e1"
+  },
+  "summary_line_start_1_based": 5011,
+  "summary_line_end_1_based": 5141,
+  "summary_sha256": "b6b6e4601ada0a3c404d3ae0eed803b80ff582dfadca6b55e69863b000dc782e",
+  "baseline_failed_node_ids": [
+    "tests/test_development_real_data_four_video_design.py::test_four_video_design_preserves_development_only_unit_boundary",
+    "tests/test_development_real_data_four_video_design.py::test_four_video_design_rejects_pseudoreplication_claim",
+    "tests/test_font_provenance.py::test_registered_font_loads_and_matches_provenance",
+    "tests/test_g3_aft_remote_audit.py::test_remote_aft_build_is_bound_to_frozen_source_environment_and_image",
+    "tests/test_g3_aft_remote_audit.py::test_remote_aft_smoke_recovers_truth_without_singular_random_effects",
+    "tests/test_g3_full_producer_fixture.py::test_full_producer_fixture_is_paired_raw_two_task_evidence_only",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_aft_is_complete[A]",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_aft_is_complete[B]",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_development_replay_is_pinned_and_complete",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_recovers_both_preregistered_branches",
+    "tests/test_g3_r_producer_assets.py::test_r_producer_environment_is_exactly_locked",
+    "tests/test_g3_r_producer_assets.py::test_r_producer_is_out_of_process_and_fail_closed",
+    "tests/test_g3_r_producer_assets.py::test_real_candidate_uses_only_raw_rows_and_keeps_latency_fail_closed",
+    "tests/test_g3_r_producer_runtime.py::test_real_candidate_derives_both_branches_from_raw_opportunities",
+    "tests/test_g3_task_specific_remote_audit.py::test_task_specific_complete_job_fallback_remote_replay_is_pinned_and_valid",
+    "tests/test_industreal_complete_job_partition.py::test_candidate_partition_is_deterministic_complete_job_fallback",
+    "tests/test_industreal_complete_job_partition.py::test_group_tokens_never_cross_candidate_partitions",
+    "tests/test_industreal_complete_job_partition.py::test_official_test_stays_sealed_and_val_supplies_calibration_and_g3",
+    "tests/test_industreal_complete_job_partition.py::test_remote_registry_rebuild_matches_pinned_candidate",
+    "tests/test_industreal_complete_job_partition.py::test_validator_rejects_group_leakage_and_authority_escalation",
+    "tests/test_industreal_error_extension.py::test_extension_registry_never_infers_identity",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_bad_archive_digest",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_cross_split_recording",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>0]",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>1]",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>2]",
+    "tests/test_industreal_error_extension.py::test_extension_validates_official_asset",
+    "tests/test_industreal_partition_revision.py::test_remote_revision_rebuild_matches_local_source_hashes",
+    "tests/test_industreal_partition_revision.py::test_revision_is_non_mutating_and_excludes_sealed_test",
+    "tests/test_industreal_partition_revision.py::test_revision_validator_rejects_formal_escalation",
+    "tests/test_industreal_registry.py::test_industreal_json_artifacts_are_utf8_lf_and_parseable",
+    "tests/test_industreal_registry.py::test_industreal_official_files_inventory_is_complete_and_blocked",
+    "tests/test_industreal_registry.py::test_industreal_registry_reflects_verified_rgb_source_but_blocks_identity",
+    "tests/test_industreal_video_durability.py::test_official_84_86_warning_marks_two_archive_only_splits_unknown",
+    "tests/test_meccano.py::test_temporal_rows_are_deduplicated_and_joined_by_interval_not_ids",
+    "tests/test_meccano.py::test_vgg_hand_fields_are_parsed_and_extra_classes_are_retained",
+    "tests/test_meccano_official_registration.py::test_0009_is_single_frozen_tombstone_row",
+    "tests/test_meccano_official_registration.py::test_anonymous_identity_admits_all_non_tombstoned_roots",
+    "tests/test_meccano_official_registration.py::test_anonymous_identity_provenance_is_hash_bound_and_narrowly_scoped",
+    "tests/test_meccano_official_registration.py::test_current_audit_matches_versioned_manifest",
+    "tests/test_meccano_official_registration.py::test_manifest_join_and_split_unit_are_root_locked",
+    "tests/test_meccano_official_registration.py::test_official_registration_has_exactly_twenty_canonical_roots",
+    "tests/test_meccano_official_registration.py::test_registration_preserves_non_meccano_and_is_idempotent",
+    "tests/test_meccano_official_registration.py::test_registration_transaction_rolls_back_on_second_and_third_replace",
+    "tests/test_protocol_amendment.py::test_amendment_cannot_be_relabelled_as_ratified_or_formal",
+    "tests/test_protocol_amendment.py::test_amendment_is_draft_only_and_binds_all_sources",
+    "tests/test_protocol_amendment.py::test_corresponding_author_ratification_is_versioned_and_still_not_g3_authority",
+    "tests/test_protocol_amendment.py::test_ratified_artifact_cannot_enable_formal_or_operator_generalization",
+    "tests/test_ratified_fallback_preflight_audit.py::test_ratified_fallback_preflight_audit_is_non_authorizing_and_hash_bound",
+    "tests/test_real_meccano_candidate_binding.py::test_real_candidate_is_hash_bound_to_full_source_identity_records",
+    "tests/test_research_contract.py::test_analysis_plan_cannot_drop_common_support_failure_rule",
+    "tests/test_research_contract.py::test_analysis_plan_cannot_move_threshold_freeze_after_g3",
+    "tests/test_research_contract.py::test_analysis_plan_canonical_text_is_immutable",
+    "tests/test_research_contract.py::test_analysis_revision_metadata_records_g002_remediation",
+    "tests/test_research_contract.py::test_branch_alpha_allocation_is_exactly_half_family_alpha",
+    "tests/test_research_contract.py::test_branch_alpha_must_be_positive_and_finite",
+    "tests/test_research_contract.py::test_canonical_identity_normalization_blocks_split_alias",
+    "tests/test_research_contract.py::test_canonical_root_has_one_operator_job_group_and_split",
+    "tests/test_research_contract.py::test_checklist_rejects_stale_test_and_gate_evidence",
+    "tests/test_research_contract.py::test_claim_freeze_canonical_text_is_immutable",
+    "tests/test_research_contract.py::test_claim_freeze_metadata_is_anchored",
+    "tests/test_research_contract.py::test_current_research_contract_passes",
+    "tests/test_research_contract.py::test_derivative_must_inherit_root_tombstone",
+    "tests/test_research_contract.py::test_derived_asset_must_inherit_task_and_source",
+    "tests/test_research_contract.py::test_deviation_audit_canonical_text_is_immutable_after_joint_rehash",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[blank_decision-deviation category wrong_tool must remain exclusionary]",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[invalid_classification-deviation category wrong_tool has invalid Assembly101 classification]",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[missing_category-deviation categories must be exactly]",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[missing_dataset-deviation category wrong_tool must contain exactly]",
+    "tests/test_research_contract.py::test_downstream_gate_and_phase_must_match_current_evidence",
+    "tests/test_research_contract.py::test_duplicate_metric_id_is_rejected",
+    "tests/test_research_contract.py::test_empty_deviation_whitelist_cannot_be_reportable",
+    "tests/test_research_contract.py::test_every_claim_listed_supporting_metric_is_in_dictionary",
+    "tests/test_research_contract.py::test_exact_duplicate_bytes_cannot_escape_tombstone",
+    "tests/test_research_contract.py::test_formal_derivative_cannot_be_an_independent_unit",
+    "tests/test_research_contract.py::test_initial_derived_clip_cannot_be_deleted_by_joint_count_edit",
+    "tests/test_research_contract.py::test_ledger_schema_version_is_frozen",
+    "tests/test_research_contract.py::test_meccano_0009_is_mainline_admissible_but_not_formal_evidence",
+    "tests/test_research_contract.py::test_meccano_tombstone_cannot_be_reassigned",
+    "tests/test_research_contract.py::test_meccano_tombstone_survives_claim_and_ledger_deletion",
+    "tests/test_research_contract.py::test_nonformal_row_cannot_allow_formal_use",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[branch_b_selector-branch B selector must match achieved FSAR]",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[common_support-common-support intersection rule changed]",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[pilot_role-operating-point schedule changed for p5_pilot]",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[task_direction-task direction rule changed]",
+    "tests/test_research_contract.py::test_p0_deviation_whitelist_cannot_be_activated_by_joint_edit",
+    "tests/test_research_contract.py::test_synthetic_tombstone_survives_claim_and_formal_reassignment",
+    "tests/test_research_contract.py::test_task_id_column_is_mandatory",
+    "tests/test_research_contract.py::test_threshold_manifest_is_keyed_by_branch_method_and_task",
+    "tests/test_research_contract.py::test_unknown_operator_blocks_calibration_assignment",
+    "tests/test_research_contract.py::test_unknown_operator_blocks_formal_assignment",
+    "tests/test_research_contract.py::test_unknown_task_blocks_restricted_split",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path0-replacement0-checklist frozen claims differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path1-frame_accuracy-checklist primary endpoint differs from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path2-frame-checklist independent unit differs from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path3-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path4-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path5-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path6-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path7-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path8-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_checklist_gate_id_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_checklist_phase_id_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_ledger_header_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_nested_checklist_key_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_top_level_checklist_key_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_extra_trailing_ledger_cell_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_missing_ledger_cell_is_rejected",
+    "tests/test_research_contract_failure_boundaries.py::test_checklist_cannot_leave_g0_pending",
+    "tests/test_research_contract_failure_boundaries.py::test_missing_metric_section_fails_explicitly",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[0-canonical_group_id-MECCANO::ERASED-MECCANO-0009]",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[0-manually_viewed-NO-MECCANO-0009]",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[1-canonical_group_id-MECCANO::ERASED-MECCANO-0009-CLIP-150-500]",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[1-manually_viewed-NO-MECCANO-0009-CLIP-150-500]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_extra_columns",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_hash_verification_date",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[annotation_status-lowercase status-invalid annotation_status token]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[contamination_status-lowercase status-invalid contamination_status token]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[record_type-VIDEO-invalid record_type]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[source_split-test split-invalid source_split token]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_count-0-frame_count must be positive]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_count-2-frame interval/count mismatch]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_end-not-an-integer-invalid non-negative integer frame_end]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_start--1-invalid non-negative integer frame_start]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[height--1-invalid non-negative integer height]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[width-0-width must be positive]",
+    "tests/test_vlm_state_risk_protocol.py::test_vlm_state_risk_protocol_is_development_only_and_preserves_old_hashes",
+    "tests/test_vlm_state_risk_protocol.py::test_vlm_state_risk_protocol_rejects_changed_legacy_file",
+    "tests/test_yolo_base_provenance.py::test_yolo11s_base_model_matches_provenance_and_is_not_best_weight"
+  ],
+  "current_failed_node_ids": [
+    "tests/test_development_real_data_four_video_design.py::test_four_video_design_preserves_development_only_unit_boundary",
+    "tests/test_development_real_data_four_video_design.py::test_four_video_design_rejects_pseudoreplication_claim",
+    "tests/test_font_provenance.py::test_registered_font_loads_and_matches_provenance",
+    "tests/test_g3_aft_remote_audit.py::test_remote_aft_build_is_bound_to_frozen_source_environment_and_image",
+    "tests/test_g3_aft_remote_audit.py::test_remote_aft_smoke_recovers_truth_without_singular_random_effects",
+    "tests/test_g3_full_producer_fixture.py::test_full_producer_fixture_is_paired_raw_two_task_evidence_only",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_aft_is_complete[A]",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_aft_is_complete[B]",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_development_replay_is_pinned_and_complete",
+    "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_recovers_both_preregistered_branches",
+    "tests/test_g3_r_producer_assets.py::test_r_producer_environment_is_exactly_locked",
+    "tests/test_g3_r_producer_assets.py::test_r_producer_is_out_of_process_and_fail_closed",
+    "tests/test_g3_r_producer_assets.py::test_real_candidate_uses_only_raw_rows_and_keeps_latency_fail_closed",
+    "tests/test_g3_r_producer_runtime.py::test_real_candidate_derives_both_branches_from_raw_opportunities",
+    "tests/test_g3_task_specific_remote_audit.py::test_task_specific_complete_job_fallback_remote_replay_is_pinned_and_valid",
+    "tests/test_industreal_complete_job_partition.py::test_candidate_partition_is_deterministic_complete_job_fallback",
+    "tests/test_industreal_complete_job_partition.py::test_group_tokens_never_cross_candidate_partitions",
+    "tests/test_industreal_complete_job_partition.py::test_official_test_stays_sealed_and_val_supplies_calibration_and_g3",
+    "tests/test_industreal_complete_job_partition.py::test_remote_registry_rebuild_matches_pinned_candidate",
+    "tests/test_industreal_complete_job_partition.py::test_validator_rejects_group_leakage_and_authority_escalation",
+    "tests/test_industreal_error_extension.py::test_extension_registry_never_infers_identity",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_bad_archive_digest",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_cross_split_recording",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>0]",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>1]",
+    "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>2]",
+    "tests/test_industreal_error_extension.py::test_extension_validates_official_asset",
+    "tests/test_industreal_partition_revision.py::test_remote_revision_rebuild_matches_local_source_hashes",
+    "tests/test_industreal_partition_revision.py::test_revision_is_non_mutating_and_excludes_sealed_test",
+    "tests/test_industreal_partition_revision.py::test_revision_validator_rejects_formal_escalation",
+    "tests/test_industreal_registry.py::test_industreal_json_artifacts_are_utf8_lf_and_parseable",
+    "tests/test_industreal_registry.py::test_industreal_official_files_inventory_is_complete_and_blocked",
+    "tests/test_industreal_registry.py::test_industreal_registry_reflects_verified_rgb_source_but_blocks_identity",
+    "tests/test_industreal_video_durability.py::test_official_84_86_warning_marks_two_archive_only_splits_unknown",
+    "tests/test_meccano.py::test_temporal_rows_are_deduplicated_and_joined_by_interval_not_ids",
+    "tests/test_meccano.py::test_vgg_hand_fields_are_parsed_and_extra_classes_are_retained",
+    "tests/test_meccano_official_registration.py::test_0009_is_single_frozen_tombstone_row",
+    "tests/test_meccano_official_registration.py::test_anonymous_identity_admits_all_non_tombstoned_roots",
+    "tests/test_meccano_official_registration.py::test_anonymous_identity_provenance_is_hash_bound_and_narrowly_scoped",
+    "tests/test_meccano_official_registration.py::test_current_audit_matches_versioned_manifest",
+    "tests/test_meccano_official_registration.py::test_manifest_join_and_split_unit_are_root_locked",
+    "tests/test_meccano_official_registration.py::test_official_registration_has_exactly_twenty_canonical_roots",
+    "tests/test_meccano_official_registration.py::test_registration_preserves_non_meccano_and_is_idempotent",
+    "tests/test_meccano_official_registration.py::test_registration_transaction_rolls_back_on_second_and_third_replace",
+    "tests/test_protocol_amendment.py::test_amendment_cannot_be_relabelled_as_ratified_or_formal",
+    "tests/test_protocol_amendment.py::test_amendment_is_draft_only_and_binds_all_sources",
+    "tests/test_protocol_amendment.py::test_corresponding_author_ratification_is_versioned_and_still_not_g3_authority",
+    "tests/test_protocol_amendment.py::test_ratified_artifact_cannot_enable_formal_or_operator_generalization",
+    "tests/test_ratified_fallback_preflight_audit.py::test_ratified_fallback_preflight_audit_is_non_authorizing_and_hash_bound",
+    "tests/test_real_meccano_candidate_binding.py::test_real_candidate_is_hash_bound_to_full_source_identity_records",
+    "tests/test_research_contract.py::test_analysis_plan_cannot_drop_common_support_failure_rule",
+    "tests/test_research_contract.py::test_analysis_plan_cannot_move_threshold_freeze_after_g3",
+    "tests/test_research_contract.py::test_analysis_plan_canonical_text_is_immutable",
+    "tests/test_research_contract.py::test_analysis_revision_metadata_records_g002_remediation",
+    "tests/test_research_contract.py::test_branch_alpha_allocation_is_exactly_half_family_alpha",
+    "tests/test_research_contract.py::test_branch_alpha_must_be_positive_and_finite",
+    "tests/test_research_contract.py::test_canonical_identity_normalization_blocks_split_alias",
+    "tests/test_research_contract.py::test_canonical_root_has_one_operator_job_group_and_split",
+    "tests/test_research_contract.py::test_checklist_rejects_stale_test_and_gate_evidence",
+    "tests/test_research_contract.py::test_claim_freeze_canonical_text_is_immutable",
+    "tests/test_research_contract.py::test_claim_freeze_metadata_is_anchored",
+    "tests/test_research_contract.py::test_current_research_contract_passes",
+    "tests/test_research_contract.py::test_derivative_must_inherit_root_tombstone",
+    "tests/test_research_contract.py::test_derived_asset_must_inherit_task_and_source",
+    "tests/test_research_contract.py::test_deviation_audit_canonical_text_is_immutable_after_joint_rehash",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[blank_decision-deviation category wrong_tool must remain exclusionary]",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[invalid_classification-deviation category wrong_tool has invalid Assembly101 classification]",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[missing_category-deviation categories must be exactly]",
+    "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[missing_dataset-deviation category wrong_tool must contain exactly]",
+    "tests/test_research_contract.py::test_downstream_gate_and_phase_must_match_current_evidence",
+    "tests/test_research_contract.py::test_duplicate_metric_id_is_rejected",
+    "tests/test_research_contract.py::test_empty_deviation_whitelist_cannot_be_reportable",
+    "tests/test_research_contract.py::test_every_claim_listed_supporting_metric_is_in_dictionary",
+    "tests/test_research_contract.py::test_exact_duplicate_bytes_cannot_escape_tombstone",
+    "tests/test_research_contract.py::test_formal_derivative_cannot_be_an_independent_unit",
+    "tests/test_research_contract.py::test_initial_derived_clip_cannot_be_deleted_by_joint_count_edit",
+    "tests/test_research_contract.py::test_ledger_schema_version_is_frozen",
+    "tests/test_research_contract.py::test_meccano_0009_is_mainline_admissible_but_not_formal_evidence",
+    "tests/test_research_contract.py::test_meccano_tombstone_cannot_be_reassigned",
+    "tests/test_research_contract.py::test_meccano_tombstone_survives_claim_and_ledger_deletion",
+    "tests/test_research_contract.py::test_nonformal_row_cannot_allow_formal_use",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[branch_b_selector-branch B selector must match achieved FSAR]",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[common_support-common-support intersection rule changed]",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[pilot_role-operating-point schedule changed for p5_pilot]",
+    "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[task_direction-task direction rule changed]",
+    "tests/test_research_contract.py::test_p0_deviation_whitelist_cannot_be_activated_by_joint_edit",
+    "tests/test_research_contract.py::test_synthetic_tombstone_survives_claim_and_formal_reassignment",
+    "tests/test_research_contract.py::test_task_id_column_is_mandatory",
+    "tests/test_research_contract.py::test_threshold_manifest_is_keyed_by_branch_method_and_task",
+    "tests/test_research_contract.py::test_unknown_operator_blocks_calibration_assignment",
+    "tests/test_research_contract.py::test_unknown_operator_blocks_formal_assignment",
+    "tests/test_research_contract.py::test_unknown_task_blocks_restricted_split",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path0-replacement0-checklist frozen claims differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path1-frame_accuracy-checklist primary endpoint differs from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path2-frame-checklist independent unit differs from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path3-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path4-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path5-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path6-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path7-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path8-True-checklist formal start rules differ from the P0 contract]",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_checklist_gate_id_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_checklist_phase_id_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_ledger_header_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_nested_checklist_key_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_top_level_checklist_key_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_extra_trailing_ledger_cell_is_rejected",
+    "tests/test_research_contract_duplicate_boundaries.py::test_missing_ledger_cell_is_rejected",
+    "tests/test_research_contract_failure_boundaries.py::test_checklist_cannot_leave_g0_pending",
+    "tests/test_research_contract_failure_boundaries.py::test_missing_metric_section_fails_explicitly",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[0-canonical_group_id-MECCANO::ERASED-MECCANO-0009]",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[0-manually_viewed-NO-MECCANO-0009]",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[1-canonical_group_id-MECCANO::ERASED-MECCANO-0009-CLIP-150-500]",
+    "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[1-manually_viewed-NO-MECCANO-0009-CLIP-150-500]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_extra_columns",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_hash_verification_date",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[annotation_status-lowercase status-invalid annotation_status token]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[contamination_status-lowercase status-invalid contamination_status token]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[record_type-VIDEO-invalid record_type]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[source_split-test split-invalid source_split token]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_count-0-frame_count must be positive]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_count-2-frame interval/count mismatch]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_end-not-an-integer-invalid non-negative integer frame_end]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_start--1-invalid non-negative integer frame_start]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[height--1-invalid non-negative integer height]",
+    "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[width-0-width must be positive]",
+    "tests/test_vlm_state_risk_protocol.py::test_vlm_state_risk_protocol_is_development_only_and_preserves_old_hashes",
+    "tests/test_vlm_state_risk_protocol.py::test_vlm_state_risk_protocol_rejects_changed_legacy_file",
+    "tests/test_yolo_base_provenance.py::test_yolo11s_base_model_matches_provenance_and_is_not_best_weight"
+  ],
+  "new_failed_node_ids": [],
+  "resolved_failed_node_ids": [],
+  "equal_failed_node_sets": true,
+  "removed_exception_suffixes": [
+    {
+      "summary_line": 59,
+      "node_id": "tests/test_research_contract.py::test_task_id_column_is_mandatory",
+      "removed_suffix": " - Fi..."
+    }
+  ],
+  "junit_failed_cases": [
+    {
+      "classname": "tests.test_development_real_data_four_video_design",
+      "name": "test_four_video_design_preserves_development_only_unit_boundary",
+      "node_id": "tests/test_development_real_data_four_video_design.py::test_four_video_design_preserves_development_only_unit_boundary"
+    },
+    {
+      "classname": "tests.test_development_real_data_four_video_design",
+      "name": "test_four_video_design_rejects_pseudoreplication_claim",
+      "node_id": "tests/test_development_real_data_four_video_design.py::test_four_video_design_rejects_pseudoreplication_claim"
+    },
+    {
+      "classname": "tests.test_font_provenance",
+      "name": "test_registered_font_loads_and_matches_provenance",
+      "node_id": "tests/test_font_provenance.py::test_registered_font_loads_and_matches_provenance"
+    },
+    {
+      "classname": "tests.test_g3_aft_remote_audit",
+      "name": "test_remote_aft_build_is_bound_to_frozen_source_environment_and_image",
+      "node_id": "tests/test_g3_aft_remote_audit.py::test_remote_aft_build_is_bound_to_frozen_source_environment_and_image"
+    },
+    {
+      "classname": "tests.test_g3_aft_remote_audit",
+      "name": "test_remote_aft_smoke_recovers_truth_without_singular_random_effects",
+      "node_id": "tests/test_g3_aft_remote_audit.py::test_remote_aft_smoke_recovers_truth_without_singular_random_effects"
+    },
+    {
+      "classname": "tests.test_g3_full_producer_fixture",
+      "name": "test_full_producer_fixture_is_paired_raw_two_task_evidence_only",
+      "node_id": "tests/test_g3_full_producer_fixture.py::test_full_producer_fixture_is_paired_raw_two_task_evidence_only"
+    },
+    {
+      "classname": "tests.test_g3_full_producer_remote_audit",
+      "name": "test_remote_full_producer_development_replay_is_pinned_and_complete",
+      "node_id": "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_development_replay_is_pinned_and_complete"
+    },
+    {
+      "classname": "tests.test_g3_full_producer_remote_audit",
+      "name": "test_remote_full_producer_aft_is_complete[A]",
+      "node_id": "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_aft_is_complete[A]"
+    },
+    {
+      "classname": "tests.test_g3_full_producer_remote_audit",
+      "name": "test_remote_full_producer_aft_is_complete[B]",
+      "node_id": "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_aft_is_complete[B]"
+    },
+    {
+      "classname": "tests.test_g3_full_producer_remote_audit",
+      "name": "test_remote_full_producer_recovers_both_preregistered_branches",
+      "node_id": "tests/test_g3_full_producer_remote_audit.py::test_remote_full_producer_recovers_both_preregistered_branches"
+    },
+    {
+      "classname": "tests.test_g3_r_producer_assets",
+      "name": "test_r_producer_environment_is_exactly_locked",
+      "node_id": "tests/test_g3_r_producer_assets.py::test_r_producer_environment_is_exactly_locked"
+    },
+    {
+      "classname": "tests.test_g3_r_producer_assets",
+      "name": "test_r_producer_is_out_of_process_and_fail_closed",
+      "node_id": "tests/test_g3_r_producer_assets.py::test_r_producer_is_out_of_process_and_fail_closed"
+    },
+    {
+      "classname": "tests.test_g3_r_producer_assets",
+      "name": "test_real_candidate_uses_only_raw_rows_and_keeps_latency_fail_closed",
+      "node_id": "tests/test_g3_r_producer_assets.py::test_real_candidate_uses_only_raw_rows_and_keeps_latency_fail_closed"
+    },
+    {
+      "classname": "tests.test_g3_r_producer_runtime",
+      "name": "test_real_candidate_derives_both_branches_from_raw_opportunities",
+      "node_id": "tests/test_g3_r_producer_runtime.py::test_real_candidate_derives_both_branches_from_raw_opportunities"
+    },
+    {
+      "classname": "tests.test_g3_task_specific_remote_audit",
+      "name": "test_task_specific_complete_job_fallback_remote_replay_is_pinned_and_valid",
+      "node_id": "tests/test_g3_task_specific_remote_audit.py::test_task_specific_complete_job_fallback_remote_replay_is_pinned_and_valid"
+    },
+    {
+      "classname": "tests.test_industreal_complete_job_partition",
+      "name": "test_candidate_partition_is_deterministic_complete_job_fallback",
+      "node_id": "tests/test_industreal_complete_job_partition.py::test_candidate_partition_is_deterministic_complete_job_fallback"
+    },
+    {
+      "classname": "tests.test_industreal_complete_job_partition",
+      "name": "test_group_tokens_never_cross_candidate_partitions",
+      "node_id": "tests/test_industreal_complete_job_partition.py::test_group_tokens_never_cross_candidate_partitions"
+    },
+    {
+      "classname": "tests.test_industreal_complete_job_partition",
+      "name": "test_official_test_stays_sealed_and_val_supplies_calibration_and_g3",
+      "node_id": "tests/test_industreal_complete_job_partition.py::test_official_test_stays_sealed_and_val_supplies_calibration_and_g3"
+    },
+    {
+      "classname": "tests.test_industreal_complete_job_partition",
+      "name": "test_validator_rejects_group_leakage_and_authority_escalation",
+      "node_id": "tests/test_industreal_complete_job_partition.py::test_validator_rejects_group_leakage_and_authority_escalation"
+    },
+    {
+      "classname": "tests.test_industreal_complete_job_partition",
+      "name": "test_remote_registry_rebuild_matches_pinned_candidate",
+      "node_id": "tests/test_industreal_complete_job_partition.py::test_remote_registry_rebuild_matches_pinned_candidate"
+    },
+    {
+      "classname": "tests.test_industreal_error_extension",
+      "name": "test_extension_validates_official_asset",
+      "node_id": "tests/test_industreal_error_extension.py::test_extension_validates_official_asset"
+    },
+    {
+      "classname": "tests.test_industreal_error_extension",
+      "name": "test_extension_registry_never_infers_identity",
+      "node_id": "tests/test_industreal_error_extension.py::test_extension_registry_never_infers_identity"
+    },
+    {
+      "classname": "tests.test_industreal_error_extension",
+      "name": "test_extension_rejects_malformed_labels[<lambda>0]",
+      "node_id": "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>0]"
+    },
+    {
+      "classname": "tests.test_industreal_error_extension",
+      "name": "test_extension_rejects_malformed_labels[<lambda>1]",
+      "node_id": "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>1]"
+    },
+    {
+      "classname": "tests.test_industreal_error_extension",
+      "name": "test_extension_rejects_malformed_labels[<lambda>2]",
+      "node_id": "tests/test_industreal_error_extension.py::test_extension_rejects_malformed_labels[<lambda>2]"
+    },
+    {
+      "classname": "tests.test_industreal_error_extension",
+      "name": "test_extension_rejects_cross_split_recording",
+      "node_id": "tests/test_industreal_error_extension.py::test_extension_rejects_cross_split_recording"
+    },
+    {
+      "classname": "tests.test_industreal_error_extension",
+      "name": "test_extension_rejects_bad_archive_digest",
+      "node_id": "tests/test_industreal_error_extension.py::test_extension_rejects_bad_archive_digest"
+    },
+    {
+      "classname": "tests.test_industreal_partition_revision",
+      "name": "test_revision_is_non_mutating_and_excludes_sealed_test",
+      "node_id": "tests/test_industreal_partition_revision.py::test_revision_is_non_mutating_and_excludes_sealed_test"
+    },
+    {
+      "classname": "tests.test_industreal_partition_revision",
+      "name": "test_revision_validator_rejects_formal_escalation",
+      "node_id": "tests/test_industreal_partition_revision.py::test_revision_validator_rejects_formal_escalation"
+    },
+    {
+      "classname": "tests.test_industreal_partition_revision",
+      "name": "test_remote_revision_rebuild_matches_local_source_hashes",
+      "node_id": "tests/test_industreal_partition_revision.py::test_remote_revision_rebuild_matches_local_source_hashes"
+    },
+    {
+      "classname": "tests.test_industreal_registry",
+      "name": "test_industreal_official_files_inventory_is_complete_and_blocked",
+      "node_id": "tests/test_industreal_registry.py::test_industreal_official_files_inventory_is_complete_and_blocked"
+    },
+    {
+      "classname": "tests.test_industreal_registry",
+      "name": "test_industreal_registry_reflects_verified_rgb_source_but_blocks_identity",
+      "node_id": "tests/test_industreal_registry.py::test_industreal_registry_reflects_verified_rgb_source_but_blocks_identity"
+    },
+    {
+      "classname": "tests.test_industreal_registry",
+      "name": "test_industreal_json_artifacts_are_utf8_lf_and_parseable",
+      "node_id": "tests/test_industreal_registry.py::test_industreal_json_artifacts_are_utf8_lf_and_parseable"
+    },
+    {
+      "classname": "tests.test_industreal_video_durability",
+      "name": "test_official_84_86_warning_marks_two_archive_only_splits_unknown",
+      "node_id": "tests/test_industreal_video_durability.py::test_official_84_86_warning_marks_two_archive_only_splits_unknown"
+    },
+    {
+      "classname": "tests.test_meccano",
+      "name": "test_temporal_rows_are_deduplicated_and_joined_by_interval_not_ids",
+      "node_id": "tests/test_meccano.py::test_temporal_rows_are_deduplicated_and_joined_by_interval_not_ids"
+    },
+    {
+      "classname": "tests.test_meccano",
+      "name": "test_vgg_hand_fields_are_parsed_and_extra_classes_are_retained",
+      "node_id": "tests/test_meccano.py::test_vgg_hand_fields_are_parsed_and_extra_classes_are_retained"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_official_registration_has_exactly_twenty_canonical_roots",
+      "node_id": "tests/test_meccano_official_registration.py::test_official_registration_has_exactly_twenty_canonical_roots"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_0009_is_single_frozen_tombstone_row",
+      "node_id": "tests/test_meccano_official_registration.py::test_0009_is_single_frozen_tombstone_row"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_anonymous_identity_admits_all_non_tombstoned_roots",
+      "node_id": "tests/test_meccano_official_registration.py::test_anonymous_identity_admits_all_non_tombstoned_roots"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_manifest_join_and_split_unit_are_root_locked",
+      "node_id": "tests/test_meccano_official_registration.py::test_manifest_join_and_split_unit_are_root_locked"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_current_audit_matches_versioned_manifest",
+      "node_id": "tests/test_meccano_official_registration.py::test_current_audit_matches_versioned_manifest"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_anonymous_identity_provenance_is_hash_bound_and_narrowly_scoped",
+      "node_id": "tests/test_meccano_official_registration.py::test_anonymous_identity_provenance_is_hash_bound_and_narrowly_scoped"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_registration_preserves_non_meccano_and_is_idempotent",
+      "node_id": "tests/test_meccano_official_registration.py::test_registration_preserves_non_meccano_and_is_idempotent"
+    },
+    {
+      "classname": "tests.test_meccano_official_registration",
+      "name": "test_registration_transaction_rolls_back_on_second_and_third_replace",
+      "node_id": "tests/test_meccano_official_registration.py::test_registration_transaction_rolls_back_on_second_and_third_replace"
+    },
+    {
+      "classname": "tests.test_protocol_amendment",
+      "name": "test_amendment_is_draft_only_and_binds_all_sources",
+      "node_id": "tests/test_protocol_amendment.py::test_amendment_is_draft_only_and_binds_all_sources"
+    },
+    {
+      "classname": "tests.test_protocol_amendment",
+      "name": "test_amendment_cannot_be_relabelled_as_ratified_or_formal",
+      "node_id": "tests/test_protocol_amendment.py::test_amendment_cannot_be_relabelled_as_ratified_or_formal"
+    },
+    {
+      "classname": "tests.test_protocol_amendment",
+      "name": "test_corresponding_author_ratification_is_versioned_and_still_not_g3_authority",
+      "node_id": "tests/test_protocol_amendment.py::test_corresponding_author_ratification_is_versioned_and_still_not_g3_authority"
+    },
+    {
+      "classname": "tests.test_protocol_amendment",
+      "name": "test_ratified_artifact_cannot_enable_formal_or_operator_generalization",
+      "node_id": "tests/test_protocol_amendment.py::test_ratified_artifact_cannot_enable_formal_or_operator_generalization"
+    },
+    {
+      "classname": "tests.test_ratified_fallback_preflight_audit",
+      "name": "test_ratified_fallback_preflight_audit_is_non_authorizing_and_hash_bound",
+      "node_id": "tests/test_ratified_fallback_preflight_audit.py::test_ratified_fallback_preflight_audit_is_non_authorizing_and_hash_bound"
+    },
+    {
+      "classname": "tests.test_real_meccano_candidate_binding",
+      "name": "test_real_candidate_is_hash_bound_to_full_source_identity_records",
+      "node_id": "tests/test_real_meccano_candidate_binding.py::test_real_candidate_is_hash_bound_to_full_source_identity_records"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_current_research_contract_passes",
+      "node_id": "tests/test_research_contract.py::test_current_research_contract_passes"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_meccano_tombstone_cannot_be_reassigned",
+      "node_id": "tests/test_research_contract.py::test_meccano_tombstone_cannot_be_reassigned"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_derivative_must_inherit_root_tombstone",
+      "node_id": "tests/test_research_contract.py::test_derivative_must_inherit_root_tombstone"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_unknown_operator_blocks_formal_assignment",
+      "node_id": "tests/test_research_contract.py::test_unknown_operator_blocks_formal_assignment"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_empty_deviation_whitelist_cannot_be_reportable",
+      "node_id": "tests/test_research_contract.py::test_empty_deviation_whitelist_cannot_be_reportable"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_exact_duplicate_bytes_cannot_escape_tombstone",
+      "node_id": "tests/test_research_contract.py::test_exact_duplicate_bytes_cannot_escape_tombstone"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_unknown_operator_blocks_calibration_assignment",
+      "node_id": "tests/test_research_contract.py::test_unknown_operator_blocks_calibration_assignment"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_task_id_column_is_mandatory",
+      "node_id": "tests/test_research_contract.py::test_task_id_column_is_mandatory"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_meccano_tombstone_survives_claim_and_ledger_deletion",
+      "node_id": "tests/test_research_contract.py::test_meccano_tombstone_survives_claim_and_ledger_deletion"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_branch_alpha_must_be_positive_and_finite",
+      "node_id": "tests/test_research_contract.py::test_branch_alpha_must_be_positive_and_finite"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_every_claim_listed_supporting_metric_is_in_dictionary",
+      "node_id": "tests/test_research_contract.py::test_every_claim_listed_supporting_metric_is_in_dictionary"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_synthetic_tombstone_survives_claim_and_formal_reassignment",
+      "node_id": "tests/test_research_contract.py::test_synthetic_tombstone_survives_claim_and_formal_reassignment"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_canonical_identity_normalization_blocks_split_alias",
+      "node_id": "tests/test_research_contract.py::test_canonical_identity_normalization_blocks_split_alias"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_formal_derivative_cannot_be_an_independent_unit",
+      "node_id": "tests/test_research_contract.py::test_formal_derivative_cannot_be_an_independent_unit"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_canonical_root_has_one_operator_job_group_and_split",
+      "node_id": "tests/test_research_contract.py::test_canonical_root_has_one_operator_job_group_and_split"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_deviation_matrix_semantics_survive_rehash[missing_category-deviation categories must be exactly]",
+      "node_id": "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[missing_category-deviation categories must be exactly]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_deviation_matrix_semantics_survive_rehash[missing_dataset-deviation category wrong_tool must contain exactly]",
+      "node_id": "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[missing_dataset-deviation category wrong_tool must contain exactly]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_deviation_matrix_semantics_survive_rehash[invalid_classification-deviation category wrong_tool has invalid Assembly101 classification]",
+      "node_id": "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[invalid_classification-deviation category wrong_tool has invalid Assembly101 classification]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_deviation_matrix_semantics_survive_rehash[blank_decision-deviation category wrong_tool must remain exclusionary]",
+      "node_id": "tests/test_research_contract.py::test_deviation_matrix_semantics_survive_rehash[blank_decision-deviation category wrong_tool must remain exclusionary]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_p0_deviation_whitelist_cannot_be_activated_by_joint_edit",
+      "node_id": "tests/test_research_contract.py::test_p0_deviation_whitelist_cannot_be_activated_by_joint_edit"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_operating_point_contract_is_machine_frozen[pilot_role-operating-point schedule changed for p5_pilot]",
+      "node_id": "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[pilot_role-operating-point schedule changed for p5_pilot]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_operating_point_contract_is_machine_frozen[branch_b_selector-branch B selector must match achieved FSAR]",
+      "node_id": "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[branch_b_selector-branch B selector must match achieved FSAR]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_operating_point_contract_is_machine_frozen[common_support-common-support intersection rule changed]",
+      "node_id": "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[common_support-common-support intersection rule changed]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_operating_point_contract_is_machine_frozen[task_direction-task direction rule changed]",
+      "node_id": "tests/test_research_contract.py::test_operating_point_contract_is_machine_frozen[task_direction-task direction rule changed]"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_analysis_plan_cannot_move_threshold_freeze_after_g3",
+      "node_id": "tests/test_research_contract.py::test_analysis_plan_cannot_move_threshold_freeze_after_g3"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_analysis_plan_cannot_drop_common_support_failure_rule",
+      "node_id": "tests/test_research_contract.py::test_analysis_plan_cannot_drop_common_support_failure_rule"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_claim_freeze_metadata_is_anchored",
+      "node_id": "tests/test_research_contract.py::test_claim_freeze_metadata_is_anchored"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_unknown_task_blocks_restricted_split",
+      "node_id": "tests/test_research_contract.py::test_unknown_task_blocks_restricted_split"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_nonformal_row_cannot_allow_formal_use",
+      "node_id": "tests/test_research_contract.py::test_nonformal_row_cannot_allow_formal_use"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_threshold_manifest_is_keyed_by_branch_method_and_task",
+      "node_id": "tests/test_research_contract.py::test_threshold_manifest_is_keyed_by_branch_method_and_task"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_analysis_revision_metadata_records_g002_remediation",
+      "node_id": "tests/test_research_contract.py::test_analysis_revision_metadata_records_g002_remediation"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_meccano_0009_is_mainline_admissible_but_not_formal_evidence",
+      "node_id": "tests/test_research_contract.py::test_meccano_0009_is_mainline_admissible_but_not_formal_evidence"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_claim_freeze_canonical_text_is_immutable",
+      "node_id": "tests/test_research_contract.py::test_claim_freeze_canonical_text_is_immutable"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_analysis_plan_canonical_text_is_immutable",
+      "node_id": "tests/test_research_contract.py::test_analysis_plan_canonical_text_is_immutable"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_deviation_audit_canonical_text_is_immutable_after_joint_rehash",
+      "node_id": "tests/test_research_contract.py::test_deviation_audit_canonical_text_is_immutable_after_joint_rehash"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_initial_derived_clip_cannot_be_deleted_by_joint_count_edit",
+      "node_id": "tests/test_research_contract.py::test_initial_derived_clip_cannot_be_deleted_by_joint_count_edit"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_downstream_gate_and_phase_must_match_current_evidence",
+      "node_id": "tests/test_research_contract.py::test_downstream_gate_and_phase_must_match_current_evidence"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_checklist_rejects_stale_test_and_gate_evidence",
+      "node_id": "tests/test_research_contract.py::test_checklist_rejects_stale_test_and_gate_evidence"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_duplicate_metric_id_is_rejected",
+      "node_id": "tests/test_research_contract.py::test_duplicate_metric_id_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_branch_alpha_allocation_is_exactly_half_family_alpha",
+      "node_id": "tests/test_research_contract.py::test_branch_alpha_allocation_is_exactly_half_family_alpha"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_derived_asset_must_inherit_task_and_source",
+      "node_id": "tests/test_research_contract.py::test_derived_asset_must_inherit_task_and_source"
+    },
+    {
+      "classname": "tests.test_research_contract",
+      "name": "test_ledger_schema_version_is_frozen",
+      "node_id": "tests/test_research_contract.py::test_ledger_schema_version_is_frozen"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path0-replacement0-checklist frozen claims differ from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path0-replacement0-checklist frozen claims differ from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path1-frame_accuracy-checklist primary endpoint differs from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path1-frame_accuracy-checklist primary endpoint differs from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path2-frame-checklist independent unit differs from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path2-frame-checklist independent unit differs from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path3-True-checklist formal start rules differ from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path3-True-checklist formal start rules differ from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path4-True-checklist formal start rules differ from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path4-True-checklist formal start rules differ from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path5-True-checklist formal start rules differ from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path5-True-checklist formal start rules differ from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path6-True-checklist formal start rules differ from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path6-True-checklist formal start rules differ from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path7-True-checklist formal start rules differ from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path7-True-checklist formal start rules differ from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_checklist_freeze",
+      "name": "test_checklist_p0_safety_contract_is_frozen[field_path8-True-checklist formal start rules differ from the P0 contract]",
+      "node_id": "tests/test_research_contract_checklist_freeze.py::test_checklist_p0_safety_contract_is_frozen[field_path8-True-checklist formal start rules differ from the P0 contract]"
+    },
+    {
+      "classname": "tests.test_research_contract_duplicate_boundaries",
+      "name": "test_duplicate_ledger_header_is_rejected",
+      "node_id": "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_ledger_header_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract_duplicate_boundaries",
+      "name": "test_extra_trailing_ledger_cell_is_rejected",
+      "node_id": "tests/test_research_contract_duplicate_boundaries.py::test_extra_trailing_ledger_cell_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract_duplicate_boundaries",
+      "name": "test_missing_ledger_cell_is_rejected",
+      "node_id": "tests/test_research_contract_duplicate_boundaries.py::test_missing_ledger_cell_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract_duplicate_boundaries",
+      "name": "test_duplicate_top_level_checklist_key_is_rejected",
+      "node_id": "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_top_level_checklist_key_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract_duplicate_boundaries",
+      "name": "test_duplicate_nested_checklist_key_is_rejected",
+      "node_id": "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_nested_checklist_key_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract_duplicate_boundaries",
+      "name": "test_duplicate_checklist_gate_id_is_rejected",
+      "node_id": "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_checklist_gate_id_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract_duplicate_boundaries",
+      "name": "test_duplicate_checklist_phase_id_is_rejected",
+      "node_id": "tests/test_research_contract_duplicate_boundaries.py::test_duplicate_checklist_phase_id_is_rejected"
+    },
+    {
+      "classname": "tests.test_research_contract_failure_boundaries",
+      "name": "test_missing_metric_section_fails_explicitly",
+      "node_id": "tests/test_research_contract_failure_boundaries.py::test_missing_metric_section_fails_explicitly"
+    },
+    {
+      "classname": "tests.test_research_contract_failure_boundaries",
+      "name": "test_checklist_cannot_leave_g0_pending",
+      "node_id": "tests/test_research_contract_failure_boundaries.py::test_checklist_cannot_leave_g0_pending"
+    },
+    {
+      "classname": "tests.test_research_contract_initial_ledger_freeze",
+      "name": "test_initial_meccano_identity_and_view_history_are_frozen[0-manually_viewed-NO-MECCANO-0009]",
+      "node_id": "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[0-manually_viewed-NO-MECCANO-0009]"
+    },
+    {
+      "classname": "tests.test_research_contract_initial_ledger_freeze",
+      "name": "test_initial_meccano_identity_and_view_history_are_frozen[1-manually_viewed-NO-MECCANO-0009-CLIP-150-500]",
+      "node_id": "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[1-manually_viewed-NO-MECCANO-0009-CLIP-150-500]"
+    },
+    {
+      "classname": "tests.test_research_contract_initial_ledger_freeze",
+      "name": "test_initial_meccano_identity_and_view_history_are_frozen[0-canonical_group_id-MECCANO::ERASED-MECCANO-0009]",
+      "node_id": "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[0-canonical_group_id-MECCANO::ERASED-MECCANO-0009]"
+    },
+    {
+      "classname": "tests.test_research_contract_initial_ledger_freeze",
+      "name": "test_initial_meccano_identity_and_view_history_are_frozen[1-canonical_group_id-MECCANO::ERASED-MECCANO-0009-CLIP-150-500]",
+      "node_id": "tests/test_research_contract_initial_ledger_freeze.py::test_initial_meccano_identity_and_view_history_are_frozen[1-canonical_group_id-MECCANO::ERASED-MECCANO-0009-CLIP-150-500]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_extra_columns",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_extra_columns"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_video_shape[frame_start--1-invalid non-negative integer frame_start]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_start--1-invalid non-negative integer frame_start]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_video_shape[frame_end-not-an-integer-invalid non-negative integer frame_end]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_end-not-an-integer-invalid non-negative integer frame_end]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_video_shape[frame_count-0-frame_count must be positive]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_count-0-frame_count must be positive]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_video_shape[width-0-width must be positive]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[width-0-width must be positive]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_video_shape[height--1-invalid non-negative integer height]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[height--1-invalid non-negative integer height]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_video_shape[frame_count-2-frame interval/count mismatch]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_video_shape[frame_count-2-frame interval/count mismatch]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_hash_verification_date",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_hash_verification_date"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_machine_vocabulary[record_type-VIDEO-invalid record_type]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[record_type-VIDEO-invalid record_type]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_machine_vocabulary[source_split-test split-invalid source_split token]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[source_split-test split-invalid source_split token]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_machine_vocabulary[annotation_status-lowercase status-invalid annotation_status token]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[annotation_status-lowercase status-invalid annotation_status token]"
+    },
+    {
+      "classname": "tests.test_research_contract_ledger_schema",
+      "name": "test_ledger_rejects_invalid_machine_vocabulary[contamination_status-lowercase status-invalid contamination_status token]",
+      "node_id": "tests/test_research_contract_ledger_schema.py::test_ledger_rejects_invalid_machine_vocabulary[contamination_status-lowercase status-invalid contamination_status token]"
+    },
+    {
+      "classname": "tests.test_vlm_state_risk_protocol",
+      "name": "test_vlm_state_risk_protocol_is_development_only_and_preserves_old_hashes",
+      "node_id": "tests/test_vlm_state_risk_protocol.py::test_vlm_state_risk_protocol_is_development_only_and_preserves_old_hashes"
+    },
+    {
+      "classname": "tests.test_vlm_state_risk_protocol",
+      "name": "test_vlm_state_risk_protocol_rejects_changed_legacy_file",
+      "node_id": "tests/test_vlm_state_risk_protocol.py::test_vlm_state_risk_protocol_rejects_changed_legacy_file"
+    },
+    {
+      "classname": "tests.test_yolo_base_provenance",
+      "name": "test_yolo11s_base_model_matches_provenance_and_is_not_best_weight",
+      "node_id": "tests/test_yolo_base_provenance.py::test_yolo11s_base_model_matches_provenance_and_is_not_best_weight"
+    }
+  ],
+  "junit_failed_nodes_equal_log_nodes": true
+}

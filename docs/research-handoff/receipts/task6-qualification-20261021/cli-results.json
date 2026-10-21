@@ -1,0 +1,209 @@
+[
+  {
+    "case": "template",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/StepTrace/experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py",
+      "audit",
+      "--packet",
+      "/workspace/StepTrace/experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/qualification-packet.template.json"
+    ],
+    "exit_code": 2,
+    "report": {
+      "execution_ready": false,
+      "backend_qualification": "not_independently_verified",
+      "rights_verification": "not_independently_verified",
+      "evidence_files_verified": false,
+      "network_calls": 0,
+      "generation_calls": 0,
+      "metadata_complete": false,
+      "status": "metadata_incomplete",
+      "issues": [
+        "receiver.kind must be self_managed or cloud_host for this loopback backend",
+        "receiver.provider_id requires a concrete private record",
+        "receiver.host_id requires a concrete private record",
+        "receiver.controller requires a concrete private record",
+        "receiver.terms_evidence_reference requires a concrete private record",
+        "receiver.retention_policy requires a concrete private record",
+        "receiver.training_use_policy requires a concrete private record",
+        "receiver.deletion_policy requires a concrete private record",
+        "rights.media_scope_evidence_reference is required; model licensing is insufficient",
+        "rights.derivatives_scope_evidence_reference is required; model licensing is insufficient",
+        "rights.attestation.authorization_status must equal the approved value",
+        "rights.attestation.provider_id must equal the approved value",
+        "rights.attestation.provider_id must identify the selected receiving environment",
+        "rights.attestation.synthetic_template_only must be false for a real-data authorization",
+        "rights.attestation.rights_basis is required",
+        "rights.attestation.license_id is required",
+        "rights.attestation.evidence_reference is required",
+        "rights.attestation.expires_utc is required",
+        "rights.attestation.inference_authorized must be true",
+        "rights.attestation.transfer_authorized must be true",
+        "rights.attestation.evidence_file must name private rights evidence",
+        "rights.attestation.evidence_bytes must be a positive integer",
+        "rights.attestation.evidence_sha256 must be a lowercase SHA-256 digest",
+        "stages.build.state is not completed; dispatch/not_run is not execution",
+        "stages.build.exit_code must be integer zero",
+        "stages.build.evidence_reference is missing",
+        "stages.build.evidence_sha256 is missing or malformed",
+        "stages.build.binary_sha256 must bind the same build across all stages",
+        "stages.build.provider_id must bind the declared receiver",
+        "stages.build.host_id must bind the declared receiver",
+        "stages.runtime.state is not completed; dispatch/not_run is not execution",
+        "stages.runtime.exit_code must be integer zero",
+        "stages.runtime.evidence_reference is missing",
+        "stages.runtime.evidence_sha256 is missing or malformed",
+        "stages.runtime.binary_sha256 must bind the same build across all stages",
+        "stages.runtime.provider_id must bind the declared receiver",
+        "stages.runtime.host_id must bind the declared receiver",
+        "stages.gpu_no_generation.state is not completed; dispatch/not_run is not execution",
+        "stages.gpu_no_generation.exit_code must be integer zero",
+        "stages.gpu_no_generation.evidence_reference is missing",
+        "stages.gpu_no_generation.evidence_sha256 is missing or malformed",
+        "stages.gpu_no_generation.binary_sha256 must bind the same build across all stages",
+        "stages.gpu_no_generation.provider_id must bind the declared receiver",
+        "stages.gpu_no_generation.host_id must bind the declared receiver",
+        "stages.synthetic_schema_generation.state is not completed; dispatch/not_run is not execution",
+        "stages.synthetic_schema_generation.exit_code must be integer zero",
+        "stages.synthetic_schema_generation.evidence_reference is missing",
+        "stages.synthetic_schema_generation.evidence_sha256 is missing or malformed",
+        "stages.synthetic_schema_generation.binary_sha256 must bind the same build across all stages",
+        "stages.synthetic_schema_generation.provider_id must bind the declared receiver",
+        "stages.synthetic_schema_generation.host_id must bind the declared receiver",
+        "stages.synthetic_schema_generation.input_kind does not match the bounded probe protocol",
+        "stages.synthetic_schema_generation.generation_calls does not match the bounded probe protocol",
+        "stages.synthetic_schema_generation.retries does not match the bounded probe protocol",
+        "stages.synthetic_schema_generation.private_media_used does not match the bounded probe protocol",
+        "stages.synthetic_schema_generation.schema_arms does not match the bounded probe protocol",
+        "stages.synthetic_schema_generation.full_responses_schema_validated does not match the bounded probe protocol",
+        "stages.synthetic_schema_generation.server_stopped does not match the bounded probe protocol"
+      ]
+    }
+  },
+  {
+    "case": "missing",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/StepTrace/experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py",
+      "audit",
+      "--packet",
+      "/tmp/steptrace-qualification-cli-fixtures/missing.json"
+    ],
+    "exit_code": 2,
+    "report": {
+      "execution_ready": false,
+      "backend_qualification": "not_independently_verified",
+      "rights_verification": "not_independently_verified",
+      "evidence_files_verified": false,
+      "network_calls": 0,
+      "generation_calls": 0,
+      "status": "invalid_input",
+      "issues": [
+        "FileNotFoundError"
+      ]
+    }
+  },
+  {
+    "case": "duplicate",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/StepTrace/experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py",
+      "audit",
+      "--packet",
+      "/tmp/steptrace-qualification-cli-fixtures/duplicate.json"
+    ],
+    "exit_code": 2,
+    "report": {
+      "execution_ready": false,
+      "backend_qualification": "not_independently_verified",
+      "rights_verification": "not_independently_verified",
+      "evidence_files_verified": false,
+      "network_calls": 0,
+      "generation_calls": 0,
+      "status": "invalid_input",
+      "issues": [
+        "ValueError"
+      ]
+    }
+  },
+  {
+    "case": "F-valid",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/StepTrace/experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py",
+      "schema-check",
+      "--arm",
+      "F",
+      "--content",
+      "/tmp/steptrace-qualification-cli-fixtures/F.json"
+    ],
+    "exit_code": 0,
+    "report": {
+      "execution_ready": false,
+      "backend_qualification": "not_independently_verified",
+      "rights_verification": "not_independently_verified",
+      "evidence_files_verified": false,
+      "network_calls": 0,
+      "generation_calls": 0,
+      "schema_valid": true,
+      "issues": [],
+      "classification": "offline JSON schema check; not backend generation or visual truth"
+    }
+  },
+  {
+    "case": "HF-valid",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/StepTrace/experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py",
+      "schema-check",
+      "--arm",
+      "HF",
+      "--content",
+      "/tmp/steptrace-qualification-cli-fixtures/HF.json"
+    ],
+    "exit_code": 0,
+    "report": {
+      "execution_ready": false,
+      "backend_qualification": "not_independently_verified",
+      "rights_verification": "not_independently_verified",
+      "evidence_files_verified": false,
+      "network_calls": 0,
+      "generation_calls": 0,
+      "schema_valid": true,
+      "issues": [],
+      "classification": "offline JSON schema check; not backend generation or visual truth"
+    }
+  },
+  {
+    "case": "authority-invalid",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/StepTrace/experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py",
+      "schema-check",
+      "--arm",
+      "F",
+      "--content",
+      "/tmp/steptrace-qualification-cli-fixtures/invalid.json"
+    ],
+    "exit_code": 2,
+    "report": {
+      "execution_ready": false,
+      "backend_qualification": "not_independently_verified",
+      "rights_verification": "not_independently_verified",
+      "evidence_files_verified": false,
+      "network_calls": 0,
+      "generation_calls": 0,
+      "schema_valid": false,
+      "issues": [
+        "content/SOP_completion: schema keyword const failed"
+      ],
+      "classification": "offline JSON schema check; not backend generation or visual truth"
+    }
+  }
+]

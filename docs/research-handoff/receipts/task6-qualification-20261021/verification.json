@@ -1,0 +1,152 @@
+{
+  "schema_version": "steptrace.task6.offline-qualification-verification.v1",
+  "base_commit": "8b9650d6c33d3e9062ca54a90a464270e67df803",
+  "implementation_commit": "9a0ec082cffac5254d30a3e1d041c2e3d9eb8ff2",
+  "status": "software_increment_verified_execution_still_blocked",
+  "classification": "metadata checker and synthetic JSON schema software tests; not formal research, model outputs or human truth",
+  "commands": [
+    {
+      "command": "python -B -m unittest discover -s experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests -p test_qualification.py -v",
+      "exit_code": 5,
+      "terminal_state": "Initial RED: missing module assertion in setUpClass; 0 test methods ran, 1 setup error; not counted as 12 executed tests",
+      "log": {
+        "filename": "steptrace-qualification-red.log",
+        "bytes": 733,
+        "sha256": "4b29304a71bb7af5a5bfe4b43406b8b0c63415f890e62c5975f04dbce2beab47"
+      }
+    },
+    {
+      "command": "python -B -m unittest discover -s experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests -p test_qualification.py -v",
+      "exit_code": 0,
+      "terminal_state": "Initial tool implementation: 12 tests OK",
+      "log": {
+        "filename": "steptrace-qualification-green.log",
+        "bytes": 1919,
+        "sha256": "5f4ad361939d371f58966f4c398e6bd2b67c8613e29f8f20c97d65c5c21f262e"
+      }
+    },
+    {
+      "command": "python -B -m unittest discover -s experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests -p test_qualification.py -v",
+      "exit_code": 1,
+      "terminal_state": "Probe protocol test-first RED: 13 tests ran, 10 subtest assertion failures before probe constraints were implemented",
+      "log": {
+        "filename": "steptrace-qualification-probe-red.log",
+        "bytes": 11584,
+        "sha256": "ef8384e5f832a410eb67e91a510b78fe8a567dc088a3a9a827124ef1a18f7c0d"
+      }
+    },
+    {
+      "command": "python -B -m unittest discover -s experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests -p test_qualification.py -v",
+      "exit_code": 0,
+      "terminal_state": "Probe protocol GREEN: 13 tests OK",
+      "log": {
+        "filename": "steptrace-qualification-probe-green.log",
+        "bytes": 2104,
+        "sha256": "9cc5871925c4a9d2bfb6d64e819e240ab3abe5277f91f2cd7fca345e5e764122"
+      }
+    },
+    {
+      "command": "/tmp/steptrace-check-venv/bin/python -B -m pytest -q experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests experiments/roboassem-task6-pilot-dev-20261011/offline_runner/tests experiments/roboassem-task6-pilot-dev-20261011/mac_runner_readonly_audit_20261012/tests --junitxml=/tmp/steptrace-qualification-related-final.xml",
+      "exit_code": 0,
+      "terminal_state": "113 passed, 107 subtests passed",
+      "log": {
+        "filename": "steptrace-qualification-related-final.log",
+        "bytes": 254,
+        "sha256": "33c85fcf51893c147a77e9a701ee5f02c871a31116b7c48f0802dea04e672d46"
+      },
+      "junit": {
+        "filename": "steptrace-qualification-related-final.xml",
+        "bytes": 26636,
+        "sha256": "1afe11680b01b6eafa2c0d4a575ddd789eda5caa80f8d53abdeca994cd499393"
+      }
+    },
+    {
+      "command": "/tmp/steptrace-check-venv/bin/python -B -m pytest -q --junitxml=/tmp/steptrace-qualification-root.xml",
+      "exit_code": 1,
+      "terminal_state": "129 failed, 880 passed, 3 skipped; same normalized failed nodes as preserved baseline",
+      "log": {
+        "filename": "steptrace-qualification-root.log",
+        "bytes": 263067,
+        "sha256": "a9e0e8688bd19dab1e10b34f32934dede7d3878387e512fcd8548e8ea22c2ef8"
+      }
+    },
+    {
+      "command": "/tmp/steptrace-check-venv/bin/ruff check experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests/test_qualification.py",
+      "exit_code": 0,
+      "terminal_state": "All checks passed for new Python files; prior baseline lint issues remain documented"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "terminal_state": "No whitespace errors"
+    },
+    {
+      "command": "/tmp/steptrace-check-venv/bin/python -B -m pytest -q experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests experiments/roboassem-task6-pilot-dev-20261011/offline_runner/tests experiments/roboassem-task6-pilot-dev-20261011/mac_runner_readonly_audit_20261012/tests --junitxml=/tmp/steptrace-qualification-related.xml",
+      "exit_code": 0,
+      "terminal_state": "Preliminary run before later probe constraints: 112 passed, 97 subtests passed; superseded by final 113-test run",
+      "log": {
+        "filename": "steptrace-qualification-related.log",
+        "bytes": 167,
+        "sha256": "9186601e6baadbee0f37cfd38dc28144a112222120053c1d3b0bade94fdb539c"
+      }
+    },
+    {
+      "command": "python docs/research-handoff/receipts/task6-qualification-20261021/verify_evidence.py",
+      "exit_code": 0,
+      "terminal_state": "All checks passed; both arrays 129 nodes; new/resolved empty; JUnit identities and original source excerpt match"
+    }
+  ],
+  "cli_checks": "cli-results.json contains all six exact commands, exit codes and synthetic-only reports",
+  "independent_review": {
+    "reviewer": "Separate internal read-only reviewer; no external contact",
+    "terminal_state": "Complete, no blocking findings",
+    "commands": [
+      "PYTHONDONTWRITEBYTECODE=1 /tmp/steptrace-check-venv/bin/python -B -m pytest -q -p no:cacheprovider experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests",
+      "/tmp/steptrace-check-venv/bin/ruff check --no-cache experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tools/task6_qualification.py experiments/roboassem-task6-pilot-dev-20261011/self_hosted_execution_20261012/tests/test_qualification.py",
+      "git diff --check"
+    ],
+    "results": [
+      "65 passed, 102 subtests passed",
+      "lint pass",
+      "diff check pass"
+    ],
+    "additional_checks": "Frozen schemas have no $ref/$dynamicRef/$recursiveRef; socket creation prohibited while synthetic audit and F/HF schema validation still passed. CLI template/duplicate key/bad JSON/null content/missing file all exit 2; full synthetic metadata and valid F content exit 0.",
+    "limitations": "Does not verify evidence authenticity, real rights/host/backend. Future 2048 token / 60 second budget is protocol only, not enforced against a live backend by this read-only checker."
+  },
+  "permission_or_material_blockers": [
+    {
+      "target": "rights.media_scope_evidence_reference and rights.derivatives_scope_evidence_reference plus valid rights attestation",
+      "action": "Approve media use/transfer for exact existing Task6 files",
+      "reason": "No new applicable media/derivative-rights evidence supplied",
+      "state": "pending evidence; not denied"
+    },
+    {
+      "target": "receiver.kind/provider_id/host_id/controller/terms_evidence_reference/retention_policy/training_use_policy/deletion_policy",
+      "action": "Bind execution to actual receiving environment",
+      "reason": "No actual receiver/control/data policy record supplied",
+      "state": "pending facts/decision; not denied"
+    },
+    {
+      "target": "pinned candidate backend qualification stages",
+      "action": "Establish fixed build/runtime/GPU/schema-generation qualification",
+      "reason": "No real artifacts or authorized host/real model run; approval of software work does not supply these facts",
+      "state": "not executed; pending authorization and evidence; not denied"
+    }
+  ],
+  "not_executed": [
+    "private media read/upload",
+    "model/weight download",
+    "CUDA build",
+    "GPU preflight",
+    "real model generation including synthetic prompt generation",
+    "paid resource provisioning",
+    "credentials configuration",
+    "formal experiment",
+    "AI prelabeling",
+    "human GT",
+    "main merge",
+    "deployment"
+  ],
+  "preserved_history": "Original 129-failure receipt and two-array comparison at 8b9650d remain unchanged",
+  "dependency_note": "Reused existing /tmp/steptrace-check-venv and base jsonschema; no dependencies, weights or media downloaded in this follow-up."
+}
