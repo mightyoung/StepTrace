@@ -1,0 +1,144 @@
+{
+  "schema_version": "steptrace.task6.qualification-packet.v1",
+  "experiment_id": "roboassem-task6-dev-20261011-v0.1",
+  "manifest_sha256": "cc4be2b00dd7a1c259e678cb223170c1b79a1d0e13a7ef0c5987d9c57689c45f",
+  "input_contract_sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+  "receiver": {
+    "kind": null,
+    "provider_id": null,
+    "host_id": null,
+    "controller": null,
+    "terms_evidence_reference": null,
+    "retention_policy": null,
+    "training_use_policy": null,
+    "deletion_policy": null
+  },
+  "rights": {
+    "attestation": {
+      "schema_version": "steptrace.data-rights-attestation.v1",
+      "experiment_id": "roboassem-task6-dev-20261011-v0.1",
+      "input_contract_sha256": "2bb0306715bb33a40ff829c0ef2c1f2d786fe9f1d6b8c2ff4788ed7993a97ce8",
+      "authorization_status": "not_authorized",
+      "rights_basis": "",
+      "license_id": "",
+      "evidence_reference": "",
+      "evidence_file": "",
+      "inference_authorized": false,
+      "transfer_authorized": false,
+      "provider_id": "UNSET",
+      "expires_utc": "",
+      "public_redistribution_authorized": false,
+      "synthetic_template_only": true,
+      "evidence_bytes": null,
+      "evidence_sha256": ""
+    },
+    "media_scope_evidence_reference": null,
+    "derivatives_scope_evidence_reference": null
+  },
+  "backend": {
+    "commit": "8345f333951c661d166b00e6f9362e553768f292",
+    "model_revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+    "model_files": [
+      {
+        "filename": "Qwen3.5-9B-Q4_K_M.gguf",
+        "bytes": 5680522464,
+        "sha256": "03b74727a860a56338e042c4420bb3f04b2fec5734175f4cb9fa853daf52b7e8"
+      },
+      {
+        "filename": "mmproj-BF16.gguf",
+        "bytes": 921705024,
+        "sha256": "853698ce7aa6c7ba732478bad280240969ddf7b0fcbf93900046f63903a83383"
+      }
+    ],
+    "build_options": {
+      "GGML_CUDA": true,
+      "CMAKE_CUDA_ARCHITECTURES": "75",
+      "CMAKE_BUILD_TYPE": "Release",
+      "LLAMA_BUILD_SERVER": true,
+      "LLAMA_BUILD_TESTS": false,
+      "LLAMA_BUILD_EXAMPLES": false,
+      "LLAMA_CURL": false,
+      "workers": 4,
+      "timeout_seconds": 480
+    },
+    "server_arguments": [
+      "--device",
+      "CUDA0",
+      "-ngl",
+      "99",
+      "-c",
+      "16384",
+      "--parallel",
+      "1",
+      "--threads",
+      "4",
+      "--flash-attn",
+      "off",
+      "--image-min-tokens",
+      "1024",
+      "--image-max-tokens",
+      "2048",
+      "--no-context-shift",
+      "--no-cache-prompt",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8080",
+      "--top-k",
+      "40",
+      "--top-p",
+      "0.95",
+      "--temp",
+      "0",
+      "--seed",
+      "1",
+      "--jinja",
+      "--no-mmproj-offload"
+    ]
+  },
+  "stages": {
+    "build": {
+      "state": "not_run",
+      "exit_code": null,
+      "evidence_reference": null,
+      "evidence_sha256": null,
+      "binary_sha256": null,
+      "provider_id": null,
+      "host_id": null
+    },
+    "runtime": {
+      "state": "not_run",
+      "exit_code": null,
+      "evidence_reference": null,
+      "evidence_sha256": null,
+      "binary_sha256": null,
+      "provider_id": null,
+      "host_id": null
+    },
+    "gpu_no_generation": {
+      "state": "not_run",
+      "exit_code": null,
+      "evidence_reference": null,
+      "evidence_sha256": null,
+      "binary_sha256": null,
+      "provider_id": null,
+      "host_id": null
+    },
+    "synthetic_schema_generation": {
+      "state": "not_run",
+      "exit_code": null,
+      "evidence_reference": null,
+      "evidence_sha256": null,
+      "binary_sha256": null,
+      "provider_id": null,
+      "host_id": null,
+      "input_kind": null,
+      "generation_calls": null,
+      "retries": null,
+      "private_media_used": null,
+      "schema_arms": null,
+      "full_responses_schema_validated": null,
+      "server_stopped": null
+    }
+  }
+}

@@ -298,3 +298,7 @@ git ls-remote origin refs/heads/task/roboassem-task6-self-hosted-return-YYYYMMDD
 ## 2026-10-21 准入增量
 
 [权利、接收边界与固定后端资格计划](../../../docs/research-handoff/progress/20261021-task6-rights-evidence-binding.md)记录本次 synthetic 回归与待决事项。证据哈希绑定只验证文件一致性；`data_rights=verified` 仍表示声明字段和文件身份通过机械检查，不是工具独立确认权利人身份、许可适用范围或真实主机归属。
+
+## 离线资格记录检查（2026-10-21 后续）
+
+[固定后端资格协议与最小私有字段](QUALIFICATION_PROTOCOL_zh.md)和 `qualification-packet.template.json` 支持先填明确事实、保留未知。`tools/task6_qualification.py audit` 检查字段/固定配置/阶段身份关联；`schema-check` 只校验命名 JSON。两者不读取媒体/权重、不调用模型或联网，始终保持 `execution_ready=false`；metadata 完整和本地 schema 通过都不代表后端合格或底层媒体许可已获验证。
