@@ -45,3 +45,17 @@
 3. 对未来固定后端资格工作另给有界资源/时间授权，并决定是否批准仅 synthetic、无私有数据的 schema 资格探针；当前不购买、不 provision、不连接或配置凭据。
 
 上述决定仍待材料；所有不依赖决定的本次软件工作已独立推进。后续证据交付无需以“原视频没找到”为阻塞理由。
+
+## 实际验证与独立复审
+
+实现提交：`04a68c13208ad9c5d9a37490e0c434db9777b53a`；本报告/回执可能位于其后续记录提交，研究基线与依赖未变。完整命令、exit、日志哈希及全部 129 个失败 node ID 见[追加回执](../receipts/roboassem-task6-rights-evidence-binding-20261021.json)。
+
+- 测试先行：首次 pytest 因环境没有模块而未执行；改用 unittest 后，修改前 7 个方法出现 17 个预期断言失败（含子测试），修改后 7 项通过。
+- Task6 self-hosted 52 项 unittest、offline runner 24 项通过；v5 crash safety 在 `python -O` 下 24 项通过。三个目录合并 pytest：100 passed、66 subtests passed。
+- 根目录完整 pytest：129 failed、880 passed、3 skipped。对原始 `ed9a9e4` 干净归档运行同一命令得到相同计数和完全相同的 129 个失败 node ID；未新增失败，但现有失败没有解决，不能声称全仓通过。根 pytest 的 testpaths 只收集 tests/，所以相关 experiments/ 另行显式运行。
+- Ruff 在两个已有 Python 文件中报 4 个 F841，逐一对基线证实已有；新增测试文件 lint 通过。`git diff --check` 通过。
+- 针对空临时输入目录的真实 CLI CPU smoke 返回 2，`input_ready=false`、`execution_ready=false`、网络和 generation 计数均为 0；这只是软件阻断验证，不表示既有私有原件不存在。
+- 初始环境缺 pytest/OpenCV；在 `/tmp/steptrace-check-venv` 隔离安装测试依赖（pytest/ruff/OpenCV 等），未改全局依赖、未下载模型或媒体。
+- 另一个内部只读审阅者独立检查 diff、重跑 52 项 unittest 与 52 项 pytest（61 subtests），确认无阻断问题，且复核 4 个 lint 问题来自基线。其未修改代码、联网或联系外部人员。
+
+未执行：GPU 构建/加载/预检、真实或 synthetic 模型生成、媒体读取/上传、正式实验、AI 预标注、人工真值、provider 配置/购买、凭据配置、合入 main、部署。剩余阻塞是待补权利范围与接收环境证据、待合格固定后端；没有自动审批拒绝或不确定已发送请求。
